@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#212121</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#008FFF</color>
-    <color name="backgroundContentColor">#414141</color>
+    <color name="colorPrimary">#FF202020</color>
+    <color name="colorPrimaryDark">#FF000000</color>
+    <color name="colorAccent">#FF008FFF</color>
+    <color name="itemTextColor">#80d8ff</color>
+    <color name="itemIconTint">#80d8ff</color>
+    <color name="windowBackground">#FF303030</color>
+    <color name="textColor">#FFFFFFFF</color>
+    <color name="textColorPrimary">#FFDDDDDD</color>
+    <color name="textColorSecondary">#FFBBBBBB</color>
+    <color name="backgroundContentColor">#FF404040</color>
 </resources>

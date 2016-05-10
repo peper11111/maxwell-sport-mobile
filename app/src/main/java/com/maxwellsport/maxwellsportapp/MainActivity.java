@@ -1,5 +1,7 @@
 package com.maxwellsport.maxwellsportapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -109,6 +111,12 @@ public class MainActivity extends AppCompatActivity
                 fragment = new SettingsFragment();
                 break;
             case R.id.nav_logout:
+                SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
+                editor.putBoolean("loggedIn", false);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.nav_about:
                 fragment = new AboutFragment();

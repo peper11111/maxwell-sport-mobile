@@ -2,6 +2,7 @@ package com.maxwellsport.maxwellsportapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,12 +23,27 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (usernameField.getText().toString().equals("admin") && passwordField.getText().toString().equals("admin")) {
+                    SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
+                    editor.putBoolean("loggedIn", true);
+                    editor.apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Authentication error", Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences prefs = getSharedPreferences("maxwellsport", MODE_PRIVATE);
+        if (prefs.getBoolean("loggedIn", false)) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
