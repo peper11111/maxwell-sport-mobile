@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#ff202020</color>
     <color name="colorPrimaryDark">#ff000000</color>
-    <color name="colorAccent">#ff0091ea</color>
+    <color name="colorAccent">#ff2196f3</color>
+
+    <color name="start_fab_button_color">#ff4caf50</color>
+    <color name="stop_fab_button_color">#fff44336</color>
+    <color name="pause_fab_button_color">#ff2196f3</color>
 </resources>
