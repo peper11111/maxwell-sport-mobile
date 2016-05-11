@@ -24,7 +24,7 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 if (usernameField.getText().toString().equals("admin") && passwordField.getText().toString().equals("admin")) {
                     SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
-                    editor.putBoolean("loggedIn", true);
+                    editor.putString("userID", "21232f297a57a5a743894a0e4a801fc3");
                     editor.apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -40,7 +40,7 @@ public class LoginActivity extends Activity {
     protected void onStart() {
         super.onStart();
         SharedPreferences prefs = getSharedPreferences("maxwellsport", MODE_PRIVATE);
-        if (prefs.getBoolean("loggedIn", false)) {
+        if (prefs.getString("userID", null) != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
