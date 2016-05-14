@@ -1,5 +1,6 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
+import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -89,7 +91,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
             mDiffTime = savedInstanceState.getLong("mDiffTime");
             setupFabView();
             setupTimerView(mDiffTime);
-            if(mStatus.equals("running"))
+            if (mStatus.equals("running"))
                 mTimerHandler.post(mTimerRunnable);
 
         } else {
@@ -105,6 +107,13 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
                     .addApi(LocationServices.API)
                     .build();
         }
+
+        int currentOrientation = getResources().getConfiguration().orientation;
+        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LinearLayout linearLayout = (LinearLayout) mView.findViewById(R.id.running_layout);
+            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        }
+
         return mView;
     }
 
@@ -160,7 +169,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        mMap.setPadding(0, 48, 0, 0);
+        mMap.setPadding(0, 80, 0, 0);
     }
 
     /*
@@ -211,7 +220,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
                 mView.findViewById(R.id.stats_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.running_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.stopped_layout).setVisibility(View.VISIBLE);
-                mTimeView.setText("00:00");
+                mTimeView.setText(getResources().getString(R.string.time_value));
                 break;
             case "running":
                 mView.findViewById(R.id.stopped_layout).setVisibility(View.INVISIBLE);
