@@ -13,6 +13,49 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
+        android:id="@+id/stats_layout"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:background="@color/timer_background_color"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Time : "
+            android:textColor="@color/timer_text_color" />
+
+        <TextView
+            android:id="@+id/timeView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="00:00"
+            android:textColor="@color/timer_text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Distance : "
+            android:textColor="@color/timer_text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="00:00"
+            android:textColor="@color/timer_text_color" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/stopped_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +71,7 @@
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginTop="0dp"
             android:src="@drawable/ic_fab_start"
-            app:backgroundTint="@color/start_fab_button_color"/>
+            app:backgroundTint="@color/start_fab_button_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +91,7 @@
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginTop="0dp"
             android:src="@drawable/ic_fab_pause"
-            app:backgroundTint="@color/pause_fab_button_color"/>
+            app:backgroundTint="@color/pause_fab_button_color" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_stop"
