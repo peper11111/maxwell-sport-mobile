@@ -13,7 +13,7 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
-        android:id="@+id/start_layout"
+        android:id="@+id/stopped_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -32,7 +32,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/stop_pause_layout"
+        android:id="@+id/running_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
