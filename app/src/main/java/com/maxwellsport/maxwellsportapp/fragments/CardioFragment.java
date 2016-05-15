@@ -45,7 +45,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
         @Override
         public void run() {
             long time = (SystemClock.uptimeMillis() - mStartTime) + mDiffTime;
-            setupTimerView(time);
+            setupStatsView(time);
             mTimerHandler.post(mTimerRunnable);
         }
     };
@@ -68,11 +68,13 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
         mDiffTime += SystemClock.uptimeMillis() - mStartTime;
     }
 
-    private void setupTimerView(long time) {
+    private void setupStatsView(long time) {
         long seconds = time / 1000;
         long minutes = seconds / 60;
         seconds = seconds % 60;
-        mTimeView.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        long hours = minutes / 60;
+        minutes = minutes % 60;
+        mTimeView.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
     }
 
     @Override
@@ -89,11 +91,11 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
             status = savedInstanceState.getString("status");
             mStartTime = savedInstanceState.getLong("mStartTime");
             mDiffTime = savedInstanceState.getLong("mDiffTime");
-            setupFabView();
+            setupMapView();
             if (status.equals("running"))
                 mTimerHandler.post(mTimerRunnable);
             else if (status.equals("paused"))
-                setupTimerView(mDiffTime);
+                setupStatsView(mDiffTime);
 
         } else {
             status = "stopped";
@@ -181,7 +183,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
             @Override
             public void onClick(View view) {
                 status = "running";
-                setupFabView();
+                setupMapView();
                 startTimer();
             }
         });
@@ -191,7 +193,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
             @Override
             public void onClick(View view) {
                 status = "stopped";
-                setupFabView();
+                setupMapView();
                 stopTimer();
             }
         });
@@ -202,18 +204,18 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
             public void onClick(View view) {
                 if (status.equals("running")) {
                     status = "paused";
-                    setupFabView();
+                    setupMapView();
                     pauseTimer();
                 } else if (status.equals("paused")) {
                     status = "running";
-                    setupFabView();
+                    setupMapView();
                     startTimer();
                 }
             }
         });
     }
 
-    private void setupFabView() {
+    private void setupMapView() {
         FloatingActionButton fab;
         switch (status) {
             case "stopped":

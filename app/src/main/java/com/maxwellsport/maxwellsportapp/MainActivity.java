@@ -3,6 +3,7 @@ package com.maxwellsport.maxwellsportapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
@@ -13,7 +14,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
 import com.maxwellsport.maxwellsportapp.fragments.AtlasFragment;
@@ -25,6 +25,7 @@ import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView mNavigationView;
     private Fragment mFragment;
+    private MenuItem mPrevMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +41,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        (mNavigationView.getMenu().getItem(0)).getIcon().setColorFilter(getResources().getColor(R.color.nav_profile_color), PorterDuff.Mode.SRC_ATOP);
+        (mNavigationView.getMenu().getItem(1)).getIcon().setColorFilter(getResources().getColor(R.color.nav_training_color), PorterDuff.Mode.SRC_ATOP);
+        (mNavigationView.getMenu().getItem(2)).getIcon().setColorFilter(getResources().getColor(R.color.nav_cardio_color), PorterDuff.Mode.SRC_ATOP);
+        (mNavigationView.getMenu().getItem(3)).getIcon().setColorFilter(getResources().getColor(R.color.nav_atlas_color), PorterDuff.Mode.SRC_ATOP);
     }
 
     @Override
@@ -73,12 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (mFragment instanceof CardioFragment) {
-            if (item.getItemId() == R.id.nav_cardio) {
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
-            } else if (!((CardioFragment) mFragment).status.equals("stopped")) {
+        if (item != mPrevMenuItem) {
+            if (mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped")) {
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.alert_dialog_title)
                         .setMessage(R.string.alert_dialog_message)
@@ -89,53 +94,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         })
                         .show();
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
+            } else {
+                switch (item.getItemId()) {
+                    case R.id.nav_profile:
+                        mFragment = new ProfileFragment();
+                        break;
+                    case R.id.nav_training:
+                        mFragment = new TrainingFragment();
+                        break;
+                    case R.id.nav_cardio:
+                        mFragment = new CardioFragment();
+                        break;
+                    case R.id.nav_atlas:
+                        mFragment = new AtlasFragment();
+                        break;
+                    case R.id.nav_settings:
+                        mFragment = new SettingsFragment();
+                        break;
+                    case R.id.nav_logout:
+                        SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
+                        editor.putString("userID", null);
+                        editor.apply();
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    case R.id.nav_about:
+                        mFragment = new AboutFragment();
+                        break;
+                }
+
+                if (mFragment != null) {
+                    if (item.getGroupId() == R.id.nav_group_top) {
+                        mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, false, true);
+                        mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, true, true);
+                    } else if (item.getGroupId() == R.id.nav_group_bottom) {
+                        mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, false, true);
+                        mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, true, true);
+                    }
+                    mPrevMenuItem = item;
+                    item.setChecked(true);
+                    setTitle(item.getTitle());
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
+                }
             }
         }
-
-        switch (item.getItemId()) {
-            case R.id.nav_profile:
-                mFragment = new ProfileFragment();
-                break;
-            case R.id.nav_training:
-                mFragment = new TrainingFragment();
-                break;
-            case R.id.nav_cardio:
-                mFragment = new CardioFragment();
-                break;
-            case R.id.nav_atlas:
-                mFragment = new AtlasFragment();
-                break;
-            case R.id.nav_settings:
-                mFragment = new SettingsFragment();
-                break;
-            case R.id.nav_logout:
-                SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
-                editor.putString("userID", null);
-                editor.apply();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.nav_about:
-                mFragment = new AboutFragment();
-                break;
-        }
-
-        if (mFragment != null) {
-            if (item.getGroupId() == R.id.nav_group_top) {
-                mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, false, true);
-                mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, true, true);
-            } else if (item.getGroupId() == R.id.nav_group_bottom) {
-                mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, false, true);
-                mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, true, true);
-            }
-            item.setChecked(true);
-            setTitle(item.getTitle());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
-        }
-
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

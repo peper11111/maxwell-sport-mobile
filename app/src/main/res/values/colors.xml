@@ -10,4 +10,10 @@
 
     <color name="timer_background_color">#99000000</color>
     <color name="timer_text_color">#ffffffff</color>
+
+    <color name="nav_profile_color">#ff2196f3</color>
+    <color name="nav_training_color">#fff44336</color>
+    <color name="nav_cardio_color">#ff4caf50</color>
+    <color name="nav_atlas_color">#ff673ab7</color>
+    <color name="nav_default_color">#ff000000</color>
 </resources>
