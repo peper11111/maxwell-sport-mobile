@@ -13,6 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView mNavigationView;
     private Fragment mFragment;
     private MenuItem mPrevMenuItem;
+    private int mItemID = 0;
+    private int[] mNavigationColors = {R.color.nav_profile_color, R.color.nav_training_color, R.color.nav_cardio_color, R.color.nav_atlas_color, R.color.nav_default_color, R.color.nav_default_color, R.color.nav_default_color};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (savedInstanceState == null) {
+        /* Wczytanie zapisanych wartosci po obróceniu ekranu */
+        if (savedInstanceState != null) {
+            mFragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
+            mItemID = savedInstanceState.getInt("mItemID");
+        } else {
             mFragment = new ProfileFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
             setTitle(getResources().getString(R.string.nav_profile));
@@ -52,21 +60,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        (mNavigationView.getMenu().getItem(0)).getIcon().setColorFilter(getResources().getColor(R.color.nav_profile_color), PorterDuff.Mode.SRC_ATOP);
-        (mNavigationView.getMenu().getItem(1)).getIcon().setColorFilter(getResources().getColor(R.color.nav_training_color), PorterDuff.Mode.SRC_ATOP);
-        (mNavigationView.getMenu().getItem(2)).getIcon().setColorFilter(getResources().getColor(R.color.nav_cardio_color), PorterDuff.Mode.SRC_ATOP);
-        (mNavigationView.getMenu().getItem(3)).getIcon().setColorFilter(getResources().getColor(R.color.nav_atlas_color), PorterDuff.Mode.SRC_ATOP);
+        /* Kolorowanie ikon w Navigation Drawer */
+        for (int i = 0; i < 4; i++) {
+            mNavigationView.getMenu().getItem(i).getIcon().setColorFilter(getResources().getColor(mNavigationColors[i]), PorterDuff.Mode.SRC_ATOP);
+        }
+        mPrevMenuItem = mNavigationView.getMenu().getItem(mItemID);
+
+        /* Naprawienie bugu gdy po przekreceniu ekranu byly aktywne dwa elementy z róznych grup */
+        if (mPrevMenuItem.getGroupId() == R.id.nav_group_top) {
+            mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, false, true);
+            mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, true, true);
+        } else if (mPrevMenuItem.getGroupId() == R.id.nav_group_bottom) {
+            mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, false, true);
+            mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, true, true);
+        }
+        /* Pokolorowanie aktywnego elementu po obróceniu i po uruchomieniu aplikacji */
+        tintMenuItem(mPrevMenuItem, mItemID);
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putString("title", getTitle().toString());
+        savedInstanceState.putInt("mItemID", mItemID);
+        getSupportFragmentManager().putFragment(savedInstanceState, "mFragment", mFragment);
         super.onSaveInstanceState(savedInstanceState);
-    }
-
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        setTitle(savedInstanceState.getString("title"));
     }
 
     @Override
@@ -83,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item != mPrevMenuItem) {
+            /* Jeżeli fragment Cardio działa, wyświetlenie komunikatu */
             if (mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped")) {
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.alert_dialog_title)
@@ -97,21 +114,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 switch (item.getItemId()) {
                     case R.id.nav_profile:
+                        mItemID = 0;
                         mFragment = new ProfileFragment();
                         break;
                     case R.id.nav_training:
+                        mItemID = 1;
                         mFragment = new TrainingFragment();
                         break;
                     case R.id.nav_cardio:
+                        mItemID = 2;
                         mFragment = new CardioFragment();
                         break;
                     case R.id.nav_atlas:
+                        mItemID = 3;
                         mFragment = new AtlasFragment();
                         break;
                     case R.id.nav_settings:
+                        mItemID = 4;
                         mFragment = new SettingsFragment();
                         break;
                     case R.id.nav_logout:
+                        mItemID = 5;
                         SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
                         editor.putString("userID", null);
                         editor.apply();
@@ -120,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         finish();
                         break;
                     case R.id.nav_about:
+                        mItemID = 6;
                         mFragment = new AboutFragment();
                         break;
                 }
@@ -132,15 +156,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, false, true);
                         mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, true, true);
                     }
+                    /* Pokolorowanie elementu */
+                    tintMenuItem(item, mItemID);
                     mPrevMenuItem = item;
-                    item.setChecked(true);
-                    setTitle(item.getTitle());
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
                 }
             }
         }
+        /* Zamkniecie navigation drawer po wykonaniu akcji */
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void tintMenuItem(MenuItem item, int itemID) {
+        setTitle(item.getTitle().toString());
+
+        /* Pozbawienie koloru poprzedniego elementu menu */
+        if (mPrevMenuItem != null)
+            mPrevMenuItem.setTitle(mPrevMenuItem.getTitle().toString());
+
+        /* Dodanie koloru aktywnemu elementowi */
+        SpannableString tintTitle = new SpannableString(item.getTitle());
+        tintTitle.setSpan(new ForegroundColorSpan(getResources().getColor(mNavigationColors[itemID])), 0, tintTitle.length(), 0);
+        item.setTitle(tintTitle);
+        item.setChecked(true);
     }
 }
