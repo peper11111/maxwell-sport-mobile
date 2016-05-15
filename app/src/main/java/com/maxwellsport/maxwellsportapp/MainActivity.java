@@ -1,5 +1,6 @@
 package com.maxwellsport.maxwellsportapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,9 +9,11 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
 import com.maxwellsport.maxwellsportapp.fragments.AtlasFragment;
@@ -21,6 +24,7 @@ import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView mNavigationView;
+    private Fragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+            mFragment = new ProfileFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
             setTitle(getResources().getString(R.string.nav_profile));
         }
 
@@ -68,23 +73,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Fragment fragment = null;
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (mFragment instanceof CardioFragment) {
+            if (item.getItemId() == R.id.nav_cardio) {
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            } else if (!((CardioFragment) mFragment).status.equals("stopped")) {
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.alert_dialog_title)
+                        .setMessage(R.string.alert_dialog_message)
+                        .setPositiveButton(R.string.alert_dialog_confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        }
 
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                fragment = new ProfileFragment();
+                mFragment = new ProfileFragment();
                 break;
             case R.id.nav_training:
-                fragment = new TrainingFragment();
+                mFragment = new TrainingFragment();
                 break;
             case R.id.nav_cardio:
-                fragment = new CardioFragment();
+                mFragment = new CardioFragment();
                 break;
             case R.id.nav_atlas:
-                fragment = new AtlasFragment();
+                mFragment = new AtlasFragment();
                 break;
             case R.id.nav_settings:
-                fragment = new SettingsFragment();
+                mFragment = new SettingsFragment();
                 break;
             case R.id.nav_logout:
                 SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
@@ -95,11 +119,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
             case R.id.nav_about:
-                fragment = new AboutFragment();
+                mFragment = new AboutFragment();
                 break;
         }
 
-        if (fragment != null) {
+        if (mFragment != null) {
             if (item.getGroupId() == R.id.nav_group_top) {
                 mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, false, true);
                 mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, true, true);
@@ -109,10 +133,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             item.setChecked(true);
             setTitle(item.getTitle());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -30,7 +30,7 @@ import java.util.Locale;
 //TODO: Automatyczne pobieranie pozycji przez gps, Dodanie google services
 public class CardioFragment extends Fragment implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
     private View mView;
-    private String mStatus;
+    public String status;
 
     private MapView mMapView;
     private GoogleMap mMap;
@@ -86,16 +86,17 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
         mTimeView = (TextView) mView.findViewById(R.id.stats_layout).findViewById(R.id.timeView);
 
         if (savedInstanceState != null) {
-            mStatus = savedInstanceState.getString("mStatus");
+            status = savedInstanceState.getString("status");
             mStartTime = savedInstanceState.getLong("mStartTime");
             mDiffTime = savedInstanceState.getLong("mDiffTime");
             setupFabView();
-            setupTimerView(mDiffTime);
-            if (mStatus.equals("running"))
+            if (status.equals("running"))
                 mTimerHandler.post(mTimerRunnable);
+            else if (status.equals("paused"))
+                setupTimerView(mDiffTime);
 
         } else {
-            mStatus = "stopped";
+            status = "stopped";
         }
 
         setupFabListeners();
@@ -110,8 +111,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
 
         int currentOrientation = getResources().getConfiguration().orientation;
         if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-            LinearLayout linearLayout = (LinearLayout) mView.findViewById(R.id.running_layout);
-            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+            ((LinearLayout) mView.findViewById(R.id.running_layout)).setOrientation(LinearLayout.HORIZONTAL);
         }
 
         return mView;
@@ -148,7 +148,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putLong("mStartTime", mStartTime);
         savedInstanceState.putLong("mDiffTime", mDiffTime);
-        savedInstanceState.putString("mStatus", mStatus);
+        savedInstanceState.putString("status", status);
         mMapView.onSaveInstanceState(savedInstanceState);
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -180,7 +180,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
         fab_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mStatus = "running";
+                status = "running";
                 setupFabView();
                 startTimer();
             }
@@ -190,7 +190,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
         fab_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mStatus = "stopped";
+                status = "stopped";
                 setupFabView();
                 stopTimer();
             }
@@ -200,12 +200,12 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
         fab_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mStatus.equals("running")) {
-                    mStatus = "paused";
+                if (status.equals("running")) {
+                    status = "paused";
                     setupFabView();
                     pauseTimer();
-                } else if (mStatus.equals("paused")) {
-                    mStatus = "running";
+                } else if (status.equals("paused")) {
+                    status = "running";
                     setupFabView();
                     startTimer();
                 }
@@ -215,7 +215,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback, Conn
 
     private void setupFabView() {
         FloatingActionButton fab;
-        switch (mStatus) {
+        switch (status) {
             case "stopped":
                 mView.findViewById(R.id.stats_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.running_layout).setVisibility(View.INVISIBLE);

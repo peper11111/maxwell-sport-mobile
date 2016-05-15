@@ -5,6 +5,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="alert_dialog_title">Warning</string>
+    <string name="alert_dialog_message">Your Cardio Activity is still running. If you want to change the view, end the training first.</string>
+    <string name="alert_dialog_confirm">OK</string>
+
     <string name="nav_profile">Profile</string>
     <string name="nav_training">Training</string>
     <string name="nav_cardio">Cardio</string>
