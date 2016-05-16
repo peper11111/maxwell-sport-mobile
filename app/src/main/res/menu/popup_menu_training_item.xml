@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/exercise_description"
+        android:title="Opis" />
+    <item
+        android:id="@+id/exe_sec"
+        android:title="Cos jeszcze" />
+</menu>

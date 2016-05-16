@@ -113,7 +113,8 @@
                 android:layout_width="263dp"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:text="Rozpocznij trening" />
+                android:text="Rozpocznij trening"
+                android:id="@+id/start_trainingBtn"/>
         </LinearLayout>
 
         <LinearLayout
