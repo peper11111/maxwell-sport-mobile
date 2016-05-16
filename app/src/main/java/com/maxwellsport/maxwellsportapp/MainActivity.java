@@ -3,7 +3,9 @@ package com.maxwellsport.maxwellsportapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView mNavigationView;
     private Fragment mFragment;
     private MenuItem mPrevMenuItem;
-    private int mItemID = 0;
+    private int mItemID;
     private int[] mNavigationColors = {R.color.nav_profile_color, R.color.nav_training_color, R.color.nav_cardio_color, R.color.nav_atlas_color, R.color.nav_default_color, R.color.nav_default_color, R.color.nav_default_color};
 
     @Override
@@ -43,9 +45,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mFragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
             mItemID = savedInstanceState.getInt("mItemID");
         } else {
+            /* Domyslne wartosci dla uruchomienia plikacji. Pierwszy fragment to profile fragment, oraz zakladka z nim zwiazana*/
             mFragment = new ProfileFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
             setTitle(getResources().getString(R.string.nav_profile));
+            mItemID = 0;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -60,13 +64,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+        /* Usuniecie domyslnego stylu kolorowania ikon */
+        mNavigationView.setItemIconTintList(null);
+
         /* Kolorowanie ikon w Navigation Drawer */
-        for (int i = 0; i < 4; i++) {
-            mNavigationView.getMenu().getItem(i).getIcon().setColorFilter(getResources().getColor(mNavigationColors[i]), PorterDuff.Mode.SRC_ATOP);
+        for (int i = 0; i < 7; i++) {
+            mNavigationView.getMenu().getItem(i).getIcon().mutate().setColorFilter(getResources().getColor(mNavigationColors[i]), PorterDuff.Mode.SRC_ATOP);
         }
         mPrevMenuItem = mNavigationView.getMenu().getItem(mItemID);
 
-        /* Naprawienie bugu gdy po przekreceniu ekranu byly aktywne dwa elementy z róznych grup */
+        /* Naprawienie bugu, gdy po przekreceniu ekranu byly aktywne dwa elementy z róznych grup */
         if (mPrevMenuItem.getGroupId() == R.id.nav_group_top) {
             mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, false, true);
             mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, true, true);

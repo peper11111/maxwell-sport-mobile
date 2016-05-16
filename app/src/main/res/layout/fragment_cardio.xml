@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
-        android:background="@color/timer_background_color"
+        android:background="@color/stats_background_color"
         android:padding="8dp"
         android:visibility="invisible">
 
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/time_label"
-                android:textColor="@color/timer_text_color" />
+                android:textColor="@color/stats_text_color" />
 
             <TextView
                 android:id="@+id/timeView"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/time_value"
-                android:textColor="@color/timer_text_color" />
+                android:textColor="@color/stats_text_color" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/distance_label"
-                android:textColor="@color/timer_text_color" />
+                android:textColor="@color/stats_text_color" />
 
             <TextView
                 android:id="@+id/distanceView"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/distance_value"
-                android:textColor="@color/timer_text_color" />
+                android:textColor="@color/stats_text_color" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/pace_label"
-                android:textColor="@color/timer_text_color" />
+                android:textColor="@color/stats_text_color" />
 
             <TextView
                 android:id="@+id/paceView"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/pace_value"
-                android:textColor="@color/timer_text_color" />
+                android:textColor="@color/stats_text_color" />
         </LinearLayout>
     </LinearLayout>
 
