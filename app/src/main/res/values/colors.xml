@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff202020</color>
+    <color name="colorPrimary">#ff212121</color>
     <color name="colorPrimaryDark">#ff000000</color>
     <color name="colorAccent">#ff2196f3</color>
+    <color name="textColor">#ffffffff</color>
 
     <color name="start_fab_button_color">#ff4caf50</color>
     <color name="stop_fab_button_color">#fff44336</color>
