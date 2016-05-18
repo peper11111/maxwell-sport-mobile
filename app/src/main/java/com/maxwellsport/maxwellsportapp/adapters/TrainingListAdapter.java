@@ -1,4 +1,4 @@
-package com.maxwellsport.maxwellsportapp;
+package com.maxwellsport.maxwellsportapp.adapters;
 
 
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.maxwellsport.maxwellsportapp.R;
 
 import java.util.ArrayList;
 
@@ -46,27 +49,31 @@ public class TrainingListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        ViewHolder holder = new ViewHolder();
+
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.training_day_list_item,null);
+            holder.exeName = (TextView) convertView.findViewById(R.id.row_textView1);
+            holder.weight = (TextView) convertView.findViewById(R.id.weight);
+            holder.sets = (TextView) convertView.findViewById(R.id.sets);
+            holder.reps = (TextView) convertView.findViewById(R.id.reps);
+            holder.image = (ImageView) convertView.findViewById(R.id.row_imageView1);
+            holder.popup = (ImageView) convertView.findViewById(R.id.row_click_imageView1);
+
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        TextView exeName = (TextView) convertView.findViewById(R.id.row_textView1);
-//        TODO: dodac powtorzenia, serie, ciezar do listView_item
-        TextView weight = (TextView) convertView.findViewById(R.id.weight);
-        TextView sets = (TextView) convertView.findViewById(R.id.sets);
-        TextView reps = (TextView) convertView.findViewById(R.id.reps);
-
-        ImageView exeImg = (ImageView) convertView.findViewById(R.id.row_imageView1);
-        ImageView popup = (ImageView) convertView.findViewById(R.id.row_click_imageView1);
 
 //        TODO: podpiac odpowiednie listy
         try {
-            exeName.setText(exeNameList.get(position));
-            weight.setText("weight: 60% CM");
-            sets.setText("sets: 3");
-            reps.setText("reps: 12");
-            popup.setOnClickListener(new View.OnClickListener() {
+            holder.exeName.setText(exeNameList.get(position));
+            holder.weight.setText("weight: 60% CM");
+            holder.sets.setText("sets: 3");
+            holder.reps.setText("reps: 12");
+            holder.popup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     switch (v.getId()){
@@ -80,6 +87,7 @@ public class TrainingListAdapter extends BaseAdapter {
                                     switch(item.getItemId()){
                                         case R.id.exercise_description:
                                             // TODO odpalic opis cwiczenia w popup
+                                            Toast.makeText(context,"w popup", Toast.LENGTH_SHORT).show();
                                             break;
                                         case R.id.exe_sec:
                                             // jakas druga czynnosc
@@ -102,5 +110,14 @@ public class TrainingListAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+
+    public class ViewHolder{
+        TextView exeName;
+        TextView weight;
+        TextView sets;
+        TextView reps;
+        ImageView image;
+        ImageView popup;
     }
 }

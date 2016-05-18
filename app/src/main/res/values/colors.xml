@@ -7,4 +7,5 @@
     <color name="start_fab_button_color">#ff4caf50</color>
     <color name="stop_fab_button_color">#fff44336</color>
     <color name="pause_fab_button_color">#ff2196f3</color>
+
 </resources>
