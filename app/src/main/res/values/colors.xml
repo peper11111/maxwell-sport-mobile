@@ -8,4 +8,6 @@
     <color name="stop_fab_button_color">#fff44336</color>
     <color name="pause_fab_button_color">#ff2196f3</color>
 
+    <color name="light_grey">#d2d2d2</color>
+
 </resources>

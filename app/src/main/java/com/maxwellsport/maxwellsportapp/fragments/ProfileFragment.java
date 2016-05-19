@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.maxwellsport.maxwellsportapp.R;
 
+// TODO zaczać wgl ten profil
+
 public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
