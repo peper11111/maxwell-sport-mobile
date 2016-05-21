@@ -28,15 +28,15 @@ public class ProfileFragment extends Fragment {
         cardioButton = (Button) v.findViewById(R.id.cardioButton);
         cardio = (TableLayout) v.findViewById(R.id.profil_cardio_table);
         gym = (TableLayout) v.findViewById(R.id.profil_gym_table);
-        gymButton.setBackgroundColor(Color.parseColor("#bebebe"));
+        gymButton.setBackgroundColor(getResources().getColor(R.color.light_grey));
 
         gymButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cardio.setVisibility(View.INVISIBLE);
                 gym.setVisibility(View.VISIBLE);
-                gymButton.setBackgroundColor(Color.parseColor("#bebebe"));
-                cardioButton.setBackgroundColor(getResources().getColor(R.color.light_grey));
+                cardioButton.setBackgroundColor(Color.parseColor("#FFE1E1E1"));
+                gymButton.setBackgroundColor(getResources().getColor(R.color.light_grey));
             }
         });
 
@@ -45,8 +45,8 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 cardio.setVisibility(View.VISIBLE);
                 gym.setVisibility(View.INVISIBLE);
-                cardioButton.setBackgroundColor(Color.parseColor("#bebebe"));
-                gymButton.setBackgroundColor(getResources().getColor(R.color.light_grey));
+                gymButton.setBackgroundColor(Color.parseColor("#FFE1E1E1"));
+                cardioButton.setBackgroundColor(getResources().getColor(R.color.light_grey));
             }
         });
 
