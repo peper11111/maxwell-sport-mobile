@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.maxwellsport.maxwellsportapp.R;
@@ -21,23 +20,17 @@ public class TrainingDayFragment extends Fragment {
     String [] exeNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie","Zginanie przedramion ze sztangielkami z obrotem nadgarstka","Exercise 3","Exercise 4","Exercise 5",
             "Exercise 6","Exercise 7","Exercise 8","Exercise 9","Exercise 10"};
     ArrayList<String> arrayList = new ArrayList<>();
-    ImageView image;
     ListView listView;
     TrainingListAdapter adapter;
 
-    /* Lista kliknietych pozycji, tam gdzie 0 to nie zrobione cwiczenie */
-    ArrayList<Integer> positionList = new ArrayList<>();
+    // TODO: Pobrac liste z adaptera i przekazac do statystyk
+    /* Lista skonczonych cwiczen */
+    ArrayList<Integer> positionList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_training_day, container, false);
 
-        /*
-        *   Inicjalizacja listy z pozycjami
-        */
-        for (int i=0; i < exeNameArray.length; i++){
-            positionList.add(0);
-        }
 
         listView = (ListView) v.findViewById(R.id.training_list_view);
 
