@@ -18,7 +18,9 @@
             android:orientation="vertical"
             android:padding="16dp"
             android:clickable="true"
-            android:background="#acacac">
+            android:background="#acacac"
+            android:focusable="false"
+            android:id="@+id/trainig_day1">
 
             <TextView
                 android:layout_width="match_parent"
@@ -26,13 +28,17 @@
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:gravity="center"
                 android:text="TRENING 1"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:focusable="false"
+                android:clickable="false" />
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="1"
-                android:id="@+id/trainig_table1">
+                android:id="@+id/trainig_table1"
+                android:focusable="false"
+                android:clickable="false">
 
                 <TableRow
                     android:layout_marginTop="3dp">
@@ -89,7 +95,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="right"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:clickable="false"
+                android:focusable="false">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -97,13 +105,17 @@
                     android:layout_gravity="right"
                     android:text="Start Training"
                     android:layout_marginTop="10dp"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:clickable="false"
+                    android:focusable="false"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_media_play"
-                    android:layout_gravity="right"/>
+                    android:layout_gravity="right"
+                    android:clickable="false"
+                    android:focusable="false"/>
 
             </LinearLayout>
         </LinearLayout>
