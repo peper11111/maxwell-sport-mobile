@@ -74,6 +74,8 @@
     <string name="profile_best_pace_value">0</string>
 
     <!--About Fragment-->
-
+    <string name="about_description">Great, smart and versatile training application made for the best and the strongest people walking on Earth</string>
+    <string name="about_follow">Follow us on GitHub</string>
+    <string name="about_copyright">Copyright &#169; 2016 RafPep INC.</string>
 
 </resources>

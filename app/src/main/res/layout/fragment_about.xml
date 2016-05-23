@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:scrollbars="none"
     android:background="@color/colorPrimary">
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maxwell Sport App"
+        android:text="@string/app_name"
         android:textSize="35sp"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
@@ -23,13 +23,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Great, smart and versatile training application made for the best and the strongest people walking on Earth"
+        android:text="@string/about_description"
         android:layout_gravity="center"
         android:textSize="17sp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="@color/profile_text_color"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -41,14 +42,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Follow us on GitHub"
+                    android:text="@string/about_follow"
                     android:textSize="20sp"
-                    android:paddingTop="7dp"/>
+                    android:paddingTop="7dp"
+                    android:textColor="@color/profile_text_color"/>
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/github_logo"
+                    android:src="@drawable/github_logo_white"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/github_image_link"
                     android:clickable="true"/>
@@ -57,11 +59,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Copyright &#169; 2016 RafPep INC."
+        android:text="@string/about_copyright"
         android:textSize="14sp"
         android:layout_gravity="bottom"
         android:textAlignment="center"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textColor="@color/profile_text_color"/>
 
 </LinearLayout>
 
