@@ -17,62 +17,21 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
+import com.maxwellsport.maxwellsportapp.services.TimerService;
 
 import java.util.Locale;
 
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
     // Klucze do zapisania potrzebnych wartosci do Bundle
     protected final static String STATUS_KEY = "status-key";
-    protected final static String START_TIME_KEY = "start-time-key";
-    protected final static String DIFF_TIME_KEY = "diff-time-key";
 
     public String status;
-    private long mStartTime;
-    private long mDiffTime;
 
     private View mView;
     private LocationUpdateService mLocationUpdateService;
+    private TimerService mTimerService;
     private MapView mMapView;
     private GoogleMap mMap;
-
-    private TextView mTimeView;
-
-    private Handler mTimerHandler = new Handler();
-    private Runnable mTimerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long time = (SystemClock.uptimeMillis() - mStartTime) + mDiffTime;
-            setupStatsView(time);
-            mTimerHandler.post(mTimerRunnable);
-        }
-    };
-
-    /*
-     * Timer functions
-     */
-    private void startTimer() {
-        mStartTime = SystemClock.uptimeMillis();
-        mTimerHandler.post(mTimerRunnable);
-    }
-
-    private void stopTimer() {
-        mTimerHandler.removeCallbacks(mTimerRunnable);
-        mDiffTime = 0;
-    }
-
-    private void pauseTimer() {
-        mTimerHandler.removeCallbacks(mTimerRunnable);
-        mDiffTime += SystemClock.uptimeMillis() - mStartTime;
-    }
-
-    private void setupStatsView(long time) {
-        long seconds = time / 1000;
-        long minutes = seconds / 60;
-        seconds = seconds % 60;
-        long hours = minutes / 60;
-        minutes = minutes % 60;
-        mTimeView.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,16 +45,12 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         /* Przygotowanie LocationUpdateService*/
         mLocationUpdateService = new LocationUpdateService(this);
+        mTimerService = new TimerService(this, (TextView) mView.findViewById(R.id.stats_layout).findViewById(R.id.timeView));
         onRestoreInstanceState(savedInstanceState);
 
-        mTimeView = (TextView) mView.findViewById(R.id.stats_layout).findViewById(R.id.timeView);
         /* Setup widoku przycisków i timera */
         setupMapView();
-        if (status.equals("running"))
-            mTimerHandler.post(mTimerRunnable);
-        else if (status.equals("paused"))
-            setupStatsView(mDiffTime);
-
+        mTimerService.setupTimerService(status);
         setupFabListeners();
 
         int currentOrientation = getResources().getConfiguration().orientation;
@@ -110,9 +65,8 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putLong(DIFF_TIME_KEY, mDiffTime);
-        savedInstanceState.putLong(START_TIME_KEY, mStartTime);
         savedInstanceState.putString(STATUS_KEY, status);
+        mTimerService.onSaveInstanceState(savedInstanceState);
         mLocationUpdateService.onSaveInstanceState(savedInstanceState);
         mMapView.onSaveInstanceState(savedInstanceState);
         super.onSaveInstanceState(savedInstanceState);
@@ -121,14 +75,11 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     /* Pomocnicza metoda do wczytania danych z Bundle */
     private void onRestoreInstanceState(Bundle savedInstanceState) {
         mLocationUpdateService.onRestoreInstanceState(savedInstanceState);
+        mTimerService.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             status = savedInstanceState.getString(STATUS_KEY);
-            mStartTime = savedInstanceState.getLong(START_TIME_KEY);
-            mDiffTime = savedInstanceState.getLong(DIFF_TIME_KEY);
         } else {
             status = "stopped";
-            mStartTime = 0;
-            mDiffTime = 0;
         }
     }
 
@@ -181,7 +132,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View view) {
                 status = "running";
                 setupMapView();
-                startTimer();
+                mTimerService.startTimer();
                 mLocationUpdateService.startUpdatesButtonHandler();
             }
         });
@@ -192,7 +143,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View view) {
                 status = "stopped";
                 setupMapView();
-                stopTimer();
+                mTimerService.stopTimer();
                 mLocationUpdateService.stopUpdatesButtonHandler();
             }
         });
@@ -204,12 +155,12 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 if (status.equals("running")) {
                     status = "paused";
                     setupMapView();
-                    pauseTimer();
+                    mTimerService.pauseTimer();
                     mLocationUpdateService.stopUpdatesButtonHandler();
                 } else if (status.equals("paused")) {
                     status = "running";
                     setupMapView();
-                    startTimer();
+                    mTimerService.startTimer();
                     mLocationUpdateService.startUpdatesButtonHandler();
                 }
             }
@@ -223,7 +174,6 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 mView.findViewById(R.id.stats_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.running_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.stopped_layout).setVisibility(View.VISIBLE);
-                mTimeView.setText(getResources().getString(R.string.time_value));
                 break;
             case "running":
                 mView.findViewById(R.id.stopped_layout).setVisibility(View.INVISIBLE);

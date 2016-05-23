@@ -58,12 +58,12 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-    public void startLocationUpdates() {
+    private void startLocationUpdates() {
         Log.i("MaxwellSport", "Started Location Updates");
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
-    public void stopLocationUpdates() {
+    private void stopLocationUpdates() {
         Log.i("MaxwellSport", "Stopped Location Updates");
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
@@ -112,7 +112,7 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
     }
 
     /*
-     * Metody sluzace do polaczenia Location update servie z life cycle z Cardio Fragment
+     * Metody sluzace do polaczenia Location update service z Cardio Fragment life cycle
      */
     public void onStart() {
         mGoogleApiClient.connect();
