@@ -16,6 +16,8 @@
     <color name="stats_background_color">#99000000</color>
     <color name="stats_text_color">#ffffffff</color>
 
+    <color name="light_grey">#ffaaaaaa</color>
+
     <!-- Design z kolorami Material 500 -->
     <!--<color name="nav_profile_color">#ff2196f3</color>
     <color name="nav_training_color">#fff44336</color>
