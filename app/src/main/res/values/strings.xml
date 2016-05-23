@@ -29,4 +29,51 @@
     <string name="pace_value">0</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- pola do profilu -->
+    <string name="profile_user_name">User Name</string>
+    <string name="profile_user_email">emai@example.com</string>
+    <string name="profile_active_since">Active since:</string>
+    <string name="profile_trainig">Training</string>
+    <string name="profile_cardio">Cardio</string>
+
+    <!-- pola do treningu, profil-->
+    <string name="profile_last_t_date">Last training:</string>
+    <string name="profile_last_t_date_value">0</string>
+    <string name="profile_last_t_time">Last training duration:</string>
+    <string name="profile_last_t_time_value">0</string>
+    <string name="profile_average_t_time">Average training time:</string>
+    <string name="profile_average_t_time_value">0</string>
+    <string name="profile_t_longest_time">Longest training time:</string>
+    <string name="profile_t_longest_time_value">0</string>
+    <string name="profile_last_exercise_amount">Last exercises amount:</string>
+    <string name="profile_last_exercise_amount_value">0</string>
+    <string name="profile_average_exercise_amount">Average amount of exercises:</string>
+    <string name="profile_average_exercises_value">0</string>
+    <string name="profile_form">Form</string>
+    <string name="profile_form_description">Form</string>
+
+    <!-- pola do cardio, profil-->
+    <string name="profile_last_r_date">Last run:</string>
+    <string name="profile_last_r_date_value">0</string>
+    <string name="profile_last_r_time">Last run time:</string>
+    <string name="profile_last_r_time_value">0</string>
+    <string name="profile_average_r_time">Average run time:</string>
+    <string name="profile_average_r_time_value">0</string>
+    <string name="profile_last_distance">Last distance:</string>
+    <string name="profile_last_distance_value">0</string>
+    <string name="profile_average_distance">Average distance:</string>
+    <string name="profile_average_distance_value">0</string>
+    <string name="profile_longest_distance">Longest distance:</string>
+    <string name="profile_longest_distance_value">0</string>
+    <string name="profile_last_pace">Last pace:</string>
+    <string name="profile_last_pace_value">0</string>
+    <string name="profile_average_pace">Average pace:</string>
+    <string name="profile_average_pace_value">0</string>
+    <string name="profile_best_pace">Best pace:</string>
+    <string name="profile_best_pace_value">0</string>
+
+    <!--About Fragment-->
+
+
 </resources>
