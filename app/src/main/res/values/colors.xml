@@ -6,7 +6,7 @@
     <color name="textColor">#ffffffff</color>
 
     <color name="profile_background_color">#ff212121</color>
-    <color name="profile_active_tile_color">#ff424242</color>
+    <color name="profile_tile_color">#ff424242</color>
     <color name="profile_text_color">#ffffffff</color>
 
     <color name="start_fab_button_color">#ff4caf50</color>
