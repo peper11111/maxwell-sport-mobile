@@ -11,8 +11,9 @@ import android.widget.LinearLayout;
 
 import com.maxwellsport.maxwellsportapp.R;
 
-public class TrainingFragment extends Fragment implements View.OnClickListener{
+// TODO: zaimplementowac metody z cyklem zycia fragmentu do treningu
 
+public class TrainingFragment extends Fragment implements View.OnClickListener{
 
     private View view;
     private LinearLayout layout;

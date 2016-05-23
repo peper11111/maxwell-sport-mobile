@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:scrollbars="none"
-    android:layout_marginBottom="8dp"
     android:background="#ffffff">
 
 <RelativeLayout
@@ -28,7 +27,8 @@
         android:layout_below="@+id/profil_header_image"
         android:gravity="center"
         android:paddingTop="32dp"
-        android:paddingBottom="28dp">
+        android:paddingBottom="28dp"
+        android:layout_marginTop="45dp">
 
         <TextView
             android:id="@+id/profil_user_name"
@@ -46,6 +46,13 @@
             android:gravity="center"
             android:textColor="#FF707070"
             android:text="rafalrutyna00@gmail.com"/>
+
+        <TextView
+            android:id="@+id/profil_user_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Aktywny od: 23.05.2016"/>
     </LinearLayout>
 
 
@@ -55,8 +62,7 @@
         android:id="@+id/stats_buttons"
         android:layout_below="@+id/informations_container"
         android:orientation="horizontal"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+
         android:weightSum="2"
         >
 
@@ -66,7 +72,8 @@
             android:id="@+id/gymButton"
             android:text="Gym"
             android:layout_weight="1"
-            android:background="#e0e0e0"/>
+            android:background="@color/colorPrimary"
+            android:textColor="@color/bright_foreground_material_dark"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -74,7 +81,8 @@
             android:text="Cardio"
             android:id="@+id/cardioButton"
             android:layout_weight="1"
-            android:background="#e0e0e0"/>
+            android:background="@color/primary_dark_material_light"
+            android:textColor="@color/bright_foreground_material_dark"/>
 
     </LinearLayout>
 
@@ -83,10 +91,7 @@
         android:layout_height="wrap_content"
         android:scrollbars="none"
         android:layout_below="@+id/stats_buttons"
-        android:background="#f4f4f4"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp">
+        android:background="@color/colorPrimary">
 
         
         <LinearLayout
@@ -115,23 +120,27 @@
                        <TextView
                            android:layout_column="1"
                            android:text="Ostatni trening:"
-                           android:padding="3dp"/>
+                           android:padding="3dp"
+                           android:textColor="@color/bright_foreground_material_dark"/>
                        <TextView
                            android:text="5 km"
                            android:padding="3dp"
-                           android:layout_gravity="right"/>
+                           android:layout_gravity="right"
+                           android:textColor="@color/bright_foreground_material_dark"/>
                    </TableRow>
-
+0
                    <TableRow
                        android:layout_marginTop="2dp">
                        <TextView
                            android:layout_column="1"
                            android:text="Najdłuższy trening:"
-                           android:padding="3dp"/>
+                           android:padding="3dp"
+                           android:textColor="@color/bright_foreground_material_dark"/>
                        <TextView
                            android:text="140 min"
                            android:padding="3dp"
-                           android:layout_gravity="right"/>
+                           android:layout_gravity="right"
+                           android:textColor="@color/bright_foreground_material_dark"/>
                    </TableRow>
 
                    <TableRow
@@ -139,24 +148,15 @@
                        <TextView
                            android:layout_column="1"
                            android:text="Średni czas treningu:"
-                           android:padding="3dp"/>
+                           android:padding="3dp"
+                           android:textColor="@color/bright_foreground_material_dark"/>
                        <TextView
                            android:text="110 min"
                            android:padding="3dp"
-                           android:layout_gravity="right"/>
+                           android:layout_gravity="right"
+                           android:textColor="@color/bright_foreground_material_dark"/>
                    </TableRow>
 
-                   <TableRow
-                       android:layout_marginTop="2dp">
-                       <TextView
-                           android:layout_column="1"
-                           android:text="Aktywny od:"
-                           android:padding="3dp"/>
-                       <TextView
-                           android:text="21.05.2016 r."
-                           android:padding="3dp"
-                           android:layout_gravity="right"/>
-                   </TableRow>
 
                </TableLayout>
 
@@ -175,11 +175,13 @@
                         <TextView
                             android:layout_column="1"
                             android:text="Ostatni bieg:"
-                            android:padding="3dp"/>
+                            android:padding="3dp"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                         <TextView
                             android:text="5 km"
                             android:padding="3dp"
-                            android:layout_gravity="right"/>
+                            android:layout_gravity="right"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                     </TableRow>
 
                     <TableRow
@@ -187,11 +189,13 @@
                         <TextView
                             android:layout_column="1"
                             android:text="Najdłuższy bieg:"
-                            android:padding="3dp"/>
+                            android:padding="3dp"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                         <TextView
                             android:text="140 min"
                             android:padding="3dp"
-                            android:layout_gravity="right"/>
+                            android:layout_gravity="right"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                     </TableRow>
 
                     <TableRow
@@ -199,11 +203,13 @@
                         <TextView
                             android:layout_column="1"
                             android:text="Średni czas biegu:"
-                            android:padding="3dp"/>
+                            android:padding="3dp"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                         <TextView
                             android:text="110 min"
                             android:padding="3dp"
-                            android:layout_gravity="right"/>
+                            android:layout_gravity="right"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                     </TableRow>
 
                     <TableRow
@@ -211,23 +217,13 @@
                         <TextView
                             android:layout_column="1"
                             android:text="Średnia prędkość:"
-                            android:padding="3dp"/>
+                            android:padding="3dp"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                         <TextView
                             android:text="10 km/h"
                             android:padding="3dp"
-                            android:layout_gravity="right"/>
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_marginTop="2dp">
-                        <TextView
-                            android:layout_column="1"
-                            android:text="Aktywny od:"
-                            android:padding="3dp"/>
-                        <TextView
-                            android:text="21.05.2016 r."
-                            android:padding="3dp"
-                            android:layout_gravity="right"/>
+                            android:layout_gravity="right"
+                            android:textColor="@color/bright_foreground_material_dark"/>
                     </TableRow>
 
                 </TableLayout>
@@ -244,7 +240,8 @@
         android:src="@drawable/maxwell"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/informations_container"
-        android:layout_marginBottom="-16dp"/>
+        android:layout_marginBottom="-55dp"
+        />
 
 </RelativeLayout>
 </ScrollView>

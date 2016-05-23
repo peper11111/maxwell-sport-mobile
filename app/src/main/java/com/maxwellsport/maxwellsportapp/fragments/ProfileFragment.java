@@ -12,6 +12,7 @@ import android.widget.TableLayout;
 
 import com.maxwellsport.maxwellsportapp.R;
 
+// TODO: zachowac stan pól tekstowych ze statystykami po zmianie konfiguracji
 
 public class ProfileFragment extends Fragment {
 
@@ -28,15 +29,15 @@ public class ProfileFragment extends Fragment {
         cardioButton = (Button) v.findViewById(R.id.cardioButton);
         cardio = (TableLayout) v.findViewById(R.id.profil_cardio_table);
         gym = (TableLayout) v.findViewById(R.id.profil_gym_table);
-        gymButton.setBackgroundColor(Color.parseColor("#f4f4f4"));
+        gymButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         gymButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cardio.setVisibility(View.INVISIBLE);
                 gym.setVisibility(View.VISIBLE);
-                gymButton.setBackgroundColor(Color.parseColor("#f4f4f4"));
-                cardioButton.setBackgroundColor(Color.parseColor("#e0e0e0"));
+                gymButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                cardioButton.setBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
             }
         });
 
@@ -45,8 +46,8 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 cardio.setVisibility(View.VISIBLE);
                 gym.setVisibility(View.INVISIBLE);
-                cardioButton.setBackgroundColor(Color.parseColor("#f4f4f4"));
-                gymButton.setBackgroundColor(Color.parseColor("#e0e0e0"));
+                cardioButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                gymButton.setBackgroundColor(getResources().getColor(R.color.primary_dark_material_light));
             }
         });
 
