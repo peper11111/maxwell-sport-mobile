@@ -6,16 +6,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingListAdapter;
 
 import java.util.ArrayList;
 
-public class TrainingDayFragment extends Fragment {
+public class TrainingDayFragment extends Fragment implements View.OnClickListener{
 
-//    TODO: zebrac wlasciwe dane
+    private ImageButton pauseButton;
+    private ImageButton resumeButton;
+    private ImageButton stopButton;
+
+//    TODO: zebrac wlasciwe dane do wyswietlenia
     // testowe dane
     String [] exeNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie","Zginanie przedramion ze sztangielkami z obrotem nadgarstka","Exercise 3","Exercise 4","Exercise 5",
             "Exercise 6","Exercise 7","Exercise 8","Exercise 9","Exercise 10"};
@@ -31,21 +37,53 @@ public class TrainingDayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_training_day, container, false);
 
-
+        /* Inicjalizacja widoków */
         listView = (ListView) v.findViewById(R.id.training_list_view);
+        resumeButton = (ImageButton) v.findViewById(R.id.training_resume);
+        pauseButton = (ImageButton) v.findViewById(R.id.training_pause);
+        stopButton = (ImageButton) v.findViewById(R.id.training_stop);
 
         for(String s: exeNameArray){
             arrayList.add(s);
         }
 
-        /*
-        * Setting adapter
-        */
-
+        /* Ustawienie adaptera */
         adapter = new TrainingListAdapter(getActivity(), arrayList);
         listView.setAdapter(adapter);
-        return v;
 
+//        TODO: ustawic timer do przyciskow
+        /* Ustawienie timera do przycisków */
+
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"STOP",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        resumeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"RESUME",Toast.LENGTH_SHORT).show();
+                resumeButton.setVisibility(View.INVISIBLE);
+                pauseButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"Pause",Toast.LENGTH_SHORT).show();
+                pauseButton.setVisibility(View.INVISIBLE);
+                resumeButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+        return v;
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 

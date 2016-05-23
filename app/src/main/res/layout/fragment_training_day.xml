@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="false">
+    android:focusable="false"
+    android:background="@color/common_google_signin_btn_text_dark_default">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/training_list_view"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginRight="8dp"
+        android:layout_weight="1">
     </ListView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time_label"
+            android:id="@+id/time_label"
+            android:textSize="18sp"
+            android:textColor="@color/profile_text_color"
+            android:layout_centerVertical="true"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_count"
+            android:text="@string/zero"
+            android:layout_toRightOf="@id/time_label"
+            android:textSize="18sp"
+            android:textColor="@color/profile_text_color"
+            android:layout_centerVertical="true"
+            android:padding="8dp"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_fab_stop"
+            android:id="@+id/training_stop"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toLeftOf="@+id/training_resume"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/stop_button_shape"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/training_resume"
+            android:src="@drawable/ic_fab_start"
+            android:layout_toRightOf="@id/time_count"
+            android:layout_marginLeft="70dp"
+            android:visibility="invisible"
+            android:background="@drawable/resume_button_shape"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_fab_pause"
+            android:id="@+id/training_pause"
+            android:layout_toRightOf="@id/time_count"
+            android:layout_marginLeft="70dp"
+            android:visibility="visible"
+            android:background="@drawable/pause_button_shape"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

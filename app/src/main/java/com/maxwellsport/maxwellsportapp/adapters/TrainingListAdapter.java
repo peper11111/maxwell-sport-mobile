@@ -105,14 +105,15 @@ public class TrainingListAdapter extends BaseAdapter {
                 convertView.setBackgroundColor(Color.WHITE);
             }
 
-//          TODO: ustawienie obrazkow cwiczen
+//          TODO: ustawienie obrazkow cwiczen i odpowiedniej rotacji obrazkow back 2 back
 
 
-            /* Zmiana obrazka z zapisaniem pozycji */
+            /* Zmiana obrazka z zapisaniem pozycji
+            *  poprawic bo odwraca obrazek przez recycler*/
 
             if(positionList.get(position) != 0) {
                 holder.image.setImageResource(R.drawable.ic_checked);
-                holder.image.setColorFilter(Color.GREEN);
+                holder.image.setColorFilter(Color.MAGENTA);
             }
             else {
                 holder.image.setImageResource(R.drawable.maxwell);
@@ -140,7 +141,7 @@ public class TrainingListAdapter extends BaseAdapter {
                         objectAnimator.setDuration(400);
                         objectAnimator.start();
                         finalHolder.image.setImageResource(R.drawable.ic_checked);
-                        finalHolder.image.setColorFilter(Color.GREEN);
+                        finalHolder.image.setColorFilter(Color.MAGENTA);
                     }
                 }
             });
