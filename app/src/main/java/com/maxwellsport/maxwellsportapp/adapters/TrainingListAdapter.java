@@ -170,9 +170,6 @@ public class TrainingListAdapter extends BaseAdapter {
                                                             // TODO odpalic opis cwiczenia w popup
                                                             Toast.makeText(context,"w popup", Toast.LENGTH_SHORT).show();
                                                             break;
-                                                        case R.id.exe_sec:
-                                                            // jakas druga czynnosc
-                                                            break;
                                                         default:
                                                             break;
                                                     }

@@ -50,7 +50,7 @@
     <string name="profile_last_exercise_amount_value">0</string>
     <string name="profile_average_exercise_amount">Average amount of exercises:</string>
     <string name="profile_average_exercises_value">0</string>
-    <string name="profile_form">Form</string>
+    <string name="profile_form">Form:</string>
     <string name="profile_form_description">Form</string>
 
     <!-- pola do cardio, profil-->
@@ -77,5 +77,18 @@
     <string name="about_description">Great, smart and versatile training application made for the best and the strongest people walking on Earth</string>
     <string name="about_follow">Follow us on GitHub</string>
     <string name="about_copyright">Copyright &#169; 2016 RafPep INC.</string>
+    
+    <!--Training Fragment-->
+    <string name="popup_description">Description</string>
+    <string name="training_1">Training 1</string>
+    <string name="training_2">Training 2</string>
+    <string name="training_3">Training 3</string>
+    <string name="body_part">Part:</string>
+    <string name="none">- none</string>
+    <string name="start_training">Start training</string>
+    <string name="weight">Weight:</string>
+    <string name="sets">Sets:</string>
+    <string name="reps">Reps:</string>
+    <string name="zero">0</string>
 
 </resources>
