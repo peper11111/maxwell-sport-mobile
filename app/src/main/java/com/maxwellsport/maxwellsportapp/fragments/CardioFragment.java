@@ -45,7 +45,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         /* Przygotowanie LocationUpdateService*/
         mLocationUpdateService = new LocationUpdateService(this);
-        mTimerService = new TimerService(this, (TextView) mView.findViewById(R.id.stats_layout).findViewById(R.id.timeView));
+        mTimerService = new TimerService(getActivity(), (TextView) mView.findViewById(R.id.stats_layout).findViewById(R.id.timeView));
         onRestoreInstanceState(savedInstanceState);
 
         /* Setup widoku przycisków i timera */

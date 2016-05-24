@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,6 +23,7 @@ import com.maxwellsport.maxwellsportapp.fragments.AtlasFragment;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
+import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item != mPrevMenuItem) {
             /* Jeżeli fragment Cardio działa, wyświetlenie komunikatu */
-            if (mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped")) {
+            if ((mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped"))) {
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.alert_dialog_title)
                         .setMessage(R.string.alert_dialog_message)
@@ -116,7 +118,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         })
                         .show();
-            } else {
+            }else if(mFragment instanceof TrainingDayFragment && !((TrainingDayFragment) mFragment).status.equals("stopped")){
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.alert_dialog_title)
+                        .setMessage(R.string.alert_dialog_message)
+                        .setPositiveButton(R.string.alert_dialog_confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+            }
+            else {
+                this.getSupportFragmentManager().popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 switch (item.getItemId()) {
                     case R.id.nav_profile:
                         mItemID = 0;

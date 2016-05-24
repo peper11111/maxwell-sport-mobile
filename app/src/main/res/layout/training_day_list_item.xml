@@ -10,7 +10,7 @@
     android:descendantFocusability="blocksDescendants"
     android:focusable="false"
     android:focusableInTouchMode="false"
- >
+    android:background="@color/profile_tile_color_secondary">
     <ImageView
         android:id="@+id/row_imageView1"
         android:layout_width="60dp"
@@ -39,21 +39,20 @@
                 android:gravity="fill"
                 android:text="Naprzemianstronne zginanie przedramion ze sztangielkami z obrotem nadgarstka i uniesieniem łokci"
                 android:textSize="14sp"
-                android:textColor="#333333"
+                android:textColor="@color/profile_text_color"
 
                 android:focusable="false"
                 android:clickable="false"
                 android:focusableInTouchMode="false"/>
             <ImageButton
                 android:id="@+id/row_click_imageView1"
-                android:layout_width="0dp"
+                android:layout_width="10dp"
                 android:layout_height="72dp"
                 android:layout_weight="1.23"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/nav_about"
                 android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
-                android:tint="#000"
-
+                android:tint="#ffff"
                 android:focusable="false"
                 android:clickable="false"
                 android:focusableInTouchMode="false"
@@ -70,43 +69,86 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/app_name"
+                android:text="@string/weight"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#333333"
+                android:textColor="@color/profile_text_color"
                 android:textSize="10sp"
 
                 android:focusable="false"
                 android:clickable="false"
                 android:focusableInTouchMode="false"/>
+
+            <TextView
+                android:id="@+id/weight_value_row"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/zero"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/profile_text_color"
+                android:textSize="10sp"
+                android:focusable="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"/>
+
             <TextView
                 android:id="@+id/sets"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/nav_about"
+                android:text="@string/sets"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#333333"
+                android:textColor="@color/profile_text_color"
                 android:textSize="10sp"
                 android:layout_marginLeft="5dp"
-
                 android:focusable="false"
                 android:clickable="false"
                 android:focusableInTouchMode="false"/>
+
+            <TextView
+                android:id="@+id/sets_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/zero"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/profile_text_color"
+                android:textSize="10sp"
+                android:focusable="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"/>
+
             <TextView
                 android:id="@+id/reps"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.89"
                 android:gravity="center"
-                android:text="@string/abc_search_hint"
+                android:text="@string/reps"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#333333"
+                android:textColor="@color/profile_text_color"
                 android:textSize="10sp"
-
                 android:focusable="false"
                 android:clickable="false"
                 android:focusableInTouchMode="false"/>
+
+            <TextView
+                android:id="@+id/reps_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/zero"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/profile_text_color"
+                android:textSize="10sp"
+                android:focusable="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"/>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

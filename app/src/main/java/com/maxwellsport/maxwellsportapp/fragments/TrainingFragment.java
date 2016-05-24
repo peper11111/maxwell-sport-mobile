@@ -31,6 +31,6 @@ public class TrainingFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         TrainingDayFragment fragment = new TrainingDayFragment();
-        this.getFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
+        this.getFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
 }

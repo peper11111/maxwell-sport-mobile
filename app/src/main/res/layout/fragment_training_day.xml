@@ -4,19 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="false"
-    android:background="@color/common_google_signin_btn_text_dark_default">
+    android:background="@color/profile_tile_color_secondary">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="@color/profile_text_color_secondary"
+        android:dividerHeight="1dp"
         android:id="@+id/training_list_view"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:scrollbars="none">
     </ListView>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:id="@+id/time_stats_training"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:padding="6dp">
@@ -32,7 +36,7 @@
             android:padding="8dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/time_count"
             android:text="@string/zero"
@@ -59,7 +63,7 @@
             android:id="@+id/training_resume"
             android:src="@drawable/ic_fab_start"
             android:layout_toRightOf="@id/time_count"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="5dp"
             android:visibility="invisible"
             android:background="@drawable/resume_button_shape"/>
 
@@ -69,7 +73,7 @@
             android:src="@drawable/ic_fab_pause"
             android:id="@+id/training_pause"
             android:layout_toRightOf="@id/time_count"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="5dp"
             android:visibility="visible"
             android:background="@drawable/pause_button_shape"/>
 

@@ -1,5 +1,6 @@
 package com.maxwellsport.maxwellsportapp.services;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
+import android.support.v4.app.Fragment;
 
 import java.util.Locale;
 
@@ -19,10 +21,10 @@ public class TimerService {
 
     private TextView mTimerView;
     private Handler mTimerHandler;
-    private CardioFragment mCardioFragment;
+    private Context context;
 
-    public TimerService(CardioFragment cardioFragment, TextView timerView) {
-        mCardioFragment = cardioFragment;
+    public TimerService(Context c, TextView timerView) {
+        context = c;
         mTimerHandler = new Handler();
         mTimerView = timerView;
     }
@@ -44,7 +46,7 @@ public class TimerService {
     public void stopTimer() {
         mTimerHandler.removeCallbacks(mTimerRunnable);
         mDiffTime = 0;
-        mTimerView.setText(mCardioFragment.getResources().getString(R.string.time_value));
+        mTimerView.setText(context.getResources().getString(R.string.time_value));
     }
 
     public void pauseTimer() {

@@ -95,15 +95,7 @@ public class TrainingListAdapter extends BaseAdapter {
         try {
             /* Zapisanie wartości pól tekstowych */
             holder.exeName.setText(exeNameList.get(position));
-            holder.weight.setText("weight: 60% CM");
-            holder.sets.setText("sets: 3");
-            holder.reps.setText("reps: 12");
 
-            if(convertView.isSelected()){
-                convertView.setBackgroundColor(Color.GRAY);
-            }else{
-                convertView.setBackgroundColor(Color.WHITE);
-            }
 
 //          TODO: ustawienie obrazkow cwiczen i odpowiedniej rotacji obrazkow back 2 back
 
@@ -113,7 +105,7 @@ public class TrainingListAdapter extends BaseAdapter {
 
             if(positionList.get(position) != 0) {
                 holder.image.setImageResource(R.drawable.ic_checked);
-                holder.image.setColorFilter(Color.MAGENTA);
+                holder.image.setColorFilter(context.getResources().getColor(R.color.nav_cardio_color));
             }
             else {
                 holder.image.setImageResource(R.drawable.maxwell);
@@ -141,7 +133,7 @@ public class TrainingListAdapter extends BaseAdapter {
                         objectAnimator.setDuration(400);
                         objectAnimator.start();
                         finalHolder.image.setImageResource(R.drawable.ic_checked);
-                        finalHolder.image.setColorFilter(Color.MAGENTA);
+                        finalHolder.image.setColorFilter(context.getResources().getColor(R.color.nav_cardio_color));
                     }
                 }
             });
@@ -159,7 +151,7 @@ public class TrainingListAdapter extends BaseAdapter {
                                 public boolean onTouch(View v, MotionEvent event) {
                                     switch (event.getAction()){
                                         case MotionEvent.ACTION_DOWN:
-                                            finalHolder.popup.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
+                                            finalHolder.popup.setBackgroundColor(context.getResources().getColor(R.color.profile_tile_color));
                                             PopupMenu popupMenu = new PopupMenu(context,v);
                                             popupMenu.getMenuInflater().inflate(R.menu.popup_menu_training_item,popupMenu.getMenu());
                                             popupMenu.show();
@@ -179,7 +171,7 @@ public class TrainingListAdapter extends BaseAdapter {
                                             });
                                             break;
                                         case MotionEvent.ACTION_UP:
-                                            finalHolder.popup.setBackgroundColor(Color.WHITE);
+                                            finalHolder.popup.setBackgroundColor(context.getResources().getColor(R.color.profile_tile_color_secondary));
                                             break;
                                     }
                                     return true;
