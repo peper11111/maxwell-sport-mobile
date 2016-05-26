@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
 import com.maxwellsport.maxwellsportapp.fragments.AtlasFragment;
@@ -118,19 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         })
                         .show();
-            }else if(mFragment instanceof TrainingDayFragment && !((TrainingDayFragment) mFragment).status.equals("stopped")){
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.alert_dialog_title)
-                        .setMessage(R.string.alert_dialog_message)
-                        .setPositiveButton(R.string.alert_dialog_confirm, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
-            }
-            else {
+            }else {
                 this.getSupportFragmentManager().popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 switch (item.getItemId()) {
                     case R.id.nav_profile:

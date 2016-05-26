@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingListAdapter;
+import com.maxwellsport.maxwellsportapp.animations.FlipAnimation;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class TrainingDayFragment extends Fragment implements View.OnClickListene
         timerService.setupTimerService(status);
         setupTimeButtonListeners();
         timerService.startTimer();
+
         return v;
     }
 
@@ -75,14 +77,16 @@ public class TrainingDayFragment extends Fragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
     }
 
+
+
     private void setupTimeButtonListeners(){
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 status = "stopped";
-                timerService.stopTimer();
                 pauseButton.setVisibility(View.INVISIBLE);
                 resumeButton.setVisibility(View.VISIBLE);
+                timerService.stopTimer();
             }
         });
 

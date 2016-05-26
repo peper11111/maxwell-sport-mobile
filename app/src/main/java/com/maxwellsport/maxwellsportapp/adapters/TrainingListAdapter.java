@@ -1,9 +1,7 @@
 package com.maxwellsport.maxwellsportapp.adapters;
 
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -17,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.animations.FlipAnimation;
 
 import java.util.ArrayList;
 
@@ -78,11 +77,13 @@ public class TrainingListAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.training_day_list_item,null);
 
+            /* Inicjalizacja zmiennych do holdera */
             holder.exeName = (TextView) convertView.findViewById(R.id.row_textView1);
             holder.weight = (TextView) convertView.findViewById(R.id.weight);
             holder.sets = (TextView) convertView.findViewById(R.id.sets);
             holder.reps = (TextView) convertView.findViewById(R.id.reps);
-            holder.image = (ImageView) convertView.findViewById(R.id.row_imageView1);
+            holder.imageFront = (ImageView) convertView.findViewById(R.id.flip_front);
+            holder.imageBack = (ImageView) convertView.findViewById(R.id.flip_back);
             holder.popup = (ImageButton) convertView.findViewById(R.id.row_click_imageView1);
 
             convertView.setTag(holder);
@@ -93,51 +94,43 @@ public class TrainingListAdapter extends BaseAdapter {
 
 //        TODO: podpiac odpowiednie listy
         try {
+
             /* Zapisanie wartości pól tekstowych */
             holder.exeName.setText(exeNameList.get(position));
 
-
-//          TODO: ustawienie obrazkow cwiczen i odpowiedniej rotacji obrazkow back 2 back
-
-
-            /* Zmiana obrazka z zapisaniem pozycji
-            *  poprawic bo odwraca obrazek przez recycler*/
+            /* Zmiana widoczności obrazka na podstawie pozycji, zeby recycler nie zmieniał widoku */
 
             if(positionList.get(position) != 0) {
-                holder.image.setImageResource(R.drawable.ic_checked);
-                holder.image.setColorFilter(context.getResources().getColor(R.color.nav_cardio_color));
+                /* jeśli cwiczenie odznaczone */
+                holder.imageFront.setVisibility(View.GONE);
+                holder.imageBack.setVisibility(View.VISIBLE);
             }
             else {
-                holder.image.setImageResource(R.drawable.maxwell);
-                holder.image.setColorFilter(null);
+                /* jesli cwiczenie jeszcze nie zrobione */
+                holder.imageBack.setVisibility(View.GONE);
+                holder.imageFront.setVisibility(View.VISIBLE);
             }
 
+            /* Animacja obrazka */
+
             final ViewHolder finalHolder = holder;
+            final View finalConvertView = convertView;
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(positionList.get(position) != 0) {
                         positionList.set(position, 0);
-                        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v.findViewById(R.id.row_imageView1),"rotationY",0f,180f);
-                        objectAnimator.setDuration(400);
-                        objectAnimator.start();
-                        finalHolder.image.setColorFilter(null);
-                        finalHolder.image.setImageResource(R.drawable.maxwell);
+                        flipCard(finalConvertView);
                     }
                     else {
                         if (position == 0)
                             positionList.set(position, 1);
                         else
                             positionList.set(position, position);
-                        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(v.findViewById(R.id.row_imageView1), "rotationY", 180f, 0f);
-                        objectAnimator.setDuration(400);
-                        objectAnimator.start();
-                        finalHolder.image.setImageResource(R.drawable.ic_checked);
-                        finalHolder.image.setColorFilter(context.getResources().getColor(R.color.nav_cardio_color));
+                        flipCard(finalConvertView);
                     }
                 }
             });
-
 
             /* Popup menu */
 
@@ -192,12 +185,35 @@ public class TrainingListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /* Animation methods */
+
+    public void onCardClick(View view)
+    {
+        flipCard(view);
+    }
+
+    private void flipCard(View v)
+    {
+        View rootLayout =  v.findViewById(R.id.item_list_root_laytout);
+        View imageFace =  v.findViewById(R.id.flip_front);
+        View imageBack =  v.findViewById(R.id.flip_back);
+
+        FlipAnimation flipAnimation = new FlipAnimation(imageFace, imageBack);
+
+        if (imageFace.getVisibility() == View.GONE)
+        {
+            flipAnimation.reverse();
+        }
+        rootLayout.startAnimation(flipAnimation);
+    }
+
     public class ViewHolder{
         TextView exeName;
         TextView weight;
         TextView sets;
         TextView reps;
-        ImageView image;
+        ImageView imageFront;
+        ImageView imageBack;
         ImageButton popup;
     }
 }
