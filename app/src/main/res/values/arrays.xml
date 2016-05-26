@@ -1,2 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- Exercise group name and drawable -->
+    <array name="atlas_exercise_group_icon">
+        <item>@drawable/ic_party_biceps</item>
+        <item>@drawable/ic_party_triceps</item>
+        <item>@drawable/ic_party_shoulders</item>
+        <item>@drawable/ic_party_chest</item>
+        <item>@drawable/ic_party_back</item>
+        <item>@drawable/ic_party_legs</item>
+        <item>@drawable/ic_party_abs</item>
+    </array>
+
+    <string-array name="atlas_exercise_group_name">
+        <item>@string/exercise_group_1_name</item>
+        <item>@string/exercise_group_2_name</item>
+        <item>@string/exercise_group_3_name</item>
+        <item>@string/exercise_group_4_name</item>
+        <item>@string/exercise_group_5_name</item>
+        <item>@string/exercise_group_6_name</item>
+        <item>@string/exercise_group_7_name</item>
+    </string-array>
+
+    <array name="atlas_exercise_biceps_icon">
+        <item>@drawable/exc_biceps_1</item>
+        <item>@drawable/exc_biceps_2</item>
+        <item>@drawable/exc_biceps_3</item>
+        <item>@drawable/exc_biceps_4</item>
+        <item>@drawable/exc_biceps_5</item>
+        <item>@drawable/exc_biceps_6</item>
+    </array>
+
+    <string-array name="atlas_exercise_biceps_name">
+        <item>@string/exc_biceps_1_name</item>
+        <item>@string/exc_biceps_2_name</item>
+        <item>@string/exc_biceps_3_name</item>
+        <item>@string/exc_biceps_4_name</item>
+        <item>@string/exc_biceps_5_name</item>
+        <item>@string/exc_biceps_6_name</item>
+    </string-array>
+
+    <string-array name="atlas_exercise_biceps_description">
+        <item>@string/exc_biceps_1_description</item>
+        <item>@string/exc_biceps_2_description</item>
+        <item>@string/exc_biceps_3_description</item>
+        <item>@string/exc_biceps_4_description</item>
+        <item>@string/exc_biceps_5_description</item>
+        <item>@string/exc_biceps_6_description</item>
+    </string-array>
+
+    <array name="atlas_exercise_triceps_icon">
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+    </array>
+
+    <string-array name="atlas_exercise_triceps_name">
+        <item>@string/exc_triceps_1_name</item>
+        <item>@string/exc_triceps_2_name</item>
+        <item>@string/exc_triceps_3_name</item>
+        <item>@string/exc_triceps_4_name</item>
+        <item>@string/exc_triceps_5_name</item>
+        <item>@string/exc_triceps_6_name</item>
+    </string-array>
+
+    <string-array name="atlas_exercise_triceps_description">
+        <item>@string/exc_triceps_1_description</item>
+        <item>@string/exc_triceps_2_description</item>
+        <item>@string/exc_triceps_3_description</item>
+        <item>@string/exc_triceps_4_description</item>
+        <item>@string/exc_triceps_5_description</item>
+        <item>@string/exc_triceps_6_description</item>
+    </string-array>
+
+    <array name="atlas_exercise_shoulders_icon">
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+    </array>
+
+    <string-array name="atlas_exercise_shoulders_name">
+        <item>@string/exc_shoulders_1_name</item>
+        <item>@string/exc_shoulders_2_name</item>
+        <item>@string/exc_shoulders_3_name</item>
+        <item>@string/exc_shoulders_4_name</item>
+        <item>@string/exc_shoulders_5_name</item>
+        <item>@string/exc_shoulders_6_name</item>
+    </string-array>
+
+    <string-array name="atlas_exercise_shoulders_description">
+        <item>@string/exc_shoulders_1_description</item>
+        <item>@string/exc_shoulders_2_description</item>
+        <item>@string/exc_shoulders_3_description</item>
+        <item>@string/exc_shoulders_4_description</item>
+        <item>@string/exc_shoulders_5_description</item>
+        <item>@string/exc_shoulders_6_description</item>
+    </string-array>
+
+    <array name="atlas_exercise_chest_icon">
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+    </array>
+
+    <string-array name="atlas_exercise_chest_name">
+        <item>@string/exc_chest_1_name</item>
+        <item>@string/exc_chest_2_name</item>
+        <item>@string/exc_chest_3_name</item>
+        <item>@string/exc_chest_4_name</item>
+        <item>@string/exc_chest_5_name</item>
+        <item>@string/exc_chest_6_name</item>
+    </string-array>
+
+    <string-array name="atlas_exercise_chest_description">
+        <item>@string/exc_chest_1_description</item>
+        <item>@string/exc_chest_2_description</item>
+        <item>@string/exc_chest_3_description</item>
+        <item>@string/exc_chest_4_description</item>
+        <item>@string/exc_chest_5_description</item>
+        <item>@string/exc_chest_6_description</item>
+    </string-array>
+
+    <array name="atlas_exercise_back_icon">
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+    </array>
+
+    <string-array name="atlas_exercise_back_name">
+        <item>@string/exc_back_1_name</item>
+        <item>@string/exc_back_2_name</item>
+        <item>@string/exc_back_3_name</item>
+        <item>@string/exc_back_4_name</item>
+        <item>@string/exc_back_5_name</item>
+        <item>@string/exc_back_6_name</item>
+    </string-array>
+
+    <string-array name="atlas_exercise_back_description">
+        <item>@string/exc_back_1_description</item>
+        <item>@string/exc_back_2_description</item>
+        <item>@string/exc_back_3_description</item>
+        <item>@string/exc_back_4_description</item>
+        <item>@string/exc_back_5_description</item>
+        <item>@string/exc_back_6_description</item>
+    </string-array>
+
+    <array name="atlas_exercise_legs_icon">
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+    </array>
+
+    <string-array name="atlas_exercise_legs_name">
+        <item>@string/exc_legs_1_name</item>
+        <item>@string/exc_legs_2_name</item>
+        <item>@string/exc_legs_3_name</item>
+        <item>@string/exc_legs_4_name</item>
+        <item>@string/exc_legs_5_name</item>
+        <item>@string/exc_legs_6_name</item>
+    </string-array>
+
+    <string-array name="atlas_exercise_legs_description">
+        <item>@string/exc_legs_1_description</item>
+        <item>@string/exc_legs_2_description</item>
+        <item>@string/exc_legs_3_description</item>
+        <item>@string/exc_legs_4_description</item>
+        <item>@string/exc_legs_5_description</item>
+        <item>@string/exc_legs_6_description</item>
+    </string-array>
+
+    <array name="atlas_exercise_abs_icon">
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+        <item>@drawable/maxwell</item>
+    </array>
+
+    <string-array name="atlas_exercise_abs_name">
+        <item>@string/exc_abs_1_name</item>
+        <item>@string/exc_abs_2_name</item>
+        <item>@string/exc_abs_3_name</item>
+        <item>@string/exc_abs_4_name</item>
+        <item>@string/exc_abs_5_name</item>
+        <item>@string/exc_abs_6_name</item>
+    </string-array>
+
+    <string-array name="atlas_exercise_abs_description">
+        <item>@string/exc_abs_1_description</item>
+        <item>@string/exc_abs_2_description</item>
+        <item>@string/exc_abs_3_description</item>
+        <item>@string/exc_abs_4_description</item>
+        <item>@string/exc_abs_5_description</item>
+        <item>@string/exc_abs_6_description</item>
+    </string-array>
+
+    <array name="atlas_exercise_icon">
+        <item>@array/atlas_exercise_biceps_icon</item>
+        <item>@array/atlas_exercise_triceps_icon</item>
+        <item>@array/atlas_exercise_shoulders_icon</item>
+        <item>@array/atlas_exercise_chest_icon</item>
+        <item>@array/atlas_exercise_back_icon</item>
+        <item>@array/atlas_exercise_legs_icon</item>
+        <item>@array/atlas_exercise_abs_icon</item>
+    </array>
+
+    <array name="atlas_exercise_name">
+        <item>@array/atlas_exercise_biceps_name</item>
+        <item>@array/atlas_exercise_triceps_name</item>
+        <item>@array/atlas_exercise_shoulders_name</item>
+        <item>@array/atlas_exercise_chest_name</item>
+        <item>@array/atlas_exercise_back_name</item>
+        <item>@array/atlas_exercise_legs_name</item>
+        <item>@array/atlas_exercise_abs_name</item>
+    </array>
+
+    <array name="atlas_exercise_description">
+        <item>@array/atlas_exercise_biceps_description</item>
+        <item>@array/atlas_exercise_triceps_description</item>
+        <item>@array/atlas_exercise_shoulders_description</item>
+        <item>@array/atlas_exercise_chest_description</item>
+        <item>@array/atlas_exercise_back_description</item>
+        <item>@array/atlas_exercise_legs_description</item>
+        <item>@array/atlas_exercise_abs_description</item>
+    </array>
+</resources>

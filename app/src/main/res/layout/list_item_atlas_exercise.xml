@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/padding"
+    android:paddingTop="@dimen/padding">
+
+    <ImageView
+        android:id="@+id/atlas_list_view_item_drawable"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/circle_image"
+        android:padding="@dimen/padding" />
+
+    <TextView
+        android:id="@+id/atlas_list_view_item_string"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/padding"
+        android:gravity="center_vertical"
+        android:textColor="@color/material_grey_700"
+        android:textSize="12sp" />
+</LinearLayout>

@@ -18,7 +18,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
-import com.maxwellsport.maxwellsportapp.fragments.AtlasFragment;
+import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseGroupFragment;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getFragmentManager().getBackStackEntryCount() != 0) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_atlas:
                         mItemID = 3;
-                        mFragment = new AtlasFragment();
+                        mFragment = new AtlasExerciseGroupFragment();
                         break;
                     case R.id.nav_settings:
                         mItemID = 4;
