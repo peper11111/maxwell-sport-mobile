@@ -3,22 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/padding"
-    android:paddingTop="@dimen/padding">
+    android:padding="8dp">
 
     <ImageView
-        android:id="@+id/atlas_list_view_item_drawable"
+        android:id="@+id/atlas_exercise_list_view_item_icon"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/circle_image"
-        android:padding="@dimen/padding" />
+        android:padding="8dp" />
 
     <TextView
-        android:id="@+id/atlas_list_view_item_string"
+        android:id="@+id/atlas_exercise_list_view_item_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/padding"
         android:gravity="center_vertical"
-        android:textColor="@color/material_grey_700"
+        android:textColor="@color/colorPrimary"
         android:textSize="12sp" />
 </LinearLayout>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <array name="nav_bar_item_colors">
+        <item>@color/material_blue_600</item>
+        <item>@color/material_deep_orange_600</item>
+        <item>@color/material_green_600</item>
+        <item>@color/material_purple_600</item>
+        <item>@color/material_grey_600</item>
+        <item>@color/material_grey_600</item>
+        <item>@color/material_grey_600</item>
+    </array>
     <!-- Exercise group name and drawable -->
     <array name="atlas_exercise_group_icon">
         <item>@drawable/ic_party_biceps</item>

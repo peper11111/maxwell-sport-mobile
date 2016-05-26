@@ -13,10 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.services.LocaleService;
+
 public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /* Wymuszenie jezyka angielskiego */
+        LocaleService.setLocale(this, "pl");
+
         setContentView(R.layout.activity_login);
 
         final EditText usernameField = (EditText) findViewById(R.id.username_field);

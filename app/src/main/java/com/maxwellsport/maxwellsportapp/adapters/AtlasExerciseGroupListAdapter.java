@@ -13,9 +13,9 @@ import com.maxwellsport.maxwellsportapp.models.ExerciseGroup;
 
 import java.util.ArrayList;
 
-public class AtlasListAdapter extends ArrayAdapter<ExerciseGroup> {
+public class AtlasExerciseGroupListAdapter extends ArrayAdapter<ExerciseGroup> {
 
-    public AtlasListAdapter(Context context, ArrayList<ExerciseGroup> exerciseGroups) {
+    public AtlasExerciseGroupListAdapter(Context context, ArrayList<ExerciseGroup> exerciseGroups) {
         super(context, 0, exerciseGroups);
     }
 
@@ -28,8 +28,8 @@ public class AtlasListAdapter extends ArrayAdapter<ExerciseGroup> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_atlas_exercise_group, parent, false);
         }
         // Lookup view for data population
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.atlas_list_view_item_drawable);
-        TextView textView = (TextView) convertView.findViewById(R.id.atlas_list_view_item_string);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.atlas_exercise_group_list_view_item_icon);
+        TextView textView = (TextView) convertView.findViewById(R.id.atlas_exercise_group_list_view_item_name);
         // Populate the data into the template view using the data object
         imageView.setImageDrawable(exerciseGroup.getIcon());
         textView.setText(exerciseGroup.getName());

@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.adapters.AtlasListAdapter;
+import com.maxwellsport.maxwellsportapp.adapters.AtlasExerciseGroupListAdapter;
 import com.maxwellsport.maxwellsportapp.models.ExerciseGroup;
 
 import java.util.ArrayList;
@@ -29,12 +29,12 @@ public class AtlasExerciseGroupFragment extends Fragment {
 
         for (int i = 0; i < strings.length; i++) {
             Drawable drawable = drawables.getDrawable(i);
-            drawable.setColorFilter(getResources().getColor(R.color.material_grey_800), PorterDuff.Mode.SRC_ATOP);
+            drawable.setColorFilter(getResources().getColor(R.color.material_grey_900), PorterDuff.Mode.SRC_ATOP);
             array.add(new ExerciseGroup(strings[i], drawable));
         }
 
         // Create the adapter to convert the array to views
-        AtlasListAdapter adapter = new AtlasListAdapter(getActivity(), array);
+        AtlasExerciseGroupListAdapter adapter = new AtlasExerciseGroupListAdapter(getActivity(), array);
         // Attach the adapter to a ListView
         ListView listView = (ListView) v.findViewById(R.id.atlas_exercise_group_list_view);
 

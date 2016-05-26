@@ -2,17 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_grey_200"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin">
+    android:orientation="vertical">
 
     <ListView
         android:id="@+id/atlas_exercise_group_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/material_grey_300"
-        android:dividerHeight="1dp"
         android:scrollbars="none">
 
     </ListView>

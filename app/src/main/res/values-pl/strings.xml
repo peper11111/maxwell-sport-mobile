@@ -2,33 +2,33 @@
 <resources>
     <string name="app_name">Maxwell Sport</string>
 
-    <string name="login_username">Username</string>
-    <string name="login_password">Password</string>
-    <string name="login_button">Log In</string>
+    <string name="login_username">Login</string>
+    <string name="login_password">Hasło</string>
+    <string name="login_button">Zaloguj się</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Otwórz navigation drawer</string>
+    <string name="navigation_drawer_close">Zamknij navigation drawer</string>
 
-    <string name="alert_dialog_title">Warning</string>
-    <string name="alert_dialog_message">Your Cardio Activity is still running. If you want to change the tab, end the training first.</string>
+    <string name="alert_dialog_title">Ostrzeżenie</string>
+    <string name="alert_dialog_message">Twoja Aktywność Kardio wciąż działa. Jeśli chcesz zmienic zakładkę, zakończ trening.</string>
     <string name="alert_dialog_confirm">OK</string>
 
-    <string name="nav_profile">Profile</string>
-    <string name="nav_training">Training</string>
-    <string name="nav_cardio">Cardio</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_training">Trening</string>
+    <string name="nav_cardio">Bieg</string>
     <string name="nav_atlas">Atlas</string>
-    <string name="nav_settings">Settings</string>
-    <string name="nav_logout">Log Out</string>
-    <string name="nav_about">About</string>
+    <string name="nav_settings">Ustawienia</string>
+    <string name="nav_logout">Wyloguj się</string>
+    <string name="nav_about">O aplikacji</string>
 
-    <string name="time_label">"Time [h]"</string>
+    <string name="time_label">"Czas [h]"</string>
     <string name="time_value">00:00:00</string>
-    <string name="distance_label">"Distance [km]"</string>
+    <string name="distance_label">"Dystans [km]"</string>
     <string name="distance_value">0.00</string>
-    <string name="pace_label">"Pace [km/h]"</string>
+    <string name="pace_label">"Tempo [km/h]"</string>
     <string name="pace_value">0</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ustawienia</string>
 
     <string name="exercise_name">Nazwa ćwiczenia</string>
     <string name="exercise_description">Opis ćwiczenia:</string>
@@ -37,11 +37,11 @@
     <!-- Ćwiczenia -->
     <string name="exercise_group_1_name">Biceps</string>
     <string name="exercise_group_2_name">Triceps</string>
-    <string name="exercise_group_3_name">Shoulders</string>
-    <string name="exercise_group_4_name">Chest</string>
-    <string name="exercise_group_5_name">Back</string>
-    <string name="exercise_group_6_name">Legs</string>
-    <string name="exercise_group_7_name">Abs</string>
+    <string name="exercise_group_3_name">Ramiona</string>
+    <string name="exercise_group_4_name">Klatka piersiowa</string>
+    <string name="exercise_group_5_name">Plecy</string>
+    <string name="exercise_group_6_name">Nogi</string>
+    <string name="exercise_group_7_name">Brzuch</string>
 
     <string name="exc_biceps_1_name">Naprzemianstronne zginanie przedramion ze sztangielkami z obrotem nadgarstka i uniesieniem łokci</string>
     <string name="exc_biceps_2_name">Naprzemianstronne zginanie przedramion ze sztangielkami (łokieć wsparty na udzie)</string>
