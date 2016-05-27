@@ -1,8 +1,6 @@
 package com.maxwellsport.maxwellsportapp.animations;
 
 import android.graphics.Camera;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -12,7 +10,7 @@ import android.view.animation.Transformation;
 
 // TODO: dokonczyc klase z animacja
 
-public class FlipAnimation extends Animation{
+public class FlipAnimation extends Animation {
 
     private Camera camera;
 
@@ -23,7 +21,7 @@ public class FlipAnimation extends Animation{
     private float centerY;
     private boolean forward = true;
 
-    public FlipAnimation(View fView, View tView){
+    public FlipAnimation(View fView, View tView) {
         this.fromView = fView;
         this.toView = tView;
 
@@ -32,7 +30,7 @@ public class FlipAnimation extends Animation{
         setInterpolator(new AccelerateDecelerateInterpolator());
     }
 
-    public void reverse(){
+    public void reverse() {
         forward = false;
         View switchView = toView;
         toView = fromView;
@@ -42,8 +40,8 @@ public class FlipAnimation extends Animation{
     @Override
     public void initialize(int width, int height, int parentWidth, int parentHeight) {
         super.initialize(width, height, parentWidth, parentHeight);
-        centerX = width/2;
-        centerY = width/2;
+        centerX = width / 2;
+        centerY = width / 2;
         camera = new Camera();
     }
 
@@ -53,8 +51,7 @@ public class FlipAnimation extends Animation{
         final double radians = Math.PI * interpolatedTime;
         float degrees = (float) (180.0 * radians / Math.PI);
 
-        if (interpolatedTime >= 0.5f)
-        {
+        if (interpolatedTime >= 0.5f) {
             degrees -= 180.f;
             fromView.setVisibility(View.GONE);
             toView.setVisibility(View.VISIBLE);
@@ -70,6 +67,5 @@ public class FlipAnimation extends Animation{
         camera.restore();
         matrix.preTranslate(-centerX, -centerY);
         matrix.postTranslate(centerX, centerY);
-
     }
 }

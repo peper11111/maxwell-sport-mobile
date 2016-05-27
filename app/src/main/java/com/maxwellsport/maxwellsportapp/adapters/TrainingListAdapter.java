@@ -75,7 +75,7 @@ public class TrainingListAdapter extends BaseAdapter {
 
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.training_day_list_item,null);
+            convertView = inflater.inflate(R.layout.list_item_training_day,null);
 
             /* Inicjalizacja zmiennych do holdera */
             holder.exeName = (TextView) convertView.findViewById(R.id.row_textView1);

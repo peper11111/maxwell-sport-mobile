@@ -39,39 +39,39 @@
 
     <!-- pola do treningu, profil-->
     <string name="profile_last_t_date">Last training:</string>
-    <string name="profile_last_t_date_value">0</string>
+    <string name="profile_last_t_date_value">14.02.2014</string>
     <string name="profile_last_t_time">Last training duration:</string>
-    <string name="profile_last_t_time_value">0</string>
+    <string name="profile_last_t_time_value">00:23:22</string>
     <string name="profile_average_t_time">Average training time:</string>
-    <string name="profile_average_t_time_value">0</string>
+    <string name="profile_average_t_time_value">00:08:22</string>
     <string name="profile_t_longest_time">Longest training time:</string>
-    <string name="profile_t_longest_time_value">0</string>
+    <string name="profile_t_longest_time_value">00:23:22</string>
     <string name="profile_last_exercise_amount">Last exercises amount:</string>
-    <string name="profile_last_exercise_amount_value">0</string>
+    <string name="profile_last_exercise_amount_value">9</string>
     <string name="profile_average_exercise_amount">Average amount of exercises:</string>
-    <string name="profile_average_exercises_value">0</string>
+    <string name="profile_average_exercises_value">9</string>
     <string name="profile_form">Form:</string>
     <string name="profile_form_description">Form</string>
 
     <!-- pola do cardio, profil-->
     <string name="profile_last_r_date">Last run:</string>
-    <string name="profile_last_r_date_value">0</string>
+    <string name="profile_last_r_date_value">14.02.2014</string>
     <string name="profile_last_r_time">Last run time:</string>
-    <string name="profile_last_r_time_value">0</string>
+    <string name="profile_last_r_time_value">00:23:22</string>
     <string name="profile_average_r_time">Average run time:</string>
-    <string name="profile_average_r_time_value">0</string>
+    <string name="profile_average_r_time_value">00:44:12</string>
     <string name="profile_last_distance">Last distance:</string>
-    <string name="profile_last_distance_value">0</string>
+    <string name="profile_last_distance_value">12.02</string>
     <string name="profile_average_distance">Average distance:</string>
-    <string name="profile_average_distance_value">0</string>
+    <string name="profile_average_distance_value">14.22</string>
     <string name="profile_longest_distance">Longest distance:</string>
-    <string name="profile_longest_distance_value">0</string>
+    <string name="profile_longest_distance_value">16.00</string>
     <string name="profile_last_pace">Last pace:</string>
-    <string name="profile_last_pace_value">0</string>
+    <string name="profile_last_pace_value">14</string>
     <string name="profile_average_pace">Average pace:</string>
-    <string name="profile_average_pace_value">0</string>
+    <string name="profile_average_pace_value">10</string>
     <string name="profile_best_pace">Best pace:</string>
-    <string name="profile_best_pace_value">0</string>
+    <string name="profile_best_pace_value">16</string>
 
     <!--About Fragment-->
     <string name="about_description">Great, smart and versatile training application made for the best and the strongest people walking on Earth</string>
@@ -96,6 +96,7 @@
     <string name="exercise_description"><i>Description:</i></string>
     <string name="exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
     <string name="exercise_difficulty"><i>Difficulty:</i></string>
+    <string name="exercise_difficulty_name">Medium</string>
 
     <!-- Ćwiczenia -->
     <string name="exercise_group_1_name">Biceps</string>

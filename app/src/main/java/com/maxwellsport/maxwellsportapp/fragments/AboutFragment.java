@@ -11,43 +11,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
 
 
-public class AboutFragment extends Fragment implements  View.OnClickListener{
-
-    private View view;
-    private ImageView imageView;
-
+public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_about, container, false);
+        View v = inflater.inflate(R.layout.fragment_about, container, false);
 
-        imageView = (ImageView) view.findViewById(R.id.github_image_link);
-        imageView.setOnClickListener(this);
-        return view;
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.github_link);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNetworkAvailable()) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse("https://github.com/peper11111/MaxwellSportApp"));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Network not available", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return v;
     }
 
-    private boolean isNetworkAvailable(){
+    private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        if(isNetworkAvailable()){
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.addCategory(Intent.CATEGORY_BROWSABLE);
-            intent.setData(Uri.parse("https://github.com/peper11111/MaxwellSportApp"));
-            startActivity(intent);
-        }else {
-            Toast.makeText(getActivity(),"Network not available",Toast.LENGTH_SHORT).show();
-        }
     }
 }
 

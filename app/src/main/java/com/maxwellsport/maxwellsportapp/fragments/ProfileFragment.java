@@ -1,14 +1,12 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
-import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TableLayout;
+import android.widget.ImageView;
 
 import com.maxwellsport.maxwellsportapp.R;
 
@@ -21,6 +19,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        ImageView arrow = (ImageView) v.findViewById(R.id.profile_form_image);
+        arrow.setColorFilter(getResources().getColor(R.color.material_green_500), PorterDuff.Mode.SRC_ATOP);
 
         return v;
     }

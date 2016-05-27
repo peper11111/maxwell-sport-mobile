@@ -29,7 +29,7 @@
             android:paddingRight="8dp"
             android:paddingTop="16dp"
             android:text="@string/exercise_name"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/textColorPrimary"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/exercise_description"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="14sp" />
 
             <TextView
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/exercise_description_content"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/exercise_difficulty"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -103,25 +103,25 @@
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_star" />
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_star" />
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_star" />
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_star" />
             </LinearLayout>
@@ -132,8 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="Medium"
-                android:textColor="@color/colorPrimary"
+                android:text="@string/exercise_difficulty_name"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
