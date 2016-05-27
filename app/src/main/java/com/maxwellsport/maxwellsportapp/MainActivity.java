@@ -3,8 +3,6 @@ package com.maxwellsport.maxwellsportapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -18,9 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
 import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseGroupFragment;
@@ -28,9 +24,6 @@ import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
-import com.maxwellsport.maxwellsportapp.services.LocaleService;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView mNavigationView;

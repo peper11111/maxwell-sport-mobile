@@ -3,7 +3,6 @@ package com.maxwellsport.maxwellsportapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +20,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         /* Wymuszenie jezyka angielskiego */
-        LocaleService.setLocale(this, "pl");
+        LocaleService.setLocale(this, "en");
 
         setContentView(R.layout.activity_login);
 
