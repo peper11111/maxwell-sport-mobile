@@ -10,7 +10,7 @@
     <string name="navigation_drawer_close">Zamknij navigation drawer</string>
 
     <string name="alert_dialog_title">Ostrzeżenie</string>
-    <string name="alert_dialog_message">Twoja Aktywność Kardio wciąż działa. Jeśli chcesz zmienic zakładkę, zakończ trening.</string>
+    <string name="alert_dialog_message">Twoja Aktywność Biegowa wciąż działa. Jeśli chcesz zmienic zakładkę, zakończ trening.</string>
     <string name="alert_dialog_confirm">OK</string>
 
     <string name="nav_profile">Profil</string>
@@ -28,12 +28,58 @@
     <string name="pace_label">"Tempo [km/h]"</string>
     <string name="pace_value">0</string>
 
-    <string name="action_settings">Ustawienia</string>
+    <string name="profile_user_name">Nazwa użytkownika</string>
+    <string name="profile_user_email">email@example.com</string>
+    <string name="profile_active_since">Aktywny od: 00.00.0000</string>
+    <string name="profile_statistics"><i>Statystyki:</i></string>
+    <string name="profile_training_form">Forma treningowa:</string>
+    <string name="profile_running_form">Forma biegowa:</string>
 
+    <!-- pola do tablicy ze statystykami treningu -->
+    <string name="profile_last_training_date">Data ostatniego treningu:</string>
+    <string name="profile_last_training_date_value">-</string>
+    <string name="profile_last_training_duration">Czas ostatniego treningu:</string>
+    <string name="profile_last_training_duration_value">00:00:00</string>
+    <string name="profile_average_training_duration">Średni czas treningu:</string>
+    <string name="profile_average_training_duration_value">00:00:00</string>
+    <string name="profile_longest_training_duration">Nadłuższy czas treningu:</string>
+    <string name="profile_longest_training_duration_value">00:00:00</string>
+    <string name="profile_last_exercise_amount">Ilość ostatnich ćwiczeń:</string>
+    <string name="profile_last_exercise_amount_value">0</string>
+    <string name="profile_average_exercise_amount">Średnia ilość ćwiczeń:</string>
+    <string name="profile_average_exercise_amount_value">0</string>
+    <string name="profile_biggest_exercise_amount">Największa ilość ćwiczeń:</string>
+    <string name="profile_biggest_exercise_amount_value">0</string>
+
+    <!-- pola do tablicy ze statystykami biegów -->
+    <string name="profile_last_run_date">Data ostatniego biegu:</string>
+    <string name="profile_last_run_date_value">-</string>
+    <string name="profile_last_run_duration">Czas ostatniego biegu:</string>
+    <string name="profile_last_run_duration_value">00:00:00</string>
+    <string name="profile_average_run_duration">Średni czas biegu:</string>
+    <string name="profile_average_run_duration_value">00:00:00</string>
+    <string name="profile_longest_run_duration">Nadłuższy czas biegu:</string>
+    <string name="profile_longest_run_duration_value">00:00:00</string>
+    <string name="profile_last_run_distance">Dystans ostatniego biegu:</string>
+    <string name="profile_last_run_distance_value">0.00</string>
+    <string name="profile_average_run_distance">Średni dystans biegu:</string>
+    <string name="profile_average_run_distance_value">0.00</string>
+    <string name="profile_longest_run_distance">Nadłuższy dystans biegu:</string>
+    <string name="profile_longest_run_distance_value">0.00</string>
+    <string name="profile_last_run_pace">Tempo ostatniego biegu:</string>
+    <string name="profile_last_run_pace_value">0</string>
+    <string name="profile_average_run_pace">Średnie tempo biegu:</string>
+    <string name="profile_average_run_pace_value">0</string>
+    <string name="profile_biggest_run_pace">Największe tempo biegu:</string>
+    <string name="profile_biggest_run_pace_value">0</string>
+
+    <!-- Atlast Fragment -->
+    <string name="group_name">Nazwa partii</string>
     <string name="exercise_name">Nazwa ćwiczenia</string>
     <string name="exercise_description"><i>Opis ćwiczenia:</i></string>
     <string name="exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
     <string name="exercise_difficulty"><i>Trudność ćwiczenia:</i></string>
+    <string name="exercise_difficulty_name">Średnie</string>
 
     <!-- Ćwiczenia -->
     <string name="exercise_group_1_name">Biceps</string>
@@ -81,9 +127,9 @@
 
     <string name="exc_shoulders_1_description">W pozycji siedzącej, sztanga za karkiem trzymana nachwytem:\n- wziąć wdech i wycisnąć sztangę pionowo, nie wyginając nadmiernie grzbietu;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje mięsień naramienny, głównie jego część środkową i tylną, jak również mięsnień czworoboczny, mięsień trójgłowy ramienia i mięsień zębaty przedni. W wyciskaniu uczestniczą również, ale w mniejszym stopniu, mięśnie równoległoboczne, mięsień podgrzebieniowy, mięśień obły mniejszy, a w warstwie głębokiej mięsień nadgrzbietowy.</string>
     <string name="exc_shoulders_2_description">W pozycji siedzącej na ławeczce, sztangielki trzymane nachwytem (kciuki do wewnątrz) na wysokości barków:\n- wziąć wdech i wyciskać sztangielki aż do wyprostawania ramion w pionie;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje mięsień naramienny, głównie jego część środkową, jak również mięsień czworoboczny, mięsień zębaty przedni i mięsień trójgłowy ramienia.\nĆwiczenie to można też wykonać w pozycji stojącej lub prostując ramiona na przemian.</string>
-    <string name="exc_shoulders_3_description">W pozycji stojącej, kończyny dolne w lekkim rozkroku, grzbiet wyprostowany, ramiona ułożone wzdłuż tułowia, sztangielki w rękach:\n- podnieść ramiona do poziomu (łokcie lekko zgięte);\n- powrócić do pozycji wyjśiowej.\nĆwiczenie to angażuje mięśnie naramienne, głownie ich część środkową. Ćwiczenia tego nie wykonuje się nigdy z dużymi obciążeniami. Najlepsze rezultaty dają serie 10-25 powtórzeń wykonywane pod różnymi kątami, bez zbyt długich odpoczynków między seriami i kontynuowane do chwili, gdy odczuje się pieczenie. W celu zwiększenia intensywności wysiłku można między poszczególnymi seriami przez kilka sekund trzymać uniesione poziomo ramiona w skurczu izometrycznym.</string>
+    <string name="exc_shoulders_3_description">W pozycji stojącej, kończyny dolne w lekkim rozkroku, grzbiet wyprostowany, ramiona ułożone wzdłuż tułowia, sztangielki w rękach:\n- podnieść ramiona do poziomu (łokcie lekko zgięte);\n- powrócić do pozycji wyjśiowej.\nĆwiczenie to angażuje mięśnie naramienne, głownie ich część środkową. Ćwiczenia tego nie wykonuje się nigdy z dużymi obciążeniami. Najlepsze rezultaty dają serie 10&#8211;25 powtórzeń wykonywane pod różnymi kątami, bez zbyt długich odpoczynków między seriami i kontynuowane do chwili, gdy odczuje się pieczenie. W celu zwiększenia intensywności wysiłku można między poszczególnymi seriami przez kilka sekund trzymać uniesione poziomo ramiona w skurczu izometrycznym.</string>
     <string name="exc_shoulders_4_description">W pozycji stojącej, kończyny dolne w lekim rozkroku, sztangielki trzymane nachwytem spoczywają na udzue lub nieco z boku:\n- wziąć wdech i unosić naprzemiennie ramiona do przodu na wysokości oczu;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje głownie przednią część mięśni naramiennych, część obojczykową mięśnia piersiowego większego, a w mniejszym stopiniu resztę mięsnia naramiennego. We wszystkich ruchach podnozenia ramion biorą udzuał mięśnie przytwierdzające łopatkę do klatki piersiowej, takie jak mięsień zębaty przedni i mięsień równoległoboczny większy, pozwalając kości ramiennej balansować na stabilnym wsporniku.</string>
-    <string name="exc_shoulders_5_description">W pozycji leżącej na boku na podłodze lub ławeczce, sztangielka trzymana nachwytem:\n- wziąc wdech i podnieść ramię do poziomu;\n- wykonać wydech w końcowej fazie ruchu.\nW odróżnieniu do podnoszenia ramion w pozycji stojącej, które angażują stopniowo mięsień naramienny aż do osiągnięcia maksymalnej intensywności wysiłku w końcowej fazie (kiedy ramiona dochodzą do poziomu), w tym ćwiczeniu wysiłek koncentruje się w początkowej fazie podnoszenia. Najlepsze wyniki uzyskuje się, wykonując 10-20 powtórzeń.</string>
+    <string name="exc_shoulders_5_description">W pozycji leżącej na boku na podłodze lub ławeczce, sztangielka trzymana nachwytem:\n- wziąc wdech i podnieść ramię do poziomu;\n- wykonać wydech w końcowej fazie ruchu.\nW odróżnieniu do podnoszenia ramion w pozycji stojącej, które angażują stopniowo mięsień naramienny aż do osiągnięcia maksymalnej intensywności wysiłku w końcowej fazie (kiedy ramiona dochodzą do poziomu), w tym ćwiczeniu wysiłek koncentruje się w początkowej fazie podnoszenia. Najlepsze wyniki uzyskuje się, wykonując 10&#8211;20 powtórzeń.</string>
     <string name="exc_shoulders_6_description">Rączka wyciągu w dłoni, ramię wzdłuż tułowia:\n- wziąć wdech i unieść ramię do poziomu;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to rozwija mięsień naramienny, głównie jego część środkową wielopierzastą, tzn. zbudowaną z kilku pasm w kształcie pióra, dlatego należy zmieniać kąty, pod jakimi unosi się ramiona w celu zaangażowania wszystkich pasm mięśnia.</string>
 
     <string name="exc_chest_1_name">Wyciskanie sztangi na skośnej ławeczce (głową do góry)</string>
@@ -147,50 +193,18 @@
     <string name="difficulty_3_name">Średnie</string>
     <string name="difficulty_4_name">Trudne</string>
     <string name="difficulty_5_name">Bardzo Trudne</string>
-    <string name="about_copyright">Prawa autorskie © 2016 RafPep INC.</string>
-    <string name="about_description">Wspaniała, intuicyjna i wszechstronna aplikacja treningowa stworzona dla  najlepszych i najsilniejszych ludzi na Ziemi</string>
+
+    <!-- About Fragment-->
+    <string name="about_description">Wspaniała, intuicyjna i wszechstronna aplikacja treningowa stworzona dla  najlepszych i najsilniejszych ludzi chodzących po Ziemi</string>
     <string name="about_follow">Obserwuj nas na GitHub</string>
+    <string name="about_copyright">© RafPep Inc. 2016 Wszystkie prawa zastrzeżone</string>
+
+
     <string name="body_part">Partia:</string>
-    <string name="exercise_difficulty_name">Średnie</string>
+
     <string name="none">- none</string>
     <string name="popup_description">Opis ćwiczenia</string>
-    <string name="profile_active_since">Aktywny od:</string>
-    <string name="profile_average_distance">Średni dystans:</string>
-    <string name="profile_average_distance_value">14.22</string>
-    <string name="profile_average_exercise_amount">Średnia ilość ćwiczeń:</string>
-    <string name="profile_average_exercises_value">9</string>
-    <string name="profile_average_pace">Średnie tempo:</string>
-    <string name="profile_average_pace_value">10</string>
-    <string name="profile_average_r_time">Średni czas biegu:</string>
-    <string name="profile_average_r_time_value">00:44:12</string>
-    <string name="profile_average_t_time">Średni czas treningu:</string>
-    <string name="profile_average_t_time_value">00:08:22</string>
-    <string name="profile_best_pace">Naljepsze tempo:</string>
-    <string name="profile_best_pace_value">16</string>
-    <string name="profile_cardio">Bieg</string>
-    <string name="profile_form">Forma:</string>
-    <string name="profile_form_description">Forma</string>
-    <string name="profile_last_distance">Ostatni dystans:</string>
-    <string name="profile_last_distance_value">12.02</string>
-    <string name="profile_last_exercise_amount">Ostatnia ilość ćwiczeń</string>
-    <string name="profile_last_exercise_amount_value">9</string>
-    <string name="profile_last_pace">Ostatne tempo:</string>
-    <string name="profile_last_pace_value">14</string>
-    <string name="profile_last_r_date">Ostatni bieg:</string>
-    <string name="profile_last_r_date_value">14.02.2014</string>
-    <string name="profile_last_r_time">Ostatni czas biegu:</string>
-    <string name="profile_last_r_time_value">00:23:22</string>
-    <string name="profile_last_t_date">Ostatni trening:</string>
-    <string name="profile_last_t_date_value">14.02.2014</string>
-    <string name="profile_last_t_time">Ostatni czas treningu:</string>
-    <string name="profile_last_t_time_value">00:23:22</string>
-    <string name="profile_longest_distance">Najdłuższy dystans:</string>
-    <string name="profile_longest_distance_value">16.00</string>
-    <string name="profile_t_longest_time">Najdłuższy czas treningu:</string>
-    <string name="profile_t_longest_time_value">00:23:22</string>
-    <string name="profile_trainig">Trening</string>
-    <string name="profile_user_email">emai@example.com</string>
-    <string name="profile_user_name">Nazwa Użytkownika</string>
+
     <string name="reps">Powtórzeń:</string>
     <string name="sets">Zestawów:</string>
     <string name="start_training">Rozpocznij trening</string>

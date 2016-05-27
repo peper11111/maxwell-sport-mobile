@@ -10,25 +10,27 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/profil_header_image"
+            android:id="@+id/profile_header_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/profil_background" />
+            android:src="@drawable/profile_header_image" />
 
         <ImageView
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:layout_below="@id/profil_header_image"
+            android:layout_below="@id/profile_header_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-55dp"
+            android:background="@drawable/circle_icon_profile"
+            android:padding="3dp"
             android:src="@drawable/maxwell" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profil_header_image"
+            android:layout_below="@id/profile_header_image"
             android:layout_marginTop="55dp"
             android:orientation="vertical"
             android:padding="16dp">
@@ -39,7 +41,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/profil_user_name"
+                    android:id="@+id/profile_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -49,7 +51,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/profil_user_email"
+                    android:id="@+id/profile_user_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -57,7 +59,7 @@
                     android:textColor="@color/textColorSecondary" />
 
                 <TextView
-                    android:id="@+id/profil_user_active"
+                    android:id="@+id/profile_user_active"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -77,72 +79,90 @@
 
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="@string/profile_trainig"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/profile_training_form"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/profile_training_form_value"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_progress_flat" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_statistics"
+                android:textColor="@color/textColorSecondary" />
 
             <TableLayout
-                android:id="@+id/profil_gym_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:stretchColumns="0">
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_last_t_date"
+                        android:text="@string/profile_last_training_date"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_last_t_date_value"
+                        android:id="@+id/profile_last_training_date_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_t_date_value"
+                        android:text="@string/profile_last_training_date_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_last_t_time"
+                        android:text="@string/profile_last_training_duration"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_last_t_time_value"
+                        android:id="@+id/profile_last_training_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_t_time_value"
+                        android:text="@string/profile_last_training_duration_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_average_t_time"
+                        android:text="@string/profile_average_training_duration"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_average_t_time_value"
+                        android:id="@+id/profile_average_training_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_t_time_value"
+                        android:text="@string/profile_average_training_duration_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_t_longest_time"
+                        android:text="@string/profile_longest_training_duration"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_t_longest_time_value"
+                        android:id="@+id/profile_longest_training_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_t_longest_time_value"
+                        android:text="@string/profile_longest_training_duration_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -166,22 +186,23 @@
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_average_exercises_value"
+                        android:id="@+id/profile_average_exercise_amount_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_exercises_value"
+                        android:text="@string/profile_average_exercise_amount_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_form"
+                        android:text="@string/profile_biggest_exercise_amount"
                         android:textColor="@color/textColorSecondary" />
 
-                    <ImageView
-                        android:id="@+id/profile_form_image"
+                    <TextView
+                        android:id="@+id/profile_biggest_exercise_amount_value"
                         android:gravity="end"
-                        android:src="@drawable/ic_progress_up" />
+                        android:text="@string/profile_biggest_exercise_amount_value"
+                        android:textColor="@color/textColorSecondary" />
                 </TableRow>
             </TableLayout>
 
@@ -195,136 +216,167 @@
 
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="@string/profile_cardio"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
 
-            <TableLayout
-                android:id="@+id/profil_cardio_table"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/profile_running_form"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/profile_running_form_value"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_progress_flat" />
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:text="@string/profile_statistics"
+                android:textColor="@color/textColorSecondary" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:stretchColumns="0">
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_last_r_date"
+                        android:text="@string/profile_last_run_date"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_last_r_date_value"
+                        android:id="@+id/profile_last_run_date_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_r_date_value"
+                        android:text="@string/profile_last_run_date_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_last_r_time"
+                        android:text="@string/profile_last_run_duration"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_last_r_time_value"
+                        android:id="@+id/profile_last_run_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_r_time_value"
+                        android:text="@string/profile_last_run_duration_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_average_r_time"
+                        android:text="@string/profile_average_run_duration"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_average_r_time_value"
+                        android:id="@+id/profile_average_run_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_r_time_value"
+                        android:text="@string/profile_average_run_duration_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_last_distance"
+                        android:text="@string/profile_longest_run_duration"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_last_distance_value"
+                        android:id="@+id/profile_longest_run_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_distance_value"
+                        android:text="@string/profile_longest_run_duration_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_average_distance"
+                        android:text="@string/profile_last_run_distance"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_average_distance_value"
+                        android:id="@+id/profile_last_run_distance_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_distance_value"
+                        android:text="@string/profile_last_run_distance_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_longest_distance"
+                        android:text="@string/profile_average_run_distance"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_longest_distance_value"
+                        android:id="@+id/profile_average_run_distance_value"
                         android:gravity="end"
-                        android:text="@string/profile_longest_distance_value"
+                        android:text="@string/profile_average_run_distance_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_last_pace"
+                        android:text="@string/profile_longest_run_distance"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_last_pace_value"
+                        android:id="@+id/profile_longest_run_distance_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_pace_value"
+                        android:text="@string/profile_longest_run_distance_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_average_pace"
+                        android:text="@string/profile_last_run_pace"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_average_pace_value"
+                        android:id="@+id/profile_last_run_pace_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_pace_value"
+                        android:text="@string/profile_last_run_pace_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/profile_best_pace"
+                        android:text="@string/profile_average_run_pace"
                         android:textColor="@color/textColorSecondary" />
 
                     <TextView
-                        android:id="@+id/profile_best_pace_value"
+                        android:id="@+id/profile_average_run_pace_value"
                         android:gravity="end"
-                        android:text="@string/profile_best_pace_value"
+                        android:text="@string/profile_average_run_pace_value"
+                        android:textColor="@color/textColorSecondary" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:text="@string/profile_biggest_run_pace"
+                        android:textColor="@color/textColorSecondary" />
+
+                    <TextView
+                        android:id="@+id/profile_biggest_run_pace_value"
+                        android:gravity="end"
+                        android:text="@string/profile_biggest_run_pace_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
             </TableLayout>

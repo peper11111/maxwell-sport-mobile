@@ -19,8 +19,11 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        ImageView arrow = (ImageView) v.findViewById(R.id.profile_form_image);
-        arrow.setColorFilter(getResources().getColor(R.color.material_green_500), PorterDuff.Mode.SRC_ATOP);
+        ImageView trainingForm = (ImageView) v.findViewById(R.id.profile_training_form_value);
+        trainingForm.setColorFilter(getResources().getColor(R.color.material_blue_500), PorterDuff.Mode.SRC_ATOP);
+
+        ImageView runningForm = (ImageView) v.findViewById(R.id.profile_running_form_value);
+        runningForm.setColorFilter(getResources().getColor(R.color.material_blue_500), PorterDuff.Mode.SRC_ATOP);
 
         return v;
     }

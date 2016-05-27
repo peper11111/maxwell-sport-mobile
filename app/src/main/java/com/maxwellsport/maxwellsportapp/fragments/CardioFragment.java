@@ -17,6 +17,8 @@ import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
 
+
+//TODO: Dodać śledzenie trasy na mapie. (polyline)
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
     // Klucze do zapisania potrzebnych wartosci do Bundle
     protected final static String STATUS_KEY = "status-key";

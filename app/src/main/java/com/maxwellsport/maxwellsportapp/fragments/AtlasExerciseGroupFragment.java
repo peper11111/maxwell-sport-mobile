@@ -17,6 +17,8 @@ import com.maxwellsport.maxwellsportapp.models.ExerciseGroup;
 
 import java.util.ArrayList;
 
+
+//TODO: Poprawic wyswietlanie bitmapy.(zżera za dużo pamięci)
 public class AtlasExerciseGroupFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class AtlasExerciseGroupFragment extends Fragment {
 
         for (int i = 0; i < strings.length; i++) {
             Drawable drawable = drawables.getDrawable(i);
-            drawable.setColorFilter(getResources().getColor(R.color.material_grey_900), PorterDuff.Mode.SRC_ATOP);
+            drawable.setColorFilter(getResources().getColor(R.color.textColorPrimary), PorterDuff.Mode.SRC_ATOP);
             array.add(new ExerciseGroup(strings[i], drawable));
         }
 
