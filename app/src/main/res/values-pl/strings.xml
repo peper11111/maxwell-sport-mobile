@@ -31,8 +31,9 @@
     <string name="action_settings">Ustawienia</string>
 
     <string name="exercise_name">Nazwa ćwiczenia</string>
-    <string name="exercise_description">Opis ćwiczenia:</string>
+    <string name="exercise_description"><i>Opis ćwiczenia:</i></string>
     <string name="exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
+    <string name="exercise_difficulty"><i>Trudność ćwiczenia:</i></string>
 
     <!-- Ćwiczenia -->
     <string name="exercise_group_1_name">Biceps</string>
@@ -54,7 +55,7 @@
     <string name="exc_biceps_2_description">W pozycji siedzącej, łokieć wsparty na wewnętrznej stronie uda:\n- wziąć wdech i zgiąć przedramię;\n- w końcowej fazie ruchu wykonać wydech.\nTo izolowane ćwiczenie pozwala na kontrolę zakresu, szybkości i dokładności ruchu. Angażuje głownie mięsień dwugłowy ramienia i mięsień ramienny.</string>
     <string name="exc_biceps_3_description">W pozycji stojącej lub siedzącej, sztangielki trzymane w obu rękach nachwytem, przedramię w pozycji pośredniej:\n- wziąć wdech i zgiąć oba przedramiona równocześnie lub naprzemiennie;\n- wykonać wydech w końcowej fazie ruchu.\nTo ćwiczenie najlepiej rozwija mięsień ramienno-promieniowy. Wpływa ono róznież na mięsień dwugłowy ramienia i mięsień ramienny oraz w mniejszym stopniu na mięsień prostownik promieniowy krótki nadgarstka i mięsień prostownik promieniowy długi nadgarstka.</string>
     <string name="exc_biceps_4_description">W pozycji stojącej, twarzą do przodu, rączka wyciągu trzymana podchwytem:\n- wziąc wdech i zgiąć przedramię;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to pozawala na koncentrację wysiłku w obrębie mięśnia dwugłowego ramienia i sprzyja intensywnemu ukrwieniu mięśnia.</string>
-    <string name="exc_biceps_5_description">W pozycji stojącej, centralnie w stosunku do wyciągu, ramiona wyciągnięte, rączki wyciągu trzymane podchwytem:\n- wziąć wdech i zgiąć przedramiona;\n- wykonać wydeh w końcowej fazie ruchu.\nĆwiczenie to, które najczęściej kończy trening mięśni ramion, pozwala na rozwijanie mięśnia dwugłowego ramienia, głównie jego głowy krótkiej uprzednio rozciągniętej i napinanej w pozycji rozłożenia ramion; rozwija również mięsień ramienny będący jednostawowym zginaczem łokcia.\nĆwiczenia tego nie wykonuje się nigdy przy dużym obciążeniu. Istotne, aby skoncentrować się na odczuciu kurczenia się wewnętrznej części mięśnia dwugłowego ramienia. Najlepsze wyniki przynoszą długie serie ćwiczeń.</string>
+    <string name="exc_biceps_5_description">W pozycji stojącej, centralnie w stosunku do wyciągu, ramiona wyciągnięte, rączki wyciągu trzymane podchwytem:\n- wziąć wdech i zgiąć przedramiona;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to, które najczęściej kończy trening mięśni ramion, pozwala na rozwijanie mięśnia dwugłowego ramienia, głównie jego głowy krótkiej uprzednio rozciągniętej i napinanej w pozycji rozłożenia ramion; rozwija również mięsień ramienny będący jednostawowym zginaczem łokcia.\nĆwiczenia tego nie wykonuje się nigdy przy dużym obciążeniu. Istotne, aby skoncentrować się na odczuciu kurczenia się wewnętrznej części mięśnia dwugłowego ramienia. Najlepsze wyniki przynoszą długie serie ćwiczeń.</string>
     <string name="exc_biceps_6_description">W pozycji stojącej, grzbiet wyprostowany, sztanga trzymana podchwytem (ręce rozstawione na szerokość nieco większą niż rozstaw barków):\n- wziąć wdech a następnie zgiąć przedramiona, starając się nie poruszać klatką piersiową przez wykonanie izometrycznego skurczu mięśni pośladkowych, brzusznych i przykręgosłupowych;\n- wykonać wdech w końcowej fazie ruchu.\nĆwiczenie to angażuje głównie mięsień dwugłowy ramienia i mięsień ramienny, a w mniejszym stopniu mięsień ramienny-promienowy, mięsień nawrotny obły i wszystkie mięśnie zginacze nadgarstka i palców.</string>
 
     <string name="exc_triceps_1_name">Ćwiczenie na mięsień trójgłowy ramienia z wykorzystaniem wyciągu górnego (rączka wyciągu trzymana nachwytem)</string>
@@ -140,4 +141,10 @@
     <string name="exc_abs_4_description">W pozycji leżącej na skośnej ławeczce, ręce na barierce lub drążku:\n- unieśc kończyny dolne do pionu, następniepodnieść miednicę, zgiąć kręgosłup i próbując dotknąć kolanami głowy.\nĆwiczenie to angażuje przy podnoszeniu kończyn mięsień biodrowo-lędźwiowy, mięsień napinacz powięzi szerokiej i mięsień prosty uda (część mięsnia czworogłowego uda) Podczas zginania kręgosłupa angażowana jest tłocznia brzuszna, głównie część podpępkowa mięśni prostych brzucha.</string>
     <string name="exc_abs_5_description">W oparciu na łokciach, grzbiet zablokowany:\n- wziąć wdech i podciągnąc kolana do piersi, wygiąć grzbiet w łuk, aby napiąć mięśnie tłoczni brzusznej;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje mięśnie zginacze biodra, głównie mięśnie biodrowo-lędźwiowe, jak również mięśnie skośne i mięsień prosty brzucha, przy czym ten ostatni jest angażowany intensywnie w swej dolnej części</string>
     <string name="exc_abs_6_description">W zwisie na drążku:\n- wziąć wdech i unieść kolana możliwie najwyżej, starając się zbliżyć kość łonową do mostka przez zgięcie kręgosłupa;\n- wykonać wydech w końcowej fazie ćwiczenia.\nĆwiczenie to oddziałuje na mięśnie biodrowo-lędźwiowe, mięsień prosty uda i misień napinacz powięzi szerokiej (podczas unoszenia kończyn dolnych). W celu zlokalizowania pracy w tłoczni brzusznej zaleca się wykonywanie niewielkich poziomych ruchów udami. Kolana nie mogą jednak nigdy opadać poniżej poziomu.</string>
+
+    <string name="difficulty_1_name">Bardzo Łatwe</string>
+    <string name="difficulty_2_name">Łatwe</string>
+    <string name="difficulty_3_name">Średnie</string>
+    <string name="difficulty_4_name">Trudne</string>
+    <string name="difficulty_5_name">Bardzo Trudne</string>
 </resources>

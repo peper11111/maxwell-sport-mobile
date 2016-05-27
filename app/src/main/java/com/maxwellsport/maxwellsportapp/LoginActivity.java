@@ -20,7 +20,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         /* Wymuszenie jezyka angielskiego */
-        LocaleService.setLocale(this, "en");
+        LocaleService.setLocale(this, "pl");
 
         setContentView(R.layout.activity_login);
 

@@ -26,17 +26,25 @@ public class AtlasExerciseFragment extends Fragment {
         Bundle bundle = getArguments();
         int group = bundle.getInt("exercise-group");
 
-        TypedArray names = getResources().obtainTypedArray(R.array.atlas_exercise_name);
-        int names_id = names.getResourceId(group, 0);
-        String[] exercise_names = getResources().getStringArray(names_id);
-
         TypedArray icons = getResources().obtainTypedArray(R.array.atlas_exercise_icon);
         int icons_id = icons.getResourceId(group, 0);
         TypedArray exercise_icons = getResources().obtainTypedArray(icons_id);
 
+        TypedArray names = getResources().obtainTypedArray(R.array.atlas_exercise_name);
+        int names_id = names.getResourceId(group, 0);
+        String[] exercise_names = getResources().getStringArray(names_id);
+
+        TypedArray descriptions = getResources().obtainTypedArray(R.array.atlas_exercise_description);
+        int descriptions_id = descriptions.getResourceId(group, 0);
+        String[] exercise_descriptions = getResources().getStringArray(descriptions_id);
+
+        TypedArray difficulties = getResources().obtainTypedArray(R.array.atlas_exercise_difficulty);
+        int difficulties_id = difficulties.getResourceId(group, 0);
+        int[] exercise_difficulties = getResources().getIntArray(difficulties_id);
+
         ArrayList<Exercise> array = new ArrayList<>();
         for (int i = 0; i < exercise_names.length; i++) {
-            array.add(new Exercise(group, exercise_names[i], exercise_icons.getDrawable(i)));
+            array.add(new Exercise(group, exercise_icons.getDrawable(i), exercise_names[i], exercise_descriptions[i], exercise_difficulties[i]));
         }
 
         // Create the adapter to convert the array to views
@@ -48,12 +56,6 @@ public class AtlasExerciseFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
                 Exercise exercise = mAdapter.getItem(position);
-
-                TypedArray descriptionContainer = getResources().obtainTypedArray(R.array.atlas_exercise_description);
-                int description_id = descriptionContainer.getResourceId(exercise.getGroup(), 0);
-                String[] description = getResources().getStringArray(description_id);
-                exercise.setDescription(description[position]);
-
                 bundle.putSerializable("exercise-class", exercise);
                 Fragment fragment = new AtlasExerciseDetailsFragment();
                 fragment.setArguments(bundle);

@@ -1,6 +1,7 @@
 package com.maxwellsport.maxwellsportapp.models;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 
 import java.io.Serializable;
 
@@ -8,13 +9,16 @@ public class Exercise implements Serializable {
     private static final long serialVersionUID = -1234551469151804394L;
     private int mGroup;
     private String mName;
-    private Drawable mIcon;
+    private transient Drawable mIcon;
     private String mDescription;
+    private int mDifficulty;
 
-    public Exercise(int group, String name, Drawable icon) {
+    public Exercise(int group, Drawable icon, String name, String description, int difficulty) {
         mGroup = group;
-        mName = name;
         mIcon = icon;
+        mName = name;
+        mDescription = description;
+        mDifficulty = difficulty;
     }
 
     public int getGroup() {
@@ -33,7 +37,7 @@ public class Exercise implements Serializable {
         return mDescription;
     }
 
-    public void setDescription(String description) {
-        mDescription = description;
+    public int getDifficulty() {
+        return mDifficulty;
     }
 }

@@ -58,6 +58,15 @@
         <item>@string/exc_biceps_6_description</item>
     </string-array>
 
+    <integer-array name="atlas_exercise_biceps_difficulty">
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
     <array name="atlas_exercise_triceps_icon">
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
@@ -84,6 +93,15 @@
         <item>@string/exc_triceps_5_description</item>
         <item>@string/exc_triceps_6_description</item>
     </string-array>
+
+    <integer-array name="atlas_exercise_triceps_difficulty">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+    </integer-array>
 
     <array name="atlas_exercise_shoulders_icon">
         <item>@drawable/maxwell</item>
@@ -112,6 +130,15 @@
         <item>@string/exc_shoulders_6_description</item>
     </string-array>
 
+    <integer-array name="atlas_exercise_shoulders_difficulty">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+    </integer-array>
+
     <array name="atlas_exercise_chest_icon">
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
@@ -138,6 +165,15 @@
         <item>@string/exc_chest_5_description</item>
         <item>@string/exc_chest_6_description</item>
     </string-array>
+
+    <integer-array name="atlas_exercise_chest_difficulty">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+    </integer-array>
 
     <array name="atlas_exercise_back_icon">
         <item>@drawable/maxwell</item>
@@ -166,6 +202,15 @@
         <item>@string/exc_back_6_description</item>
     </string-array>
 
+    <integer-array name="atlas_exercise_back_difficulty">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+    </integer-array>
+
     <array name="atlas_exercise_legs_icon">
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
@@ -193,6 +238,15 @@
         <item>@string/exc_legs_6_description</item>
     </string-array>
 
+    <integer-array name="atlas_exercise_legs_difficulty">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+    </integer-array>
+
     <array name="atlas_exercise_abs_icon">
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
@@ -219,6 +273,15 @@
         <item>@string/exc_abs_5_description</item>
         <item>@string/exc_abs_6_description</item>
     </string-array>
+
+    <integer-array name="atlas_exercise_abs_difficulty">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+    </integer-array>
 
     <array name="atlas_exercise_icon">
         <item>@array/atlas_exercise_biceps_icon</item>
@@ -248,5 +311,23 @@
         <item>@array/atlas_exercise_back_description</item>
         <item>@array/atlas_exercise_legs_description</item>
         <item>@array/atlas_exercise_abs_description</item>
+    </array>
+
+    <array name="atlas_exercise_difficulty">
+        <item>@array/atlas_exercise_biceps_difficulty</item>
+        <item>@array/atlas_exercise_triceps_difficulty</item>
+        <item>@array/atlas_exercise_shoulders_difficulty</item>
+        <item>@array/atlas_exercise_chest_difficulty</item>
+        <item>@array/atlas_exercise_back_difficulty</item>
+        <item>@array/atlas_exercise_legs_difficulty</item>
+        <item>@array/atlas_exercise_abs_difficulty</item>
+    </array>
+
+    <array name="atlas_exercise_difficulty_name">
+        <item>@string/difficulty_1_name</item>
+        <item>@string/difficulty_2_name</item>
+        <item>@string/difficulty_3_name</item>
+        <item>@string/difficulty_4_name</item>
+        <item>@string/difficulty_5_name</item>
     </array>
 </resources>
