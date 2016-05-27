@@ -3,6 +3,7 @@ package com.maxwellsport.maxwellsportapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,7 +21,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
-import com.maxwellsport.maxwellsportapp.fragments.AtlasFragment;
+import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseGroupFragment;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
@@ -32,15 +33,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Fragment mFragment;
     private MenuItem mPrevMenuItem;
     private int mItemID;
-    private int[] mNavigationColors = {R.color.nav_profile_color, R.color.nav_training_color, R.color.nav_cardio_color, R.color.nav_atlas_color, R.color.nav_default_color, R.color.nav_default_color, R.color.nav_default_color};
+    private TypedArray mNavigationColors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mNavigationColors = getResources().obtainTypedArray(R.array.nav_bar_item_colors);
         /* Wczytanie zapisanych wartosci po obróceniu ekranu */
         if (savedInstanceState != null) {
             mFragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
@@ -65,12 +68,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+
         /* Usuniecie domyslnego stylu kolorowania ikon */
         mNavigationView.setItemIconTintList(null);
 
         /* Kolorowanie ikon w Navigation Drawer */
         for (int i = 0; i < 7; i++) {
-            mNavigationView.getMenu().getItem(i).getIcon().mutate().setColorFilter(getResources().getColor(mNavigationColors[i]), PorterDuff.Mode.SRC_ATOP);
+            mNavigationView.getMenu().getItem(i).getIcon().mutate().setColorFilter(mNavigationColors.getColor(i, 0), PorterDuff.Mode.SRC_ATOP);
         }
         mPrevMenuItem = mNavigationView.getMenu().getItem(mItemID);
 
@@ -98,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getFragmentManager().getBackStackEntryCount() != 0) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_atlas:
                         mItemID = 3;
-                        mFragment = new AtlasFragment();
+                        mFragment = new AtlasExerciseGroupFragment();
                         break;
                     case R.id.nav_settings:
                         mItemID = 4;
@@ -187,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         /* Dodanie koloru aktywnemu elementowi */
         SpannableString tintTitle = new SpannableString(item.getTitle());
-        tintTitle.setSpan(new ForegroundColorSpan(getResources().getColor(mNavigationColors[itemID])), 0, tintTitle.length(), 0);
+        tintTitle.setSpan(new ForegroundColorSpan(mNavigationColors.getColor(itemID, 0)), 0, tintTitle.length(), 0);
         item.setTitle(tintTitle);
         item.setChecked(true);
     }

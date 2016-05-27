@@ -2,8 +2,6 @@ package com.maxwellsport.maxwellsportapp.fragments;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,8 +16,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
-
-import java.util.Locale;
 
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
     // Klucze do zapisania potrzebnych wartosci do Bundle

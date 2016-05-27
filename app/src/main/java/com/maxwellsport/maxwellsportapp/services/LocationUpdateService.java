@@ -18,7 +18,6 @@ import java.util.Locale;
 
 public class LocationUpdateService implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
     private CardioFragment mCardioFragment;
-    private static final String TAG = "MaxwellSport";
 
     /* Ustawienie interwałów odswieżania pozycji uzytkownika */
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 2000;
