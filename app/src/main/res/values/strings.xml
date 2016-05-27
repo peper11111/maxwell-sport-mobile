@@ -60,13 +60,13 @@
 
     <string name="exc_triceps_1_name">Exercise for triceps brachii muscle with use of lat pull down (hand of cable row is held with wide-grip)</string>
     <string name="exc_triceps_2_name">Exercise for triceps brachii muscle with use of lat pull down (hand of cable row is held with reverse grip)</string>
-    <string name="exc_triceps_3_name">Alernate straightening forearms with use of lat pull down</string>
+    <string name="exc_triceps_3_name">Alternate straightening forearms with use of lat pull down</string>
     <string name="exc_triceps_4_name">Straighten elbows with barbells in the lying position on bench</string>
     <string name="exc_triceps_5_name">Straighten elbows with dumbbells in lying position</string>
     <string name="exc_triceps_6_name">Flexing forearms to support back on benches</string>
 
-    <string name="exc_triceps_1_description">In standing position, hands on lat pull down holder, elbows along trunk: -take breath and straight forearms trying not to tear elbows from trunk: -exhale in final phase of exercise</string>
-    <string name="exc_triceps_2_description">In standing position, facing the machine, arms at sides, bent at elbows, hands on the handles: -take breath and straighten forearms trying no to separate elbows from your body: -exhale in final phase of movement. Reverse grip prevents trainging with heavy load thatﾒs why this exercise can only be done with small load  in order to develop triceps brachii muscle and concentrate effort on head of this muscle.</string>
+    <string name="exc_triceps_1_description">In standing position, hands on lat pull down holder, elbows along trunk:\n- take breath and straight forearms trying not to tear elbows from trunk;\n- exhale in final phase of exercise.</string>
+    <string name="exc_triceps_2_description">In standing position, facing the machine, arms at sides, bent at elbows, hands on the handles:\n- take breath and straighten forearms trying no to separate elbows from your body;\n- exhale in final phase of movement.\nReverse grip prevents training with heavy load thatﾒs why this exercise can only be done with small load in order to develop triceps brachii muscle and concentrate effort on head of this muscle.</string>
     <string name="exc_triceps_3_description">In standing position facing the machine, hand of lift is held with wide-grip: -take breath and straighten forearm: -exhale. This exercise involves triceps brachii muscle, mainly its side head</string>
     <string name="exc_triceps_4_description">In the lying position on bench, barbell is held with wide-grip, arms arranged vertivally in relation to the bench: -take breath and bent arms trying not to dissaude too in back elbows while lowering the barbell at the height of forehead -exhale in the final phase of movement</string>
     <string name="exc_triceps_5_description">Lying on the ground, dumbbells is held in both hands, arms vertically to the ground: -take breath and bent arms controlling movement: -return to start position and exhale in final phase of movement. This exercise is evenly involving all three heads of the triceps brachii muscle</string>

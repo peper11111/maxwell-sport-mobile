@@ -68,8 +68,8 @@
     </integer-array>
 
     <array name="atlas_exercise_triceps_icon">
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_triceps_1</item>
+        <item>@drawable/exc_triceps_2</item>
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
