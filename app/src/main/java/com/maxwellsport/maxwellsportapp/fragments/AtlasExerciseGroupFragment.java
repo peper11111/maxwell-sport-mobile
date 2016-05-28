@@ -17,8 +17,6 @@ import com.maxwellsport.maxwellsportapp.models.ExerciseGroup;
 
 import java.util.ArrayList;
 
-
-//TODO: Poprawic wyswietlanie bitmapy.(zżera za dużo pamięci)
 public class AtlasExerciseGroupFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
