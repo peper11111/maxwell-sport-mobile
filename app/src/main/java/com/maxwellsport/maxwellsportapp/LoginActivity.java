@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.services.LocaleService;
+import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 public class LoginActivity extends Activity {
     @Override
@@ -32,9 +33,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (usernameField.getText().toString().equals("admin") && passwordField.getText().toString().equals("admin")) {
-                    SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
-                    editor.putString("userID", "21232f297a57a5a743894a0e4a801fc3");
-                    editor.apply();
+                    SharedPreferencesService.saveValue(getApplication(), "userID", "21232f297a57a5a743894a0e4a801fc3");
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -54,7 +53,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences prefs = getSharedPreferences("maxwellsport", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(SharedPreferencesService.TAG, MODE_PRIVATE);
         if (prefs.getString("userID", null) != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);

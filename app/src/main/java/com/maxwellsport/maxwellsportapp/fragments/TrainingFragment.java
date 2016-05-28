@@ -2,11 +2,9 @@ package com.maxwellsport.maxwellsportapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.internal.view.menu.ListMenuItemView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.maxwellsport.maxwellsportapp.R;
@@ -22,8 +20,8 @@ public class TrainingFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_training, container, false);
 
-        layout = (LinearLayout) view.findViewById(R.id.trainig_day1);
-        layout.setOnClickListener(this);
+        /*layout = (LinearLayout) view.findViewById(R.id.trainig_day1);
+        layout.setOnClickListener(this);*/
 
         return view;
     }

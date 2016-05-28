@@ -27,6 +27,7 @@ import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
+import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView mNavigationView;
@@ -125,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         })
                         .show();
-            }else {
-                this.getSupportFragmentManager().popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            } else {
+                this.getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 switch (item.getItemId()) {
                     case R.id.nav_profile:
                         mItemID = 0;
@@ -150,9 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_logout:
                         mItemID = 5;
-                        SharedPreferences.Editor editor = getSharedPreferences("maxwellsport", MODE_PRIVATE).edit();
-                        editor.putString("userID", null);
-                        editor.apply();
+                        SharedPreferencesService.saveValue(getApplication(), "userID", null);
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
