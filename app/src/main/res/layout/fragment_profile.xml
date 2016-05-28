@@ -114,7 +114,7 @@
                 android:layout_marginTop="4dp"
                 android:stretchColumns="0">
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_last_training_date"
@@ -127,7 +127,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_last_training_duration"
@@ -140,7 +140,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_average_training_duration"
@@ -153,7 +153,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_longest_training_duration"
@@ -166,7 +166,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_last_exercise_amount"
@@ -179,7 +179,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_average_exercise_amount"
@@ -192,7 +192,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_biggest_exercise_amount"
@@ -250,7 +250,7 @@
                 android:layout_marginTop="4dp"
                 android:stretchColumns="0">
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_last_run_date"
@@ -263,7 +263,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_last_run_duration"
@@ -276,7 +276,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_average_run_duration"
@@ -289,7 +289,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_longest_run_duration"
@@ -302,7 +302,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_last_run_distance"
@@ -315,7 +315,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_average_run_distance"
@@ -328,7 +328,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_longest_run_distance"
@@ -341,7 +341,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_last_run_pace"
@@ -354,7 +354,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_average_run_pace"
@@ -367,7 +367,7 @@
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow android:gravity="center_vertical">
 
                     <TextView
                         android:text="@string/profile_biggest_run_pace"

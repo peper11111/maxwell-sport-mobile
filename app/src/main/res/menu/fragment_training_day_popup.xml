@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/exercise_description"
-        android:title="@string/popup_description" />
+        android:id="@+id/training_exercise_description"
+        android:title="@string/training_popup_description" />
 </menu>

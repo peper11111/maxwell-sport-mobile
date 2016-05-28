@@ -1,436 +1,542 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:fillViewport="true">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/training_header_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/training_header_image" />
 
-        <ImageView
-            android:id="@+id/training_header_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile_header_image" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/training_header_image"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="-50dp"
+        android:text="@string/training_title"
+        android:textColor="@color/textColor"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/training_header_image"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/training_header_image"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="-70dp"
-            android:text="Day 1"
-            android:textColor="@color/textColor"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/training_header_image"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="-26dp"
-            android:background="@drawable/resume_button_shape"
-            android:padding="10dp"
-            android:src="@drawable/ic_fab_start" />
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/training_information_label"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/training_header_image"
-            android:orientation="vertical">
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/colorAccent"
+            android:paddingTop="1dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ELO" />
         </LinearLayout>
-        <!--
-                <LinearLayout
-                    android:id="@+id/trainig_day1"
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:stretchColumns="0">
+
+            <TableRow android:gravity="center_vertical">
+
+                <TextView
+                    android:text="@string/training_exercise_group"
+                    android:textColor="@color/textColorSecondary" />
+
+                <TextView
+                    android:id="@+id/training_exercise_group_value"
+                    android:gravity="end"
+                    android:text="@string/training_exercise_group_value"
+                    android:textColor="@color/textColorSecondary" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+
+                <TextView
+                    android:text="@string/training_weight"
+                    android:textColor="@color/textColorSecondary" />
+
+                <TextView
+                    android:id="@+id/training_weight_value"
+                    android:gravity="end"
+                    android:text="@string/training_weight_value"
+                    android:textColor="@color/textColorSecondary" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+
+                <TextView
+                    android:text="@string/training_exercise_amount"
+                    android:textColor="@color/textColorSecondary" />
+
+                <TextView
+                    android:id="@+id/training_exercise_amount_value"
+                    android:gravity="end"
+                    android:text="@string/training_exercise_amount_value"
+                    android:textColor="@color/textColorSecondary" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+
+                <TextView
+                    android:text="@string/training_sets"
+                    android:textColor="@color/textColorSecondary" />
+
+                <TextView
+                    android:id="@+id/training_sets_value"
+                    android:gravity="end"
+                    android:text="@string/training_sets_value"
+                    android:textColor="@color/textColorSecondary" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+
+                <TextView
+                    android:text="@string/training_reps"
+                    android:textColor="@color/textColorSecondary" />
+
+                <TextView
+                    android:id="@+id/training_reps_value"
+                    android:gravity="end"
+                    android:text="@string/training_reps_value"
+                    android:textColor="@color/textColorSecondary" />
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/colorAccent"
+            android:paddingTop="1dp">
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/training_not_completed"
+            android:textColor="@color/material_red_500"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/training_fab_start"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/training_header_image"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="-26dp"
+        android:src="@drawable/ic_fab_start"
+        app:backgroundTint="@color/material_green_500"
+        app:elevation="0dp" />
+    <!--
+            <LinearLayout
+                android:id="@+id/trainig_day1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@color/profile_tile_color"
+                android:clickable="true"
+                android:focusable="false"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/profile_tile_color"
-                    android:clickable="true"
+                    android:background="@color/profile_tile_color_secondary"
+                    android:clickable="false"
                     android:focusable="false"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:text="@string/training_1"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/profile_tile_color_secondary"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:text="@string/training_1"
-                        android:textColor="@color/profile_text_color"
-                        android:textSize="30sp" />
+                <TableLayout
+                    android:id="@+id/trainig_table1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:padding="15dp"
+                    android:stretchColumns="1">
 
-                    <TableLayout
-                        android:id="@+id/trainig_table1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:padding="15dp"
-                        android:stretchColumns="1">
-
-                        <TableRow android:layout_marginTop="3dp">
-
-                            <TextView
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/body_part"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text=""
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                        <TableRow android:layout_marginTop="3dp">
-
-                            <TextView
-                                android:id="@+id/training1_part1"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/weight"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:id="@+id/trainig1_weight"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                        <TableRow android:layout_marginTop="3dp">
-
-                            <TextView
-                                android:id="@+id/training1_part2"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/sets"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:id="@+id/trainig1_sets"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                        <TableRow android:layout_marginTop="3dp">
-
-                            <TextView
-                                android:id="@+id/training1_part3"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/reps"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:id="@+id/trainig1_reps"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                    </TableLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="20dp"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:orientation="horizontal">
+                    <TableRow android:layout_marginTop="3dp">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_centerVertical="true"
-                            android:layout_toLeftOf="@+id/imageView2"
-                            android:layout_toStartOf="@+id/imageView2"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:gravity="right"
-                            android:text="@string/start_training"
-                            android:textColor="@color/profile_text_color"
-                            android:textSize="20sp" />
-
-                        <ImageView
-                            android:id="@+id/imageView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_gravity="right"
-                            android:clickable="false"
-                            android:focusable="false"
+                            android:layout_column="1"
                             android:padding="3dp"
-                            android:src="@drawable/ic_media_play" />
+                            android:text="@string/body_part"
+                            android:textColor="@color/profile_text_color" />
 
-                    </RelativeLayout>
-                </LinearLayout>
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text=""
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
 
-                <LinearLayout
+                    <TableRow android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:id="@+id/training1_part1"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/weight"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:id="@+id/trainig1_weight"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:id="@+id/training1_part2"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/sets"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:id="@+id/trainig1_sets"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:id="@+id/training1_part3"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/reps"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:id="@+id/trainig1_reps"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/trainig_second_tile_color"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_gravity="right"
+                    android:layout_marginTop="20dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/profile_tile_color"
-                        android:gravity="center"
-                        android:text="@string/training_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/imageView2"
+                        android:layout_toStartOf="@+id/imageView2"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:gravity="right"
+                        android:text="@string/start_training"
                         android:textColor="@color/profile_text_color"
-                        android:textSize="30sp" />
+                        android:textSize="20sp" />
 
-                    <TableLayout
-                        android:id="@+id/trainig_table2"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:stretchColumns="1">
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_gravity="right"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_media_play" />
 
-                        <TableRow android:layout_marginTop="3dp">
+                </RelativeLayout>
+            </LinearLayout>
 
-                            <TextView
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/body_part"
-                                android:textColor="@color/profile_text_color" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@color/trainig_second_tile_color"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text=""
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                        <TableRow android:layout_marginTop="3dp">
-
-                            <TextView
-                                android:id="@+id/training2_part1"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/weight"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:id="@+id/trainig2_weight"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                        <TableRow android:layout_marginTop="3dp">
-
-                            <TextView
-                                android:id="@+id/training2_part2"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/sets"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:id="@+id/trainig2_sets"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                        <TableRow android:layout_marginTop="3dp">
-
-                            <TextView
-                                android:id="@+id/training2_part3"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/reps"
-                                android:textColor="@color/profile_text_color" />
-
-                            <TextView
-                                android:id="@+id/trainig2_reps"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
-
-                    </TableLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:background="@color/trainig_second_tile_color"
+                    android:background="@color/profile_tile_color"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:text="@string/training_2"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/profile_tile_color"
-                        android:gravity="center"
-                        android:text="@string/training_3"
-                        android:textColor="@color/profile_text_color"
-                        android:textSize="30sp" />
+                <TableLayout
+                    android:id="@+id/trainig_table2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:stretchColumns="1">
+
+                    <TableRow android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/body_part"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text=""
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:id="@+id/training2_part1"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/weight"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:id="@+id/trainig2_weight"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:id="@+id/training2_part2"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/sets"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:id="@+id/trainig2_sets"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:id="@+id/training2_part3"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/reps"
+                            android:textColor="@color/profile_text_color" />
+
+                        <TextView
+                            android:id="@+id/trainig2_reps"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:background="@color/trainig_second_tile_color"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/profile_tile_color"
+                    android:gravity="center"
+                    android:text="@string/training_3"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="30sp" />
 
 
-                    <TableLayout
-                        android:id="@+id/trainig_table3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:stretchColumns="1">
+                <TableLayout
+                    android:id="@+id/trainig_table3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:stretchColumns="1">
 
-                        <TableRow android:layout_marginTop="3dp">
+                    <TableRow android:layout_marginTop="3dp">
 
-                            <TextView
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/body_part"
-                                android:textColor="@color/profile_text_color" />
+                        <TextView
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/body_part"
+                            android:textColor="@color/profile_text_color" />
 
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text=""
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text=""
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
 
-                        <TableRow android:layout_marginTop="3dp">
+                    <TableRow android:layout_marginTop="3dp">
 
-                            <TextView
-                                android:id="@+id/training3_part1"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
+                        <TextView
+                            android:id="@+id/training3_part1"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
 
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/weight"
-                                android:textColor="@color/profile_text_color" />
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/weight"
+                            android:textColor="@color/profile_text_color" />
 
-                            <TextView
-                                android:id="@+id/trainig3_weight"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
+                        <TextView
+                            android:id="@+id/trainig3_weight"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
 
-                        <TableRow android:layout_marginTop="3dp">
+                    <TableRow android:layout_marginTop="3dp">
 
-                            <TextView
-                                android:id="@+id/training3_part2"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
+                        <TextView
+                            android:id="@+id/training3_part2"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
 
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/sets"
-                                android:textColor="@color/profile_text_color" />
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/sets"
+                            android:textColor="@color/profile_text_color" />
 
-                            <TextView
-                                android:id="@+id/trainig3_sets"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
+                        <TextView
+                            android:id="@+id/trainig3_sets"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
 
-                        <TableRow android:layout_marginTop="3dp">
+                    <TableRow android:layout_marginTop="3dp">
 
-                            <TextView
-                                android:id="@+id/training3_part3"
-                                android:layout_column="1"
-                                android:padding="3dp"
-                                android:text="@string/none"
-                                android:textColor="@color/profile_text_color" />
+                        <TextView
+                            android:id="@+id/training3_part3"
+                            android:layout_column="1"
+                            android:padding="3dp"
+                            android:text="@string/none"
+                            android:textColor="@color/profile_text_color" />
 
-                            <TextView
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/reps"
-                                android:textColor="@color/profile_text_color" />
+                        <TextView
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/reps"
+                            android:textColor="@color/profile_text_color" />
 
-                            <TextView
-                                android:id="@+id/trainig3_reps"
-                                android:layout_gravity="right"
-                                android:padding="3dp"
-                                android:text="@string/zero"
-                                android:textColor="@color/profile_text_color" />
-                        </TableRow>
+                        <TextView
+                            android:id="@+id/trainig3_reps"
+                            android:layout_gravity="right"
+                            android:padding="3dp"
+                            android:text="@string/zero"
+                            android:textColor="@color/profile_text_color" />
+                    </TableRow>
 
-                    </TableLayout>
+                </TableLayout>
 
-                </LinearLayout>
-        -->
-    </RelativeLayout>
-</ScrollView>
+            </LinearLayout>
+    -->
+</RelativeLayout>

@@ -2,9 +2,9 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:fitsSystemWindows="true"
     tools:context="com.maxwellsport.maxwellsportapp.fragments.CardioFragment">
 
@@ -103,7 +103,7 @@
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
             android:src="@drawable/ic_fab_start"
-            app:backgroundTint="@color/start_fab_button_color"
+            app:backgroundTint="@color/material_green_500"
             app:elevation="0dp" />
     </LinearLayout>
 
@@ -122,7 +122,7 @@
             android:layout_marginBottom="@dimen/fab_margin_zero"
             android:layout_marginRight="@dimen/fab_margin"
             android:src="@drawable/ic_fab_pause"
-            app:backgroundTint="@color/pause_fab_button_color"
+            app:backgroundTint="@color/material_blue_500"
             app:elevation="0dp" />
 
         <android.support.design.widget.FloatingActionButton
@@ -132,7 +132,7 @@
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
             android:src="@drawable/ic_fab_stop"
-            app:backgroundTint="@color/stop_fab_button_color"
+            app:backgroundTint="@color/material_red_500"
             app:elevation="0dp" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

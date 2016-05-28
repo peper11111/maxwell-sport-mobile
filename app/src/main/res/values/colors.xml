@@ -15,10 +15,6 @@
     <color name="profile_text_color_secondary">#9e9e9e</color>
     <color name="profile_tile_color_secondary">#414141</color>
 
-    <color name="start_fab_button_color">#ff4caf50</color>
-    <color name="stop_fab_button_color">#fff44336</color>
-    <color name="pause_fab_button_color">#ff2196f3</color>
-
     <color name="stats_background_color">#99000000</color>
     <color name="stats_text_color">#ffffffff</color>
 
@@ -82,5 +78,7 @@
     <color name="material_black">#000000</color>
 
     <color name="material_white">#ffffff</color>
+
+    <color name="material_transparent">#00000000</color>
 
 </resources>

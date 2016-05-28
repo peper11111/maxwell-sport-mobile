@@ -1,43 +1,38 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.adapters.TrainingListAdapter;
-import com.maxwellsport.maxwellsportapp.animations.FlipAnimation;
+import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
 
 import java.util.ArrayList;
 
-public class TrainingDayFragment extends Fragment implements View.OnClickListener{
+public class TrainingDayFragment extends Fragment {
 
-    private ImageButton pauseButton;
-    private ImageButton resumeButton;
-    private ImageButton stopButton;
-    private View v;
+    private FloatingActionButton pauseButton;
+    private FloatingActionButton stopButton;
 
     /* time count */
     protected final static String STATUS_KEY = "status-key";
     public String status;
     private TimerService timerService;
 
-//    TODO: zebrac wlasciwe dane do wyswietlenia
+    //    TODO: zebrac wlasciwe dane do wyswietlenia
     // testowe dane
-    String [] exeNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie","Zginanie przedramion ze sztangielkami z obrotem nadgarstka","Exercise 3","Exercise 4","Exercise 5",
-            "Exercise 6","Exercise 7","Exercise 8","Exercise 9","Exercise 10"};
+    String[] exeNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie", "Zginanie przedramion ze sztangielkami z obrotem nadgarstka", "Exercise 3", "Exercise 4", "Exercise 5",
+            "Exercise 6", "Exercise 7", "Exercise 8", "Exercise 9", "Exercise 10"};
     ArrayList<String> arrayList = new ArrayList<>();
     ListView listView;
-    TrainingListAdapter adapter;
+    TrainingDayListAdapter adapter;
 
     // TODO: Pobrac liste z adaptera i przekazac do statystyk
     /* Lista skonczonych cwiczen */
@@ -45,24 +40,23 @@ public class TrainingDayFragment extends Fragment implements View.OnClickListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_training_day, container, false);
+        View v = inflater.inflate(R.layout.fragment_training_day, container, false);
 
         /* Inicjalizacja widoków */
         listView = (ListView) v.findViewById(R.id.training_list_view);
-        resumeButton = (ImageButton) v.findViewById(R.id.training_resume);
-        pauseButton = (ImageButton) v.findViewById(R.id.training_pause);
-        stopButton = (ImageButton) v.findViewById(R.id.training_stop);
+        pauseButton = (FloatingActionButton) v.findViewById(R.id.training_fab_pause);
+        stopButton = (FloatingActionButton) v.findViewById(R.id.training_fab_stop);
 
-        for(String s: exeNameArray){
+        for (String s : exeNameArray) {
             arrayList.add(s);
         }
 
         /* Ustawienie adaptera */
-        adapter = new TrainingListAdapter(getActivity(), arrayList);
+        adapter = new TrainingDayListAdapter(getActivity(), arrayList);
         listView.setAdapter(adapter);
 
         /* Ustawienie timera do przycisków */
-        timerService = new TimerService(getActivity() , (TextView) v.findViewById(R.id.time_count));
+        timerService = new TimerService(getActivity(), (TextView) v.findViewById(R.id.training_timer_view));
         onRestoreInstanceState(savedInstanceState);
         status = "running";
         timerService.setupTimerService(status);
@@ -72,49 +66,35 @@ public class TrainingDayFragment extends Fragment implements View.OnClickListene
         return v;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-
-
-    private void setupTimeButtonListeners(){
+    private void setupTimeButtonListeners() {
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 status = "stopped";
-                pauseButton.setVisibility(View.INVISIBLE);
-                resumeButton.setVisibility(View.VISIBLE);
                 timerService.stopTimer();
-            }
-        });
-
-        resumeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                status = "running";
-                resumeButton.setVisibility(View.INVISIBLE);
-                pauseButton.setVisibility(View.VISIBLE);
-                timerService.startTimer();
+                pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
             }
         });
 
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (status.equals("running")) {
                     status = "paused";
-                    pauseButton.setVisibility(View.INVISIBLE);
-                    resumeButton.setVisibility(View.VISIBLE);
                     timerService.pauseTimer();
+                    pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
+                } else if (status.equals("paused")) {
+                    status = "running";
+                    timerService.startTimer();
+                    pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
+                }
             }
         });
     }
 
-    @Override
-    public void onClick(View v) { }
-
-    /* Fragment lifecycle methods */
+    /*
+     * Fragment lifecycle methods
+     */
 
     /* Pomocnicza metoda do wczytania danych z Bundle */
     private void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -148,7 +128,7 @@ public class TrainingDayFragment extends Fragment implements View.OnClickListene
         View v = listView.getChildAt(0);
         int top = (v == null) ? 0 : v.getTop();
 
-        outState.putIntegerArrayList("positionList",adapter.getPositionList());
+        outState.putIntegerArrayList("positionList", adapter.getPositionList());
         outState.putInt("index", index);
         outState.putInt("top", top);
     }
@@ -158,13 +138,13 @@ public class TrainingDayFragment extends Fragment implements View.OnClickListene
         super.onActivityCreated(savedInstanceState);
         int index = -1;
         int top = 0;
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             /* Przywrocenie poprzedniego stanu (pozycii) listy */
-            index = savedInstanceState.getInt("index",-1);
-            top = savedInstanceState.getInt("top",0);
+            index = savedInstanceState.getInt("index", -1);
+            top = savedInstanceState.getInt("top", 0);
             adapter.setPositionList(savedInstanceState.getIntegerArrayList("positionList"));
         }
-        if(index != -1){
+        if (index != -1) {
             listView.setSelectionFromTop(index, top);
         }
     }

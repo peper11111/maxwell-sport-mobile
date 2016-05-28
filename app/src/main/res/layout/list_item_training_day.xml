@@ -1,175 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="horizontal"
-    android:onClick="onCardClick"
-    android:clickable="false"
-    android:descendantFocusability="blocksDescendants"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:background="@color/profile_tile_color_secondary">
+    android:padding="8dp">
 
-    <RelativeLayout
-        android:layout_width="62dp"
-        android:layout_height="62dp"
-        android:background="@android:color/transparent"
-        android:layout_margin="8dp"
-        android:id="@+id/item_list_root_laytout"
-        android:focusable="false"
-        android:clickable="false"
-        android:focusableInTouchMode="false">
+    <FrameLayout
+        android:id="@+id/training_flip_item_layout"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginRight="8dp">
 
         <ImageView
-            android:id="@+id/flip_front"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/maxwell"
-            android:focusable="false"
-            android:clickable="false"
-            android:focusableInTouchMode="false"/>
+            android:id="@+id/training_flip_front"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/material_white"
+            android:padding="4dp"
+            android:src="@drawable/exc_biceps_1" />
 
         <ImageView
-            android:id="@+id/flip_back"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_checked_green"
-            android:visibility="gone"
-            android:focusable="false"
-            android:clickable="false"
-            android:focusableInTouchMode="false"/>
+            android:id="@+id/training_flip_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:padding="16dp"
+            android:src="@drawable/ic_done"
+            android:visibility="gone" />
 
-    </RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/frame_exercise" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/row_textView1"
+                android:id="@+id/training_list_item_exercise_name"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="9"
-                android:paddingTop="4dp"
-                android:gravity="fill"
-                android:textSize="14sp"
-                android:textColor="@color/profile_text_color"
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="8dp"
+                android:text="@string/exercise_name"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="12sp" />
+
             <ImageButton
-                android:id="@+id/row_click_imageView1"
-                android:layout_width="10dp"
-                android:layout_height="72dp"
-                android:layout_weight="1.23"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/nav_about"
-                android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
-                android:tint="#ffff"
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"
-                />
+                android:id="@+id/training_list_item_popup"
+                android:layout_width="30dp"
+                android:layout_height="55dp"
+                android:src="@drawable/ic_more"
+                android:tint="@color/textColorPrimary" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/training_weight"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/training_list_item_weight"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/weight"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/profile_text_color"
-                android:textSize="10sp"
-
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"/>
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/training_weight_value"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/weight_value_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/training_sets"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/training_list_item_sets"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/zero"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/profile_text_color"
-                android:textSize="10sp"
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"/>
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/training_sets_value"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/training_reps"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/training_list_item_reps"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/sets"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/profile_text_color"
-                android:textSize="10sp"
-                android:layout_marginLeft="5dp"
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"/>
-
-            <TextView
-                android:id="@+id/sets_value"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/zero"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/profile_text_color"
-                android:textSize="10sp"
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"/>
-
-            <TextView
-                android:id="@+id/reps"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.89"
-                android:gravity="center"
-                android:text="@string/reps"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/profile_text_color"
-                android:textSize="10sp"
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"/>
-
-            <TextView
-                android:id="@+id/reps_value"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/zero"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/profile_text_color"
-                android:textSize="10sp"
-                android:focusable="false"
-                android:clickable="false"
-                android:focusableInTouchMode="false"/>
-
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/training_reps_value"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

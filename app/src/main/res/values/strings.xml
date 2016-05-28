@@ -76,17 +76,20 @@
     <string name="profile_biggest_run_pace_value">0</string>
 
     <!-- Training Fragment-->
-    <string name="popup_description">Description</string>
-    <string name="training_1">Training 1</string>
-    <string name="training_2">Training 2</string>
-    <string name="training_3">Training 3</string>
-    <string name="body_part">Part:</string>
-    <string name="none">- none</string>
-    <string name="start_training">Start training</string>
-    <string name="weight">Weight:</string>
-    <string name="sets">Sets:</string>
-    <string name="reps">Reps:</string>
-    <string name="zero">0</string>
+    <string name="training_title">Training 1</string>
+    <string name="training_information_label">Details</string>
+    <string name="training_exercise_group">Muscle groups:</string>
+    <string name="training_exercise_group_value">-\n-\n-</string>
+    <string name="training_exercise_amount">Exercise amount:</string>
+    <string name="training_exercise_amount_value">0</string>
+    <string name="training_weight">Weight:</string>
+    <string name="training_weight_value">0</string>
+    <string name="training_sets">Sets:</string>
+    <string name="training_sets_value">0</string>
+    <string name="training_reps">Reps:</string>
+    <string name="training_reps_value">0</string>
+    <string name="training_not_completed">NOT COMPLETED</string>
+    <string name="training_popup_description">Description</string>
 
     <!-- Atlast Fragment -->
     <string name="group_name">Group name</string>
@@ -128,7 +131,7 @@
 
     <string name="exc_triceps_1_description">In standing position, hands on lat pull down holder, elbows along trunk:\n- take breath and straight forearms trying not to tear elbows from trunk;\n- exhale in final phase of exercise.</string>
     <string name="exc_triceps_2_description">In standing position, facing the machine, arms at sides, bent at elbows, hands on the handles:\n- take breath and straighten forearms trying no to separate elbows from your body;\n- exhale in final phase of movement.\nReverse grip prevents training with heavy load thatﾒs why this exercise can only be done with small load in order to develop triceps brachii muscle and concentrate effort on head of this muscle.</string>
-    <string name="exc_triceps_3_description">In standing position facing the machine, hand of lift is held with wide-grip: -take breath and straighten forearm: -exhale. This exercise involves triceps brachii muscle, mainly its side head</string>
+    <string name="exc_triceps_3_description">In standing position facing the machine, hand of lift is held with wide-grip:\n- take breath and straighten forearm;\n- exhale.\nThis exercise involves triceps brachii muscle, mainly its side head.</string>
     <string name="exc_triceps_4_description">In the lying position on bench, barbell is held with wide-grip, arms arranged vertivally in relation to the bench: -take breath and bent arms trying not to dissaude too in back elbows while lowering the barbell at the height of forehead -exhale in the final phase of movement</string>
     <string name="exc_triceps_5_description">Lying on the ground, dumbbells is held in both hands, arms vertically to the ground: -take breath and bent arms controlling movement: -return to start position and exhale in final phase of movement. This exercise is evenly involving all three heads of the triceps brachii muscle</string>
     <string name="exc_triceps_6_description">Hands stacked at the end of the bench, feet based on the other bench, body suspended in the air; - take breath and bend your forearms and after that straightenthem back (push back on them); - take breath in final phase of exercise. Exercise engages triceps brachii muscle, pectorals and front part of  shoulder muscles. On thighs you can put weight and thanks to it pushing will be harder and effort will be more intense.</string>
