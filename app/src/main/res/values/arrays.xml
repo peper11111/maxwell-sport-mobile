@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <array name="nav_bar_item_colors">
         <item>@color/material_blue_600</item>
         <item>@color/material_deep_orange_600</item>

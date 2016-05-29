@@ -2,11 +2,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:colorBackground">@color/colorBackground</item>
     </style>
@@ -19,4 +18,110 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Dodanie styli aplikacji -->
+    <attr name="profileImage" format="reference" />
+    <attr name="exerciseImage" format="reference" />
+
+    <style name="RedAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_red_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_red</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_red</item>
+    </style>
+
+    <style name="PinkAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_pink_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_pink</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_pink</item>
+    </style>
+
+    <style name="PurpleAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_purple_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_purple</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_purple</item>
+    </style>
+
+    <style name="DeepPurpleAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_deep_purple_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_deep_purple</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_deep_purple</item>
+    </style>
+
+    <style name="IndigoAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_indigo_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_indigo</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_indigo</item>
+    </style>
+
+    <style name="BlueAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_blue_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_blue</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_blue</item>
+    </style>
+
+    <style name="LightBlueAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_light_blue_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_light_blue</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_light_blue</item>
+    </style>
+
+    <style name="CyanAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_cyan_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_cyan</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_cyan</item>
+    </style>
+
+    <style name="TealAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_teal_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_teal</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_teal</item>
+    </style>
+
+    <style name="GreenAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_green_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_green</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_green</item>
+    </style>
+
+    <style name="LightGreenAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_light_green_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_light_green</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_light_green</item>
+    </style>
+
+    <style name="LimeAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_lime_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_lime</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_lime</item>
+    </style>
+
+    <style name="YellowAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_yellow_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_yellow</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_yellow</item>
+    </style>
+
+    <style name="AmberAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_amber_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_amber</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_amber</item>
+    </style>
+
+    <style name="OrangeAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_orange_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_orange</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_orange</item>
+    </style>
+
+    <style name="DeepOrangeAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_deep_orange_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_deep_orange</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_deep_orange</item>
+    </style>
+
+    <style name="BrownAccentColorTheme" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/material_brown_500</item>
+        <item name="profileImage">@drawable/circle_profile_image_brown</item>
+        <item name="exerciseImage">@drawable/circle_exercise_image_brown</item>
+    </style>
 </resources>

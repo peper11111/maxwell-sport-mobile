@@ -5,13 +5,26 @@
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/atlas_exercise_group_list_view_item_icon"
+    <FrameLayout
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/circle_icon_exercise_group"
-        android:padding="20dp" />
+        android:layout_marginRight="8dp">
+
+        <ImageView
+            android:id="@+id/atlas_exercise_group_list_view_item_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_party_biceps"
+            android:tint="@color/colorPrimary"
+            android:background="@color/material_white"
+            android:padding="20dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="?exerciseImage" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/atlas_exercise_group_list_view_item_name"

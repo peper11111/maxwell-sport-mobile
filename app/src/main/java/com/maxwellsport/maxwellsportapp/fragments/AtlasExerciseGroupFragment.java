@@ -1,8 +1,6 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,10 +26,9 @@ public class AtlasExerciseGroupFragment extends Fragment {
         TypedArray drawables = getResources().obtainTypedArray(R.array.atlas_exercise_group_icon);
 
         for (int i = 0; i < strings.length; i++) {
-            Drawable drawable = drawables.getDrawable(i);
-            drawable.setColorFilter(getResources().getColor(R.color.textColorPrimary), PorterDuff.Mode.SRC_ATOP);
-            array.add(new ExerciseGroup(strings[i], drawable));
+            array.add(new ExerciseGroup(strings[i], drawables.getDrawable(i)));
         }
+        drawables.recycle();
 
         // Create the adapter to convert the array to views
         AtlasExerciseGroupListAdapter adapter = new AtlasExerciseGroupListAdapter(getActivity(), array);

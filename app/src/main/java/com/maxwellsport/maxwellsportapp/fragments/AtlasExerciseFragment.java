@@ -28,24 +28,29 @@ public class AtlasExerciseFragment extends Fragment {
 
         TypedArray icons = getResources().obtainTypedArray(R.array.atlas_exercise_icon);
         int icons_id = icons.getResourceId(group, 0);
+        icons.recycle();
         TypedArray exercise_icons = getResources().obtainTypedArray(icons_id);
 
         TypedArray names = getResources().obtainTypedArray(R.array.atlas_exercise_name);
         int names_id = names.getResourceId(group, 0);
+        names.recycle();
         String[] exercise_names = getResources().getStringArray(names_id);
 
         TypedArray descriptions = getResources().obtainTypedArray(R.array.atlas_exercise_description);
         int descriptions_id = descriptions.getResourceId(group, 0);
+        descriptions.recycle();
         String[] exercise_descriptions = getResources().getStringArray(descriptions_id);
 
         TypedArray difficulties = getResources().obtainTypedArray(R.array.atlas_exercise_difficulty);
         int difficulties_id = difficulties.getResourceId(group, 0);
+        difficulties.recycle();
         int[] exercise_difficulties = getResources().getIntArray(difficulties_id);
 
         ArrayList<Exercise> array = new ArrayList<>();
         for (int i = 0; i < exercise_names.length; i++) {
             array.add(new Exercise(group, exercise_icons.getDrawable(i), exercise_names[i], exercise_descriptions[i], exercise_difficulties[i]));
         }
+        exercise_icons.recycle();
 
         // Create the adapter to convert the array to views
         mAdapter = new AtlasExerciseListAdapter(getActivity(), array);

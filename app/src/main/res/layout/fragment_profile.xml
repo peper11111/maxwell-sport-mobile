@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
@@ -23,7 +24,7 @@
             android:layout_below="@id/profile_header_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-55dp"
-            android:background="@drawable/circle_icon_profile"
+            android:background="?attr/profileImage"
             android:padding="3dp"
             android:src="@drawable/maxwell" />
 
@@ -74,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:paddingTop="1dp">
 
             </LinearLayout>
@@ -91,7 +92,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@string/profile_training_form"
-                    android:textColor="@color/textColorPrimary"
+                    android:textColor="?colorAccent"
                     android:textSize="20sp" />
 
                 <ImageView
@@ -211,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:paddingTop="1dp">
 
             </LinearLayout>
@@ -228,7 +229,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@string/profile_running_form"
-                    android:textColor="@color/textColorPrimary"
+                    android:textColor="?colorAccent"
                     android:textSize="20sp" />
 
                 <ImageView

@@ -1,5 +1,9 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,10 +33,17 @@ public class AtlasExerciseDetailsFragment extends Fragment {
         TextView description = (TextView) v.findViewById(R.id.atlas_exercise_details_description);
         description.setText(exercise.getDescription());
 
+        SharedPreferences pref = getActivity().getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
+        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
+        int[] attr = {R.attr.colorAccent};
+        TypedArray array = getActivity().obtainStyledAttributes(style, attr);
+        int color = array.getColor(0, Color.WHITE);
+        array.recycle();
+
         LinearLayout difficulty = (LinearLayout) v.findViewById(R.id.atlas_exercise_details_difficulty);
         for (int i = 0; i < exercise.getDifficulty(); i++) {
             ImageView star = (ImageView) difficulty.getChildAt(i);
-            star.setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+            star.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
 
         String[] diff_name = getResources().getStringArray(R.array.atlas_exercise_difficulty_name);

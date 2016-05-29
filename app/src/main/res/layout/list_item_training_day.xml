@@ -23,7 +23,7 @@
             android:id="@+id/training_flip_back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:background="?colorAccent"
             android:padding="16dp"
             android:src="@drawable/ic_done"
             android:visibility="gone" />
@@ -31,7 +31,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/frame_exercise" />
+            android:src="?exerciseImage" />
     </FrameLayout>
 
     <LinearLayout

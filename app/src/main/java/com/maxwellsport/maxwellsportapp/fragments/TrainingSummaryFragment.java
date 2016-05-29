@@ -1,5 +1,9 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,14 +23,21 @@ import java.util.Locale;
 public class TrainingSummaryFragment extends Fragment {
     private View mView;
     private int[] mStars = {R.id.training_summary_star_1, R.id.training_summary_star_2, R.id.training_summary_star_3, R.id.training_summary_star_4, R.id.training_summary_star_5};
+    private int mColor;
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_training_summary, container, false);
 
         Bundle args = getArguments();
         long trainingTime = args.getLong("training-time");
         setTimeView(trainingTime);
+
+        SharedPreferences pref = getActivity().getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
+        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
+        int[] attr = {R.attr.colorAccent};
+        TypedArray array = getActivity().obtainStyledAttributes(style, attr);
+        mColor = array.getColor(0, Color.WHITE);
+        array.recycle();
 
         for (int i = 0; i < 5; i++) {
             ImageView star = (ImageView) mView.findViewById(mStars[i]);
@@ -69,13 +80,13 @@ public class TrainingSummaryFragment extends Fragment {
         /* Pokolorowanie gwiazdek na color accent */
         for (i = 0; i < n; i++) {
             ImageView star = (ImageView) stars.getChildAt(i);
-            star.setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+            star.setColorFilter(mColor, PorterDuff.Mode.SRC_ATOP);
         }
 
         /* Pokolorowoanie pozostalych gwiazdek na biało */
         for (; i < 5; i++) {
             ImageView star = (ImageView) stars.getChildAt(i);
-            star.setColorFilter(getResources().getColor(R.color.material_white), PorterDuff.Mode.SRC_ATOP);
+            star.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         }
     }
 }

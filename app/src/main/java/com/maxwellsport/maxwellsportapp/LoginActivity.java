@@ -1,6 +1,7 @@
 package com.maxwellsport.maxwellsportapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -23,6 +24,10 @@ public class LoginActivity extends Activity {
         /* Wymuszenie jezyka angielskiego */
         LocaleService.setLocale(this, "en");
 
+        /* Ustalenie motywu aplikacji. Przy pierwszym uruchomieniu motyw Cyan */
+        SharedPreferences pref = getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
+        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
+        setTheme(style);
         setContentView(R.layout.activity_login);
 
         final EditText usernameField = (EditText) findViewById(R.id.username_field);
