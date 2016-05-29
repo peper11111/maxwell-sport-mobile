@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:text="@string/exercise_name"
+        android:text="@string/atlas_exercise_name"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp" />
 </LinearLayout>

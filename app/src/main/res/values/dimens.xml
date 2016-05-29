@@ -4,33 +4,38 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
 
-    <dimen name="training_fab_start_margin_top">-36dp</dimen>
-    <dimen name="training_fab_start_margin_bottom">-8dp</dimen>
-    <dimen name="training_fab_start_margin_left">-6dp</dimen>
-    <dimen name="training_fab_start_margin_right">10dp</dimen>
+    <dimen name="training_fab_start_margin_top">-48dp</dimen>
+    <dimen name="training_fab_start_margin_bottom">-4dp</dimen>
+    <dimen name="training_fab_start_margin_left">2dp</dimen>
+    <dimen name="training_fab_start_margin_right">2dp</dimen>
 
-    <dimen name="training_fab_stop_margin_top">-8dp</dimen>
-    <dimen name="training_fab_stop_margin_bottom">-8dp</dimen>
-    <dimen name="training_fab_stop_margin_left">-4dp</dimen>
-    <dimen name="training_fab_stop_margin_right">-4dp</dimen>
+    <dimen name="training_fab_stop_margin_top">-16dp</dimen>
+    <dimen name="training_fab_stop_margin_bottom">-16dp</dimen>
+    <dimen name="training_fab_stop_margin_left">-12dp</dimen>
+    <dimen name="training_fab_stop_margin_right">-8dp</dimen>
 
-    <dimen name="training_fab_pause_margin_top">-8dp</dimen>
-    <dimen name="training_fab_pause_margin_bottom">-8dp</dimen>
-    <dimen name="training_fab_pause_margin_left">-4dp</dimen>
-    <dimen name="training_fab_pause_margin_right">-4dp</dimen>
+    <dimen name="training_fab_pause_margin_top">-16dp</dimen>
+    <dimen name="training_fab_pause_margin_bottom">-16dp</dimen>
+    <dimen name="training_fab_pause_margin_left">-12dp</dimen>
+    <dimen name="training_fab_pause_margin_right">-12dp</dimen>
 
-    <dimen name="cardio_fab_start_margin_top">-8dp</dimen>
-    <dimen name="cardio_fab_start_margin_bottom">8dp</dimen>
-    <dimen name="cardio_fab_start_margin_left">-6dp</dimen>
-    <dimen name="cardio_fab_start_margin_right">10dp</dimen>
+    <dimen name="training_fab_finish_margin_top">-20dp</dimen>
+    <dimen name="training_fab_finish_margin_bottom">-20dp</dimen>
+    <dimen name="training_fab_finish_margin_left">-14dp</dimen>
+    <dimen name="training_fab_finish_margin_right">-14dp</dimen>
 
-    <dimen name="cardio_fab_stop_margin_top">-8dp</dimen>
-    <dimen name="cardio_fab_stop_margin_bottom">8dp</dimen>
-    <dimen name="cardio_fab_stop_margin_left">-6dp</dimen>
-    <dimen name="cardio_fab_stop_margin_right">10dp</dimen>
+    <dimen name="cardio_fab_start_margin_top">-4dp</dimen>
+    <dimen name="cardio_fab_start_margin_bottom">-4dp</dimen>
+    <dimen name="cardio_fab_start_margin_left">2dp</dimen>
+    <dimen name="cardio_fab_start_margin_right">2dp</dimen>
 
-    <dimen name="cardio_fab_pause_margin_top">-8dp</dimen>
-    <dimen name="cardio_fab_pause_margin_bottom">8dp</dimen>
-    <dimen name="cardio_fab_pause_margin_left">-6dp</dimen>
-    <dimen name="cardio_fab_pause_margin_right">10dp</dimen>
+    <dimen name="cardio_fab_stop_margin_top">-20dp</dimen>
+    <dimen name="cardio_fab_stop_margin_bottom">-4dp</dimen>
+    <dimen name="cardio_fab_stop_margin_left">2dp</dimen>
+    <dimen name="cardio_fab_stop_margin_right">2dp</dimen>
+
+    <dimen name="cardio_fab_pause_margin_top">-4dp</dimen>
+    <dimen name="cardio_fab_pause_margin_bottom">-4dp</dimen>
+    <dimen name="cardio_fab_pause_margin_left">2dp</dimen>
+    <dimen name="cardio_fab_pause_margin_right">2dp</dimen>
 </resources>

@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:text="@string/group_name"
+        android:text="@string/atlas_exercise_group_name"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp" />
 </LinearLayout>

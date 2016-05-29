@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingRight="8dp"
-                android:text="@string/exercise_name"
+                android:text="@string/atlas_exercise_name"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="12sp" />
 

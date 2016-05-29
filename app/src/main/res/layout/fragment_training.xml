@@ -158,6 +158,5 @@
         android:layout_marginRight="@dimen/training_fab_start_margin_right"
         android:layout_marginTop="@dimen/training_fab_start_margin_top"
         android:src="@drawable/ic_fab_start"
-        app:backgroundTint="@color/material_green_500"
-        app:elevation="0dp" />
+        app:backgroundTint="@color/material_green_500" />
 </RelativeLayout>

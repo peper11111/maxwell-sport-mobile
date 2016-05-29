@@ -67,9 +67,16 @@
     <string name="training_weight">Obciążenie:</string>
     <string name="training_sets">Serie:</string>
     <string name="training_reps">Powtórzenia:</string>
+    <string name="training_completed">ZAKOŃCZONY</string>
     <string name="training_not_completed">NIE ZAKOŃCZONY</string>
     <string name="training_popup_description">Opis ćwiczenia</string>
-    <string name="training_timer">Time [h]</string>
+    <string name="training_timer">Czas [h]</string>
+
+    <!-- Training Summary Fragment-->
+    <string name="training_summary_title">Podsumowanie treningu</string>
+    <string name="training_summary_time">Czas treningu:</string>
+    <string name="training_summary_exercise_amount">Ilość wykonanych ćwiczeń:</string>
+    <string name="training_summary_rate_title">Oceń swój trening</string>
 
     <!-- Cardio Fragment -->
     <string name="cardio_timer">"Czas [h]"</string>
@@ -77,12 +84,12 @@
     <string name="cardio_pace">"Tempo [km/h]"</string>
 
     <!-- Atlast Fragment -->
-    <string name="group_name">Nazwa partii</string>
-    <string name="exercise_name">Nazwa ćwiczenia</string>
-    <string name="exercise_description"><i>Opis ćwiczenia:</i></string>
-    <string name="exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
-    <string name="exercise_difficulty"><i>Trudność ćwiczenia:</i></string>
-    <string name="exercise_difficulty_name">Średnie</string>
+    <string name="atlas_exercise_group_name">Nazwa partii</string>
+    <string name="atlas_exercise_name">Nazwa ćwiczenia</string>
+    <string name="atlas_exercise_description"><i>Opis ćwiczenia:</i></string>
+    <string name="atlas_exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
+    <string name="atlas_exercise_difficulty"><i>Trudność ćwiczenia:</i></string>
+    <string name="atlas_exercise_difficulty_name">Średnie</string>
 
     <!-- Ćwiczenia -->
     <string name="exercise_group_1_name">Biceps</string>

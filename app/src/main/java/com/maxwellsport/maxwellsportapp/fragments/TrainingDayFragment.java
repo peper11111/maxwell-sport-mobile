@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class TrainingDayFragment extends Fragment {
     // testowe dane
     String[] exeNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie", "Zginanie przedramion ze sztangielkami z obrotem nadgarstka", "Exercise 3", "Exercise 4", "Exercise 5",
             "Exercise 6", "Exercise 7", "Exercise 8", "Exercise 9", "Exercise 10"};
-    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<String> arrayList;
     ListView listView;
     TrainingDayListAdapter adapter;
 
@@ -41,12 +42,13 @@ public class TrainingDayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_training_day, container, false);
-
         /* Inicjalizacja widoków */
         listView = (ListView) v.findViewById(R.id.training_list_view);
         pauseButton = (FloatingActionButton) v.findViewById(R.id.training_fab_pause);
         stopButton = (FloatingActionButton) v.findViewById(R.id.training_fab_stop);
 
+        /* Aby nie dublować wpisów w liście */
+        arrayList = new ArrayList<>();
         for (String s : exeNameArray) {
             arrayList.add(s);
         }
@@ -73,8 +75,12 @@ public class TrainingDayFragment extends Fragment {
                 status = "stopped";
                 timerService.stopTimer();
                 pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
+                long trainingTime = timerService.getTimerTime();
+                Bundle bundle = new Bundle();
+                bundle.putLong("training-time", trainingTime);
                 TrainingSummaryFragment fragment = new TrainingSummaryFragment();
-                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+                fragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
             }
         });
 

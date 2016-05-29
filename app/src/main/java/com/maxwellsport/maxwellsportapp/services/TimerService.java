@@ -21,6 +21,8 @@ public class TimerService {
     private Handler mTimerHandler;
     private Context mContext;
 
+    private String mStatus;
+
     public TimerService(Context context, TextView timerView) {
         mContext = context;
         mTimerHandler = new Handler();
@@ -37,17 +39,22 @@ public class TimerService {
     };
 
     public void startTimer() {
+        mStatus = "running";
         mStartTime = SystemClock.uptimeMillis();
         mTimerHandler.post(mTimerRunnable);
     }
 
     public void stopTimer() {
-        mTimerHandler.removeCallbacks(mTimerRunnable);
+        if (mStatus.equals("running"))
+            pauseTimer();
+        mStartTime = mDiffTime;
+        mStatus = "stopped";
         mDiffTime = 0;
         mTimerView.setText(mContext.getResources().getString(R.string.default_timer_value));
     }
 
     public void pauseTimer() {
+        mStatus = "paused";
         mTimerHandler.removeCallbacks(mTimerRunnable);
         mDiffTime += SystemClock.uptimeMillis() - mStartTime;
     }
@@ -81,5 +88,9 @@ public class TimerService {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putLong(DIFF_TIME_KEY, mDiffTime);
         savedInstanceState.putLong(START_TIME_KEY, mStartTime);
+    }
+
+    public long getTimerTime() {
+        return mStartTime;
     }
 }
