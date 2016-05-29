@@ -44,7 +44,7 @@ public class TimerService {
     public void stopTimer() {
         mTimerHandler.removeCallbacks(mTimerRunnable);
         mDiffTime = 0;
-        mTimerView.setText(mContext.getResources().getString(R.string.time_value));
+        mTimerView.setText(mContext.getResources().getString(R.string.default_timer_value));
     }
 
     public void pauseTimer() {

@@ -29,46 +29,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp">
 
         <TextView
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="4dp"
-            android:text="@string/time_label"
+            android:text="@string/training_timer"
             android:textColor="@color/textColorPrimary"
             android:textSize="18sp" />
 
         <TextView
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:id="@+id/training_timer_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:text="@string/time_value"
+            android:text="@string/default_timer_value"
             android:textColor="@color/textColorPrimary"
             android:textSize="18sp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/training_fab_pause"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_margin="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/training_fab_pause_margin_bottom"
+            android:layout_marginLeft="@dimen/training_fab_pause_margin_left"
+            android:layout_marginRight="@dimen/training_fab_pause_margin_right"
+            android:layout_marginTop="@dimen/training_fab_pause_margin_top"
             android:src="@drawable/ic_fab_pause"
             app:backgroundTint="@color/material_blue_500"
             app:elevation="0dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/training_fab_stop"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/training_fab_stop_margin_bottom"
+            android:layout_marginLeft="@dimen/training_fab_stop_margin_left"
+            android:layout_marginRight="@dimen/training_fab_stop_margin_right"
+            android:layout_marginTop="@dimen/training_fab_stop_margin_top"
             android:src="@drawable/ic_fab_stop"
             app:backgroundTint="@color/material_red_500"
             app:elevation="0dp" />

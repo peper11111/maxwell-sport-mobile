@@ -10,9 +10,15 @@
     <string name="navigation_drawer_close">Zamknij navigation drawer</string>
 
     <string name="alert_dialog_title">Ostrzeżenie</string>
-    <string name="alert_dialog_message">Twoja Aktywność Biegowa wciąż działa. Jeśli chcesz zmienic zakładkę, zakończ trening.</string>
+    <string name="alert_dialog_message">Twoja aktywność biegowa wciąż działa. Jeśli chcesz zmienic zakładkę, zakończ trening.</string>
     <string name="alert_dialog_confirm">OK</string>
 
+    <!-- Domyslne warości pól -->
+    <string name="default_timer_value">00:00:00</string>
+    <string name="default_distance_value">0.00</string>
+    <string name="default_zero_value">0</string>
+
+    <!-- Nazwy pól w navigation drawer -->
     <string name="nav_profile">Profil</string>
     <string name="nav_training">Trening</string>
     <string name="nav_cardio">Bieg</string>
@@ -21,13 +27,7 @@
     <string name="nav_logout">Wyloguj się</string>
     <string name="nav_about">O aplikacji</string>
 
-    <string name="time_label">"Czas [h]"</string>
-    <string name="time_value">00:00:00</string>
-    <string name="distance_label">"Dystans [km]"</string>
-    <string name="distance_value">0.00</string>
-    <string name="pace_label">"Tempo [km/h]"</string>
-    <string name="pace_value">0</string>
-
+    <!-- Profile Fragment -->
     <string name="profile_user_name">Nazwa użytkownika</string>
     <string name="profile_user_email">email@example.com</string>
     <string name="profile_active_since">Aktywny od: 00.00.0000</string>
@@ -39,39 +39,24 @@
     <string name="profile_last_training_date">Data ostatniego treningu:</string>
     <string name="profile_last_training_date_value">-</string>
     <string name="profile_last_training_duration">Czas ostatniego treningu:</string>
-    <string name="profile_last_training_duration_value">00:00:00</string>
     <string name="profile_average_training_duration">Średni czas treningu:</string>
-    <string name="profile_average_training_duration_value">00:00:00</string>
     <string name="profile_longest_training_duration">Nadłuższy czas treningu:</string>
-    <string name="profile_longest_training_duration_value">00:00:00</string>
     <string name="profile_last_exercise_amount">Ilość ostatnich ćwiczeń:</string>
-    <string name="profile_last_exercise_amount_value">0</string>
     <string name="profile_average_exercise_amount">Średnia ilość ćwiczeń:</string>
-    <string name="profile_average_exercise_amount_value">0</string>
     <string name="profile_biggest_exercise_amount">Największa ilość ćwiczeń:</string>
-    <string name="profile_biggest_exercise_amount_value">0</string>
 
     <!-- pola do tablicy ze statystykami biegów -->
     <string name="profile_last_run_date">Data ostatniego biegu:</string>
     <string name="profile_last_run_date_value">-</string>
     <string name="profile_last_run_duration">Czas ostatniego biegu:</string>
-    <string name="profile_last_run_duration_value">00:00:00</string>
     <string name="profile_average_run_duration">Średni czas biegu:</string>
-    <string name="profile_average_run_duration_value">00:00:00</string>
     <string name="profile_longest_run_duration">Nadłuższy czas biegu:</string>
-    <string name="profile_longest_run_duration_value">00:00:00</string>
     <string name="profile_last_run_distance">Dystans ostatniego biegu:</string>
-    <string name="profile_last_run_distance_value">0.00</string>
     <string name="profile_average_run_distance">Średni dystans biegu:</string>
-    <string name="profile_average_run_distance_value">0.00</string>
     <string name="profile_longest_run_distance">Nadłuższy dystans biegu:</string>
-    <string name="profile_longest_run_distance_value">0.00</string>
     <string name="profile_last_run_pace">Tempo ostatniego biegu:</string>
-    <string name="profile_last_run_pace_value">0</string>
     <string name="profile_average_run_pace">Średnie tempo biegu:</string>
-    <string name="profile_average_run_pace_value">0</string>
     <string name="profile_biggest_run_pace">Największe tempo biegu:</string>
-    <string name="profile_biggest_run_pace_value">0</string>
 
     <!-- Training Fragment-->
     <string name="training_title">Trening 1</string>
@@ -79,15 +64,17 @@
     <string name="training_exercise_group">Partie mięśniowe:</string>
     <string name="training_exercise_group_value">-\n-\n-</string>
     <string name="training_exercise_amount">Ilość ćwiczeń:</string>
-    <string name="training_exercise_amount_value">0</string>
     <string name="training_weight">Obciążenie:</string>
-    <string name="training_weight_value">0</string>
     <string name="training_sets">Serie:</string>
-    <string name="training_sets_value">0</string>
     <string name="training_reps">Powtórzenia:</string>
-    <string name="training_reps_value">0</string>
     <string name="training_not_completed">NIE ZAKOŃCZONY</string>
     <string name="training_popup_description">Opis ćwiczenia</string>
+    <string name="training_timer">Time [h]</string>
+
+    <!-- Cardio Fragment -->
+    <string name="cardio_timer">"Czas [h]"</string>
+    <string name="cardio_distance">"Dystans [km]"</string>
+    <string name="cardio_pace">"Tempo [km/h]"</string>
 
     <!-- Atlast Fragment -->
     <string name="group_name">Nazwa partii</string>

@@ -1,13 +1,11 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -37,13 +35,13 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         mView = inflater.inflate(R.layout.fragment_cardio, container, false);
 
         /* Przygotowanie mapy */
-        mMapView = (MapView) mView.findViewById(R.id.mapView);
+        mMapView = (MapView) mView.findViewById(R.id.cardio_map_view);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
 
         /* Przygotowanie LocationUpdateService*/
         mLocationUpdateService = new LocationUpdateService(this);
-        mTimerService = new TimerService(getActivity(), (TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_time_view));
+        mTimerService = new TimerService(getActivity(), (TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_timer_view));
         onRestoreInstanceState(savedInstanceState);
 
         /* Setup widoku przycisków i timera */
@@ -120,7 +118,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
      * Fragment private setup methods
      */
     private void setupFabListeners() {
-        FloatingActionButton fab_start = (FloatingActionButton) mView.findViewById(R.id.fab_start);
+        FloatingActionButton fab_start = (FloatingActionButton) mView.findViewById(R.id.cardio_fab_start);
         fab_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +129,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        FloatingActionButton fab_stop = (FloatingActionButton) mView.findViewById(R.id.fab_stop);
+        FloatingActionButton fab_stop = (FloatingActionButton) mView.findViewById(R.id.cardio_fab_stop);
         fab_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +140,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        FloatingActionButton fab_pause = (FloatingActionButton) mView.findViewById(R.id.fab_pause);
+        FloatingActionButton fab_pause = (FloatingActionButton) mView.findViewById(R.id.cardio_fab_pause);
         fab_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,21 +164,21 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         switch (status) {
             case "stopped":
                 mView.findViewById(R.id.cardio_stats_layout).setVisibility(View.INVISIBLE);
-                mView.findViewById(R.id.running_layout).setVisibility(View.INVISIBLE);
-                mView.findViewById(R.id.stopped_layout).setVisibility(View.VISIBLE);
+                mView.findViewById(R.id.cardio_running_layout).setVisibility(View.INVISIBLE);
+                mView.findViewById(R.id.cardio_stopped_layout).setVisibility(View.VISIBLE);
                 break;
             case "running":
-                mView.findViewById(R.id.stopped_layout).setVisibility(View.INVISIBLE);
-                mView.findViewById(R.id.running_layout).setVisibility(View.VISIBLE);
+                mView.findViewById(R.id.cardio_stopped_layout).setVisibility(View.INVISIBLE);
+                mView.findViewById(R.id.cardio_running_layout).setVisibility(View.VISIBLE);
                 mView.findViewById(R.id.cardio_stats_layout).setVisibility(View.VISIBLE);
-                fab = (FloatingActionButton) mView.findViewById(R.id.running_layout).findViewById(R.id.fab_pause);
+                fab = (FloatingActionButton) mView.findViewById(R.id.cardio_running_layout).findViewById(R.id.cardio_fab_pause);
                 fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
                 break;
             case "paused":
-                mView.findViewById(R.id.stopped_layout).setVisibility(View.INVISIBLE);
-                mView.findViewById(R.id.running_layout).setVisibility(View.VISIBLE);
+                mView.findViewById(R.id.cardio_stopped_layout).setVisibility(View.INVISIBLE);
+                mView.findViewById(R.id.cardio_running_layout).setVisibility(View.VISIBLE);
                 mView.findViewById(R.id.cardio_stats_layout).setVisibility(View.VISIBLE);
-                fab = (FloatingActionButton) mView.findViewById(R.id.running_layout).findViewById(R.id.fab_pause);
+                fab = (FloatingActionButton) mView.findViewById(R.id.cardio_running_layout).findViewById(R.id.cardio_fab_pause);
                 fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
                 break;
         }

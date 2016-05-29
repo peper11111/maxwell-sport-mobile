@@ -112,13 +112,15 @@ public class TrainingDayFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        timerService.startTimer();
+        if (status.equals("running"))
+            timerService.startTimer();
     }
 
     @Override
     public void onPause() {
+        if (status.equals("running"))
+            timerService.pauseTimer();
         super.onPause();
-        timerService.pauseTimer();
     }
 
     @Override

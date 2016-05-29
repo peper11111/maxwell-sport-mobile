@@ -82,7 +82,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:text="@string/training_weight_value"
+                android:text="@string/default_zero_value"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="10sp" />
 
@@ -100,7 +100,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:text="@string/training_sets_value"
+                android:text="@string/default_zero_value"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="10sp" />
 
@@ -118,7 +118,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:text="@string/training_reps_value"
+                android:text="@string/default_zero_value"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="10sp" />
         </LinearLayout>

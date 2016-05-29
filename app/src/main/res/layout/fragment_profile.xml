@@ -136,7 +136,7 @@
                     <TextView
                         android:id="@+id/profile_last_training_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_training_duration_value"
+                        android:text="@string/default_timer_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -149,7 +149,7 @@
                     <TextView
                         android:id="@+id/profile_average_training_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_training_duration_value"
+                        android:text="@string/default_timer_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -162,7 +162,7 @@
                     <TextView
                         android:id="@+id/profile_longest_training_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_longest_training_duration_value"
+                        android:text="@string/default_timer_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -175,7 +175,7 @@
                     <TextView
                         android:id="@+id/profile_last_exercise_amount_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_exercise_amount_value"
+                        android:text="@string/default_zero_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -188,7 +188,7 @@
                     <TextView
                         android:id="@+id/profile_average_exercise_amount_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_exercise_amount_value"
+                        android:text="@string/default_zero_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -201,7 +201,7 @@
                     <TextView
                         android:id="@+id/profile_biggest_exercise_amount_value"
                         android:gravity="end"
-                        android:text="@string/profile_biggest_exercise_amount_value"
+                        android:text="@string/default_zero_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
             </TableLayout>
@@ -272,7 +272,7 @@
                     <TextView
                         android:id="@+id/profile_last_run_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_run_duration_value"
+                        android:text="@string/default_timer_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -285,7 +285,7 @@
                     <TextView
                         android:id="@+id/profile_average_run_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_run_duration_value"
+                        android:text="@string/default_timer_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -298,7 +298,7 @@
                     <TextView
                         android:id="@+id/profile_longest_run_duration_value"
                         android:gravity="end"
-                        android:text="@string/profile_longest_run_duration_value"
+                        android:text="@string/default_timer_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -311,7 +311,7 @@
                     <TextView
                         android:id="@+id/profile_last_run_distance_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_run_distance_value"
+                        android:text="@string/default_distance_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -324,7 +324,7 @@
                     <TextView
                         android:id="@+id/profile_average_run_distance_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_run_distance_value"
+                        android:text="@string/default_distance_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -337,7 +337,7 @@
                     <TextView
                         android:id="@+id/profile_longest_run_distance_value"
                         android:gravity="end"
-                        android:text="@string/profile_longest_run_distance_value"
+                        android:text="@string/default_distance_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -350,7 +350,7 @@
                     <TextView
                         android:id="@+id/profile_last_run_pace_value"
                         android:gravity="end"
-                        android:text="@string/profile_last_run_pace_value"
+                        android:text="@string/default_zero_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -363,7 +363,7 @@
                     <TextView
                         android:id="@+id/profile_average_run_pace_value"
                         android:gravity="end"
-                        android:text="@string/profile_average_run_pace_value"
+                        android:text="@string/default_zero_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
 
@@ -376,7 +376,7 @@
                     <TextView
                         android:id="@+id/profile_biggest_run_pace_value"
                         android:gravity="end"
-                        android:text="@string/profile_biggest_run_pace_value"
+                        android:text="@string/default_zero_value"
                         android:textColor="@color/textColorSecondary" />
                 </TableRow>
             </TableLayout>

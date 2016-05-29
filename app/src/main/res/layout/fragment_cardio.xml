@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    tools:context="com.maxwellsport.maxwellsportapp.fragments.CardioFragment">
+    android:background="@color/colorBackground">
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+        android:id="@+id/cardio_map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top|start" />
@@ -32,37 +30,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/time_label"
+                android:text="@string/cardio_timer"
                 android:textColor="@color/stats_text_color" />
 
             <TextView
-                android:id="@+id/cardio_time_view"
+                android:id="@+id/cardio_timer_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/time_value"
-                android:textColor="@color/stats_text_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/distance_label"
-                android:textColor="@color/stats_text_color" />
-
-            <TextView
-                android:id="@+id/distanceView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/distance_value"
+                android:text="@string/default_timer_value"
                 android:textColor="@color/stats_text_color" />
         </LinearLayout>
 
@@ -76,28 +52,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/pace_label"
+                android:text="@string/cardio_distance"
                 android:textColor="@color/stats_text_color" />
 
             <TextView
-                android:id="@+id/paceView"
+                android:id="@+id/cardio_distance_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/pace_value"
+                android:text="@string/default_distance_value"
+                android:textColor="@color/stats_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cardio_pace"
+                android:textColor="@color/stats_text_color" />
+
+            <TextView
+                android:id="@+id/cardio_pace_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/default_zero_value"
                 android:textColor="@color/stats_text_color" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/stopped_layout"
+        android:id="@+id/cardio_stopped_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:orientation="vertical">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_start"
+            android:id="@+id/cardio_fab_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/cardio_fab_start_margin_bottom"
@@ -110,7 +108,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/running_layout"
+        android:id="@+id/cardio_running_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -118,7 +116,7 @@
         android:visibility="invisible">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_pause"
+            android:id="@+id/cardio_fab_pause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/cardio_fab_pause_margin_bottom"
@@ -130,7 +128,7 @@
             app:elevation="0dp" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_stop"
+            android:id="@+id/cardio_fab_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/cardio_fab_stop_margin_bottom"
