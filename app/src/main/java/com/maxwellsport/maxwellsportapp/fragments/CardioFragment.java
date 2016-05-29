@@ -43,7 +43,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         /* Przygotowanie LocationUpdateService*/
         mLocationUpdateService = new LocationUpdateService(this);
-        mTimerService = new TimerService(getActivity(), (TextView) mView.findViewById(R.id.stats_layout).findViewById(R.id.timeView));
+        mTimerService = new TimerService(getActivity(), (TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_time_view));
         onRestoreInstanceState(savedInstanceState);
 
         /* Setup widoku przycisków i timera */
@@ -51,10 +51,6 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         mTimerService.setupTimerService(status);
         setupFabListeners();
 
-        int currentOrientation = getResources().getConfiguration().orientation;
-        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-            ((LinearLayout) mView.findViewById(R.id.running_layout)).setOrientation(LinearLayout.HORIZONTAL);
-        }
         return mView;
     }
 
@@ -169,21 +165,21 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         FloatingActionButton fab;
         switch (status) {
             case "stopped":
-                mView.findViewById(R.id.stats_layout).setVisibility(View.INVISIBLE);
+                mView.findViewById(R.id.cardio_stats_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.running_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.stopped_layout).setVisibility(View.VISIBLE);
                 break;
             case "running":
                 mView.findViewById(R.id.stopped_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.running_layout).setVisibility(View.VISIBLE);
-                mView.findViewById(R.id.stats_layout).setVisibility(View.VISIBLE);
+                mView.findViewById(R.id.cardio_stats_layout).setVisibility(View.VISIBLE);
                 fab = (FloatingActionButton) mView.findViewById(R.id.running_layout).findViewById(R.id.fab_pause);
                 fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
                 break;
             case "paused":
                 mView.findViewById(R.id.stopped_layout).setVisibility(View.INVISIBLE);
                 mView.findViewById(R.id.running_layout).setVisibility(View.VISIBLE);
-                mView.findViewById(R.id.stats_layout).setVisibility(View.VISIBLE);
+                mView.findViewById(R.id.cardio_stats_layout).setVisibility(View.VISIBLE);
                 fab = (FloatingActionButton) mView.findViewById(R.id.running_layout).findViewById(R.id.fab_pause);
                 fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
                 break;

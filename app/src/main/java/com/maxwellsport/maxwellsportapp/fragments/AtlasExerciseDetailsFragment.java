@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.models.Exercise;
 
-import org.w3c.dom.Text;
-
 public class AtlasExerciseDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

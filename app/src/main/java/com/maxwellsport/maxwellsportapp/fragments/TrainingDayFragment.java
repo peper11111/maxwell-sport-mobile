@@ -73,6 +73,8 @@ public class TrainingDayFragment extends Fragment {
                 status = "stopped";
                 timerService.stopTimer();
                 pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
+                TrainingSummaryFragment fragment = new TrainingSummaryFragment();
+                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
             }
         });
 
