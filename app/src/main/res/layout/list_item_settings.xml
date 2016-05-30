@@ -11,26 +11,24 @@
         android:layout_marginRight="8dp">
 
         <ImageView
-            android:id="@+id/atlas_exercise_list_view_item_icon"
+            android:id="@+id/theme_color_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/material_white"
-            android:padding="4dp"
-            android:src="@drawable/exc_biceps_1" />
+            android:background="?attr/colorAccent"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="?attr/exerciseImage" />
+            android:src="@drawable/circle_color_image" />
+
     </FrameLayout>
 
-
     <TextView
-        android:id="@+id/atlas_exercise_list_view_item_name"
+        android:id="@+id/theme_color_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:text="@string/atlas_exercise_name"
+        android:text="@string/theme_name"
         android:textColor="@color/colorPrimary"
-        android:textSize="12sp" />
+        android:textSize="22sp" />
 </LinearLayout>

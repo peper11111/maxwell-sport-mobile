@@ -208,4 +208,26 @@
     <string name="about_description">Great, smart and versatile training application made for the best and the strongest people walking on Earth</string>
     <string name="about_follow">Follow us on GitHub</string>
     <string name="about_copyright">© RafPep Inc. 2016 All rights reserved</string>
+
+    <!-- Theme color names -->
+    <string name="theme_color_red">Red</string>
+    <string name="theme_color_pink">Pink</string>
+    <string name="theme_color_purple">Purple</string>
+    <string name="theme_color_deep_purple">Deep Purple</string>
+    <string name="theme_color_indigo">Indigo</string>
+    <string name="theme_color_blue">Blue</string>
+    <string name="theme_color_light_blue">Light Blue</string>
+    <string name="theme_color_cyan">Cyan</string>
+    <string name="theme_color_teal">Teal</string>
+    <string name="theme_color_green">Green</string>
+    <string name="theme_color_light_green">Light Green</string>
+    <string name="theme_color_lime">Lime</string>
+    <string name="theme_color_yellow">Yellow</string>
+    <string name="theme_color_amber">Amber</string>
+    <string name="theme_color_orange">Orange</string>
+    <string name="theme_color_deep_orange">Deep Orange</string>
+    <string name="theme_color_brown">Brown</string>
+
+    <string name="theme_name">Theme Name</string>
+    <string name="theme_change_info">App theme has been changed</string>
 </resources>

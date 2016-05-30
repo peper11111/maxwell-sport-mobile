@@ -39,7 +39,7 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/training_information_label"
-            android:textColor="?colorAccent"
+            android:textColor="?attr/colorAccent"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="?colorAccent"
+            android:background="?attr/colorAccent"
             android:paddingTop="1dp">
 
         </LinearLayout>
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="?colorAccent"
+            android:background="?attr/colorAccent"
             android:paddingTop="1dp">
 
         </LinearLayout>

@@ -21,7 +21,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?colorAccent"
+        android:background="?attr/colorAccent"
         android:paddingTop="1dp">
 
     </LinearLayout>

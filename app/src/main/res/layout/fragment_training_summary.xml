@@ -13,7 +13,7 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/training_summary_title"
-        android:textColor="?colorAccent"
+        android:textColor="?attr/colorAccent"
         android:textSize="20sp" />
 
     <LinearLayout
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="?colorAccent"
+        android:background="?attr/colorAccent"
         android:paddingTop="1dp">
 
     </LinearLayout>
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="?colorAccent"
+        android:background="?attr/colorAccent"
         android:paddingTop="1dp">
 
     </LinearLayout>
@@ -133,5 +133,5 @@
         android:layout_marginRight="@dimen/training_fab_finish_margin_right"
         android:layout_marginTop="@dimen/training_fab_finish_margin_top"
         android:src="@drawable/ic_done"
-        app:backgroundTint="?colorAccent" />
+        app:backgroundTint="?attr/colorAccent" />
 </LinearLayout>

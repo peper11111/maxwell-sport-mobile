@@ -19,7 +19,7 @@
         <shape android:shape="oval">
             <stroke
                 android:width="3dp"
-                android:color="@color/material_orange_500" />
+                android:color="@color/material_white" />
         </shape>
     </item>
 </layer-list>

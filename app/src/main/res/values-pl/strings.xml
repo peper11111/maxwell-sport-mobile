@@ -208,4 +208,26 @@
     <string name="about_description">Wspaniała, intuicyjna i wszechstronna aplikacja treningowa stworzona dla  najlepszych i najsilniejszych ludzi chodzących po Ziemi</string>
     <string name="about_follow">Obserwuj nas na GitHub</string>
     <string name="about_copyright">© RafPep Inc. 2016 Wszystkie prawa zastrzeżone</string>
+
+    <!-- Theme color names -->
+    <string name="theme_color_red">Czerwony</string>
+    <string name="theme_color_pink">Różowy</string>
+    <string name="theme_color_purple">Fioletowy</string>
+    <string name="theme_color_deep_purple">Głęboki Fioletowy</string>
+    <string name="theme_color_indigo">Indygo</string>
+    <string name="theme_color_blue">Niebieski</string>
+    <string name="theme_color_light_blue">Jasnoniebieski</string>
+    <string name="theme_color_cyan">Turkusowy</string>
+    <string name="theme_color_teal">Morski</string>
+    <string name="theme_color_green">Zielony</string>
+    <string name="theme_color_light_green">Jasnozielony</string>
+    <string name="theme_color_lime">Limonkowy</string>
+    <string name="theme_color_yellow">Żółty</string>
+    <string name="theme_color_amber">Bursztynowy</string>
+    <string name="theme_color_orange">Pomarańczowy</string>
+    <string name="theme_color_deep_orange">Głęboki Pomarańczowy</string>
+    <string name="theme_color_brown">Brązowy</string>
+
+    <string name="theme_name">Nazwa motywu</string>
+    <string name="theme_change_info">Motyw aplikacji został zmieniony</string>
 </resources>

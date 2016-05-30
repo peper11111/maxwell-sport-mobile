@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:background="?colorAccent"
+                android:background="?attr/colorAccent"
                 android:paddingTop="1dp">
 
             </LinearLayout>
@@ -92,7 +92,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@string/profile_training_form"
-                    android:textColor="?colorAccent"
+                    android:textColor="?attr/colorAccent"
                     android:textSize="20sp" />
 
                 <ImageView
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:background="?colorAccent"
+                android:background="?attr/colorAccent"
                 android:paddingTop="1dp">
 
             </LinearLayout>
@@ -229,7 +229,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@string/profile_running_form"
-                    android:textColor="?colorAccent"
+                    android:textColor="?attr/colorAccent"
                     android:textSize="20sp" />
 
                 <ImageView

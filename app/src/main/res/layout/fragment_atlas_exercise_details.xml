@@ -29,7 +29,7 @@
             android:paddingRight="8dp"
             android:paddingTop="16dp"
             android:text="@string/atlas_exercise_name"
-            android:textColor="?colorAccent"
+            android:textColor="?attr/colorAccent"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:background="?colorAccent"
+            android:background="?attr/colorAccent"
             android:paddingTop="1dp">
 
         </LinearLayout>
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:background="?colorAccent"
+            android:background="?attr/colorAccent"
             android:paddingTop="1dp">
 
         </LinearLayout>

@@ -22,18 +22,19 @@ public class AtlasExerciseGroupFragment extends Fragment {
 
         // Construct the data source
         ArrayList<ExerciseGroup> array = new ArrayList<>();
-        String[] strings = getResources().getStringArray(R.array.atlas_exercise_group_name);
-        TypedArray drawables = getResources().obtainTypedArray(R.array.atlas_exercise_group_icon);
+        String[] groupNames = getResources().getStringArray(R.array.atlas_exercise_group_name);
+        TypedArray groupIcons = getResources().obtainTypedArray(R.array.atlas_exercise_group_icon);
 
-        for (int i = 0; i < strings.length; i++) {
-            array.add(new ExerciseGroup(strings[i], drawables.getDrawable(i)));
+        for (int i = 0; i < groupNames.length; i++) {
+            array.add(new ExerciseGroup(groupNames[i], groupIcons.getDrawable(i)));
         }
-        drawables.recycle();
+        groupIcons.recycle();
 
         // Create the adapter to convert the array to views
         AtlasExerciseGroupListAdapter adapter = new AtlasExerciseGroupListAdapter(getActivity(), array);
         // Attach the adapter to a ListView
         ListView listView = (ListView) v.findViewById(R.id.atlas_exercise_group_list_view);
+        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -45,8 +46,6 @@ public class AtlasExerciseGroupFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
             }
         });
-
-        listView.setAdapter(adapter);
 
         return v;
     }

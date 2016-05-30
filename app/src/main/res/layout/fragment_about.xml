@@ -39,7 +39,7 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="@string/about_follow"
-            android:textColor="?colorAccent"
+            android:textColor="?attr/colorAccent"
             android:textSize="20sp" />
 
         <ImageView

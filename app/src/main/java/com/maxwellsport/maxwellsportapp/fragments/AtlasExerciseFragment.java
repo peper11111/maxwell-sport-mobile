@@ -56,6 +56,8 @@ public class AtlasExerciseFragment extends Fragment {
         mAdapter = new AtlasExerciseListAdapter(getActivity(), array);
         // Attach the adapter to a ListView
         ListView listView = (ListView) v.findViewById(R.id.atlas_exercise_list_view);
+        listView.setAdapter(mAdapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,7 +69,6 @@ public class AtlasExerciseFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
             }
         });
-        listView.setAdapter(mAdapter);
 
         return v;
     }
