@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
+import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
@@ -19,6 +21,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
 import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseGroupFragment;
@@ -26,7 +30,10 @@ import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
+import com.maxwellsport.maxwellsportapp.services.ConnectionService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView mNavigationView;
@@ -34,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MenuItem mPrevMenuItem;
     private int mItemID;
     private TypedArray mNavigationColors;
+    private ConnectionService connectionService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +76,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        /* Receiving training JSON */
+        connectionService = new ConnectionService();
+        /* TEST */
+        if(!connectionService.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))){
+            Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
+        }else{
+            new HttpAsyncTask().execute("http://10.42.0.1:10000/api/training/1");
+        }
+
     }
 
     @Override
@@ -198,5 +217,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tintTitle.setSpan(new ForegroundColorSpan(mNavigationColors.getColor(itemID, 0)), 0, tintTitle.length(), 0);
         item.setTitle(tintTitle);
         item.setChecked(true);
+    }
+
+    /* private class for executing network connection to obtain JSON */
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return ConnectionService.GETTraining(urls[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "nothig to show yet";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            /* test message */
+            Toast.makeText(getBaseContext(), s, Toast.LENGTH_LONG).show();
+            /* w tym miejscu mozna parsowac JSONY/ zapisywac stringa do pliku /
+             * uzupelniac sharedprefs */
+        }
     }
 }

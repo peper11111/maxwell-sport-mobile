@@ -15,18 +15,24 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.services.ConnectionService;
 
 
 public class AboutFragment extends Fragment {
+
+    private ConnectionService mConnectionService;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, container, false);
+
+        mConnectionService = new ConnectionService();
 
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.github_link);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isNetworkAvailable()) {
+                if (mConnectionService.isNetworkAvailable((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))) {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addCategory(Intent.CATEGORY_BROWSABLE);
@@ -39,12 +45,6 @@ public class AboutFragment extends Fragment {
         });
 
         return v;
-    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
 

@@ -139,6 +139,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/training_completed"
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@string/training_not_completed"

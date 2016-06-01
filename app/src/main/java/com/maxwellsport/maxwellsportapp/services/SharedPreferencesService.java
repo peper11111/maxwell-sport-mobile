@@ -17,4 +17,10 @@ public class SharedPreferencesService {
         editor.putString(key, value);
         editor.apply();
     }
+
+    public static void saveValue(Context context, String key, long value) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit();
+        editor.putLong(key, value);
+        editor.apply();
+    }
 }
