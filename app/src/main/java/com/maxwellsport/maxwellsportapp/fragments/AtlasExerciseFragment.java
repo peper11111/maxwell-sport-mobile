@@ -20,7 +20,7 @@ public class AtlasExerciseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_atlas_exercise, container, false);
+        View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         /* Obtain selected exercise group */
         Bundle bundle = getArguments();
@@ -55,7 +55,7 @@ public class AtlasExerciseFragment extends Fragment {
         // Create the adapter to convert the array to views
         mAdapter = new AtlasExerciseListAdapter(getActivity(), array);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) v.findViewById(R.id.atlas_exercise_list_view);
+        ListView listView = (ListView) v.findViewById(R.id.default_list_view);
         listView.setAdapter(mAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

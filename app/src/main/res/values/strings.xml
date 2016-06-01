@@ -133,7 +133,7 @@
     <string name="exc_shoulders_3_name">Dumbbell side raise</string>
     <string name="exc_shoulders_4_name">Dumbbell front raise</string>
     <string name="exc_shoulders_5_name">Rising arms with dumbbells in lateral decubitus position</string>
-    <string name="exc_shoulders_6_name">Alternately lifting arms to the side with using the low cable pulley.</string>
+    <string name="exc_shoulders_6_name">Alternately lifting arms to the side with using the low cable pulley</string>
 
     <string name="exc_shoulders_1_description">In sitting position, barbell is held with wide-grip behind neck:\n- take breath and push barbell vertically, without bending to much back;\n- exhale in final phase of movement.\nThis exercise involves deltoid muscle, mainly its middle part and rear as well as trapezius muscle, triceps brachii muscle and serratus anterior muscle.</string>
     <string name="exc_shoulders_2_description">In the sitting position on bench, dumbbell is held with wide-grip at shoulder level:\n- take breath and press dumbbell up to vertical straighten arms;\n- exhale in the final phase of movement.\nThis exercise involves deltoid, mainly its middle part as well as trapezius, serratur anterior muscle and tricpes branchii muscle.\nThis exercise can also be done in standing position or straightening arms alternately.</string>
@@ -209,6 +209,15 @@
     <string name="about_follow">Follow us on GitHub</string>
     <string name="about_copyright">© RafPep Inc. 2016 All rights reserved</string>
 
+    <!-- Settings Fragment -->
+    <string name="settings_theme_label">Theme</string>
+    <string name="settings_language_label">Language</string>
+    <string name="settings_default_tab_label">Default tab</string>
+    <string name="settings_stats_label">Clear statistics</string>
+
+    <string name="settings_language_polish">Polish</string>
+    <string name="settings_language_english">English</string>
+
     <!-- Theme color names -->
     <string name="theme_color_red">Red</string>
     <string name="theme_color_pink">Pink</string>
@@ -229,5 +238,10 @@
     <string name="theme_color_brown">Brown</string>
 
     <string name="theme_name">Theme Name</string>
-    <string name="theme_change_info">App theme has been changed</string>
+
+    <!-- Toast messages -->
+    <string name="toast_msg_login_error">Authentication error</string>
+    <string name="toast_msg_theme_changed">App theme has been changed</string>
+    <string name="toast_mgs_language_changed">App language has been changed</string>
+    <string name="toast_mgs_default_tab_changed">Default app tab has been changed</string>
 </resources>

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class AtlasExerciseGroupFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_atlas_exercise_group, container, false);
+        View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         // Construct the data source
         ArrayList<ExerciseGroup> array = new ArrayList<>();
@@ -33,7 +33,7 @@ public class AtlasExerciseGroupFragment extends Fragment {
         // Create the adapter to convert the array to views
         AtlasExerciseGroupListAdapter adapter = new AtlasExerciseGroupListAdapter(getActivity(), array);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) v.findViewById(R.id.atlas_exercise_group_list_view);
+        ListView listView = (ListView) v.findViewById(R.id.default_list_view);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

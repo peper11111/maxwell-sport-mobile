@@ -1,9 +1,7 @@
 package com.maxwellsport.maxwellsportapp;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -39,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences pref = getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
-        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
+        /* Wczytanie motywu aplikacji. Domyślny motyw CyanAccentColorTheme */
+        int style = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
         setTheme(style);
 
         setContentView(R.layout.activity_main);
@@ -48,16 +46,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         mNavigationColors = getResources().obtainTypedArray(R.array.nav_bar_item_colors);
-        /* Wczytanie zapisanych wartosci po obróceniu ekranu */
+        /* Wczytanie zapisanych wartosci po wznowieniu aplikacji */
         if (savedInstanceState != null) {
             mFragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
             mItemID = savedInstanceState.getInt("mItemID");
         } else {
-            /* Domyslne wartosci dla uruchomienia plikacji. Pierwszy fragment to profile fragment, oraz zakladka z nim zwiazana*/
-            mFragment = new ProfileFragment();
+            /* Domyslne wartosci dla uruchomienia plikacji. Pierwszy fragment to profile fragment, oraz zakladka z nim zwiazana */
+            int title = R.string.nav_profile;
+            int tab = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_default_tab_key, 0);
+            switch (tab) {
+                case 0:
+                    mFragment = new ProfileFragment();
+                    title = R.string.nav_profile;
+                    break;
+                case 1:
+                    mFragment = new TrainingFragment();
+                    title = R.string.nav_training;
+                    break;
+                case 2:
+                    mFragment = new CardioFragment();
+                    title = R.string.nav_cardio;
+                    break;
+                case 3:
+                    mFragment = new AtlasExerciseGroupFragment();
+                    title = R.string.nav_atlas;
+                    break;
+            }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
-            setTitle(getResources().getString(R.string.nav_profile));
-            mItemID = 0;
+            setTitle(getResources().getString(title));
+            mItemID = tab;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -130,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         })
                         .show();
             } else {
-                this.getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 switch (item.getItemId()) {
                     case R.id.nav_profile:
                         mItemID = 0;
@@ -154,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_logout:
                         mItemID = 5;
-                        SharedPreferencesService.saveValue(getApplication(), "userID", null);
+                        SharedPreferencesService.remove(getApplication(), SharedPreferencesService.app_user_id_key);
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
@@ -176,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     /* Pokolorowanie elementu */
                     tintMenuItem(item, mItemID);
                     mPrevMenuItem = item;
+                    getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
                 }
             }
