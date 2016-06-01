@@ -60,19 +60,19 @@
     <integer-array name="atlas_exercise_biceps_difficulty">
         <item>4</item>
         <item>2</item>
-        <item>2</item>
-        <item>1</item>
         <item>3</item>
+        <item>2</item>
         <item>4</item>
+        <item>3</item>
     </integer-array>
 
     <array name="atlas_exercise_triceps_icon">
         <item>@drawable/exc_triceps_1</item>
         <item>@drawable/exc_triceps_2</item>
         <item>@drawable/exc_triceps_3</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_triceps_4</item>
+        <item>@drawable/exc_triceps_5</item>
+        <item>@drawable/exc_triceps_6</item>
     </array>
 
     <string-array name="atlas_exercise_triceps_name">
@@ -95,20 +95,20 @@
 
     <integer-array name="atlas_exercise_triceps_difficulty">
         <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>5</item>
         <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
+        <item>4</item>
     </integer-array>
 
     <array name="atlas_exercise_shoulders_icon">
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_shoulders_1</item>
+        <item>@drawable/exc_shoulders_2</item>
+        <item>@drawable/exc_shoulders_3</item>
+        <item>@drawable/exc_shoulders_4</item>
+        <item>@drawable/exc_shoulders_5</item>
+        <item>@drawable/exc_shoulders_6</item>
     </array>
 
     <string-array name="atlas_exercise_shoulders_name">
@@ -130,12 +130,12 @@
     </string-array>
 
     <integer-array name="atlas_exercise_shoulders_difficulty">
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
         <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
+        <item>5</item>
     </integer-array>
 
     <array name="atlas_exercise_chest_icon">
@@ -166,12 +166,12 @@
     </string-array>
 
     <integer-array name="atlas_exercise_chest_difficulty">
+        <item>4</item>
         <item>3</item>
+        <item>5</item>
+        <item>2</item>
         <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
+        <item>5</item>
     </integer-array>
 
     <array name="atlas_exercise_back_icon">
@@ -203,11 +203,11 @@
 
     <integer-array name="atlas_exercise_back_difficulty">
         <item>3</item>
+        <item>5</item>
         <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>1</item>
     </integer-array>
 
     <array name="atlas_exercise_legs_icon">
@@ -238,12 +238,12 @@
     </string-array>
 
     <integer-array name="atlas_exercise_legs_difficulty">
+        <item>2</item>
         <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
+        <item>1</item>
+        <item>4</item>
+        <item>2</item>
+        <item>1</item>
     </integer-array>
 
     <array name="atlas_exercise_abs_icon">
@@ -274,12 +274,12 @@
     </string-array>
 
     <integer-array name="atlas_exercise_abs_difficulty">
+        <item>4</item>
+        <item>2</item>
+        <item>4</item>
         <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
+        <item>2</item>
+        <item>5</item>
     </integer-array>
 
     <array name="atlas_exercise_icon">
