@@ -1,6 +1,5 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
@@ -18,11 +18,11 @@ import java.util.ArrayList;
 
 public class SettingsTabFragment extends Fragment {
     private int[] items = {R.string.nav_profile, R.string.nav_training, R.string.nav_cardio, R.string.nav_atlas};
-    private Context mContext;
+    private MainActivity mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        mContext = getActivity();
+        mContext = (MainActivity) getActivity();
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         ArrayList<String> labels = new ArrayList<>();

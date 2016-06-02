@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
@@ -18,6 +19,7 @@ import com.maxwellsport.maxwellsportapp.services.TimerService;
 
 //TODO: Dodać śledzenie trasy na mapie. (polyline)
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
+    private MainActivity mContext;
     // Klucze do zapisania potrzebnych wartosci do Bundle
     protected final static String STATUS_KEY = "status-key";
 
@@ -32,6 +34,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         /* Przygotowanie widoku */
+        mContext = (MainActivity) getActivity();
         mView = inflater.inflate(R.layout.fragment_cardio, container, false);
 
         /* Przygotowanie mapy */
@@ -41,7 +44,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         /* Przygotowanie LocationUpdateService*/
         mLocationUpdateService = new LocationUpdateService(this);
-        mTimerService = new TimerService(getActivity(), (TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_timer_view));
+        mTimerService = new TimerService(mContext, (TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_timer_view));
         onRestoreInstanceState(savedInstanceState);
 
         /* Setup widoku przycisków i timera */

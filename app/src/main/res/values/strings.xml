@@ -9,10 +9,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="alert_dialog_title">Warning</string>
-    <string name="alert_dialog_message">Your Cardio Activity is still running. If you want to change the tab, end the training first.</string>
-    <string name="alert_dialog_confirm">OK</string>
-
     <!-- Domyslne warości pól -->
     <string name="default_timer_value">00:00:00</string>
     <string name="default_distance_value">0.00</string>
@@ -31,7 +27,7 @@
     <string name="profile_user_name">User name</string>
     <string name="profile_user_email">email@example.com</string>
     <string name="profile_active_since">Active since: 00.00.0000</string>
-    <string name="profile_statistics"><i>Statistics:</i></string>
+    <string name="profile_statistics">Statistics:</string>
     <string name="profile_training_form">Training form:</string>
     <string name="profile_running_form">Running form:</string>
 
@@ -86,9 +82,9 @@
     <!-- Atlast Fragment -->
     <string name="atlas_exercise_group_name">Exercise group name</string>
     <string name="atlas_exercise_name">Exercise name</string>
-    <string name="atlas_exercise_description"><i>Description:</i></string>
+    <string name="atlas_exercise_description">Description:</string>
     <string name="atlas_exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
-    <string name="atlas_exercise_difficulty"><i>Difficulty:</i></string>
+    <string name="atlas_exercise_difficulty">Difficulty:</string>
     <string name="atlas_exercise_difficulty_name">Medium</string>
 
     <!-- Ćwiczenia -->
@@ -239,9 +235,15 @@
 
     <string name="theme_name">Theme Name</string>
 
+    <string name="alert_title">Warning</string>
+    <string name="alert_msg_training_running">Your training activity is still running. If you want to change the tab, end the training first.</string>
+    <string name="alert_msg_cardio_running">Your cardio activity is still running. If you want to change the tab, end the running first.</string>
+    <string name="alert_positive_button">OK</string>
+
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Authentication error</string>
     <string name="toast_msg_theme_changed">App theme has been changed</string>
     <string name="toast_mgs_language_changed">App language has been changed</string>
     <string name="toast_mgs_default_tab_changed">Default app tab has been changed</string>
+    <string name="toast_msg_network_error">Network not available</string>
 </resources>

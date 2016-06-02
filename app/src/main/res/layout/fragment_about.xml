@@ -9,11 +9,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@color/textColorPrimary"
-        android:textSize="35sp"
-        android:layout_marginTop="40dp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
@@ -23,14 +23,14 @@
         android:gravity="center"
         android:text="@string/about_description"
         android:textColor="@color/textColorPrimary"
-        android:textSize="17sp" />
+        android:textSize="16sp" />
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:id="@+id/github_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <TextView
@@ -40,7 +40,7 @@
             android:gravity="center"
             android:text="@string/about_follow"
             android:textColor="?attr/colorAccent"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:layout_width="40dp"
@@ -49,10 +49,10 @@
     </LinearLayout>
 
     <TextView
-        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom|center_horizontal"
         android:text="@string/about_copyright"
         android:textColor="@color/textColorPrimary"
         android:textSize="14sp" />

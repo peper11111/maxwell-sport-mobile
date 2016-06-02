@@ -8,15 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 
 // TODO: zachowac stan pól tekstowych ze statystykami po zmianie konfiguracji
 
 public class ProfileFragment extends Fragment {
-
+    MainActivity mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         ImageView trainingForm = (ImageView) v.findViewById(R.id.profile_training_form_value);

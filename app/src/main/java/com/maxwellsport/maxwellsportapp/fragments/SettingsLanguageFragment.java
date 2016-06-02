@@ -1,6 +1,5 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.LocaleService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
@@ -18,12 +18,12 @@ import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 import java.util.ArrayList;
 
 public class SettingsLanguageFragment extends Fragment {
+    private MainActivity mContext;
     private int[] items = {R.string.settings_language_polish, R.string.settings_language_english};
-    private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        mContext = getActivity();
+        mContext = (MainActivity) getActivity();
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         ArrayList<String> labels = new ArrayList<>();
@@ -49,7 +49,7 @@ public class SettingsLanguageFragment extends Fragment {
                 }
                 SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_language_key, choice);
                 LocaleService.setLocale(mContext, choice);
-                getActivity().recreate();
+                mContext.recreate();
                 Toast.makeText(mContext, R.string.toast_mgs_language_changed, Toast.LENGTH_SHORT).show();
             }
         });

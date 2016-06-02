@@ -23,6 +23,7 @@ import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseGroupFragment;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
+import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
@@ -134,12 +135,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item != mPrevMenuItem) {
-            /* Jeżeli fragment Cardio działa, wyświetlenie komunikatu */
-            if ((mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped"))) {
+            if (mFragment instanceof TrainingDayFragment && !((TrainingDayFragment) mFragment).status.equals("stopped")) {
+                /* Jeżeli fragment Training działa, wyświetlenie komunikatu */
                 new AlertDialog.Builder(this)
-                        .setTitle(R.string.alert_dialog_title)
-                        .setMessage(R.string.alert_dialog_message)
-                        .setPositiveButton(R.string.alert_dialog_confirm, new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.alert_title)
+                        .setMessage(R.string.alert_msg_training_running)
+                        .setPositiveButton(R.string.alert_positive_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+            } else if (mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped")) {
+                /* Jeżeli fragment Cardio działa, wyświetlenie komunikatu */
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.alert_title)
+                        .setMessage(R.string.alert_msg_cardio_running)
+                        .setPositiveButton(R.string.alert_positive_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -147,26 +160,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         })
                         .show();
             } else {
+                Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.nav_profile:
                         mItemID = 0;
-                        mFragment = new ProfileFragment();
+                        fragment = new ProfileFragment();
                         break;
                     case R.id.nav_training:
                         mItemID = 1;
-                        mFragment = new TrainingFragment();
+                        fragment = new TrainingFragment();
                         break;
                     case R.id.nav_cardio:
                         mItemID = 2;
-                        mFragment = new CardioFragment();
+                        fragment = new CardioFragment();
                         break;
                     case R.id.nav_atlas:
                         mItemID = 3;
-                        mFragment = new AtlasExerciseGroupFragment();
+                        fragment = new AtlasExerciseGroupFragment();
                         break;
                     case R.id.nav_settings:
                         mItemID = 4;
-                        mFragment = new SettingsFragment();
+                        fragment = new SettingsFragment();
                         break;
                     case R.id.nav_logout:
                         mItemID = 5;
@@ -177,11 +191,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_about:
                         mItemID = 6;
-                        mFragment = new AboutFragment();
+                        fragment = new AboutFragment();
                         break;
                 }
 
-                if (mFragment != null) {
+                if (fragment != null) {
                     if (item.getGroupId() == R.id.nav_group_top) {
                         mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, false, true);
                         mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, true, true);
@@ -192,8 +206,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     /* Pokolorowanie elementu */
                     tintMenuItem(item, mItemID);
                     mPrevMenuItem = item;
-                    getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
+                    replaceFragment(fragment);
                 }
             }
         }
@@ -215,5 +228,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tintTitle.setSpan(new ForegroundColorSpan(mNavigationColors.getColor(itemID, 0)), 0, tintTitle.length(), 0);
         item.setTitle(tintTitle);
         item.setChecked(true);
+    }
+
+    /* Metody do zarządzania fragmentami */
+    public void replaceFragment(Fragment fragment) {
+        mFragment = fragment;
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+    }
+
+    public void addFragment(Fragment fragment) {
+        mFragment = fragment;
+        getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
     }
 }

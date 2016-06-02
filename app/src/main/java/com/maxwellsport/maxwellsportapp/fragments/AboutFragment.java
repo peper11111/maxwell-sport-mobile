@@ -10,16 +10,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 
 
 public class AboutFragment extends Fragment {
+    MainActivity mContext;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
         View v = inflater.inflate(R.layout.fragment_about, container, false);
 
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.github_link);
@@ -33,7 +36,7 @@ public class AboutFragment extends Fragment {
                     intent.setData(Uri.parse("https://github.com/peper11111/MaxwellSportApp"));
                     startActivity(intent);
                 } else {
-                    Toast.makeText(getActivity(), "Network not available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, R.string.toast_msg_network_error, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -42,7 +45,7 @@ public class AboutFragment extends Fragment {
     }
 
     private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

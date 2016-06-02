@@ -1,162 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:fillViewport="true">
+    android:background="@color/colorBackground">
 
-    <ImageView
-        android:id="@+id/training_header_image"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/training_header_image" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/training_header_image"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="-50dp"
-        android:text="@string/training_title"
-        android:textColor="@color/textColor"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/training_header_image"
-        android:orientation="vertical"
-        android:padding="16dp">
+        <ImageView
+            android:id="@+id/training_header_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/training_header_image" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/training_information_label"
-            android:textColor="?attr/colorAccent"
-            android:textSize="20sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_below="@id/training_header_image"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="?attr/colorAccent"
-            android:paddingTop="1dp">
-
-        </LinearLayout>
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:stretchColumns="0">
-
-            <TableRow android:gravity="center_vertical">
-
-                <TextView
-                    android:text="@string/training_exercise_group"
-                    android:textColor="@color/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/training_exercise_group_value"
-                    android:gravity="end"
-                    android:text="@string/training_exercise_group_value"
-                    android:textColor="@color/textColorSecondary" />
-            </TableRow>
-
-            <TableRow android:gravity="center_vertical">
-
-                <TextView
-                    android:text="@string/training_weight"
-                    android:textColor="@color/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/training_weight_value"
-                    android:gravity="end"
-                    android:text="@string/default_zero_value"
-                    android:textColor="@color/textColorSecondary" />
-            </TableRow>
-
-            <TableRow android:gravity="center_vertical">
-
-                <TextView
-                    android:text="@string/training_exercise_amount"
-                    android:textColor="@color/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/training_exercise_amount_value"
-                    android:gravity="end"
-                    android:text="@string/default_zero_value"
-                    android:textColor="@color/textColorSecondary" />
-            </TableRow>
-
-            <TableRow android:gravity="center_vertical">
-
-                <TextView
-                    android:text="@string/training_sets"
-                    android:textColor="@color/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/training_sets_value"
-                    android:gravity="end"
-                    android:text="@string/default_zero_value"
-                    android:textColor="@color/textColorSecondary" />
-            </TableRow>
-
-            <TableRow android:gravity="center_vertical">
-
-                <TextView
-                    android:text="@string/training_reps"
-                    android:textColor="@color/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/training_reps_value"
-                    android:gravity="end"
-                    android:text="@string/default_zero_value"
-                    android:textColor="@color/textColorSecondary" />
-            </TableRow>
-
-        </TableLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="?attr/colorAccent"
-            android:paddingTop="1dp">
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="@string/training_not_completed"
-            android:textColor="@color/material_red_500"
-            android:textSize="20sp"
+            android:layout_marginTop="-50dp"
+            android:text="@string/training_title"
+            android:textColor="@color/textColor"
+            android:textSize="24sp"
             android:textStyle="bold" />
-    </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/training_fab_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/training_header_image"
-        android:layout_marginBottom="@dimen/training_fab_start_margin_bottom"
-        android:layout_marginLeft="@dimen/training_fab_start_margin_left"
-        android:layout_marginRight="@dimen/training_fab_start_margin_right"
-        android:layout_marginTop="@dimen/training_fab_start_margin_top"
-        android:src="@drawable/ic_fab_start"
-        app:backgroundTint="@color/material_green_500" />
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/training_header_image"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/training_information_label"
+                android:textColor="?attr/colorAccent"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="?attr/colorAccent" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0">
+
+                <TableRow android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/training_exercise_group"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/training_exercise_group_value"
+                        android:gravity="end"
+                        android:text="@string/training_exercise_group_value"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/training_weight"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/training_weight_value"
+                        android:gravity="end"
+                        android:text="@string/default_zero_value"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/training_exercise_amount"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/training_exercise_amount_value"
+                        android:gravity="end"
+                        android:text="@string/default_zero_value"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/training_sets"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/training_sets_value"
+                        android:gravity="end"
+                        android:text="@string/default_zero_value"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/training_reps"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/training_reps_value"
+                        android:gravity="end"
+                        android:text="@string/default_zero_value"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp" />
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="?attr/colorAccent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/training_not_completed"
+                android:textColor="@color/material_red_500"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/training_fab_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/training_header_image"
+            android:layout_marginBottom="@dimen/training_fab_start_margin_bottom"
+            android:layout_marginLeft="@dimen/training_fab_start_margin_left"
+            android:layout_marginRight="@dimen/training_fab_start_margin_right"
+            android:layout_marginTop="@dimen/training_fab_start_margin_top"
+            android:src="@drawable/ic_fab_start"
+            app:backgroundTint="@color/material_green_500" />
+    </RelativeLayout>
+</ScrollView>

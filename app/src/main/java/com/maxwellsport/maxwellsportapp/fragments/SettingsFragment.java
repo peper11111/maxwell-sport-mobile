@@ -9,22 +9,25 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 
 import java.util.ArrayList;
 
 public class SettingsFragment extends Fragment {
+    MainActivity mContext;
     int[] items = {R.string.settings_language_label, R.string.settings_theme_label, R.string.settings_default_tab_label, R.string.settings_stats_label};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         ArrayList<String> labels = new ArrayList<>();
         for (int item : items)
             labels.add(getResources().getString(item));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, labels);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, labels);
 
         ListView listView = (ListView) v.findViewById(R.id.default_list_view);
         listView.setAdapter(adapter);
@@ -47,7 +50,8 @@ public class SettingsFragment extends Fragment {
                         //Clear statistics
                         break;
                 }
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+                if (fragment != null)
+                    mContext.addFragment(fragment);
             }
         });
         return v;

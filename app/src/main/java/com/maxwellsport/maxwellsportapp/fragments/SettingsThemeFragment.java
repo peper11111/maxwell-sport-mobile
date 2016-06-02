@@ -1,6 +1,5 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.SettingsThemeListAdapter;
 import com.maxwellsport.maxwellsportapp.models.AppTheme;
@@ -19,11 +19,11 @@ import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 import java.util.ArrayList;
 
 public class SettingsThemeFragment extends Fragment {
-    private Context mContext;
+    private MainActivity mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        mContext = getActivity();
+        mContext = (MainActivity) getActivity();
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         TypedArray colors = getResources().obtainTypedArray(R.array.theme_color);
@@ -97,8 +97,8 @@ public class SettingsThemeFragment extends Fragment {
                         break;
                 }
                 SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_theme_key, style);
-                getActivity().setTheme(style);
-                getActivity().recreate();
+                mContext.setTheme(style);
+                mContext.recreate();
                 Toast.makeText(mContext, R.string.toast_msg_theme_changed, Toast.LENGTH_SHORT).show();
             }
         });

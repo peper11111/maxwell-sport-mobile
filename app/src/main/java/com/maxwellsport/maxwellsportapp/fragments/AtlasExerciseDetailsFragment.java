@@ -1,7 +1,5 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -14,12 +12,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.models.Exercise;
+import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 public class AtlasExerciseDetailsFragment extends Fragment {
+    MainActivity mContext;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
+
         View v = inflater.inflate(R.layout.fragment_atlas_exercise_details, container, false);
         Bundle bundle = getArguments();
         Exercise exercise = (Exercise) bundle.getSerializable("exercise-class");
@@ -33,10 +36,9 @@ public class AtlasExerciseDetailsFragment extends Fragment {
         TextView description = (TextView) v.findViewById(R.id.atlas_exercise_details_description);
         description.setText(exercise.getDescription());
 
-        SharedPreferences pref = getActivity().getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
-        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
+        int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
-        TypedArray array = getActivity().obtainStyledAttributes(style, attr);
+        TypedArray array = mContext.obtainStyledAttributes(style, attr);
         int color = array.getColor(0, Color.WHITE);
         array.recycle();
 

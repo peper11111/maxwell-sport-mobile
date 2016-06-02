@@ -9,10 +9,6 @@
     <string name="navigation_drawer_open">Otwórz navigation drawer</string>
     <string name="navigation_drawer_close">Zamknij navigation drawer</string>
 
-    <string name="alert_dialog_title">Ostrzeżenie</string>
-    <string name="alert_dialog_message">Twoja aktywność biegowa wciąż działa. Jeśli chcesz zmienic zakładkę, zakończ trening.</string>
-    <string name="alert_dialog_confirm">OK</string>
-
     <!-- Domyslne warości pól -->
     <string name="default_timer_value">00:00:00</string>
     <string name="default_distance_value">0.00</string>
@@ -31,7 +27,7 @@
     <string name="profile_user_name">Nazwa użytkownika</string>
     <string name="profile_user_email">email@example.com</string>
     <string name="profile_active_since">Aktywny od: 00.00.0000</string>
-    <string name="profile_statistics"><i>Statystyki:</i></string>
+    <string name="profile_statistics">Statystyki:</string>
     <string name="profile_training_form">Forma treningowa:</string>
     <string name="profile_running_form">Forma biegowa:</string>
 
@@ -86,9 +82,9 @@
     <!-- Atlast Fragment -->
     <string name="atlas_exercise_group_name">Nazwa partii</string>
     <string name="atlas_exercise_name">Nazwa ćwiczenia</string>
-    <string name="atlas_exercise_description"><i>Opis ćwiczenia:</i></string>
+    <string name="atlas_exercise_description">Opis ćwiczenia:</string>
     <string name="atlas_exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
-    <string name="atlas_exercise_difficulty"><i>Trudność ćwiczenia:</i></string>
+    <string name="atlas_exercise_difficulty">Trudność ćwiczenia:</string>
     <string name="atlas_exercise_difficulty_name">Średnie</string>
 
     <!-- Ćwiczenia -->
@@ -239,9 +235,15 @@
 
     <string name="theme_name">Nazwa motywu</string>
 
+    <string name="alert_title">Ostrzeżenie</string>
+    <string name="alert_msg_training_running">Twoja aktywność treningowa wciąż działa. Jeśli chcesz zmienić zakładkę, zakończ trening.</string>
+    <string name="alert_msg_cardio_running">Twoja aktywność biegowa wziąż działa. Jeśli chcesz zmienić zakładkę, zakończ bieg.</string>
+    <string name="alert_positive_button">OK</string>
+
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Błąd uwierzytelniania</string>
     <string name="toast_msg_theme_changed">Motyw aplikacji został zmieniony</string>
     <string name="toast_mgs_language_changed">Język aplikacji został zmieniony</string>
     <string name="toast_mgs_default_tab_changed">Domyślna zakładka aplikacji została zmieniona</string>
+    <string name="toast_msg_network_error">Sieć niedostępna</string>
 </resources>

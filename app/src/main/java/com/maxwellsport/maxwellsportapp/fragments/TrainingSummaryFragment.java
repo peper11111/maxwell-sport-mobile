@@ -1,14 +1,11 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,26 +13,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 import java.util.Locale;
 
 public class TrainingSummaryFragment extends Fragment {
+    private MainActivity mContext;
     private View mView;
     private int[] mStars = {R.id.training_summary_star_1, R.id.training_summary_star_2, R.id.training_summary_star_3, R.id.training_summary_star_4, R.id.training_summary_star_5};
     private int mColor;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
         mView = inflater.inflate(R.layout.fragment_training_summary, container, false);
 
         Bundle args = getArguments();
         long trainingTime = args.getLong("training-time");
         setTimeView(trainingTime);
 
-        SharedPreferences pref = getActivity().getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
-        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
+        int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
-        TypedArray array = getActivity().obtainStyledAttributes(style, attr);
+        TypedArray array = mContext.obtainStyledAttributes(style, attr);
         mColor = array.getColor(0, Color.WHITE);
         array.recycle();
 
@@ -56,8 +56,7 @@ public class TrainingSummaryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 TrainingFragment fragment = new TrainingFragment();
-                getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                mContext.replaceFragment(fragment);
             }
         });
 
