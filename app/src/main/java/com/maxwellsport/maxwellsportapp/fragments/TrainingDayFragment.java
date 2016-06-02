@@ -44,6 +44,8 @@ public class TrainingDayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_training_day_title));
+
         View v = inflater.inflate(R.layout.fragment_training_day, container, false);
         /* Inicjalizacja widoków */
         listView = (ListView) v.findViewById(R.id.training_list_view);

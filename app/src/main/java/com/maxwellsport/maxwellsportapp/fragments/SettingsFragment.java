@@ -21,6 +21,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_settings_title));
+
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         ArrayList<String> labels = new ArrayList<>();

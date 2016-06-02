@@ -23,6 +23,8 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_about_title));
+
         View v = inflater.inflate(R.layout.fragment_about, container, false);
 
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.github_link);

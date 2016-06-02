@@ -53,28 +53,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mItemID = savedInstanceState.getInt("mItemID");
         } else {
             /* Domyslne wartosci dla uruchomienia plikacji. Pierwszy fragment to profile fragment, oraz zakladka z nim zwiazana */
-            int title = R.string.nav_profile;
             int tab = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_default_tab_key, 0);
             switch (tab) {
                 case 0:
                     mFragment = new ProfileFragment();
-                    title = R.string.nav_profile;
                     break;
                 case 1:
                     mFragment = new TrainingFragment();
-                    title = R.string.nav_training;
                     break;
                 case 2:
                     mFragment = new CardioFragment();
-                    title = R.string.nav_cardio;
                     break;
                 case 3:
                     mFragment = new AtlasExerciseGroupFragment();
-                    title = R.string.nav_atlas;
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
-            setTitle(getResources().getString(title));
+            replaceFragment(mFragment);
             mItemID = tab;
         }
 

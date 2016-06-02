@@ -23,6 +23,8 @@ public class AtlasExerciseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_exercise_title));
+
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         /* Obtain selected exercise group */

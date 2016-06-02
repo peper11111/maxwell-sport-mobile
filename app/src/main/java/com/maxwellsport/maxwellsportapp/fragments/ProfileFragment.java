@@ -19,6 +19,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_profile_title));
+
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         ImageView trainingForm = (ImageView) v.findViewById(R.id.profile_training_form_value);

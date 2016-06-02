@@ -9,6 +9,21 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Nagłowki widoków -->
+    <string name="toolbar_about_title">About</string>
+    <string name="toolbar_exercise_details_title">Exercise Details</string>
+    <string name="toolbar_exercise_title">Exercises</string>
+    <string name="toolbar_exercise_group_title">Atlas</string>
+    <string name="toolbar_cardio_title">Cardio</string>
+    <string name="toolbar_profile_title">Profile</string>
+    <string name="toolbar_settings_title">Settings</string>
+    <string name="toolbar_settings_language_title">Language</string>
+    <string name="toolbar_settings_tab_title">Default Tab</string>
+    <string name="toolbar_settings_theme_title">Theme</string>
+    <string name="toolbar_training_day_title">Training Day</string>
+    <string name="toolbar_training_title">Training</string>
+    <string name="toolbar_training_summary_title">Training Summary</string>
+
     <!-- Domyslne warości pól -->
     <string name="default_timer_value">00:00:00</string>
     <string name="default_distance_value">0.00</string>

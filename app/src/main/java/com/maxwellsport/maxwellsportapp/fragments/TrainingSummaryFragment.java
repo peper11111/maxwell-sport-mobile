@@ -27,6 +27,8 @@ public class TrainingSummaryFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_training_summary_title));
+
         mView = inflater.inflate(R.layout.fragment_training_summary, container, false);
 
         Bundle args = getArguments();

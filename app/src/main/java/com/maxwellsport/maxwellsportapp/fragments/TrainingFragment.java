@@ -18,6 +18,8 @@ public class TrainingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_training_title));
+
         View v = inflater.inflate(R.layout.fragment_training, container, false);
 
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.training_fab_start);

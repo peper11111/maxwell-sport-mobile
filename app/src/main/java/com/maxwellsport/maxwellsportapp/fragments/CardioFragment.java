@@ -33,8 +33,10 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /* Przygotowanie widoku */
         mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_cardio_title));
+
+        /* Przygotowanie widoku */
         mView = inflater.inflate(R.layout.fragment_cardio, container, false);
 
         /* Przygotowanie mapy */
