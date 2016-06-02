@@ -15,6 +15,7 @@
     <string name="toolbar_exercise_title">Ćwiczenia</string>
     <string name="toolbar_exercise_group_title">Atlas</string>
     <string name="toolbar_cardio_title">Bieg</string>
+    <string name="toolbar_cardio_summary_title">Podsumowanie biegu</string>
     <string name="toolbar_profile_title">Profil</string>
     <string name="toolbar_settings_title">Ustawienia</string>
     <string name="toolbar_settings_language_title">Język</string>
@@ -93,6 +94,13 @@
     <string name="cardio_timer">"Czas [h]"</string>
     <string name="cardio_distance">"Dystans [km]"</string>
     <string name="cardio_pace">"Tempo [km/h]"</string>
+
+    <!-- Cardio Summary Fragment-->
+    <string name="cardio_summary_title">Podsumowanie biegu</string>
+    <string name="cardio_summary_time">Czas biegu:</string>
+    <string name="cardio_summary_distance">Przebyty dystans:</string>
+    <string name="cardio_summary_pace">Średnie tempo:</string>
+    <string name="cardio_summary_rate">Oceń swój bieg</string>
 
     <!-- Atlast Fragment -->
     <string name="atlas_exercise_group_name">Nazwa partii</string>

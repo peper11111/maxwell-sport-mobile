@@ -15,6 +15,7 @@
     <string name="toolbar_exercise_title">Exercises</string>
     <string name="toolbar_exercise_group_title">Atlas</string>
     <string name="toolbar_cardio_title">Cardio</string>
+    <string name="toolbar_cardio_summary_title">Run Summary</string>
     <string name="toolbar_profile_title">Profile</string>
     <string name="toolbar_settings_title">Settings</string>
     <string name="toolbar_settings_language_title">Language</string>
@@ -93,6 +94,13 @@
     <string name="cardio_timer">"Time [h]"</string>
     <string name="cardio_distance">"Distance [km]"</string>
     <string name="cardio_pace">"Pace [km/h]"</string>
+
+    <!-- Cardio Summary Fragment-->
+    <string name="cardio_summary_title">Run summary</string>
+    <string name="cardio_summary_time">Time spent running:</string>
+    <string name="cardio_summary_distance">Distance traveled:</string>
+    <string name="cardio_summary_pace">Average pace:</string>
+    <string name="cardio_summary_rate">Rate your performance</string>
 
     <!-- Atlast Fragment -->
     <string name="atlas_exercise_group_name">Exercise group name</string>

@@ -142,6 +142,12 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 setupMapView();
                 mTimerService.stopTimer();
                 mLocationUpdateService.stopUpdatesButtonHandler();
+
+                Bundle bundle = new Bundle();
+                bundle.putLong("running-time", mTimerService.getTimerTime());
+                Fragment fragment = new CardioSummaryFragment();
+                fragment.setArguments(bundle);
+                mContext.addFragment(fragment);
             }
         });
 
