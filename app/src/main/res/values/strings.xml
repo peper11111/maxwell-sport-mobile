@@ -229,5 +229,7 @@
     <string name="theme_color_brown">Brown</string>
 
     <string name="theme_name">Theme Name</string>
+    <!-- Toasts -->
     <string name="theme_change_info">App theme has been changed</string>
+    <string name="network_status_info">Network not available</string>
 </resources>

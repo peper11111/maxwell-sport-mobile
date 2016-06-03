@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MenuItem mPrevMenuItem;
     private int mItemID;
     private TypedArray mNavigationColors;
-    private ConnectionService connectionService;
 
 
     @Override
@@ -77,13 +76,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        /* Receiving training JSON */
-        connectionService = new ConnectionService();
-        /* TEST */
-        if(!connectionService.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))){
+        /* Receiving/Sending JSON */
+        if(!ConnectionService.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))){
             Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
         }else{
-            new HttpAsyncTask().execute("http://10.42.0.1:10000/api/training/1");
+            ConnectionService connectionService = new ConnectionService(this);
+            connectionService.connectToServer();
         }
 
     }
@@ -217,27 +215,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tintTitle.setSpan(new ForegroundColorSpan(mNavigationColors.getColor(itemID, 0)), 0, tintTitle.length(), 0);
         item.setTitle(tintTitle);
         item.setChecked(true);
-    }
-
-    /* private class for executing network connection to obtain JSON */
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            try {
-                return ConnectionService.GETTraining(urls[0]);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return "nothig to show yet";
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            /* test message */
-            Toast.makeText(getBaseContext(), s, Toast.LENGTH_LONG).show();
-            /* w tym miejscu mozna parsowac JSONY/ zapisywac stringa do pliku /
-             * uzupelniac sharedprefs */
-        }
     }
 }

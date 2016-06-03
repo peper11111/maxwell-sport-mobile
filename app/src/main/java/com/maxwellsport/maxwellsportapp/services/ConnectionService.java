@@ -1,20 +1,83 @@
 package com.maxwellsport.maxwellsportapp.services;
 
+import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 
 public class ConnectionService {
 
-    public ConnectionService(){}
+    private String mHost = "http://10.42.0.1:10000";
+    private String mURL = "http://10.42.0.1:10000/api/training/1";
+    private String mId;
+    private String mMethod = "GET";
+    private String mInputStream;
+    private String mRequestStringResult;
+    private Context mContext;
 
-    public static String GETTraining(String arg) throws IOException{
+    public ConnectionService(Context context){
+        /* set default values */
+        mContext = context;
+    }
+
+    /* this method download or upload training/stats */
+    public void connectToServer(){
+        /* check if update or download is needed */
+        new DownloadService(mContext).execute(mURL);
+//        new UploadService(mContext).execute(mURL);
+    }
+
+    public static String POST(String arg) throws  IOException{
+        InputStream inputStream = null;
+        DataOutputStream outputStream = null;
+        String result = "";
+        String data = "";
+
+        try {
+            /* create URL */
+            URL url = new URL(arg);
+            /* create HttpURLConnection */
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            /* set connection params */
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoInput(true);
+            urlConnection.setChunkedStreamingMode(0);
+            /*get OutputStream */
+            outputStream = new DataOutputStream(urlConnection.getOutputStream());
+            /* get JSON to send */
+            // data = getStats();
+            /* write JSON to stream */
+            outputStream.writeBytes(data);
+            outputStream.flush();
+            outputStream.close();
+            /* connect */
+            urlConnection.connect();
+            /* get inputStream */
+            inputStream = urlConnection.getInputStream();
+            /* convert an input to String */
+            result = convertInputStreamToString(inputStream);
+            /* disconnect */
+            urlConnection.disconnect();
+            return result;
+        }finally {
+            if(inputStream != null){
+                inputStream.close();
+            }
+        }
+    }
+
+    public static String GET(String arg) throws IOException{
         InputStream inputStream = null;
         String result = "";
 
@@ -57,7 +120,7 @@ public class ConnectionService {
     }
 
     /* check if network is available */
-    public boolean isNetworkAvailable(ConnectivityManager connectivityManager) {
+    public static boolean isNetworkAvailable(ConnectivityManager connectivityManager) {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

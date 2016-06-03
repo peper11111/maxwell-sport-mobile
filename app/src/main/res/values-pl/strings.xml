@@ -229,5 +229,7 @@
     <string name="theme_color_brown">Brązowy</string>
 
     <string name="theme_name">Nazwa motywu</string>
+    <!-- Toasts-->
     <string name="theme_change_info">Motyw aplikacji został zmieniony</string>
+    <string name="network_status_info">Brak połączenia</string>
 </resources>

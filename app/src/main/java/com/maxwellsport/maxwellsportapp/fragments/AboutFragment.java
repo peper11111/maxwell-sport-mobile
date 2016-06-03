@@ -26,7 +26,7 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, container, false);
 
-        mConnectionService = new ConnectionService();
+        mConnectionService = new ConnectionService(getActivity());
 
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.github_link);
         layout.setOnClickListener(new View.OnClickListener() {
