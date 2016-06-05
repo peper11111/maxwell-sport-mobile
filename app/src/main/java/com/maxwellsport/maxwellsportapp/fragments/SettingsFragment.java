@@ -14,6 +14,7 @@ import com.maxwellsport.maxwellsportapp.R;
 
 import java.util.ArrayList;
 
+//TODO: Naprawic animacje i ustawianie tytułu po recreate
 public class SettingsFragment extends Fragment {
     MainActivity mContext;
     int[] items = {R.string.settings_language_label, R.string.settings_theme_label, R.string.settings_default_tab_label, R.string.settings_stats_label};

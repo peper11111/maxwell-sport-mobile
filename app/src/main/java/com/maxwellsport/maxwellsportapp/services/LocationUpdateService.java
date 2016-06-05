@@ -3,7 +3,6 @@ package com.maxwellsport.maxwellsportapp.services;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -13,8 +12,6 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
-
-import java.util.Locale;
 
 public class LocationUpdateService implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
     private CardioFragment mCardioFragment;
@@ -88,6 +85,10 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
         if (mCurrentLocation == null) {
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         }
+
+        if (mCurrentLocation != null)
+            mCardioFragment.setupUserPosition(mCurrentLocation);
+
         if (mRequestingLocationUpdates) {
             startLocationUpdates();
         }
@@ -107,7 +108,7 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
-        Toast.makeText(mCardioFragment.getActivity(), String.format(Locale.getDefault(), "Lat: %f Lng: %f", mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()), Toast.LENGTH_SHORT).show();
+        mCardioFragment.setupUserPosition(mCurrentLocation);
     }
 
     /*

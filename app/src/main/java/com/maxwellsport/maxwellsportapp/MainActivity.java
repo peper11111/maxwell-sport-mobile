@@ -233,6 +233,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void addFragment(Fragment fragment) {
         mFragment = fragment;
-        getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_bottom, R.anim.slide_in_bottom, R.anim.slide_out_right).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
     }
 }

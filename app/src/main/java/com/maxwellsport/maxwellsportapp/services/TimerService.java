@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import com.maxwellsport.maxwellsportapp.R;
 
-import java.util.Locale;
-
 public class TimerService {
     protected final static String START_TIME_KEY = "start-time-key";
     protected final static String DIFF_TIME_KEY = "diff-time-key";
@@ -60,12 +58,7 @@ public class TimerService {
     }
 
     private void setupStatsView(long time) {
-        long seconds = time / 1000;
-        long minutes = seconds / 60;
-        seconds = seconds % 60;
-        long hours = minutes / 60;
-        minutes = minutes % 60;
-        mTimerView.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
+        mTimerView.setText(DataConversionService.convertTime(time));
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
