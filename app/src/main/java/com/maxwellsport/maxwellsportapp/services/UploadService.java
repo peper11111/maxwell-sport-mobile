@@ -27,9 +27,7 @@ public class UploadService extends AsyncTask<String, Void, String>{
 
     @Override
     protected void onPostExecute(String s) {
-            /* test message */
+        /* test message */
         Toast.makeText(mContext, s, Toast.LENGTH_LONG).show();
-            /* w tym miejscu mozna parsowac JSONY/ zapisywac stringa do pliku /
-             * uzupelniac sharedprefs */
     }
 }

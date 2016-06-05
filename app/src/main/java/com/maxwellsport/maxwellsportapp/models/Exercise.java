@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class Exercise implements Serializable {
     private static final long serialVersionUID = -1234551469151804394L;
     private int mGroup;
+    private int mOrderInGroup;
     private String mName;
     private transient Drawable mIcon;
     private String mDescription;

@@ -26,10 +26,10 @@ public class DownloadService extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String s) {
-            /* test message */
-        Toast.makeText(mContext, s, Toast.LENGTH_LONG).show();
-            /* w tym miejscu mozna parsowac JSONY/ zapisywac stringa do pliku /
-             * uzupelniac sharedprefs */
+    protected void onPostExecute(String json) {
+        /* test message */
+        Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
+        /* saving json to SharedPreferences */
+//        JSONParserService.saveJsonToSharedPreferences(json);
     }
 }

@@ -56,7 +56,7 @@ public class ConnectionService {
             /*get OutputStream */
             outputStream = new DataOutputStream(urlConnection.getOutputStream());
             /* get JSON to send */
-            // data = getStats();
+//             data = JSONParserService.getJsonFromSharedPreferences();
             /* write JSON to stream */
             outputStream.writeBytes(data);
             outputStream.flush();

@@ -48,8 +48,25 @@ public class JSONParserService {
     }
 
     /* parse training JSON and save values to SharedPreferences */
+    /* use sharedpreferences service */
     private void parseTrainingJson(){
-
+        String jsonStr = getJsonFromSharedPreferences();
+        if(jsonStr != null){
+            try {
+                /* create json */
+                JSONObject jsonObject = new JSONObject(jsonStr);
+                /* getting json array node */
+                JSONArray jsonArray = jsonObject.getJSONArray(TAG_EXERCISE_LIST);
+                /* save training info (not ready yet) */
+                String trainingID = jsonObject.getString(TAG_ID);
+                String trainingDATE = jsonObject.getString(TAG_TRAINING_DATE);
+                String TrainingNAME = jsonObject.getString(TAG_NAME);
+                int userID = jsonObject.getInt(TAG_USER_ID);
+                boolean done = jsonObject.getBoolean(TAG_DONE);
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     /* create trainig JSON from SharedPreferences */
