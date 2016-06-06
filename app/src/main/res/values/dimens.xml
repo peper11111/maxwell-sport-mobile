@@ -38,4 +38,9 @@
     <dimen name="cardio_fab_pause_margin_bottom">-4dp</dimen>
     <dimen name="cardio_fab_pause_margin_left">2dp</dimen>
     <dimen name="cardio_fab_pause_margin_right">2dp</dimen>
+
+    <dimen name="cardio_fab_finish_margin_top">-20dp</dimen>
+    <dimen name="cardio_fab_finish_margin_bottom">-20dp</dimen>
+    <dimen name="cardio_fab_finish_margin_left">-14dp</dimen>
+    <dimen name="cardio_fab_finish_margin_right">-14dp</dimen>
 </resources>

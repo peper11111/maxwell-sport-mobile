@@ -10,20 +10,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.ConnectionService;
 
 
 public class AboutFragment extends Fragment {
-
+    MainActivity mContext;
     private ConnectionService mConnectionService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_about_title));
+
         View v = inflater.inflate(R.layout.fragment_about, container, false);
 
         mConnectionService = new ConnectionService(getActivity());
@@ -39,7 +42,7 @@ public class AboutFragment extends Fragment {
                     intent.setData(Uri.parse("https://github.com/peper11111/MaxwellSportApp"));
                     startActivity(intent);
                 } else {
-                    Toast.makeText(getActivity(), "Network not available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, R.string.toast_msg_network_error, Toast.LENGTH_SHORT).show();
                 }
             }
         });

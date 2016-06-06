@@ -3,7 +3,6 @@ package com.maxwellsport.maxwellsportapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -17,33 +16,36 @@ import com.maxwellsport.maxwellsportapp.services.LocaleService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 public class LoginActivity extends Activity {
+    private Context mContext;
+    private EditText mUsernameField;
+    private EditText mPasswordField;
+    private Button mLoginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
 
-        /* Wymuszenie jezyka angielskiego */
-        LocaleService.setLocale(this, "en");
+        /* Wczytanie języka aplikacji. Domyślny język angielski */
+        String language = SharedPreferencesService.getString(mContext, SharedPreferencesService.settings_language_key, "en");
+        LocaleService.setLocale(mContext, language);
 
-        /* Ustalenie motywu aplikacji. Przy pierwszym uruchomieniu motyw Cyan */
-        SharedPreferences pref = getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
-        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
-        setTheme(style);
         setContentView(R.layout.activity_login);
+        mUsernameField = (EditText) findViewById(R.id.username_field);
+        mPasswordField = (EditText) findViewById(R.id.password_field);
+        mLoginButton = (Button) findViewById(R.id.login_button);
 
-        final EditText usernameField = (EditText) findViewById(R.id.username_field);
-        final EditText passwordField = (EditText) findViewById(R.id.password_field);
-
-        Button loginButton = (Button) findViewById(R.id.login_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (usernameField.getText().toString().equals("admin") && passwordField.getText().toString().equals("admin")) {
-                    SharedPreferencesService.saveValue(getApplication(), "userID", "21232f297a57a5a743894a0e4a801fc3");
+                if (mUsernameField.getText().toString().equals("admin") && mPasswordField.getText().toString().equals("admin")) {
+                    SharedPreferencesService.putValue(mContext, SharedPreferencesService.app_user_id_key, "21232f297a57a5a743894a0e4a801fc3");
+                    SharedPreferencesService.putValue(mContext, SharedPreferencesService.app_username_key, mUsernameField.getText().toString());
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Authentication error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, R.string.toast_msg_login_error, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -59,11 +61,15 @@ public class LoginActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences prefs = getSharedPreferences(SharedPreferencesService.TAG, MODE_PRIVATE);
-        if (prefs.getString("userID", null) != null) {
+        if (SharedPreferencesService.contains(mContext, SharedPreferencesService.app_user_id_key)) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
+        } else {
+            /* Wczytanie motywu aplikacji jeżeli nie pomijamy widoku. Domyślny motyw CyanAccentColorTheme */
+            int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
+            setTheme(style);
+            mUsernameField.setText(SharedPreferencesService.getString(mContext, SharedPreferencesService.app_username_key, ""));
         }
     }
 }

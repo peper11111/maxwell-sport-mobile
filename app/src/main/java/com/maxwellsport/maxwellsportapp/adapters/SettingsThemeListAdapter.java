@@ -14,8 +14,8 @@ import com.maxwellsport.maxwellsportapp.models.AppTheme;
 import java.util.ArrayList;
 
 
-public class SettingsListAdapter extends ArrayAdapter<AppTheme> {
-    public SettingsListAdapter(Context context, ArrayList<AppTheme> exercises) {
+public class SettingsThemeListAdapter extends ArrayAdapter<AppTheme> {
+    public SettingsThemeListAdapter(Context context, ArrayList<AppTheme> exercises) {
         super(context, 0, exercises);
     }
 
@@ -23,17 +23,19 @@ public class SettingsListAdapter extends ArrayAdapter<AppTheme> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         AppTheme appTheme = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_settings, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_settings_theme, parent, false);
         }
         // Lookup view for data population
         ImageView imageView = (ImageView) convertView.findViewById(R.id.theme_color_icon);
         TextView textView = (TextView) convertView.findViewById(R.id.theme_color_name);
-        // Populate the data into the template view using the data object
 
+        // Populate the data into the template view using the data object
         imageView.setBackgroundColor(appTheme.getColor());
         textView.setText(appTheme.getName());
+
         // Return the completed view to render on screen
         return convertView;
     }

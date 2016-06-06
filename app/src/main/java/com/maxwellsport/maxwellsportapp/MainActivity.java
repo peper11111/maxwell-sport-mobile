@@ -1,9 +1,7 @@
 package com.maxwellsport.maxwellsportapp;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
@@ -29,6 +27,7 @@ import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseGroupFragment;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
+import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
 import com.maxwellsport.maxwellsportapp.services.ConnectionService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
@@ -47,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences pref = getSharedPreferences("maxwellsport", Context.MODE_PRIVATE);
-        int style = pref.getInt("app-theme", R.style.CyanAccentColorTheme);
+        /* Wczytanie motywu aplikacji. Domyślny motyw CyanAccentColorTheme */
+        int style = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
         setTheme(style);
 
         setContentView(R.layout.activity_main);
@@ -56,16 +55,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         mNavigationColors = getResources().obtainTypedArray(R.array.nav_bar_item_colors);
-        /* Wczytanie zapisanych wartosci po obróceniu ekranu */
+        /* Wczytanie zapisanych wartosci po wznowieniu aplikacji */
         if (savedInstanceState != null) {
             mFragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
             mItemID = savedInstanceState.getInt("mItemID");
         } else {
-            /* Domyslne wartosci dla uruchomienia plikacji. Pierwszy fragment to profile fragment, oraz zakladka z nim zwiazana*/
-            mFragment = new ProfileFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
-            setTitle(getResources().getString(R.string.nav_profile));
-            mItemID = 0;
+            /* Domyslne wartosci dla uruchomienia plikacji. Pierwszy fragment to profile fragment, oraz zakladka z nim zwiazana */
+            int tab = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_default_tab_key, 0);
+            switch (tab) {
+                case 0:
+                    mFragment = new ProfileFragment();
+                    break;
+                case 1:
+                    mFragment = new TrainingFragment();
+                    break;
+                case 2:
+                    mFragment = new CardioFragment();
+                    break;
+                case 3:
+                    mFragment = new AtlasExerciseGroupFragment();
+                    break;
+            }
+            replaceFragment(mFragment);
+            mItemID = tab;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -134,12 +146,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item != mPrevMenuItem) {
-            /* Jeżeli fragment Cardio działa, wyświetlenie komunikatu */
-            if ((mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped"))) {
+            if (mFragment instanceof TrainingDayFragment && !((TrainingDayFragment) mFragment).status.equals("stopped")) {
+                /* Jeżeli fragment Training działa, wyświetlenie komunikatu */
                 new AlertDialog.Builder(this)
-                        .setTitle(R.string.alert_dialog_title)
-                        .setMessage(R.string.alert_dialog_message)
-                        .setPositiveButton(R.string.alert_dialog_confirm, new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.alert_title)
+                        .setMessage(R.string.alert_msg_training_running)
+                        .setPositiveButton(R.string.alert_positive_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+            } else if (mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped")) {
+                /* Jeżeli fragment Cardio działa, wyświetlenie komunikatu */
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.alert_title)
+                        .setMessage(R.string.alert_msg_cardio_running)
+                        .setPositiveButton(R.string.alert_positive_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -147,42 +171,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         })
                         .show();
             } else {
-                this.getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.nav_profile:
                         mItemID = 0;
-                        mFragment = new ProfileFragment();
+                        fragment = new ProfileFragment();
                         break;
                     case R.id.nav_training:
                         mItemID = 1;
-                        mFragment = new TrainingFragment();
+                        fragment = new TrainingFragment();
                         break;
                     case R.id.nav_cardio:
                         mItemID = 2;
-                        mFragment = new CardioFragment();
+                        fragment = new CardioFragment();
                         break;
                     case R.id.nav_atlas:
                         mItemID = 3;
-                        mFragment = new AtlasExerciseGroupFragment();
+                        fragment = new AtlasExerciseGroupFragment();
                         break;
                     case R.id.nav_settings:
                         mItemID = 4;
-                        mFragment = new SettingsFragment();
+                        fragment = new SettingsFragment();
                         break;
                     case R.id.nav_logout:
                         mItemID = 5;
-                        SharedPreferencesService.saveValue(getApplication(), "userID", null);
+                        SharedPreferencesService.remove(getApplication(), SharedPreferencesService.app_user_id_key);
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                         break;
                     case R.id.nav_about:
                         mItemID = 6;
-                        mFragment = new AboutFragment();
+                        fragment = new AboutFragment();
                         break;
                 }
 
-                if (mFragment != null) {
+                if (fragment != null) {
                     if (item.getGroupId() == R.id.nav_group_top) {
                         mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_bottom, false, true);
                         mNavigationView.getMenu().setGroupCheckable(R.id.nav_group_top, true, true);
@@ -193,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     /* Pokolorowanie elementu */
                     tintMenuItem(item, mItemID);
                     mPrevMenuItem = item;
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
+                    replaceFragment(fragment);
                 }
             }
         }
@@ -215,5 +239,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tintTitle.setSpan(new ForegroundColorSpan(mNavigationColors.getColor(itemID, 0)), 0, tintTitle.length(), 0);
         item.setTitle(tintTitle);
         item.setChecked(true);
+    }
+
+    /* Metody do zarządzania fragmentami */
+    public void replaceFragment(Fragment fragment) {
+        mFragment = fragment;
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+    }
+
+    public void addFragment(Fragment fragment) {
+        mFragment = fragment;
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_bottom, R.anim.slide_in_bottom, R.anim.slide_out_right).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
     }
 }

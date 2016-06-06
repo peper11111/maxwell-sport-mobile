@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/training_summary_title"
+        android:text="@string/cardio_summary_title"
         android:textColor="?attr/colorAccent"
         android:textSize="18sp" />
 
@@ -29,12 +29,12 @@
         <TableRow android:gravity="center_vertical">
 
             <TextView
-                android:text="@string/training_summary_time"
+                android:text="@string/cardio_summary_time"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/training_summary_time_value"
+                android:id="@+id/cardio_summary_time_value"
                 android:gravity="end"
                 android:text="@string/default_timer_value"
                 android:textColor="@color/textColorSecondary"
@@ -44,12 +44,27 @@
         <TableRow android:gravity="center_vertical">
 
             <TextView
-                android:text="@string/training_summary_exercise_amount"
+                android:text="@string/cardio_summary_distance"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/training_summary_exercise_amount_value"
+                android:id="@+id/cardio_summary_distance_value"
+                android:gravity="end"
+                android:text="@string/default_distance_value"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow android:gravity="center_vertical">
+
+            <TextView
+                android:text="@string/cardio_summary_pace"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/cardio_summary_pace_value"
                 android:gravity="end"
                 android:text="@string/default_zero_value"
                 android:textColor="@color/textColorSecondary"
@@ -67,12 +82,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/training_summary_rate_title"
+        android:text="@string/cardio_summary_rate"
         android:textColor="@color/textColorSecondary"
         android:textSize="16sp" />
 
     <LinearLayout
-        android:id="@+id/training_summary_rate"
+        android:id="@+id/cardio_summary_rate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -80,35 +95,35 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/training_summary_star_1"
+            android:id="@+id/cardio_summary_star_1"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:src="@drawable/ic_star" />
 
         <ImageView
-            android:id="@+id/training_summary_star_2"
+            android:id="@+id/cardio_summary_star_2"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:src="@drawable/ic_star" />
 
         <ImageView
-            android:id="@+id/training_summary_star_3"
+            android:id="@+id/cardio_summary_star_3"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:src="@drawable/ic_star" />
 
         <ImageView
-            android:id="@+id/training_summary_star_4"
+            android:id="@+id/cardio_summary_star_4"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:src="@drawable/ic_star" />
 
         <ImageView
-            android:id="@+id/training_summary_star_5"
+            android:id="@+id/cardio_summary_star_5"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -116,14 +131,14 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/training_summary_fab_finished"
+        android:id="@+id/cardio_summary_fab_finished"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/training_fab_finish_margin_bottom"
-        android:layout_marginLeft="@dimen/training_fab_finish_margin_left"
-        android:layout_marginRight="@dimen/training_fab_finish_margin_right"
-        android:layout_marginTop="@dimen/training_fab_finish_margin_top"
+        android:layout_marginBottom="@dimen/cardio_fab_finish_margin_bottom"
+        android:layout_marginLeft="@dimen/cardio_fab_finish_margin_left"
+        android:layout_marginRight="@dimen/cardio_fab_finish_margin_right"
+        android:layout_marginTop="@dimen/cardio_fab_finish_margin_top"
         android:src="@drawable/ic_done"
         app:backgroundTint="?attr/colorAccent" />
 </LinearLayout>

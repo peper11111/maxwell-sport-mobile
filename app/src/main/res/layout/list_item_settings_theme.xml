@@ -30,5 +30,5 @@
         android:gravity="center_vertical"
         android:text="@string/theme_name"
         android:textColor="@color/colorPrimary"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 </LinearLayout>

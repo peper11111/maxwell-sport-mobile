@@ -9,9 +9,21 @@
     <string name="navigation_drawer_open">Otwórz navigation drawer</string>
     <string name="navigation_drawer_close">Zamknij navigation drawer</string>
 
-    <string name="alert_dialog_title">Ostrzeżenie</string>
-    <string name="alert_dialog_message">Twoja aktywność biegowa wciąż działa. Jeśli chcesz zmienic zakładkę, zakończ trening.</string>
-    <string name="alert_dialog_confirm">OK</string>
+    <!-- Nagłowki widoków -->
+    <string name="toolbar_about_title">O aplikacji</string>
+    <string name="toolbar_exercise_details_title">Szczegóły ćwiczenia</string>
+    <string name="toolbar_exercise_title">Ćwiczenia</string>
+    <string name="toolbar_exercise_group_title">Atlas</string>
+    <string name="toolbar_cardio_title">Bieg</string>
+    <string name="toolbar_cardio_summary_title">Podsumowanie biegu</string>
+    <string name="toolbar_profile_title">Profil</string>
+    <string name="toolbar_settings_title">Ustawienia</string>
+    <string name="toolbar_settings_language_title">Język</string>
+    <string name="toolbar_settings_tab_title">Domyślna zakładka</string>
+    <string name="toolbar_settings_theme_title">Motyw</string>
+    <string name="toolbar_training_day_title">Dzień treningu</string>
+    <string name="toolbar_training_title">Trening</string>
+    <string name="toolbar_training_summary_title">Podsumowanie treningu</string>
 
     <!-- Domyslne warości pól -->
     <string name="default_timer_value">00:00:00</string>
@@ -31,7 +43,7 @@
     <string name="profile_user_name">Nazwa użytkownika</string>
     <string name="profile_user_email">email@example.com</string>
     <string name="profile_active_since">Aktywny od: 00.00.0000</string>
-    <string name="profile_statistics"><i>Statystyki:</i></string>
+    <string name="profile_statistics">Statystyki:</string>
     <string name="profile_training_form">Forma treningowa:</string>
     <string name="profile_running_form">Forma biegowa:</string>
 
@@ -83,12 +95,19 @@
     <string name="cardio_distance">"Dystans [km]"</string>
     <string name="cardio_pace">"Tempo [km/h]"</string>
 
+    <!-- Cardio Summary Fragment-->
+    <string name="cardio_summary_title">Podsumowanie biegu</string>
+    <string name="cardio_summary_time">Czas biegu:</string>
+    <string name="cardio_summary_distance">Przebyty dystans:</string>
+    <string name="cardio_summary_pace">Średnie tempo:</string>
+    <string name="cardio_summary_rate">Oceń swój bieg</string>
+
     <!-- Atlast Fragment -->
     <string name="atlas_exercise_group_name">Nazwa partii</string>
     <string name="atlas_exercise_name">Nazwa ćwiczenia</string>
-    <string name="atlas_exercise_description"><i>Opis ćwiczenia:</i></string>
+    <string name="atlas_exercise_description">Opis ćwiczenia:</string>
     <string name="atlas_exercise_description_content">Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
-    <string name="atlas_exercise_difficulty"><i>Trudność ćwiczenia:</i></string>
+    <string name="atlas_exercise_difficulty">Trudność ćwiczenia:</string>
     <string name="atlas_exercise_difficulty_name">Średnie</string>
 
     <!-- Ćwiczenia -->
@@ -126,7 +145,7 @@
     <string name="exc_triceps_3_description">W pozycji stojącej twarzą do przyrządu, rączka wyciągu trzymana podchwytem:\n- wziąć wdech i wyprostować przedramię;\n- wykońać wydech.\nTo ćwiczenie angażuje mięsień trójgłowy ramienia, głównie jego głowę boczną.</string>
     <string name="exc_triceps_4_description">W pozycji leżącej na plecach na ławeczce, sztanga trzymana nachwytem, ramiona ustawione pionowo w stosunku do ławeczki:\n- wziąć wdech i zgiąć przedramiona, starając się nie odwodzić zanadto w bok łokci przy opuszczaniu sztangi na wysokość czoła;\n- wykonać wydech w końcowej fazie ruchu.</string>
     <string name="exc_triceps_5_description">W pozycji leżącej, sztangielki trzymane w obu rękach, ramiona ustawione pionowo do podłoża:\n- wziąć wdech i zgiąć przedramiona, kontrolując ruch;\n- powrócić do pozycji wyjściowej i wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to równomiernie angażuje wszystkie trzy głowy mięśnia trójgłowego ramienia.</string>
-    <string name="exc_triceps_6_description">Dłonie ułożone na brzegu jednej ławeczki, stopy oparte na drugiej ławeczce, ciało zawieszone w powietrzu:\n- wziąć wdech i zgiąć przedramiona, po czym wyprostować je (odepchnąć się na nich);\n- wykonać wydech w końcowej fazie ćwiczenia.\nĆwiczenie to angażuje mięsień trójgłwy ramienia, mięśnie piersiowe i przednioą część mięsni naramiennych. Na udach można położyć ciężarek, dzięki czemu odpychanie będzie trudniejsze, a wysiłek intensywniejszy</string>
+    <string name="exc_triceps_6_description">Dłonie ułożone na brzegu jednej ławeczki, stopy oparte na drugiej ławeczce, ciało zawieszone w powietrzu:\n- wziąć wdech i zgiąć przedramiona, po czym wyprostować je (odepchnąć się na nich);\n- wykonać wydech w końcowej fazie ćwiczenia.\nĆwiczenie to angażuje mięsień trójgłwy ramienia, mięśnie piersiowe i przednioą część mięsni naramiennych. Na udach można położyć ciężarek, dzięki czemu odpychanie będzie trudniejsze, a wysiłek intensywniejszy.</string>
 
     <string name="exc_shoulders_1_name">Wyciskanie sztangi zza karku</string>
     <string name="exc_shoulders_2_name">Wyciskanie sztangielek w pozycji siedzącej</string>
@@ -137,8 +156,8 @@
 
     <string name="exc_shoulders_1_description">W pozycji siedzącej, sztanga za karkiem trzymana nachwytem:\n- wziąć wdech i wycisnąć sztangę pionowo, nie wyginając nadmiernie grzbietu;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje mięsień naramienny, głównie jego część środkową i tylną, jak również mięsnień czworoboczny, mięsień trójgłowy ramienia i mięsień zębaty przedni. W wyciskaniu uczestniczą również, ale w mniejszym stopniu, mięśnie równoległoboczne, mięsień podgrzebieniowy, mięśień obły mniejszy, a w warstwie głębokiej mięsień nadgrzbietowy.</string>
     <string name="exc_shoulders_2_description">W pozycji siedzącej na ławeczce, sztangielki trzymane nachwytem (kciuki do wewnątrz) na wysokości barków:\n- wziąć wdech i wyciskać sztangielki aż do wyprostawania ramion w pionie;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje mięsień naramienny, głównie jego część środkową, jak również mięsień czworoboczny, mięsień zębaty przedni i mięsień trójgłowy ramienia.\nĆwiczenie to można też wykonać w pozycji stojącej lub prostując ramiona na przemian.</string>
-    <string name="exc_shoulders_3_description">W pozycji stojącej, kończyny dolne w lekkim rozkroku, grzbiet wyprostowany, ramiona ułożone wzdłuż tułowia, sztangielki w rękach:\n- podnieść ramiona do poziomu (łokcie lekko zgięte);\n- powrócić do pozycji wyjśiowej.\nĆwiczenie to angażuje mięśnie naramienne, głownie ich część środkową. Ćwiczenia tego nie wykonuje się nigdy z dużymi obciążeniami. Najlepsze rezultaty dają serie 10&#8211;25 powtórzeń wykonywane pod różnymi kątami, bez zbyt długich odpoczynków między seriami i kontynuowane do chwili, gdy odczuje się pieczenie. W celu zwiększenia intensywności wysiłku można między poszczególnymi seriami przez kilka sekund trzymać uniesione poziomo ramiona w skurczu izometrycznym.</string>
-    <string name="exc_shoulders_4_description">W pozycji stojącej, kończyny dolne w lekim rozkroku, sztangielki trzymane nachwytem spoczywają na udzue lub nieco z boku:\n- wziąć wdech i unosić naprzemiennie ramiona do przodu na wysokości oczu;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje głownie przednią część mięśni naramiennych, część obojczykową mięśnia piersiowego większego, a w mniejszym stopiniu resztę mięsnia naramiennego. We wszystkich ruchach podnozenia ramion biorą udzuał mięśnie przytwierdzające łopatkę do klatki piersiowej, takie jak mięsień zębaty przedni i mięsień równoległoboczny większy, pozwalając kości ramiennej balansować na stabilnym wsporniku.</string>
+    <string name="exc_shoulders_3_description">W pozycji stojącej, kończyny dolne w lekkim rozkroku, grzbiet wyprostowany, ramiona ułożone wzdłuż tułowia, sztangielki w rękach:\n- podnieść ramiona do poziomu (łokcie lekko zgięte);\n- powrócić do pozycji wyjśiowej.\nĆwiczenie to angażuje mięśnie naramienne, głownie ich część środkową.\nĆwiczenia tego nie wykonuje się nigdy z dużymi obciążeniami. Najlepsze rezultaty dają serie 10&#8211;25 powtórzeń wykonywane pod różnymi kątami, bez zbyt długich odpoczynków między seriami i kontynuowane do chwili, gdy odczuje się pieczenie. W celu zwiększenia intensywności wysiłku można między poszczególnymi seriami przez kilka sekund trzymać uniesione poziomo ramiona w skurczu izometrycznym.</string>
+    <string name="exc_shoulders_4_description">W pozycji stojącej, kończyny dolne w lekim rozkroku, sztangielki trzymane nachwytem spoczywają na udzue lub nieco z boku:\n- wziąć wdech i unosić naprzemiennie ramiona do przodu na wysokości oczu;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to angażuje głownie przednią część mięśni naramiennych, część obojczykową mięśnia piersiowego większego, a w mniejszym stopiniu resztę mięsnia naramiennego. We wszystkich ruchach podnoszenia ramion biorą udział mięśnie przytwierdzające łopatkę do klatki piersiowej, takie jak mięsień zębaty przedni i mięsień równoległoboczny większy, pozwalając kości ramiennej balansować na stabilnym wsporniku.</string>
     <string name="exc_shoulders_5_description">W pozycji leżącej na boku na podłodze lub ławeczce, sztangielka trzymana nachwytem:\n- wziąc wdech i podnieść ramię do poziomu;\n- wykonać wydech w końcowej fazie ruchu.\nW odróżnieniu do podnoszenia ramion w pozycji stojącej, które angażują stopniowo mięsień naramienny aż do osiągnięcia maksymalnej intensywności wysiłku w końcowej fazie (kiedy ramiona dochodzą do poziomu), w tym ćwiczeniu wysiłek koncentruje się w początkowej fazie podnoszenia. Najlepsze wyniki uzyskuje się, wykonując 10&#8211;20 powtórzeń.</string>
     <string name="exc_shoulders_6_description">Rączka wyciągu w dłoni, ramię wzdłuż tułowia:\n- wziąć wdech i unieść ramię do poziomu;\n- wykonać wydech w końcowej fazie ruchu.\nĆwiczenie to rozwija mięsień naramienny, głównie jego część środkową wielopierzastą, tzn. zbudowaną z kilku pasm w kształcie pióra, dlatego należy zmieniać kąty, pod jakimi unosi się ramiona w celu zaangażowania wszystkich pasm mięśnia.</string>
 
@@ -209,6 +228,15 @@
     <string name="about_follow">Obserwuj nas na GitHub</string>
     <string name="about_copyright">© RafPep Inc. 2016 Wszystkie prawa zastrzeżone</string>
 
+    <!-- Settings Fragment -->
+    <string name="settings_theme_label">Motyw</string>
+    <string name="settings_language_label">Język</string>
+    <string name="settings_default_tab_label">Domyślna zakładka</string>
+    <string name="settings_stats_label">Wyczyść statystyki</string>
+
+    <string name="settings_language_polish">Polski</string>
+    <string name="settings_language_english">Angielski</string>
+
     <!-- Theme color names -->
     <string name="theme_color_red">Czerwony</string>
     <string name="theme_color_pink">Różowy</string>
@@ -232,4 +260,16 @@
     <!-- Toasts-->
     <string name="theme_change_info">Motyw aplikacji został zmieniony</string>
     <string name="network_status_info">Brak połączenia</string>
+
+    <string name="alert_title">Ostrzeżenie</string>
+    <string name="alert_msg_training_running">Twoja aktywność treningowa wciąż działa. Jeśli chcesz zmienić zakładkę, zakończ trening.</string>
+    <string name="alert_msg_cardio_running">Twoja aktywność biegowa wziąż działa. Jeśli chcesz zmienić zakładkę, zakończ bieg.</string>
+    <string name="alert_positive_button">OK</string>
+
+    <!-- Toast messages -->
+    <string name="toast_msg_login_error">Błąd uwierzytelniania</string>
+    <string name="toast_msg_theme_changed">Motyw aplikacji został zmieniony</string>
+    <string name="toast_mgs_language_changed">Język aplikacji został zmieniony</string>
+    <string name="toast_mgs_default_tab_changed">Domyślna zakładka aplikacji została zmieniona</string>
+    <string name="toast_msg_network_error">Sieć niedostępna</string>
 </resources>

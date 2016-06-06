@@ -20,11 +20,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorAccent"
-        android:paddingTop="1dp">
-
-    </LinearLayout>
+        android:layout_height="1dp"
+        android:background="?attr/colorAccent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,21 +31,21 @@
         android:paddingRight="4dp">
 
         <TextView
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
             android:gravity="center"
             android:text="@string/training_timer"
             android:textColor="@color/textColorPrimary"
             android:textSize="18sp" />
 
         <TextView
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
             android:id="@+id/training_timer_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="@string/default_timer_value"
@@ -64,7 +61,7 @@
             android:layout_marginRight="@dimen/training_fab_pause_margin_right"
             android:layout_marginTop="@dimen/training_fab_pause_margin_top"
             android:src="@drawable/ic_fab_pause"
-            app:backgroundTint="@color/material_blue_500"/>
+            app:backgroundTint="@color/material_blue_500" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/training_fab_stop"
@@ -75,6 +72,6 @@
             android:layout_marginRight="@dimen/training_fab_stop_margin_right"
             android:layout_marginTop="@dimen/training_fab_stop_margin_top"
             android:src="@drawable/ic_fab_stop"
-            app:backgroundTint="@color/material_red_500"/>
+            app:backgroundTint="@color/material_red_500" />
     </LinearLayout>
 </LinearLayout>

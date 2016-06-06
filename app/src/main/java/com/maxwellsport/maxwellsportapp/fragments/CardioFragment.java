@@ -1,5 +1,6 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -7,17 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
 
+import java.util.Locale;
+
 
 //TODO: Dodać śledzenie trasy na mapie. (polyline)
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
+    private MainActivity mContext;
     // Klucze do zapisania potrzebnych wartosci do Bundle
     protected final static String STATUS_KEY = "status-key";
 
@@ -31,6 +37,9 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_cardio_title));
+
         /* Przygotowanie widoku */
         mView = inflater.inflate(R.layout.fragment_cardio, container, false);
 
@@ -41,7 +50,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         /* Przygotowanie LocationUpdateService*/
         mLocationUpdateService = new LocationUpdateService(this);
-        mTimerService = new TimerService(getActivity(), (TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_timer_view));
+        mTimerService = new TimerService(mContext, (TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_timer_view));
         onRestoreInstanceState(savedInstanceState);
 
         /* Setup widoku przycisków i timera */
@@ -137,6 +146,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 setupMapView();
                 mTimerService.stopTimer();
                 mLocationUpdateService.stopUpdatesButtonHandler();
+                summary();
             }
         });
 
@@ -182,5 +192,19 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
                 break;
         }
+    }
+
+    private void summary() {
+        Bundle bundle = new Bundle();
+        bundle.putLong("running-time", mTimerService.getTimerTime());
+
+        Fragment fragment = new CardioSummaryFragment();
+        fragment.setArguments(bundle);
+        mContext.addFragment(fragment);
+    }
+
+    public void setupUserPosition(Location location) {
+        //TODO: Animate camera
+        Toast.makeText(getActivity(), String.format(Locale.getDefault(), "Lat: %f Lng: %f", location.getLatitude(), location.getLongitude()), Toast.LENGTH_SHORT).show();
     }
 }

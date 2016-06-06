@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
@@ -18,6 +19,7 @@ import com.maxwellsport.maxwellsportapp.services.TimerService;
 import java.util.ArrayList;
 
 public class TrainingDayFragment extends Fragment {
+    private MainActivity mContext;
 
     private FloatingActionButton pauseButton;
     private FloatingActionButton stopButton;
@@ -41,6 +43,9 @@ public class TrainingDayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+        mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_training_day_title));
+
         View v = inflater.inflate(R.layout.fragment_training_day, container, false);
         /* Inicjalizacja widoków */
         listView = (ListView) v.findViewById(R.id.training_list_view);
@@ -54,11 +59,11 @@ public class TrainingDayFragment extends Fragment {
         }
 
         /* Ustawienie adaptera */
-        adapter = new TrainingDayListAdapter(getActivity(), arrayList);
+        adapter = new TrainingDayListAdapter(mContext, arrayList);
         listView.setAdapter(adapter);
 
         /* Ustawienie timera do przycisków */
-        timerService = new TimerService(getActivity(), (TextView) v.findViewById(R.id.training_timer_view));
+        timerService = new TimerService(mContext, (TextView) v.findViewById(R.id.training_timer_view));
         onRestoreInstanceState(savedInstanceState);
         status = "running";
         timerService.setupTimerService(status);
@@ -80,7 +85,7 @@ public class TrainingDayFragment extends Fragment {
                 bundle.putLong("training-time", trainingTime);
                 TrainingSummaryFragment fragment = new TrainingSummaryFragment();
                 fragment.setArguments(bundle);
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+                mContext.addFragment(fragment);
             }
         });
 

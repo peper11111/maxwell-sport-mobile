@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.AtlasExerciseListAdapter;
 import com.maxwellsport.maxwellsportapp.models.Exercise;
@@ -16,11 +17,15 @@ import com.maxwellsport.maxwellsportapp.models.Exercise;
 import java.util.ArrayList;
 
 public class AtlasExerciseFragment extends Fragment {
+    MainActivity mContext;
     private AtlasExerciseListAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_atlas_exercise, container, false);
+        mContext = (MainActivity) getActivity();
+        mContext.setTitle(getResources().getString(R.string.toolbar_exercise_title));
+
+        View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         /* Obtain selected exercise group */
         Bundle bundle = getArguments();
@@ -53,9 +58,9 @@ public class AtlasExerciseFragment extends Fragment {
         exercise_icons.recycle();
 
         // Create the adapter to convert the array to views
-        mAdapter = new AtlasExerciseListAdapter(getActivity(), array);
+        mAdapter = new AtlasExerciseListAdapter(mContext, array);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) v.findViewById(R.id.atlas_exercise_list_view);
+        ListView listView = (ListView) v.findViewById(R.id.default_list_view);
         listView.setAdapter(mAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,7 +71,7 @@ public class AtlasExerciseFragment extends Fragment {
                 bundle.putSerializable("exercise-class", exercise);
                 Fragment fragment = new AtlasExerciseDetailsFragment();
                 fragment.setArguments(bundle);
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+                mContext.addFragment(fragment);
             }
         });
 

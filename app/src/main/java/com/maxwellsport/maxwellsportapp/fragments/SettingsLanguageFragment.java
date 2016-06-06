@@ -8,21 +8,23 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.services.LocaleService;
+import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 import java.util.ArrayList;
 
-//TODO: Naprawic animacje i ustawianie tytułu po recreate
-public class SettingsFragment extends Fragment {
-    MainActivity mContext;
-    int[] items = {R.string.settings_language_label, R.string.settings_theme_label, R.string.settings_default_tab_label, R.string.settings_stats_label};
+public class SettingsLanguageFragment extends Fragment {
+    private MainActivity mContext;
+    private int[] items = {R.string.settings_language_polish, R.string.settings_language_english};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
-        mContext.setTitle(getResources().getString(R.string.toolbar_settings_title));
+        mContext.setTitle(getResources().getString(R.string.toolbar_settings_language_title));
 
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
@@ -38,25 +40,22 @@ public class SettingsFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Fragment fragment = null;
+                String choice = null;
                 switch (position) {
                     case 0:
-                        fragment = new SettingsLanguageFragment();
+                        choice = "pl";
                         break;
                     case 1:
-                        fragment = new SettingsThemeFragment();
-                        break;
-                    case 2:
-                        fragment = new SettingsTabFragment();
-                        break;
-                    case 3:
-                        //Clear statistics
+                        choice = "en";
                         break;
                 }
-                if (fragment != null)
-                    mContext.addFragment(fragment);
+                SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_language_key, choice);
+                LocaleService.setLocale(mContext, choice);
+                mContext.recreate();
+                Toast.makeText(mContext, R.string.toast_mgs_language_changed, Toast.LENGTH_SHORT).show();
             }
         });
+
         return v;
     }
 }
