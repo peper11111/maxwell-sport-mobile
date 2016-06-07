@@ -31,6 +31,7 @@ import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
 import com.maxwellsport.maxwellsportapp.services.ConnectionService;
+import com.maxwellsport.maxwellsportapp.services.JSONParserService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 import java.io.IOException;
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ConnectionService connectionService = new ConnectionService(this);
             connectionService.connectToServer();
         }
-
     }
 
     @Override

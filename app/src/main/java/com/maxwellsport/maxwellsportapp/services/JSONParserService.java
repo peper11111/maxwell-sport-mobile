@@ -2,7 +2,9 @@ package com.maxwellsport.maxwellsportapp.services;
 
 
 import android.content.Context;
+import android.content.res.TypedArray;
 
+import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.models.Exercise;
 
 import org.json.JSONArray;
@@ -77,11 +79,50 @@ public class JSONParserService {
         return null;
     }
 
-    /* return exercise names from string arrays based on exercise id */
-    private String[] getExerciseNamesFromStrings(int [] idArray){
-        String[] nameArray = {};
-
-        return nameArray;
+    /* return exercise name from string arrays based on exercise id */
+    @SuppressWarnings("ResourceType")
+    public String getExerciseNameById(int id){
+        String name = "";
+        int groupNumber, orderNumber, arrayId;
+        if(id == 0 || id == 1 || id > 43 || id < 0) {
+            groupNumber = 0;
+            orderNumber = 0;
+        }else if(id == 43){
+            groupNumber = 6;
+            orderNumber = 5;
+        }else{
+            groupNumber = ((id - 1) / 7 + 1);
+            orderNumber = id % 6;
+        }
+        switch (groupNumber){
+            case 0:
+                arrayId = R.array.atlas_exercise_biceps_name;
+                break;
+            case 1:
+                arrayId = R.array.atlas_exercise_triceps_name;
+                break;
+            case 2:
+                arrayId = R.array.atlas_exercise_shoulders_name;
+                break;
+            case 3:
+                arrayId = R.array.atlas_exercise_chest_name;
+                break;
+            case 4:
+                arrayId = R.array.atlas_exercise_back_name;
+                break;
+            case 5:
+                arrayId = R.array.atlas_exercise_legs_name;
+                break;
+            case 6:
+                arrayId = R.array.atlas_exercise_abs_name;
+                break;
+            default:
+                arrayId = 0;
+        }
+        TypedArray exerciseNameArray = mContext.getResources().obtainTypedArray(arrayId);
+        name = exerciseNameArray.getString(orderNumber);
+        exerciseNameArray.recycle();
+        return name;
     }
 
     /* get body part list from  */
