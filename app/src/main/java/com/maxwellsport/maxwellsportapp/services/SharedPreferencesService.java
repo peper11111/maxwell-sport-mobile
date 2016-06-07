@@ -39,6 +39,7 @@ public class SharedPreferencesService {
     public static final String downloaded_training_json_key = "training_json";
     public static final String current_training_number_key = "current_training";
     public static final String is_training_downloaded_key = "training_done";
+    public static final String training_body_part_key = "body_part_list";
 
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(TAG, MODE);

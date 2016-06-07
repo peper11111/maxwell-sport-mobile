@@ -12,12 +12,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class JSONParserService {
 
     private Context mContext;
     private String mJsonString;
+    private Set<String> mBodyPartSet;
 
     /* training tags */
     private static final String TAG_ID = "id";
@@ -36,6 +39,7 @@ public class JSONParserService {
 
     public JSONParserService(Context context){
         mContext = context;
+        mBodyPartSet = new HashSet<>();
         if(!SharedPreferencesService.getBoolean(mContext, SharedPreferencesService.is_training_downloaded_key, false))
             mJsonString = getJsonFromSharedPreferences();
 
@@ -56,34 +60,48 @@ public class JSONParserService {
 
     }
 
-    /* return string array with exercise names for current training */
+    /* return exercise arraylist for current training */
     public  ArrayList<Exercise> getExerciseListForCurrentTraining(){
-
         /* if training is not downloaded return one empty exercise */
         if(SharedPreferencesService.getBoolean(mContext, SharedPreferencesService.is_training_downloaded_key, false)){
             try {
+                /* current training id */
                 int currentTrainingID = SharedPreferencesService.getInt(mContext, SharedPreferencesService.current_training_number_key,0);
+                /* json array with trainings for each day */
                 JSONArray jsonArray = new JSONArray(mJsonString);
+                /* json object witch current training */
                 JSONObject training = jsonArray.getJSONObject(currentTrainingID);
+                /* json array with exercises from current training */
                 JSONArray exerciseArray = training.getJSONArray(TAG_EXERCISE_LIST);
-                ArrayList<Exercise> exercisesList = new ArrayList();
+                /* arraylist with exercises for current training */
+                ArrayList<Exercise> exercisesList = new ArrayList<>();
+                String exerciseName;
                 /* fill exercise list */
                 for(int i=0; i<exerciseArray.length(); i++){
-
+                    JSONObject exerciseJSON = exerciseArray.getJSONObject(i);
+                    exerciseName = getExerciseNameById(exerciseJSON.getInt(TAG_EXE_ID));
+                    mBodyPartSet.add(exerciseJSON.getString(TAG_BODY_PART));
+                    exercisesList.add(new Exercise(exerciseJSON.getInt(TAG_REPS), exerciseJSON.getInt(TAG_SETS), exerciseJSON.getInt(TAG_WEIGHT), exerciseName));
                 }
+//                SharedPreferencesService.putValue(mContext,SharedPreferencesService.training_body_part_key, mBodyPartSet.toString());
                 return exercisesList;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }else {
+            ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
+            exerciseArrayList.add(new Exercise(0, 0, 0, "Pobierz trening"));
+            return exerciseArrayList;
         }
         return null;
     }
 
     /* return exercise name from string arrays based on exercise id */
     @SuppressWarnings("ResourceType")
-    public String getExerciseNameById(int id){
+    private String getExerciseNameById(int id){
         String name = "";
         int groupNumber, orderNumber, arrayId;
+        /* set group number and order number in body part*/
         if(id == 0 || id == 1 || id > 43 || id < 0) {
             groupNumber = 0;
             orderNumber = 0;
@@ -94,6 +112,7 @@ public class JSONParserService {
             groupNumber = ((id - 1) / 7 + 1);
             orderNumber = id % 6;
         }
+        /* get array id */
         switch (groupNumber){
             case 0:
                 arrayId = R.array.atlas_exercise_biceps_name;
@@ -119,14 +138,16 @@ public class JSONParserService {
             default:
                 arrayId = 0;
         }
+        /* get exercise name from string array */
         TypedArray exerciseNameArray = mContext.getResources().obtainTypedArray(arrayId);
         name = exerciseNameArray.getString(orderNumber);
         exerciseNameArray.recycle();
         return name;
     }
 
-    /* get body part list from  */
-    private ArrayList<String> getCurrentBodyPartList(){
+    /* get body part list */
+    public ArrayList<String> getCurrentBodyPartList(){
+        /* get string from sharedprefs */
         return new ArrayList<>();
     }
 

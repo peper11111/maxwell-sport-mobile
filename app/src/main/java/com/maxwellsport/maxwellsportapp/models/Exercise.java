@@ -16,6 +16,7 @@ public class Exercise implements Serializable {
     private int mWeight;
     private int mSets;
 
+
     public Exercise(int group, Drawable icon, String name, String description, int difficulty) {
         mGroup = group;
         mIcon = icon;
@@ -31,6 +32,13 @@ public class Exercise implements Serializable {
         mName = name;
     }
 
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
 
     public int getmSets() {
         return mSets;
