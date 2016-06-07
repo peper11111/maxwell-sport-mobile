@@ -30,6 +30,8 @@ public class DownloadService extends AsyncTask<String, Void, String> {
         /* test message */
         Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
         /* saving json to SharedPreferences */
-//        JSONParserService.saveJsonToSharedPreferences(json);
+//        JSONParserService parserService = new JSONParserService(mContext);
+//        parserService.saveJsonToSharedPreferences(json);
+
     }
 }

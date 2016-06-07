@@ -10,15 +10,17 @@ import java.io.IOException;
 public class UploadService extends AsyncTask<String, Void, String>{
 
     private Context mContext;
+    private ConnectionService mConnectionService;
 
     public UploadService(Context context){
         this.mContext = context;
+        mConnectionService = new ConnectionService(mContext);
     }
 
     @Override
     protected String doInBackground(String... urls) {
         try {
-            return ConnectionService.POST(urls[0]);
+            return mConnectionService.POST(urls[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }

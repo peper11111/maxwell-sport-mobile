@@ -8,8 +8,6 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 
-// TODO: dokonczyc klase z animacja
-
 public class FlipAnimation extends Animation {
 
     private Camera camera;
@@ -25,7 +23,7 @@ public class FlipAnimation extends Animation {
         this.fromView = fView;
         this.toView = tView;
 
-        setDuration(380);
+        setDuration(330);
         setFillAfter(false);
         setInterpolator(new AccelerateDecelerateInterpolator());
     }

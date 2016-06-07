@@ -4,13 +4,11 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -18,16 +16,18 @@ import java.net.URL;
 public class ConnectionService {
 
     private String mHost = "http://10.42.0.1:10000";
-    private String mURL = "http://10.42.0.1:10000/api/training/1";
+    private String mURL = "http://10.42.0.1:10000/api/training/user/1";
     private String mId;
     private String mMethod = "GET";
     private String mInputStream;
     private String mRequestStringResult;
     private Context mContext;
+    private JSONParserService mParserService;
 
     public ConnectionService(Context context){
         /* set default values */
         mContext = context;
+        mParserService = new JSONParserService(mContext);
     }
 
     /* this method download or upload training/stats */
@@ -37,7 +37,7 @@ public class ConnectionService {
 //        new UploadService(mContext).execute(mURL);
     }
 
-    public static String POST(String arg) throws  IOException{
+    public String POST(String arg) throws  IOException{
         InputStream inputStream = null;
         DataOutputStream outputStream = null;
         String result = "";
@@ -56,7 +56,7 @@ public class ConnectionService {
             /*get OutputStream */
             outputStream = new DataOutputStream(urlConnection.getOutputStream());
             /* get JSON to send */
-//             data = JSONParserService.getJsonFromSharedPreferences();
+             data = mParserService.getJsonFromSharedPreferences();
             /* write JSON to stream */
             outputStream.writeBytes(data);
             outputStream.flush();
@@ -80,7 +80,6 @@ public class ConnectionService {
     public static String GET(String arg) throws IOException{
         InputStream inputStream = null;
         String result = "";
-
         try {
             /* create URL */
             URL url = new URL(arg);

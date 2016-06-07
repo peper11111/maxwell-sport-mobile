@@ -1,6 +1,10 @@
 package com.maxwellsport.maxwellsportapp.services;
 
 
+import android.content.Context;
+
+import com.maxwellsport.maxwellsportapp.models.Exercise;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,8 +14,8 @@ import java.util.ArrayList;
 
 public class JSONParserService {
 
-    private JSONObject mJSONObject;
-    private JSONArray mTrainigArray;
+    private Context mContext;
+    private String mJsonString;
 
     /* training tags */
     private static final String TAG_ID = "id";
@@ -28,54 +32,61 @@ public class JSONParserService {
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_BODY_PART = "bodyPart";
 
-    public JSONParserService(String data){
+    public JSONParserService(Context context){
+        mContext = context;
+        if(!SharedPreferencesService.getBoolean(mContext, SharedPreferencesService.is_training_downloaded_key, false))
+            mJsonString = getJsonFromSharedPreferences();
 
-        try {
-            mJSONObject = new JSONObject(data);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     /* save JSON (as String) response to SharedPreferences */
-    public static void saveJsonToSharedPreferences(String jsonString){
-
+    public void saveJsonToSharedPreferences(String jsonString){
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.downloaded_training_json_key, jsonString);
     }
 
     /* read JSON (String) from SharedPreferences */
-    public static String getJsonFromSharedPreferences(){
-        return "";
+    public String getJsonFromSharedPreferences(){
+        return SharedPreferencesService.getString(mContext, SharedPreferencesService.downloaded_training_json_key, "");
     }
 
-    /* parse training JSON and save values to SharedPreferences */
-    /* use sharedpreferences service */
-    private void parseTrainingJson(){
-        String jsonStr = getJsonFromSharedPreferences();
-        if(jsonStr != null){
+    /* update trainig JSON from SharedPreferences */
+    public void updateTrainingJson(String date, ArrayList checkedList){
+
+    }
+
+    /* return string array with exercise names for current training */
+    public  ArrayList<Exercise> getExerciseListForCurrentTraining(){
+
+        /* if training is not downloaded return one empty exercise */
+        if(SharedPreferencesService.getBoolean(mContext, SharedPreferencesService.is_training_downloaded_key, false)){
             try {
-                /* create json */
-                JSONObject jsonObject = new JSONObject(jsonStr);
-                /* getting json array node */
-                JSONArray jsonArray = jsonObject.getJSONArray(TAG_EXERCISE_LIST);
-                /* save training info (not ready yet) */
-                String trainingID = jsonObject.getString(TAG_ID);
-                String trainingDATE = jsonObject.getString(TAG_TRAINING_DATE);
-                String TrainingNAME = jsonObject.getString(TAG_NAME);
-                int userID = jsonObject.getInt(TAG_USER_ID);
-                boolean done = jsonObject.getBoolean(TAG_DONE);
-            }catch (JSONException e){
+                int currentTrainingID = SharedPreferencesService.getInt(mContext, SharedPreferencesService.current_training_number_key,0);
+                JSONArray jsonArray = new JSONArray(mJsonString);
+                JSONObject training = jsonArray.getJSONObject(currentTrainingID);
+                JSONArray exerciseArray = training.getJSONArray(TAG_EXERCISE_LIST);
+                ArrayList<Exercise> exercisesList = new ArrayList();
+                /* fill exercise list */
+                for(int i=0; i<exerciseArray.length(); i++){
+
+                }
+                return exercisesList;
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
-    /* create trainig JSON from SharedPreferences */
-    private void createTrainingJson(){
+    /* return exercise names from string arrays based on exercise id */
+    private String[] getExerciseNamesFromStrings(int [] idArray){
+        String[] nameArray = {};
 
+        return nameArray;
     }
 
-    /* get training list from SharedPreferences */
-    private ArrayList getExerciseList(){
-        return new ArrayList();
+    /* get body part list from  */
+    private ArrayList<String> getCurrentBodyPartList(){
+        return new ArrayList<>();
     }
+
 }

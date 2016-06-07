@@ -35,7 +35,10 @@ public class SharedPreferencesService {
     public static final String settings_theme_key = "settings-theme";
     public static final String settings_language_key = "settings-language";
     public static final String settings_default_tab_key = "settings-default-tab";
-
+    /* json data */
+    public static final String downloaded_training_json_key = "training_json";
+    public static final String current_training_number_key = "current_training";
+    public static final String is_training_downloaded_key = "training_done";
 
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(TAG, MODE);

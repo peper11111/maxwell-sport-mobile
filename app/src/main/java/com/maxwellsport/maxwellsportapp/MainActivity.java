@@ -1,5 +1,6 @@
 package com.maxwellsport.maxwellsportapp;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
