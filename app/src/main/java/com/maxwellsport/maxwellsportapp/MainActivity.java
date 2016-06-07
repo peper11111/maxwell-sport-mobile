@@ -232,7 +232,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void addFragment(Fragment fragment) {
+        //TODO: naprawic animacje po odwiezenieu
+        //TODO: naprawic wysweitlanie tytulu zakladki po odwiezeniu
         mFragment = fragment;
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_bottom, R.anim.slide_in_bottom, R.anim.slide_out_right).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.none, R.anim.slide_in_bottom, R.anim.none).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
     }
 }

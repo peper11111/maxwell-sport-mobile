@@ -233,9 +233,14 @@
     <string name="settings_language_label">Language</string>
     <string name="settings_default_tab_label">Default tab</string>
     <string name="settings_stats_label">Clear statistics</string>
+    <string name="settings_server_label">Server address</string>
 
     <string name="settings_language_polish">Polish</string>
     <string name="settings_language_english">English</string>
+
+    <string name="settings_server_title">Insert new server address</string>
+    <string name="settings_server_save_button">Save</string>
+    <string name="settings_server_restore_button">Restore default</string>
 
     <!-- Theme color names -->
     <string name="theme_color_red">Red</string>
@@ -269,4 +274,7 @@
     <string name="toast_mgs_language_changed">App language has been changed</string>
     <string name="toast_mgs_default_tab_changed">Default app tab has been changed</string>
     <string name="toast_msg_network_error">Network not available</string>
+    <string name="toast_msg_server_address_error">Server address is incorrect</string>
+    <string name="toast_msg_server_address_changed">Server address has been changed</string>
+    <string name="toast_msg_server_address_restored">Default server address has been restored</string>
 </resources>

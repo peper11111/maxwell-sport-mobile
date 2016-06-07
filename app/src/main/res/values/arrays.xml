@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="settings_options">
+        <item>@string/settings_language_label</item>
+        <item>@string/settings_theme_label</item>
+        <item>@string/settings_default_tab_label</item>
+        <item>@string/settings_stats_label</item>
+        <item>@string/settings_server_label</item>
+    </string-array>
+
     <array name="nav_bar_item_colors">
         <item>@color/material_blue_600</item>
         <item>@color/material_deep_orange_600</item>

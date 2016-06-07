@@ -87,7 +87,7 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
         }
 
         if (mCurrentLocation != null)
-            mCardioFragment.setupUserPosition(mCurrentLocation);
+            mCardioFragment.updateUserPosition(mCurrentLocation);
 
         if (mRequestingLocationUpdates) {
             startLocationUpdates();
@@ -108,7 +108,7 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
-        mCardioFragment.setupUserPosition(mCurrentLocation);
+        mCardioFragment.updateUserPosition(mCurrentLocation);
     }
 
     /*

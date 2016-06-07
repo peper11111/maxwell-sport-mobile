@@ -63,7 +63,7 @@ public class TrainingDayFragment extends Fragment {
         listView.setAdapter(adapter);
 
         /* Ustawienie timera do przycisków */
-        timerService = new TimerService(mContext, (TextView) v.findViewById(R.id.training_timer_view));
+        timerService = new TimerService((TextView) v.findViewById(R.id.training_timer_view));
         onRestoreInstanceState(savedInstanceState);
         status = "running";
         timerService.setupTimerService(status);

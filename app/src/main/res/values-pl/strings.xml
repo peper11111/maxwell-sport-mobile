@@ -233,9 +233,14 @@
     <string name="settings_language_label">Język</string>
     <string name="settings_default_tab_label">Domyślna zakładka</string>
     <string name="settings_stats_label">Wyczyść statystyki</string>
+    <string name="settings_server_label">Adres serwera</string>
 
     <string name="settings_language_polish">Polski</string>
     <string name="settings_language_english">Angielski</string>
+
+    <string name="settings_server_title">Wprowadź nowy adres servera</string>
+    <string name="settings_server_save_button">Zapisz</string>
+    <string name="settings_server_restore_button">Przywróć domyślny</string>
 
     <!-- Theme color names -->
     <string name="theme_color_red">Czerwony</string>
@@ -269,4 +274,7 @@
     <string name="toast_mgs_language_changed">Język aplikacji został zmieniony</string>
     <string name="toast_mgs_default_tab_changed">Domyślna zakładka aplikacji została zmieniona</string>
     <string name="toast_msg_network_error">Sieć niedostępna</string>
+    <string name="toast_msg_server_address_error">Wprowadzony adres servera jest niepoprawny</string>
+    <string name="toast_msg_server_address_changed">Adres serwera został zmieniony</string>
+    <string name="toast_msg_server_address_restored">Przywrócono domyślny adres servera</string>
 </resources>

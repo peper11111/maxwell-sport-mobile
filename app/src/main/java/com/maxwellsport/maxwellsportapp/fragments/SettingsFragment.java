@@ -17,7 +17,6 @@ import java.util.ArrayList;
 //TODO: Naprawic animacje i ustawianie tytułu po recreate
 public class SettingsFragment extends Fragment {
     MainActivity mContext;
-    int[] items = {R.string.settings_language_label, R.string.settings_theme_label, R.string.settings_default_tab_label, R.string.settings_stats_label};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
@@ -26,9 +25,10 @@ public class SettingsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
+        String[] items = getResources().getStringArray(R.array.settings_options);
         ArrayList<String> labels = new ArrayList<>();
-        for (int item : items)
-            labels.add(getResources().getString(item));
+        for (String item : items)
+            labels.add(item);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, labels);
 
@@ -50,7 +50,10 @@ public class SettingsFragment extends Fragment {
                         fragment = new SettingsTabFragment();
                         break;
                     case 3:
-                        //Clear statistics
+                        //TODO: Wyczyscic statystyki
+                        break;
+                    case 4:
+                        fragment = new SettingsServerFragment();
                         break;
                 }
                 if (fragment != null)

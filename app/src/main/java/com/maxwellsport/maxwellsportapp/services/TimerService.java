@@ -17,12 +17,10 @@ public class TimerService {
 
     private TextView mTimerView;
     private Handler mTimerHandler;
-    private Context mContext;
 
     private String mStatus;
 
-    public TimerService(Context context, TextView timerView) {
-        mContext = context;
+    public TimerService(TextView timerView) {
         mTimerHandler = new Handler();
         mTimerView = timerView;
     }
@@ -48,7 +46,6 @@ public class TimerService {
         mStartTime = mDiffTime;
         mStatus = "stopped";
         mDiffTime = 0;
-        mTimerView.setText(mContext.getResources().getString(R.string.default_timer_value));
     }
 
     public void pauseTimer() {
