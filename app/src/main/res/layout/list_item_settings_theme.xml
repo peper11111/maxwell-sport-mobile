@@ -11,7 +11,7 @@
         android:layout_marginRight="8dp">
 
         <ImageView
-            android:id="@+id/theme_color_icon"
+            android:id="@+id/default_list_item_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorAccent"/>
@@ -24,7 +24,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/theme_color_name"
+        android:id="@+id/default_list_item_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"

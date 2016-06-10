@@ -5,32 +5,25 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class Exercise implements Serializable {
+public class ExerciseModel extends DefaultListItemModel implements Serializable {
     private static final long serialVersionUID = -1234551469151804394L;
     private int mGroup;
-    private String mName;
-    private transient Drawable mIcon;
     private String mDescription;
     private int mDifficulty;
 
-    public Exercise(int group, Drawable icon, String name, String description, int difficulty) {
-        mGroup = group;
+    public ExerciseModel(String title, Drawable icon, int group, String description, int difficulty) {
+        mTitle = title;
+        mSubtitle = null;
+        mColor = 0;
         mIcon = icon;
-        mName = name;
+
+        mGroup = group;
         mDescription = description;
         mDifficulty = difficulty;
     }
 
     public int getGroup() {
         return mGroup;
-    }
-
-    public String getName() {
-        return mName;
-    }
-
-    public Drawable getIcon() {
-        return mIcon;
     }
 
     public String getDescription() {

@@ -229,16 +229,21 @@
     <string name="about_copyright">© RafPep Inc. 2016 All rights reserved</string>
 
     <!-- Settings Fragment -->
-    <string name="settings_theme_label">Theme</string>
-    <string name="settings_language_label">Language</string>
-    <string name="settings_default_tab_label">Default tab</string>
-    <string name="settings_stats_label">Clear statistics</string>
-    <string name="settings_server_label">Server address</string>
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_subtitle">Current language:</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_subtitle">Current theme:</string>
+    <string name="settings_default_tab_title">Default tab</string>
+    <string name="settings_default_tab_subtitle">Current default tab:</string>
+    <string name="settings_stats_title">Clear statistics</string>
+    <string name="settings_stats_subtitle">Clears all your local statistics</string>
+    <string name="settings_server_title">Server address</string>
+    <string name="settings_server_subtitle">Current server address:</string>
 
     <string name="settings_language_polish">Polish</string>
     <string name="settings_language_english">English</string>
 
-    <string name="settings_server_title">Insert new server address</string>
+    <string name="settings_server_label">Insert new server address</string>
     <string name="settings_server_save_button">Save</string>
     <string name="settings_server_restore_button">Restore default</string>
 

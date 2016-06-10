@@ -11,14 +11,15 @@ import android.widget.ListView;
 
 import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.adapters.AtlasExerciseListAdapter;
-import com.maxwellsport.maxwellsportapp.models.Exercise;
+import com.maxwellsport.maxwellsportapp.adapters.DefaultListAdapter;
+import com.maxwellsport.maxwellsportapp.models.DefaultListItemModel;
+import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
 import java.util.ArrayList;
 
 public class AtlasExerciseFragment extends Fragment {
-    MainActivity mContext;
-    private AtlasExerciseListAdapter mAdapter;
+    private MainActivity mContext;
+    private DefaultListAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,14 +52,14 @@ public class AtlasExerciseFragment extends Fragment {
         difficulties.recycle();
         int[] exercise_difficulties = getResources().getIntArray(difficulties_id);
 
-        ArrayList<Exercise> array = new ArrayList<>();
+        ArrayList<DefaultListItemModel> array = new ArrayList<>();
         for (int i = 0; i < exercise_names.length; i++) {
-            array.add(new Exercise(group, exercise_icons.getDrawable(i), exercise_names[i], exercise_descriptions[i], exercise_difficulties[i]));
+            array.add(new ExerciseModel(exercise_names[i], exercise_icons.getDrawable(i), group, exercise_descriptions[i], exercise_difficulties[i]));
         }
         exercise_icons.recycle();
 
         // Create the adapter to convert the array to views
-        mAdapter = new AtlasExerciseListAdapter(mContext, array);
+        mAdapter = new DefaultListAdapter(mContext, R.layout.list_item_atlas_exercise, array);
         // Attach the adapter to a ListView
         ListView listView = (ListView) v.findViewById(R.id.default_list_view);
         listView.setAdapter(mAdapter);
@@ -67,7 +68,7 @@ public class AtlasExerciseFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                Exercise exercise = mAdapter.getItem(position);
+                ExerciseModel exercise = (ExerciseModel) mAdapter.getItem(position);
                 bundle.putSerializable("exercise-class", exercise);
                 Fragment fragment = new AtlasExerciseDetailsFragment();
                 fragment.setArguments(bundle);

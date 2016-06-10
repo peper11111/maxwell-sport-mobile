@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="settings_options">
-        <item>@string/settings_language_label</item>
-        <item>@string/settings_theme_label</item>
-        <item>@string/settings_default_tab_label</item>
-        <item>@string/settings_stats_label</item>
-        <item>@string/settings_server_label</item>
+        <item>@string/settings_language_title</item>
+        <item>@string/settings_theme_title</item>
+        <item>@string/settings_default_tab_title</item>
+        <item>@string/settings_stats_title</item>
+        <item>@string/settings_server_title</item>
     </string-array>
 
     <array name="nav_bar_item_colors">

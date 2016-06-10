@@ -16,12 +16,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
     private MainActivity mContext;
@@ -33,9 +37,11 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     private View mView;
     private LocationUpdateService mLocationUpdateService;
     private TimerService mTimerService;
+    private int mColor;
     private MapView mMapView;
     private GoogleMap mMap;
-    private PolylineOptions mPolyline;
+    private Polyline mPolyline;
+    private List<LatLng> mPolylinePoints;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,10 +51,8 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
         TypedArray array = mContext.obtainStyledAttributes(style, attr);
-        int color = array.getColor(0, Color.WHITE);
+        mColor = array.getColor(0, Color.WHITE);
         array.recycle();
-
-        mPolyline = new PolylineOptions().width(5).color(color);
 
         /* Przygotowanie widoku */
         mView = inflater.inflate(R.layout.fragment_cardio, container, false);
@@ -131,12 +135,17 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
         mMap.setPadding(0, 0, 0, 0);
-        mMap.addPolyline(mPolyline);
     }
 
     /*
      * Fragment private setup methods
      */
+
+    private void setupNewPolyline() {
+        mPolyline = mMap.addPolyline(new PolylineOptions().width(15).color(mColor));
+        mPolylinePoints = new ArrayList<>();
+    }
+
     private void setupFabListeners() {
         FloatingActionButton fab_start = (FloatingActionButton) mView.findViewById(R.id.cardio_fab_start);
         fab_start.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +154,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 status = "running";
                 mMap.setPadding(0, 80, 0, 0);
                 setupMapView();
+                setupNewPolyline();
                 mTimerService.startTimer();
                 mLocationUpdateService.startUpdatesButtonHandler();
             }
@@ -176,6 +186,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 } else if (status.equals("paused")) {
                     status = "running";
                     setupMapView();
+                    setupNewPolyline();
                     mTimerService.startTimer();
                     mLocationUpdateService.startUpdatesButtonHandler();
                 }
@@ -220,7 +231,11 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     public void updateUserPosition(Location location) {
         //TODO: Dodać śledzenie trasy na mapie. (polyline)
         LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
-        mPolyline.add(position);
+
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17));
+        if (status.equals("running")) {
+            mPolylinePoints.add(position);
+            mPolyline.setPoints(mPolylinePoints);
+        }
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.services.DataConversionService;
 import com.maxwellsport.maxwellsportapp.services.LocaleService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
@@ -67,8 +68,8 @@ public class LoginActivity extends Activity {
             finish();
         } else {
             /* Wczytanie motywu aplikacji jeżeli nie pomijamy widoku. Domyślny motyw CyanAccentColorTheme */
-            int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
-            setTheme(style);
+            int style = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_theme_key, 7);
+            setTheme(DataConversionService.convertTheme(style));
             mUsernameField.setText(SharedPreferencesService.getString(mContext, SharedPreferencesService.app_username_key, ""));
         }
     }

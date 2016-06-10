@@ -25,6 +25,7 @@ import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
+import com.maxwellsport.maxwellsportapp.services.DataConversionService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         /* Wczytanie motywu aplikacji. Domyślny motyw CyanAccentColorTheme */
-        int style = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
-        setTheme(style);
+        int style = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_theme_key, 7);
+        setTheme(DataConversionService.convertTheme(style));
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -235,6 +236,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //TODO: naprawic animacje po odwiezenieu
         //TODO: naprawic wysweitlanie tytulu zakladki po odwiezeniu
         mFragment = fragment;
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.none, R.anim.slide_in_bottom, R.anim.none).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.none, R.anim.slide_out_left, R.anim.none, R.anim.slide_out_right).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
     }
 }
