@@ -27,7 +27,7 @@
 
     <!-- Domyslne warości pól -->
     <string name="default_timer_value">00:00</string>
-    <string name="default_distance_value">0,00</string>
+    <string name="default_distance_value">0.00</string>
     <string name="default_zero_value">0</string>
 
     <!-- Nazwy pól w navigation drawer -->
@@ -68,7 +68,7 @@
     <string name="profile_longest_run_distance">Nadłuższy dystans biegu:</string>
     <string name="profile_last_run_pace">Tempo ostatniego biegu:</string>
     <string name="profile_average_run_pace">Średnie tempo biegu:</string>
-    <string name="profile_biggest_run_pace">Największe tempo biegu:</string>
+    <string name="profile_biggest_run_pace">Najlepsze tempo biegu:</string>
 
     <!-- Training Fragment-->
     <string name="training_title">Trening 1</string>
@@ -276,8 +276,9 @@
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Błąd uwierzytelniania</string>
     <string name="toast_msg_theme_changed">Motyw aplikacji został zmieniony</string>
-    <string name="toast_mgs_language_changed">Język aplikacji został zmieniony</string>
-    <string name="toast_mgs_default_tab_changed">Domyślna zakładka aplikacji została zmieniona</string>
+    <string name="toast_msg_language_changed">Język aplikacji został zmieniony</string>
+    <string name="toast_msg_default_tab_changed">Domyślna zakładka aplikacji została zmieniona</string>
+    <string name="toast_msg_stats_cleared">Statystki lokalne zostały wyczyszczone</string>
     <string name="toast_msg_network_error">Sieć niedostępna</string>
     <string name="toast_msg_server_address_error">Wprowadzony adres servera jest niepoprawny</string>
     <string name="toast_msg_server_address_changed">Adres serwera został zmieniony</string>

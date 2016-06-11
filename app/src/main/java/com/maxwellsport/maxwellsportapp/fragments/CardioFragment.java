@@ -47,8 +47,9 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
     /* Pola do obliczania i wyswietlania dystansu */
     private Location mLastLocation;
-    private float mTotalDistance;
+    private float mDistance;
     private TextView mDistanceView;
+    private float mPace;
     private TextView mPaceView;
 
     @Override
@@ -153,7 +154,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
      */
     private void setupNewPolyline() {
         /* Tworzy nową polyline */
-        mTotalDistance = 0;
+        mDistance = 0;
         mPolylinePoints = new ArrayList<>();
         setupNewPolylinePart();
     }
@@ -202,13 +203,11 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                     status = "paused";
                     setupMapView();
                     mTimerService.pauseTimer();
-                    mLocationUpdateService.stopUpdatesButtonHandler();
                 } else if (status.equals("paused")) {
                     status = "running";
                     setupMapView();
                     setupNewPolylinePart();
                     mTimerService.startTimer();
-                    mLocationUpdateService.startUpdatesButtonHandler();
                 }
             }
         });
@@ -243,7 +242,8 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         Log.d("MAXWELL", "" + mPolylinePoints.get(0).size());
         Bundle bundle = new Bundle();
         bundle.putLong("running-time", mTimerService.getTimerTime());
-        bundle.putFloat("running-distance", mTotalDistance);
+        bundle.putFloat("running-distance", mDistance);
+        bundle.putFloat("running-pace", mPace);
 
         Fragment fragment = new CardioSummaryFragment();
         fragment.setArguments(bundle);
@@ -256,13 +256,26 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         if (status.equals("running")) {
             if (mLastLocation != null) {
-                mTotalDistance += mLastLocation.distanceTo(location);
-                mDistanceView.setText(DataConversionService.convertDistance(mTotalDistance));
-                mPaceView.setText(DataConversionService.convertPace(mTimerService.getTimerTime(), mTotalDistance));
+                mDistance += mLastLocation.distanceTo(location);
+                mDistanceView.setText(DataConversionService.convertDistance(mDistance));
+                mPace = countPace(mTimerService.getTimerTime(), mDistance);
+                mPaceView.setText(DataConversionService.convertPace(mPace));
             }
             mPolylinePart.add(position);
             mPolyline.setPoints(mPolylinePart);
             mLastLocation = location;
         }
+    }
+
+    private float countPace(long time, float distance) {
+        float seconds = time / 1000;
+        float minutes = seconds / 60;
+        float kilometers = distance / 1000;
+        float pace = minutes / kilometers;
+
+        if (time != 0 && distance != 0)
+            return pace;
+        else
+            return 0;
     }
 }

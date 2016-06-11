@@ -18,6 +18,9 @@ import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.services.DataConversionService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class CardioSummaryFragment extends Fragment {
@@ -42,8 +45,11 @@ public class CardioSummaryFragment extends Fragment {
         TextView distanceView = (TextView) mView.findViewById(R.id.cardio_summary_distance_value);
         distanceView.setText(DataConversionService.convertDistance(runningDistance));
 
+        float runningPace = args.getFloat("running-pace");
         TextView paceView = (TextView) mView.findViewById(R.id.cardio_summary_pace_value);
-        paceView.setText(DataConversionService.convertPace(runningTime, runningDistance));
+        paceView.setText(DataConversionService.convertPace(runningPace));
+
+        saveStats(runningTime, runningDistance, runningPace);
 
         int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
@@ -89,5 +95,39 @@ public class CardioSummaryFragment extends Fragment {
             ImageView star = (ImageView) stars.getChildAt(i);
             star.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         }
+    }
+
+    private void saveStats(long time, float distance, float pace) {
+        /* Dane ostatniego biegu */
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_last_run_date_key, dateFormat.format(new Date()));
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_last_run_duration_key, time);
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_last_run_distance_key, distance);
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_last_run_pace_key, pace);
+
+        /* Najlepsze dane */
+        if (SharedPreferencesService.getLong(mContext, SharedPreferencesService.profile_stats_longest_run_duration_key, 0) < time)
+            SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_longest_run_duration_key, time);
+        if (SharedPreferencesService.getFloat(mContext, SharedPreferencesService.profile_stats_longest_run_distance_key, 0) < distance)
+            SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_longest_run_distance_key, distance);
+        if (SharedPreferencesService.getFloat(mContext, SharedPreferencesService.profile_stats_biggest_run_pace_key, Float.MAX_VALUE) > pace)
+            SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_biggest_run_pace_key, pace);
+
+        /* Srednie dane */
+        int run_numbers = SharedPreferencesService.getInt(mContext, SharedPreferencesService.profile_stats_run_number_key, 0);
+
+        long last_average_time = SharedPreferencesService.getLong(mContext, SharedPreferencesService.profile_stats_average_run_duration_key, 0);
+        long average_time = ((last_average_time * run_numbers) + time) / (run_numbers + 1);
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_average_run_duration_key, average_time);
+
+        float last_average_distance = SharedPreferencesService.getFloat(mContext, SharedPreferencesService.profile_stats_average_run_distance_key, 0);
+        float average_distance = ((last_average_distance * run_numbers) + distance) / (run_numbers + 1);
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_average_run_distance_key, average_distance);
+
+        float last_average_pace = SharedPreferencesService.getFloat(mContext, SharedPreferencesService.profile_stats_average_run_pace_key, 0);
+        float average_pace = ((last_average_pace * run_numbers) + pace) / (run_numbers + 1);
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_average_run_pace_key, average_pace);
+
+        SharedPreferencesService.putValue(mContext, SharedPreferencesService.profile_stats_run_number_key, run_numbers + 1);
     }
 }

@@ -68,7 +68,7 @@
     <string name="profile_longest_run_distance">Longest run distance:</string>
     <string name="profile_last_run_pace">Last run pace:</string>
     <string name="profile_average_run_pace">Average run pace:</string>
-    <string name="profile_biggest_run_pace">Biggest run pace:</string>
+    <string name="profile_biggest_run_pace">Best run pace:</string>
 
     <!-- Training Fragment-->
     <string name="training_title">Training 1</string>
@@ -276,8 +276,9 @@
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Authentication error</string>
     <string name="toast_msg_theme_changed">App theme has been changed</string>
-    <string name="toast_mgs_language_changed">App language has been changed</string>
-    <string name="toast_mgs_default_tab_changed">Default app tab has been changed</string>
+    <string name="toast_msg_language_changed">App language has been changed</string>
+    <string name="toast_msg_default_tab_changed">Default app tab has been changed</string>
+    <string name="toast_msg_stats_cleared">Local statistics has been cleared</string>
     <string name="toast_msg_network_error">Network not available</string>
     <string name="toast_msg_server_address_error">Server address is incorrect</string>
     <string name="toast_msg_server_address_changed">Server address has been changed</string>

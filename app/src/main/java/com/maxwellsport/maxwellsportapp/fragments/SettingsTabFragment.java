@@ -40,7 +40,7 @@ public class SettingsTabFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_default_tab_key, position);
-                Toast.makeText(mContext, R.string.toast_mgs_default_tab_changed, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, R.string.toast_msg_default_tab_changed, Toast.LENGTH_SHORT).show();
             }
         });
         return v;

@@ -52,7 +52,7 @@ public class SettingsLanguageFragment extends Fragment {
                 SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_language_key, choice);
                 LoginActivity.setLocale(mContext, choice);
                 mContext.recreate();
-                Toast.makeText(mContext, R.string.toast_mgs_language_changed, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, R.string.toast_msg_language_changed, Toast.LENGTH_SHORT).show();
             }
         });
 

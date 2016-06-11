@@ -1,13 +1,13 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
@@ -66,7 +66,8 @@ public class SettingsFragment extends Fragment {
                         fragment = new SettingsTabFragment();
                         break;
                     case 3:
-                        //TODO: Wyczyscic statystyki
+                        clearStatistics();
+                        Toast.makeText(mContext, R.string.toast_msg_stats_cleared, Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
                         fragment = new SettingsServerFragment();
@@ -77,5 +78,19 @@ public class SettingsFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    private void clearStatistics() {
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_run_number_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_last_run_date_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_last_run_duration_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_last_run_distance_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_last_run_pace_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_average_run_duration_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_average_run_distance_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_average_run_pace_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_longest_run_duration_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_longest_run_distance_key);
+        SharedPreferencesService.remove(mContext, SharedPreferencesService.profile_stats_biggest_run_pace_key);
     }
 }
