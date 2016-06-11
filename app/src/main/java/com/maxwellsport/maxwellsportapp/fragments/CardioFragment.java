@@ -6,6 +6,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,12 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.services.DataConversionService;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 import com.maxwellsport.maxwellsportapp.services.TimerService;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
     private MainActivity mContext;
@@ -41,7 +42,14 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     private MapView mMapView;
     private GoogleMap mMap;
     private Polyline mPolyline;
-    private List<LatLng> mPolylinePoints;
+    private ArrayList<ArrayList<LatLng>> mPolylinePoints;
+    private ArrayList<LatLng> mPolylinePart;
+
+    /* Pola do obliczania i wyswietlania dystansu */
+    private Location mLastLocation;
+    private float mTotalDistance;
+    private TextView mDistanceView;
+    private TextView mPaceView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,8 +72,11 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         /* Przygotowanie LocationUpdateService*/
         mLocationUpdateService = new LocationUpdateService(this);
-        mTimerService = new TimerService((TextView) mView.findViewById(R.id.cardio_stats_layout).findViewById(R.id.cardio_timer_view));
+        mTimerService = new TimerService((TextView) mView.findViewById(R.id.cardio_timer_view));
         onRestoreInstanceState(savedInstanceState);
+
+        mDistanceView = (TextView) mView.findViewById(R.id.cardio_distance_view);
+        mPaceView = (TextView) mView.findViewById(R.id.cardio_pace_view);
 
         /* Setup widoku przycisków i timera */
         setupMapView();
@@ -140,10 +151,19 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     /*
      * Fragment private setup methods
      */
-
     private void setupNewPolyline() {
-        mPolyline = mMap.addPolyline(new PolylineOptions().width(15).color(mColor));
+        /* Tworzy nową polyline */
+        mTotalDistance = 0;
         mPolylinePoints = new ArrayList<>();
+        setupNewPolylinePart();
+    }
+
+    private void setupNewPolylinePart() {
+        /* Tworzy nową częśś wczesniej stworzononej lini */
+        mPolyline = mMap.addPolyline(new PolylineOptions().width(15).color(mColor));
+        mPolylinePart = new ArrayList<>();
+        mPolylinePoints.add(mPolylinePart);
+        mLastLocation = null;
     }
 
     private void setupFabListeners() {
@@ -186,7 +206,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 } else if (status.equals("paused")) {
                     status = "running";
                     setupMapView();
-                    setupNewPolyline();
+                    setupNewPolylinePart();
                     mTimerService.startTimer();
                     mLocationUpdateService.startUpdatesButtonHandler();
                 }
@@ -220,8 +240,10 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void summary() {
+        Log.d("MAXWELL", "" + mPolylinePoints.get(0).size());
         Bundle bundle = new Bundle();
         bundle.putLong("running-time", mTimerService.getTimerTime());
+        bundle.putFloat("running-distance", mTotalDistance);
 
         Fragment fragment = new CardioSummaryFragment();
         fragment.setArguments(bundle);
@@ -229,13 +251,18 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void updateUserPosition(Location location) {
-        //TODO: Dodać śledzenie trasy na mapie. (polyline)
         LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
-
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17));
+
         if (status.equals("running")) {
-            mPolylinePoints.add(position);
-            mPolyline.setPoints(mPolylinePoints);
+            if (mLastLocation != null) {
+                mTotalDistance += mLastLocation.distanceTo(location);
+                mDistanceView.setText(DataConversionService.convertDistance(mTotalDistance));
+                mPaceView.setText(DataConversionService.convertPace(mTimerService.getTimerTime(), mTotalDistance));
+            }
+            mPolylinePart.add(position);
+            mPolyline.setPoints(mPolylinePart);
+            mLastLocation = location;
         }
     }
 }

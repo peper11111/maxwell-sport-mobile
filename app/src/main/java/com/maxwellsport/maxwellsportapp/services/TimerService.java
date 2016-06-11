@@ -1,17 +1,15 @@
 package com.maxwellsport.maxwellsportapp.services;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.R;
-
 public class TimerService {
     protected final static String START_TIME_KEY = "start-time-key";
     protected final static String DIFF_TIME_KEY = "diff-time-key";
 
+    private long mTime;
     private long mStartTime;
     private long mDiffTime;
 
@@ -28,8 +26,8 @@ public class TimerService {
     private Runnable mTimerRunnable = new Runnable() {
         @Override
         public void run() {
-            long time = (SystemClock.uptimeMillis() - mStartTime) + mDiffTime;
-            setupStatsView(time);
+            mTime = (SystemClock.uptimeMillis() - mStartTime) + mDiffTime;
+            setupStatsView(mTime);
             mTimerHandler.post(mTimerRunnable);
         }
     };
@@ -43,7 +41,6 @@ public class TimerService {
     public void stopTimer() {
         if (mStatus.equals("running"))
             pauseTimer();
-        mStartTime = mDiffTime;
         mStatus = "stopped";
         mDiffTime = 0;
     }
@@ -81,6 +78,6 @@ public class TimerService {
     }
 
     public long getTimerTime() {
-        return mStartTime;
+        return mTime;
     }
 }

@@ -3,6 +3,8 @@ package com.maxwellsport.maxwellsportapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.services.DataConversionService;
-import com.maxwellsport.maxwellsportapp.services.LocaleService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+
+import java.util.Locale;
 
 public class LoginActivity extends Activity {
     private Context mContext;
@@ -29,7 +32,7 @@ public class LoginActivity extends Activity {
 
         /* Wczytanie języka aplikacji. Domyślny język angielski */
         String language = SharedPreferencesService.getString(mContext, SharedPreferencesService.settings_language_key, "en");
-        LocaleService.setLocale(mContext, language);
+        setLocale(mContext, language);
 
         setContentView(R.layout.activity_login);
         mUsernameField = (EditText) findViewById(R.id.username_field);
@@ -72,5 +75,17 @@ public class LoginActivity extends Activity {
             setTheme(DataConversionService.convertTheme(style));
             mUsernameField.setText(SharedPreferencesService.getString(mContext, SharedPreferencesService.app_username_key, ""));
         }
+    }
+
+    public static void setLocale(Context context, String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+
+        Resources resources = context.getResources();
+
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 }

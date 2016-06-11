@@ -31,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/cardio_timer"
-                android:textColor="@color/stats_text_color" />
+                android:textColor="@color/stats_text_color"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/cardio_timer_view"
@@ -39,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/default_timer_value"
-                android:textColor="@color/stats_text_color" />
+                android:textColor="@color/stats_text_color"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/cardio_distance"
-                android:textColor="@color/stats_text_color" />
+                android:textColor="@color/stats_text_color"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/cardio_distance_view"
@@ -61,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/default_distance_value"
-                android:textColor="@color/stats_text_color" />
+                android:textColor="@color/stats_text_color"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,7 +79,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/cardio_pace"
-                android:textColor="@color/stats_text_color" />
+                android:textColor="@color/stats_text_color"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/cardio_pace_view"
@@ -83,7 +88,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/default_zero_value"
-                android:textColor="@color/stats_text_color" />
+                android:textColor="@color/stats_text_color"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -103,7 +109,7 @@
             android:layout_marginRight="@dimen/cardio_fab_start_margin_right"
             android:layout_marginTop="@dimen/cardio_fab_start_margin_top"
             android:src="@drawable/ic_fab_start"
-            app:backgroundTint="@color/material_green_500"/>
+            app:backgroundTint="@color/material_green_500" />
     </LinearLayout>
 
     <LinearLayout
@@ -123,7 +129,7 @@
             android:layout_marginRight="@dimen/cardio_fab_pause_margin_right"
             android:layout_marginTop="@dimen/cardio_fab_pause_margin_top"
             android:src="@drawable/ic_fab_pause"
-            app:backgroundTint="@color/material_blue_500"/>
+            app:backgroundTint="@color/material_blue_500" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/cardio_fab_stop"
@@ -134,6 +140,6 @@
             android:layout_marginRight="@dimen/cardio_fab_stop_margin_right"
             android:layout_marginTop="@dimen/cardio_fab_stop_margin_top"
             android:src="@drawable/ic_fab_stop"
-            app:backgroundTint="@color/material_red_500"/>
+            app:backgroundTint="@color/material_red_500" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

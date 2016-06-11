@@ -26,7 +26,7 @@
     <string name="toolbar_training_summary_title">Training Summary</string>
 
     <!-- Domyslne warości pól -->
-    <string name="default_timer_value">00:00:00</string>
+    <string name="default_timer_value">00:00</string>
     <string name="default_distance_value">0.00</string>
     <string name="default_zero_value">0</string>
 
@@ -82,7 +82,7 @@
     <string name="training_completed">COMPLETED</string>
     <string name="training_not_completed">NOT COMPLETED</string>
     <string name="training_popup_description">Description</string>
-    <string name="training_timer">Time [h]</string>
+    <string name="training_timer">Time [min]</string>
 
     <!-- Training Summary Fragment-->
     <string name="training_summary_title">Training summary</string>
@@ -91,9 +91,9 @@
     <string name="training_summary_rate_title">Rate your performance</string>
 
     <!-- Cardio Fragment -->
-    <string name="cardio_timer">"Time [h]"</string>
+    <string name="cardio_timer">"Time [min]"</string>
     <string name="cardio_distance">"Distance [km]"</string>
-    <string name="cardio_pace">"Pace [km/h]"</string>
+    <string name="cardio_pace">"Pace [min/km]"</string>
 
     <!-- Cardio Summary Fragment-->
     <string name="cardio_summary_title">Run summary</string>

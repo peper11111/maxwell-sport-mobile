@@ -26,8 +26,8 @@
     <string name="toolbar_training_summary_title">Podsumowanie treningu</string>
 
     <!-- Domyslne warości pól -->
-    <string name="default_timer_value">00:00:00</string>
-    <string name="default_distance_value">0.00</string>
+    <string name="default_timer_value">00:00</string>
+    <string name="default_distance_value">0,00</string>
     <string name="default_zero_value">0</string>
 
     <!-- Nazwy pól w navigation drawer -->
@@ -82,7 +82,7 @@
     <string name="training_completed">ZAKOŃCZONY</string>
     <string name="training_not_completed">NIE ZAKOŃCZONY</string>
     <string name="training_popup_description">Opis ćwiczenia</string>
-    <string name="training_timer">Czas [h]</string>
+    <string name="training_timer">Czas [min]</string>
 
     <!-- Training Summary Fragment-->
     <string name="training_summary_title">Podsumowanie treningu</string>
@@ -91,9 +91,9 @@
     <string name="training_summary_rate_title">Oceń swój trening</string>
 
     <!-- Cardio Fragment -->
-    <string name="cardio_timer">"Czas [h]"</string>
+    <string name="cardio_timer">"Czas [min]"</string>
     <string name="cardio_distance">"Dystans [km]"</string>
-    <string name="cardio_pace">"Tempo [km/h]"</string>
+    <string name="cardio_pace">"Tempo [min/km]"</string>
 
     <!-- Cardio Summary Fragment-->
     <string name="cardio_summary_title">Podsumowanie biegu</string>

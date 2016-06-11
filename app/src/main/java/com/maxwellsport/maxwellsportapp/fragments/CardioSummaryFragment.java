@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.maxwellsport.maxwellsportapp.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.services.DataConversionService;
 import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
 
 import java.util.Locale;
@@ -32,8 +33,17 @@ public class CardioSummaryFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_cardio_summary, container, false);
 
         Bundle args = getArguments();
+
         long runningTime = args.getLong("running-time");
-        setTimeView(runningTime);
+        TextView timeView = (TextView) mView.findViewById(R.id.cardio_summary_time_value);
+        timeView.setText(DataConversionService.convertTime(runningTime));
+
+        float runningDistance = args.getFloat("running-distance");
+        TextView distanceView = (TextView) mView.findViewById(R.id.cardio_summary_distance_value);
+        distanceView.setText(DataConversionService.convertDistance(runningDistance));
+
+        TextView paceView = (TextView) mView.findViewById(R.id.cardio_summary_pace_value);
+        paceView.setText(DataConversionService.convertPace(runningTime, runningDistance));
 
         int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
@@ -63,16 +73,6 @@ public class CardioSummaryFragment extends Fragment {
         });
 
         return mView;
-    }
-
-    private void setTimeView(long time) {
-        long seconds = time / 1000;
-        long minutes = seconds / 60;
-        seconds = seconds % 60;
-        long hours = minutes / 60;
-        minutes = minutes % 60;
-        TextView timeView = (TextView) mView.findViewById(R.id.cardio_summary_time_value);
-        timeView.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
     }
 
     private void colorStars(int n) {

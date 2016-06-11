@@ -1,17 +1,38 @@
 package com.maxwellsport.maxwellsportapp.services;
 
+import android.util.Log;
+
 import com.maxwellsport.maxwellsportapp.R;
 
 import java.util.Locale;
 
 public class DataConversionService {
     public static String convertTime(long time) {
+        /* Wywietlanie w minutach */
         long seconds = time / 1000;
         long minutes = seconds / 60;
         seconds = seconds % 60;
-        long hours = minutes / 60;
-        minutes = minutes % 60;
-        return String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+    }
+
+    public static String convertDistance(float meters) {
+        /* Wyswietlanie w kilometrach */
+        float distance = meters / 1000;
+        return String.format(Locale.getDefault(), "%.02f", distance);
+    }
+
+    public static String convertPace(long time, float distance) {
+        float meters = distance;
+        float seconds = time / 1000;
+
+        float minutes = seconds / 60;
+        float kilometers = meters / 1000;
+
+        float pace = minutes / kilometers;
+        /* Nie wyswietlam wyniku jezeli tempo jest wieksze niz 60 min/km */
+        if (pace > 60)
+            pace = 0;
+        return String.format(Locale.getDefault(), "%.0f", pace);
     }
 
     public static int convertLanguage(String code) {
