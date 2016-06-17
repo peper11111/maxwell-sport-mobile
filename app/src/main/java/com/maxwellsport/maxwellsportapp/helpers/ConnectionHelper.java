@@ -1,4 +1,4 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class ConnectionService {
+public class ConnectionHelper {
 
     private String mHost = "http://10.42.0.1:10000";
     private String mURL = "http://10.42.0.1:10000/api/training/user/1";
@@ -22,19 +22,19 @@ public class ConnectionService {
     private String mInputStream;
     private String mRequestStringResult;
     private Context mContext;
-    private JSONParserService mParserService;
+    private JSONParserHelper mParserService;
 
-    public ConnectionService(Context context){
+    public ConnectionHelper(Context context){
         /* set default values */
         mContext = context;
-        mParserService = new JSONParserService(mContext);
+        mParserService = new JSONParserHelper(mContext);
     }
 
     /* this method download or upload training/stats */
     public void connectToServer(){
         /* check if update or download is needed */
-        new DownloadService(mContext).execute(mURL);
-//        new UploadService(mContext).execute(mURL);
+        new DownloadHelper(mContext).execute(mURL);
+//        new UploadHelper(mContext).execute(mURL);
     }
 
     public String POST(String arg) throws  IOException{

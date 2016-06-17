@@ -1,26 +1,28 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
+
 import java.io.IOException;
 
-public class UploadService extends AsyncTask<String, Void, String>{
+public class UploadHelper extends AsyncTask<String, Void, String>{
 
     private Context mContext;
-    private ConnectionService mConnectionService;
+    private ConnectionHelper mConnectionHelper;
 
-    public UploadService(Context context){
+    public UploadHelper(Context context){
         this.mContext = context;
-        mConnectionService = new ConnectionService(mContext);
+        mConnectionHelper = new ConnectionHelper(mContext);
     }
 
     @Override
     protected String doInBackground(String... urls) {
         try {
-            return mConnectionService.POST(urls[0]);
+            return mConnectionHelper.POST(urls[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }

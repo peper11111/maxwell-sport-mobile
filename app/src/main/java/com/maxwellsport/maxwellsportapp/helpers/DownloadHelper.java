@@ -1,24 +1,26 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
+
 import java.io.IOException;
 
-public class DownloadService extends AsyncTask<String, Void, String> {
+public class DownloadHelper extends AsyncTask<String, Void, String> {
 
     private Context mContext;
 
-    public DownloadService(Context context){
+    public DownloadHelper(Context context){
         this.mContext = context;
     }
 
     @Override
     protected String doInBackground(String... urls) {
         try {
-            return ConnectionService.GET(urls[0]);
+            return ConnectionHelper.GET(urls[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,7 +32,7 @@ public class DownloadService extends AsyncTask<String, Void, String> {
         /* test message */
         Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
         /* saving json to SharedPreferences */
-//        JSONParserService parserService = new JSONParserService(mContext);
+//        JSONParserHelper parserService = new JSONParserHelper(mContext);
 //        parserService.saveJsonToSharedPreferences(json);
 
     }

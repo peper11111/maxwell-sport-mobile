@@ -1,11 +1,11 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 
 import android.content.Context;
 import android.content.res.TypedArray;
 
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.models.Exercise;
+import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class JSONParserService {
+public class JSONParserHelper {
 
     private Context mContext;
     private String mJsonString;
@@ -37,22 +37,22 @@ public class JSONParserService {
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_BODY_PART = "bodyPart";
 
-    public JSONParserService(Context context){
+    public JSONParserHelper(Context context){
         mContext = context;
         mBodyPartSet = new HashSet<>();
-        if(!SharedPreferencesService.getBoolean(mContext, SharedPreferencesService.is_training_downloaded_key, false))
+        if(!SharedPreferencesHelper.getBoolean(mContext, SharedPreferencesHelper.is_training_downloaded_key, false))
             mJsonString = getJsonFromSharedPreferences();
 
     }
 
     /* save JSON (as String) response to SharedPreferences */
     public void saveJsonToSharedPreferences(String jsonString){
-        SharedPreferencesService.putValue(mContext, SharedPreferencesService.downloaded_training_json_key, jsonString);
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.downloaded_training_json_key, jsonString);
     }
 
     /* read JSON (String) from SharedPreferences */
     public String getJsonFromSharedPreferences(){
-        return SharedPreferencesService.getString(mContext, SharedPreferencesService.downloaded_training_json_key, "");
+        return SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.downloaded_training_json_key, "");
     }
 
     /* update trainig JSON from SharedPreferences */
@@ -61,12 +61,12 @@ public class JSONParserService {
     }
 
     /* return exercise arraylist for current training */
-    public  ArrayList<Exercise> getExerciseListForCurrentTraining(){
+    public  ArrayList<ExerciseModel> getExerciseListForCurrentTraining(){
         /* if training is not downloaded return one empty exercise */
-        if(SharedPreferencesService.getBoolean(mContext, SharedPreferencesService.is_training_downloaded_key, false)){
+        if(SharedPreferencesHelper.getBoolean(mContext, SharedPreferencesHelper.is_training_downloaded_key, false)){
             try {
                 /* current training id */
-                int currentTrainingID = SharedPreferencesService.getInt(mContext, SharedPreferencesService.current_training_number_key,0);
+                int currentTrainingID = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.current_training_number_key,0);
                 /* json array with trainings for each day */
                 JSONArray jsonArray = new JSONArray(mJsonString);
                 /* json object witch current training */
@@ -74,14 +74,14 @@ public class JSONParserService {
                 /* json array with exercises from current training */
                 JSONArray exerciseArray = training.getJSONArray(TAG_EXERCISE_LIST);
                 /* arraylist with exercises for current training */
-                ArrayList<Exercise> exercisesList = new ArrayList<>();
+                ArrayList<ExerciseModel> exercisesList = new ArrayList<>();
                 String exerciseName;
                 /* fill exercise list */
                 for(int i=0; i<exerciseArray.length(); i++){
                     JSONObject exerciseJSON = exerciseArray.getJSONObject(i);
                     exerciseName = getExerciseNameById(exerciseJSON.getInt(TAG_EXE_ID));
                     mBodyPartSet.add(exerciseJSON.getString(TAG_BODY_PART));
-                    exercisesList.add(new Exercise(exerciseJSON.getInt(TAG_REPS), exerciseJSON.getInt(TAG_SETS), exerciseJSON.getInt(TAG_WEIGHT), exerciseName));
+                    exercisesList.add(new ExerciseModel(exerciseJSON.getInt(TAG_REPS), exerciseJSON.getInt(TAG_SETS), exerciseJSON.getInt(TAG_WEIGHT), exerciseName));
                 }
 //                SharedPreferencesService.putValue(mContext,SharedPreferencesService.training_body_part_key, mBodyPartSet.toString());
                 return exercisesList;
@@ -89,8 +89,8 @@ public class JSONParserService {
                 e.printStackTrace();
             }
         }else {
-            ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
-            exerciseArrayList.add(new Exercise(0, 0, 0, "Pobierz trening"));
+            ArrayList<ExerciseModel> exerciseArrayList = new ArrayList<>();
+            exerciseArrayList.add(new ExerciseModel(0, 0, 0, "Pobierz trening"));
             return exerciseArrayList;
         }
         return null;

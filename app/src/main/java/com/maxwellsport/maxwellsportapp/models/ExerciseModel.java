@@ -1,7 +1,6 @@
 package com.maxwellsport.maxwellsportapp.models;
 
 import android.graphics.drawable.Drawable;
-import android.os.Parcelable;
 
 import java.io.Serializable;
 
@@ -26,19 +25,20 @@ public class ExerciseModel extends DefaultListItemModel implements Serializable 
         mDifficulty = difficulty;
     }
 
-    public Exercise(int reps, int sets, int weight, String name){
+    public ExerciseModel(int reps, int sets, int weight, String title) {
         mReps = reps;
         mSets = sets;
         mWeight = weight;
-        mName = name;
+        mTitle = title;
     }
 
+
     public String getmName() {
-        return mName;
+        return mTitle;
     }
 
     public void setmName(String mName) {
-        this.mName = mName;
+        this.mTitle = mName;
     }
 
     public int getmSets() {

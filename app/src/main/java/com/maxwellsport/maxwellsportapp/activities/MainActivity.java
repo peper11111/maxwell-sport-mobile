@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
@@ -20,7 +19,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
@@ -33,11 +31,7 @@ import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
 import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
 import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
-import com.maxwellsport.maxwellsportapp.services.ConnectionService;
-import com.maxwellsport.maxwellsportapp.services.JSONParserService;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
-
-import java.io.IOException;
+import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView mNavigationView;
@@ -94,11 +88,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
 
         /* Receiving/Sending JSON */
-        if(!ConnectionService.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))){
+        if(!ConnectionHelper.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))){
             Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
         }else{
-            ConnectionService connectionService = new ConnectionService(this);
-            connectionService.connectToServer();
+            ConnectionHelper connectionHelper = new ConnectionHelper(this);
+            connectionHelper.connectToServer();
         }
     }
 

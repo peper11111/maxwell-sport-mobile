@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
-import com.maxwellsport.maxwellsportapp.models.Exercise;
 import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
+import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
 import java.util.ArrayList;
 
@@ -26,14 +26,14 @@ public class TrainingDayFragment extends Fragment {
     /* time count */
     protected final static String STATUS_KEY = "status-key";
     public String status;
-    private TimerHelper timerHelper;
+    private TimerHelper mTimerHelper;
 
     //    TODO: zebrac wlasciwe dane do wyswietlenia
     /* get exercise name array for current training from sharedPreferences */
     // testowe dane
     private String[] mExerciseNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie", "Zginanie przedramion ze sztangielkami z obrotem nadgarstka", "Exercise 3", "Exercise 4", "Exercise 5",
             "Exercise 6", "Exercise 7", "Exercise 8", "Exercise 9", "Exercise 10"};
-//    private ArrayList<String> mExerciseNameArrayList = JSONParserService.getExerciseNameListForCurrentTraining();
+//    private ArrayList<String> mExerciseNameArrayList = JSONParserHelper.getExerciseNameListForCurrentTraining();
     private ArrayList<String> mExerciseNameArrayList;
     private ListView mListView;
     private TrainingDayListAdapter mAdapter;
@@ -43,7 +43,7 @@ public class TrainingDayFragment extends Fragment {
     private ArrayList<Integer> positionList;
 
     /* własciwa lista z cwiczeniami (test) */
-    private ArrayList<Exercise> mExerciseList; // pobrac ja z JSONParserService
+    private ArrayList<ExerciseModel> mExerciseList; // pobrac ja z JSONParserHelper
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -67,12 +67,12 @@ public class TrainingDayFragment extends Fragment {
         mListView.setAdapter(mAdapter);
 
         /* Ustawienie timera do przycisków */
-        timerHelper = new TimerHelper((TextView) v.findViewById(R.id.training_timer_view));
+        mTimerHelper = new TimerHelper((TextView) v.findViewById(R.id.training_timer_view));
         onRestoreInstanceState(savedInstanceState);
         status = "running";
-        timerHelper.setupTimerService(status);
+        mTimerHelper.setupTimerService(status);
         setupTimeButtonListeners();
-        timerHelper.startTimer();
+        mTimerHelper.startTimer();
 
         return v;
     }
@@ -83,9 +83,9 @@ public class TrainingDayFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 status = "stopped";
-                timerHelper.stopTimer();
-                pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
-                long trainingTime = timerHelper.getTimerTime();
+                mTimerHelper.stopTimer();
+                mPauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
+                long trainingTime = mTimerHelper.getTimerTime();
                 Bundle bundle = new Bundle();
                 bundle.putLong("training-time", trainingTime);
                 TrainingSummaryFragment fragment = new TrainingSummaryFragment();
@@ -99,12 +99,12 @@ public class TrainingDayFragment extends Fragment {
             public void onClick(View v) {
                 if (status.equals("running")) {
                     status = "paused";
-                    timerHelper.pauseTimer();
-                    pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
+                    mTimerHelper.pauseTimer();
+                    mPauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
                 } else if (status.equals("paused")) {
                     status = "running";
-                    timerHelper.startTimer();
-                    pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
+                    mTimerHelper.startTimer();
+                    mPauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
                 }
             }
         });
@@ -116,7 +116,7 @@ public class TrainingDayFragment extends Fragment {
 
     /* Pomocnicza metoda do wczytania danych z Bundle */
     private void onRestoreInstanceState(Bundle savedInstanceState) {
-        timerHelper.onRestoreInstanceState(savedInstanceState);
+        mTimerHelper.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             status = savedInstanceState.getString(STATUS_KEY);
         } else {
@@ -137,7 +137,7 @@ public class TrainingDayFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        timerHelper.onSaveInstanceState(outState);
+        mTimerHelper.onSaveInstanceState(outState);
         /* Zapisanie pozycji listy */
         int index = mListView.getFirstVisiblePosition();
         View v = mListView.getChildAt(0);

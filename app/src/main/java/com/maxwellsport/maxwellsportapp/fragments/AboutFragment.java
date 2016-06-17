@@ -3,7 +3,6 @@ package com.maxwellsport.maxwellsportapp.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,12 +14,12 @@ import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.services.ConnectionService;
+import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
 
 
 public class AboutFragment extends Fragment {
     MainActivity mContext;
-    private ConnectionService mConnectionService;
+    private ConnectionHelper mConnectionHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,13 +28,13 @@ public class AboutFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_about, container, false);
 
-        mConnectionService = new ConnectionService(getActivity());
+        mConnectionHelper = new ConnectionHelper(getActivity());
 
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.github_link);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mConnectionService.isNetworkAvailable((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))) {
+                if (mConnectionHelper.isNetworkAvailable((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))) {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addCategory(Intent.CATEGORY_BROWSABLE);
