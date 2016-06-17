@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -31,10 +32,12 @@ public class LocationUpdateService extends Service implements ConnectionCallback
         buildGoogleApiClient();
         createLocationRequest();
         mGoogleApiClient.connect();
+        Toast.makeText(this,"Location Update Service Created",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDestroy() {
+        Toast.makeText(this,"Location Update Service Destroyed",Toast.LENGTH_SHORT).show();
         stopLocationUpdates();
         mGoogleApiClient.disconnect();
         super.onDestroy();

@@ -3,6 +3,7 @@ package com.maxwellsport.maxwellsportapp.fragments;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.location.Location;
@@ -120,6 +121,10 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onStart() {
         super.onStart();
+        mLocationUpdateReceiver = new LocationUpdateReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(LocationUpdateService.UPDATE_MAP_POSITION);
+        mContext.registerReceiver(mLocationUpdateReceiver, intentFilter);
     }
 
     @Override
@@ -130,6 +135,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onPause() {
+        mContext.unregisterReceiver(mLocationUpdateReceiver);
         mMapView.onPause();
         super.onPause();
     }
@@ -254,6 +260,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         mContext.addFragment(fragment);
     }
 
+    //TODO: Naprawic rysowanie trasy w tle
     public void updateUserPosition(Location location) {
         LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17));

@@ -109,8 +109,9 @@ public class CardioSummaryFragment extends Fragment {
             SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_longest_run_duration_key, time);
         if (SharedPreferencesHelper.getFloat(mContext, SharedPreferencesHelper.profile_stats_longest_run_distance_key, 0) < distance)
             SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_longest_run_distance_key, distance);
-        if (SharedPreferencesHelper.getFloat(mContext, SharedPreferencesHelper.profile_stats_biggest_run_pace_key, Float.MAX_VALUE) > pace)
-            SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_biggest_run_pace_key, pace);
+        if (pace > 0)
+            if (SharedPreferencesHelper.getFloat(mContext, SharedPreferencesHelper.profile_stats_biggest_run_pace_key, Float.MAX_VALUE) > pace)
+                SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_biggest_run_pace_key, pace);
 
         /* Srednie dane */
         int run_numbers = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.profile_stats_run_number_key, 0);
