@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.adapters.AtlasExerciseGroupListAdapter;
-import com.maxwellsport.maxwellsportapp.models.ExerciseGroup;
+import com.maxwellsport.maxwellsportapp.adapters.DefaultListAdapter;
+import com.maxwellsport.maxwellsportapp.models.DefaultListItemModel;
 
 import java.util.ArrayList;
 
 public class AtlasExerciseGroupFragment extends Fragment {
     MainActivity mContext;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
@@ -26,17 +27,17 @@ public class AtlasExerciseGroupFragment extends Fragment {
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
         // Construct the data source
-        ArrayList<ExerciseGroup> array = new ArrayList<>();
+        ArrayList<DefaultListItemModel> array = new ArrayList<>();
         String[] groupNames = getResources().getStringArray(R.array.atlas_exercise_group_name);
         TypedArray groupIcons = getResources().obtainTypedArray(R.array.atlas_exercise_group_icon);
 
         for (int i = 0; i < groupNames.length; i++) {
-            array.add(new ExerciseGroup(groupNames[i], groupIcons.getDrawable(i)));
+            array.add(new DefaultListItemModel(groupNames[i], groupIcons.getDrawable(i)));
         }
         groupIcons.recycle();
 
         // Create the adapter to convert the array to views
-        AtlasExerciseGroupListAdapter adapter = new AtlasExerciseGroupListAdapter(mContext, array);
+        DefaultListAdapter adapter = new DefaultListAdapter(mContext, R.layout.list_item_atlas_exercise_group, array);
         // Attach the adapter to a ListView
         ListView listView = (ListView) v.findViewById(R.id.default_list_view);
         listView.setAdapter(adapter);

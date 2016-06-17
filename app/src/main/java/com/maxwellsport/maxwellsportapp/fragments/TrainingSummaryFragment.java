@@ -13,11 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
-
-import java.util.Locale;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 public class TrainingSummaryFragment extends Fragment {
     private MainActivity mContext;
@@ -33,9 +32,10 @@ public class TrainingSummaryFragment extends Fragment {
 
         Bundle args = getArguments();
         long trainingTime = args.getLong("training-time");
-        setTimeView(trainingTime);
+        TextView timeView = (TextView) mView.findViewById(R.id.training_summary_time_value);
+        timeView.setText(DataConversionHelper.convertTime(trainingTime));
 
-        int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
+        int style = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
         TypedArray array = mContext.obtainStyledAttributes(style, attr);
         mColor = array.getColor(0, Color.WHITE);
@@ -63,16 +63,6 @@ public class TrainingSummaryFragment extends Fragment {
         });
 
         return mView;
-    }
-
-    private void setTimeView(long time) {
-        long seconds = time / 1000;
-        long minutes = seconds / 60;
-        seconds = seconds % 60;
-        long hours = minutes / 60;
-        minutes = minutes % 60;
-        TextView timeView = (TextView) mView.findViewById(R.id.training_summary_time_value);
-        timeView.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
     }
 
     private void colorStars(int n) {

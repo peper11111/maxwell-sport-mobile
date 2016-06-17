@@ -1,28 +1,26 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
 
-public class TimerService {
+public class TimerHelper {
     protected final static String START_TIME_KEY = "start-time-key";
     protected final static String DIFF_TIME_KEY = "diff-time-key";
 
+    private long mTime;
     private long mStartTime;
     private long mDiffTime;
 
     private TextView mTimerView;
     private Handler mTimerHandler;
-    private Context mContext;
 
     private String mStatus;
 
-    public TimerService(Context context, TextView timerView) {
-        mContext = context;
+    public TimerHelper(TextView timerView) {
         mTimerHandler = new Handler();
         mTimerView = timerView;
     }
@@ -30,8 +28,8 @@ public class TimerService {
     private Runnable mTimerRunnable = new Runnable() {
         @Override
         public void run() {
-            long time = (SystemClock.uptimeMillis() - mStartTime) + mDiffTime;
-            setupStatsView(time);
+            mTime = (SystemClock.uptimeMillis() - mStartTime) + mDiffTime;
+            setupStatsView(mTime);
             mTimerHandler.post(mTimerRunnable);
         }
     };
@@ -45,10 +43,8 @@ public class TimerService {
     public void stopTimer() {
         if (mStatus.equals("running"))
             pauseTimer();
-        mStartTime = mDiffTime;
         mStatus = "stopped";
         mDiffTime = 0;
-        mTimerView.setText(mContext.getResources().getString(R.string.default_timer_value));
     }
 
     public void pauseTimer() {
@@ -58,7 +54,7 @@ public class TimerService {
     }
 
     private void setupStatsView(long time) {
-        mTimerView.setText(DataConversionService.convertTime(time));
+        mTimerView.setText(DataConversionHelper.convertTime(time));
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -84,6 +80,6 @@ public class TimerService {
     }
 
     public long getTimerTime() {
-        return mStartTime;
+        return mTime;
     }
 }

@@ -26,7 +26,7 @@
     <string name="toolbar_training_summary_title">Training Summary</string>
 
     <!-- Domyslne warości pól -->
-    <string name="default_timer_value">00:00:00</string>
+    <string name="default_timer_value">00:00</string>
     <string name="default_distance_value">0.00</string>
     <string name="default_zero_value">0</string>
 
@@ -68,7 +68,7 @@
     <string name="profile_longest_run_distance">Longest run distance:</string>
     <string name="profile_last_run_pace">Last run pace:</string>
     <string name="profile_average_run_pace">Average run pace:</string>
-    <string name="profile_biggest_run_pace">Biggest run pace:</string>
+    <string name="profile_biggest_run_pace">Best run pace:</string>
 
     <!-- Training Fragment-->
     <string name="training_title">Training 1</string>
@@ -82,7 +82,7 @@
     <string name="training_completed">COMPLETED</string>
     <string name="training_not_completed">NOT COMPLETED</string>
     <string name="training_popup_description">Description</string>
-    <string name="training_timer">Time [h]</string>
+    <string name="training_timer">Time [min]</string>
 
     <!-- Training Summary Fragment-->
     <string name="training_summary_title">Training summary</string>
@@ -91,9 +91,9 @@
     <string name="training_summary_rate_title">Rate your performance</string>
 
     <!-- Cardio Fragment -->
-    <string name="cardio_timer">"Time [h]"</string>
+    <string name="cardio_timer">"Time [min]"</string>
     <string name="cardio_distance">"Distance [km]"</string>
-    <string name="cardio_pace">"Pace [km/h]"</string>
+    <string name="cardio_pace">"Pace [min/km]"</string>
 
     <!-- Cardio Summary Fragment-->
     <string name="cardio_summary_title">Run summary</string>
@@ -229,13 +229,23 @@
     <string name="about_copyright">© RafPep Inc. 2016 All rights reserved</string>
 
     <!-- Settings Fragment -->
-    <string name="settings_theme_label">Theme</string>
-    <string name="settings_language_label">Language</string>
-    <string name="settings_default_tab_label">Default tab</string>
-    <string name="settings_stats_label">Clear statistics</string>
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_subtitle">Current language:</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_subtitle">Current theme:</string>
+    <string name="settings_default_tab_title">Default tab</string>
+    <string name="settings_default_tab_subtitle">Current default tab:</string>
+    <string name="settings_stats_title">Clear statistics</string>
+    <string name="settings_stats_subtitle">Clears all your local statistics</string>
+    <string name="settings_server_title">Server address</string>
+    <string name="settings_server_subtitle">Current server address:</string>
 
     <string name="settings_language_polish">Polish</string>
     <string name="settings_language_english">English</string>
+
+    <string name="settings_server_label">Insert new server address</string>
+    <string name="settings_server_save_button">Save</string>
+    <string name="settings_server_restore_button">Restore default</string>
 
     <!-- Theme color names -->
     <string name="theme_color_red">Red</string>
@@ -266,10 +276,11 @@
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Authentication error</string>
     <string name="toast_msg_theme_changed">App theme has been changed</string>
-    <string name="toast_mgs_language_changed">App language has been changed</string>
-    <string name="toast_mgs_default_tab_changed">Default app tab has been changed</string>
+    <string name="toast_msg_language_changed">App language has been changed</string>
+    <string name="toast_msg_default_tab_changed">Default app tab has been changed</string>
+    <string name="toast_msg_stats_cleared">Local statistics has been cleared</string>
     <string name="toast_msg_network_error">Network not available</string>
-    <!-- Toasts -->
-    <string name="theme_change_info">App theme has been changed</string>
-    <string name="network_status_info">Network not available</string>
+    <string name="toast_msg_server_address_error">Server address is incorrect</string>
+    <string name="toast_msg_server_address_changed">Server address has been changed</string>
+    <string name="toast_msg_server_address_restored">Default server address has been restored</string>
 </resources>

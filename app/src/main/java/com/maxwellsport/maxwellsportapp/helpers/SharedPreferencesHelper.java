@@ -1,4 +1,4 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.content.SharedPreferences.Editor;
 
 import java.util.Set;
 
-public class SharedPreferencesService {
+public class SharedPreferencesHelper {
     private static final String TAG = "maxwell-sport";
     private static final int MODE = Context.MODE_PRIVATE;
 
@@ -15,23 +15,24 @@ public class SharedPreferencesService {
     public static final String profile_user_name_key = "profile-user-name";
     public static final String profile_user_email_key = "profile-user-email";
     public static final String profile_user_active_from_key = "profile-user-active-from";
-    public static final String profile_stats_last_training_date_key = "profile-training-last_date";
-    public static final String profile_stats_last_training_duration_key = "profile-training-last-training-duration";
-    public static final String profile_stats_average_training_duration_key = "profile-training-average-training-duration";
-    public static final String profile_stats_longest_training_duration_key ="profile-training-longest-training-duration";
-    public static final String profile_stats_last_exercise_amount_key = "profile-training-last-exercise-amount";
-    public static final String profile_stats_average_exercise_amount_key ="profile-training-average-exercise-amount";
-    public static final String profile_stats_biggest_exercise_amount_key ="profile-training-biggest-exercise-amount";
-    public static final String profile_stats_last_run_date_key ="profile-running-last-run-date";
-    public static final String profile_stats_last_run_duration_key ="profile-running-last-run-duration";
-    public static final String profile_stats_average_run_duration_key ="profile-running-average-run-duration";
-    public static final String profile_stats_longest_run_duration_key ="profile-running-longest-run-duration";
-    public static final String profile_stats_last_run_distance_key ="profile-running-last-run-distance";
-    public static final String profile_stats_average_run_distance_key ="profile-running-average-run-distance";
-    public static final String profile_stats_longest_run_distance_key ="profile-running-longest-run-distance";
-    public static final String profile_stats_last_run_pace_key ="profile-running-last-run-pace";
-    public static final String profile_stats_average_run_pace_key ="profile-running-average-run-pace";
-    public static final String profile_stats_biggest_run_pace_key ="profile-running-biggest-run-pace";
+    public static final String profile_stats_last_training_date_key = "profile-stats-last-training-date";
+    public static final String profile_stats_last_training_duration_key = "profile-stats-last-training-duration";
+    public static final String profile_stats_average_training_duration_key = "profile-stats-average-training-duration";
+    public static final String profile_stats_longest_training_duration_key = "profile-stats-longest-training-duration";
+    public static final String profile_stats_last_exercise_amount_key = "profile-stats-last-exercise-amount";
+    public static final String profile_stats_average_exercise_amount_key = "profile-stats-average-exercise-amount";
+    public static final String profile_stats_biggest_exercise_amount_key = "profile-stats-biggest-exercise-amount";
+    public static final String profile_stats_run_number_key = "profile-stats-run-number";
+    public static final String profile_stats_last_run_date_key = "profile-stats-last-run-date";
+    public static final String profile_stats_last_run_duration_key = "profile-stats-last-run-duration";
+    public static final String profile_stats_average_run_duration_key = "profile-stats-average-run-duration";
+    public static final String profile_stats_longest_run_duration_key = "profile-stats-longest-run-duration";
+    public static final String profile_stats_last_run_distance_key = "profile-stats-last-run-distance";
+    public static final String profile_stats_average_run_distance_key = "profile-stats-average-run-distance";
+    public static final String profile_stats_longest_run_distance_key = "profile-stats-longest-run-distance";
+    public static final String profile_stats_last_run_pace_key = "profile-stats-last-run-pace";
+    public static final String profile_stats_average_run_pace_key = "profile-stats-average-run-pace";
+    public static final String profile_stats_biggest_run_pace_key = "profile-stats-biggest-run-pace";
     public static final String settings_theme_key = "settings-theme";
     public static final String settings_language_key = "settings-language";
     public static final String settings_default_tab_key = "settings-default-tab";
@@ -40,6 +41,9 @@ public class SharedPreferencesService {
     public static final String current_training_number_key = "current_training";
     public static final String is_training_downloaded_key = "training_done";
     public static final String training_body_part_key = "body_part_list";
+    public static final String settings_server_address_key = "settings-settings-server-address";
+    public static final String settings_server_port_key = "settings-settings-server-port";
+
 
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(TAG, MODE);
@@ -103,11 +107,5 @@ public class SharedPreferencesService {
 
     public static boolean contains(Context context, String key) {
         return getSharedPreferences(context).contains(key);
-    }
-
-    public static void saveValue(Context context, String key, long value) {
-        SharedPreferences.Editor editor = context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit();
-        editor.putLong(key, value);
-        editor.apply();
     }
 }

@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
 import com.maxwellsport.maxwellsportapp.models.Exercise;
-import com.maxwellsport.maxwellsportapp.services.TimerService;
+import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class TrainingDayFragment extends Fragment {
     /* time count */
     protected final static String STATUS_KEY = "status-key";
     public String status;
-    private TimerService mTimerService;
+    private TimerHelper timerHelper;
 
     //    TODO: zebrac wlasciwe dane do wyswietlenia
     /* get exercise name array for current training from sharedPreferences */
@@ -67,12 +67,12 @@ public class TrainingDayFragment extends Fragment {
         mListView.setAdapter(mAdapter);
 
         /* Ustawienie timera do przycisków */
-        mTimerService = new TimerService(mContext, (TextView) v.findViewById(R.id.training_timer_view));
+        timerHelper = new TimerHelper((TextView) v.findViewById(R.id.training_timer_view));
         onRestoreInstanceState(savedInstanceState);
         status = "running";
-        mTimerService.setupTimerService(status);
+        timerHelper.setupTimerService(status);
         setupTimeButtonListeners();
-        mTimerService.startTimer();
+        timerHelper.startTimer();
 
         return v;
     }
@@ -83,9 +83,9 @@ public class TrainingDayFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 status = "stopped";
-                mTimerService.stopTimer();
-                mPauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
-                long trainingTime = mTimerService.getTimerTime();
+                timerHelper.stopTimer();
+                pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
+                long trainingTime = timerHelper.getTimerTime();
                 Bundle bundle = new Bundle();
                 bundle.putLong("training-time", trainingTime);
                 TrainingSummaryFragment fragment = new TrainingSummaryFragment();
@@ -99,12 +99,12 @@ public class TrainingDayFragment extends Fragment {
             public void onClick(View v) {
                 if (status.equals("running")) {
                     status = "paused";
-                    mTimerService.pauseTimer();
-                    mPauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
+                    timerHelper.pauseTimer();
+                    pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
                 } else if (status.equals("paused")) {
                     status = "running";
-                    mTimerService.startTimer();
-                    mPauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
+                    timerHelper.startTimer();
+                    pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
                 }
             }
         });
@@ -116,7 +116,7 @@ public class TrainingDayFragment extends Fragment {
 
     /* Pomocnicza metoda do wczytania danych z Bundle */
     private void onRestoreInstanceState(Bundle savedInstanceState) {
-        mTimerService.onRestoreInstanceState(savedInstanceState);
+        timerHelper.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             status = savedInstanceState.getString(STATUS_KEY);
         } else {
@@ -137,7 +137,7 @@ public class TrainingDayFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mTimerService.onSaveInstanceState(outState);
+        timerHelper.onSaveInstanceState(outState);
         /* Zapisanie pozycji listy */
         int index = mListView.getFirstVisiblePosition();
         View v = mListView.getChildAt(0);

@@ -11,7 +11,7 @@
         android:layout_marginRight="8dp">
 
         <ImageView
-            android:id="@+id/atlas_exercise_list_view_item_icon"
+            android:id="@+id/default_list_item_drawable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/material_white"
@@ -26,7 +26,7 @@
 
 
     <TextView
-        android:id="@+id/atlas_exercise_list_view_item_name"
+        android:id="@+id/default_list_item_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"

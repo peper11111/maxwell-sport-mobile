@@ -12,13 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.models.Exercise;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 public class AtlasExerciseDetailsFragment extends Fragment {
     MainActivity mContext;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
@@ -26,18 +27,18 @@ public class AtlasExerciseDetailsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_atlas_exercise_details, container, false);
         Bundle bundle = getArguments();
-        Exercise exercise = (Exercise) bundle.getSerializable("exercise-class");
+        ExerciseModel exercise = (ExerciseModel) bundle.getSerializable("exercise-class");
 
         ImageView icon = (ImageView) v.findViewById(R.id.atlas_exercise_details_icon);
-        icon.setImageDrawable(exercise.getIcon());
+        icon.setImageDrawable(exercise.getItemDrawable());
 
         TextView name = (TextView) v.findViewById(R.id.atlas_exercise_details_name);
-        name.setText(exercise.getName());
+        name.setText(exercise.getItemTitle());
 
         TextView description = (TextView) v.findViewById(R.id.atlas_exercise_details_description);
         description.setText(exercise.getDescription());
 
-        int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
+        int style = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
         TypedArray array = mContext.obtainStyledAttributes(style, attr);
         int color = array.getColor(0, Color.WHITE);

@@ -26,7 +26,7 @@
     <string name="toolbar_training_summary_title">Podsumowanie treningu</string>
 
     <!-- Domyslne warości pól -->
-    <string name="default_timer_value">00:00:00</string>
+    <string name="default_timer_value">00:00</string>
     <string name="default_distance_value">0.00</string>
     <string name="default_zero_value">0</string>
 
@@ -68,7 +68,7 @@
     <string name="profile_longest_run_distance">Nadłuższy dystans biegu:</string>
     <string name="profile_last_run_pace">Tempo ostatniego biegu:</string>
     <string name="profile_average_run_pace">Średnie tempo biegu:</string>
-    <string name="profile_biggest_run_pace">Największe tempo biegu:</string>
+    <string name="profile_biggest_run_pace">Najlepsze tempo biegu:</string>
 
     <!-- Training Fragment-->
     <string name="training_title">Trening 1</string>
@@ -82,7 +82,7 @@
     <string name="training_completed">ZAKOŃCZONY</string>
     <string name="training_not_completed">NIE ZAKOŃCZONY</string>
     <string name="training_popup_description">Opis ćwiczenia</string>
-    <string name="training_timer">Czas [h]</string>
+    <string name="training_timer">Czas [min]</string>
 
     <!-- Training Summary Fragment-->
     <string name="training_summary_title">Podsumowanie treningu</string>
@@ -91,9 +91,9 @@
     <string name="training_summary_rate_title">Oceń swój trening</string>
 
     <!-- Cardio Fragment -->
-    <string name="cardio_timer">"Czas [h]"</string>
+    <string name="cardio_timer">"Czas [min]"</string>
     <string name="cardio_distance">"Dystans [km]"</string>
-    <string name="cardio_pace">"Tempo [km/h]"</string>
+    <string name="cardio_pace">"Tempo [min/km]"</string>
 
     <!-- Cardio Summary Fragment-->
     <string name="cardio_summary_title">Podsumowanie biegu</string>
@@ -229,13 +229,23 @@
     <string name="about_copyright">© RafPep Inc. 2016 Wszystkie prawa zastrzeżone</string>
 
     <!-- Settings Fragment -->
-    <string name="settings_theme_label">Motyw</string>
-    <string name="settings_language_label">Język</string>
-    <string name="settings_default_tab_label">Domyślna zakładka</string>
-    <string name="settings_stats_label">Wyczyść statystyki</string>
+    <string name="settings_language_title">Język</string>
+    <string name="settings_language_subtitle">Wybrany język:</string>
+    <string name="settings_theme_title">Motyw</string>
+    <string name="settings_theme_subtitle">Wybrany motyw:</string>
+    <string name="settings_default_tab_title">Domyślna zakładka</string>
+    <string name="settings_default_tab_subtitle">Wybrana domyślna zakładka:</string>
+    <string name="settings_stats_title">Wyczyść statystyki</string>
+    <string name="settings_stats_subtitle">Czyści wszystkie lokalne statystyki</string>
+    <string name="settings_server_title">Adres serwera</string>
+    <string name="settings_server_subtitle">Wybrany adres serwera:</string>
 
     <string name="settings_language_polish">Polski</string>
     <string name="settings_language_english">Angielski</string>
+
+    <string name="settings_server_label">Wprowadź nowy adres servera</string>
+    <string name="settings_server_save_button">Zapisz</string>
+    <string name="settings_server_restore_button">Przywróć domyślny</string>
 
     <!-- Theme color names -->
     <string name="theme_color_red">Czerwony</string>
@@ -269,7 +279,11 @@
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Błąd uwierzytelniania</string>
     <string name="toast_msg_theme_changed">Motyw aplikacji został zmieniony</string>
-    <string name="toast_mgs_language_changed">Język aplikacji został zmieniony</string>
-    <string name="toast_mgs_default_tab_changed">Domyślna zakładka aplikacji została zmieniona</string>
+    <string name="toast_msg_language_changed">Język aplikacji został zmieniony</string>
+    <string name="toast_msg_default_tab_changed">Domyślna zakładka aplikacji została zmieniona</string>
+    <string name="toast_msg_stats_cleared">Statystki lokalne zostały wyczyszczone</string>
     <string name="toast_msg_network_error">Sieć niedostępna</string>
+    <string name="toast_msg_server_address_error">Wprowadzony adres servera jest niepoprawny</string>
+    <string name="toast_msg_server_address_changed">Adres serwera został zmieniony</string>
+    <string name="toast_msg_server_address_restored">Przywrócono domyślny adres servera</string>
 </resources>

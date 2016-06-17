@@ -10,9 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -39,8 +39,8 @@ public class SettingsTabFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_default_tab_key, position);
-                Toast.makeText(mContext, R.string.toast_mgs_default_tab_changed, Toast.LENGTH_SHORT).show();
+                SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.settings_default_tab_key, position);
+                Toast.makeText(mContext, R.string.toast_msg_default_tab_changed, Toast.LENGTH_SHORT).show();
             }
         });
         return v;
