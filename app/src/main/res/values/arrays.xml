@@ -147,9 +147,9 @@
     </integer-array>
 
     <array name="atlas_exercise_chest_icon">
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_chest_1</item>
+        <item>@drawable/exc_chest_2</item>
+        <item>@drawable/exc_chest_3</item>
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
