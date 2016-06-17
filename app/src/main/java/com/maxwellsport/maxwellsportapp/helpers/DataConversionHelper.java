@@ -1,10 +1,10 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 import com.maxwellsport.maxwellsportapp.R;
 
 import java.util.Locale;
 
-public class DataConversionService {
+public class DataConversionHelper {
     private static Locale mLocale = Locale.US;
 
     public static String convertTime(long time) {

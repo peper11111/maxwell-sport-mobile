@@ -1,4 +1,4 @@
-package com.maxwellsport.maxwellsportapp;
+package com.maxwellsport.maxwellsportapp.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,8 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.maxwellsport.maxwellsportapp.services.DataConversionService;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 import java.util.Locale;
 
@@ -31,7 +32,7 @@ public class LoginActivity extends Activity {
         mContext = this;
 
         /* Wczytanie języka aplikacji. Domyślny język angielski */
-        String language = SharedPreferencesService.getString(mContext, SharedPreferencesService.settings_language_key, "en");
+        String language = SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.settings_language_key, "en");
         setLocale(mContext, language);
 
         setContentView(R.layout.activity_login);
@@ -43,8 +44,8 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (mUsernameField.getText().toString().equals("admin") && mPasswordField.getText().toString().equals("admin")) {
-                    SharedPreferencesService.putValue(mContext, SharedPreferencesService.app_user_id_key, "21232f297a57a5a743894a0e4a801fc3");
-                    SharedPreferencesService.putValue(mContext, SharedPreferencesService.app_username_key, mUsernameField.getText().toString());
+                    SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.app_user_id_key, "21232f297a57a5a743894a0e4a801fc3");
+                    SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.app_username_key, mUsernameField.getText().toString());
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -65,15 +66,15 @@ public class LoginActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (SharedPreferencesService.contains(mContext, SharedPreferencesService.app_user_id_key)) {
+        if (SharedPreferencesHelper.contains(mContext, SharedPreferencesHelper.app_user_id_key)) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         } else {
             /* Wczytanie motywu aplikacji jeżeli nie pomijamy widoku. Domyślny motyw CyanAccentColorTheme */
-            int style = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_theme_key, 7);
-            setTheme(DataConversionService.convertTheme(style));
-            mUsernameField.setText(SharedPreferencesService.getString(mContext, SharedPreferencesService.app_username_key, ""));
+            int style = SharedPreferencesHelper.getInt(this, SharedPreferencesHelper.settings_theme_key, 7);
+            setTheme(DataConversionHelper.convertTheme(style));
+            mUsernameField.setText(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.app_username_key, ""));
         }
     }
 

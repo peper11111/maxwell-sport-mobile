@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.DefaultListAdapter;
 import com.maxwellsport.maxwellsportapp.models.DefaultListItemModel;

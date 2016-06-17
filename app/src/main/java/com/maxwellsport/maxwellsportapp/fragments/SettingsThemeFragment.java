@@ -10,12 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.DefaultListAdapter;
 import com.maxwellsport.maxwellsportapp.models.DefaultListItemModel;
-import com.maxwellsport.maxwellsportapp.services.DataConversionService;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -45,8 +45,8 @@ public class SettingsThemeFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_theme_key, position);
-                int style = DataConversionService.convertTheme(position);
+                SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.settings_theme_key, position);
+                int style = DataConversionHelper.convertTheme(position);
                 mContext.setTheme(style);
                 mContext.recreate();
                 Toast.makeText(mContext, R.string.toast_msg_theme_changed, Toast.LENGTH_SHORT).show();

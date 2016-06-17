@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 
 

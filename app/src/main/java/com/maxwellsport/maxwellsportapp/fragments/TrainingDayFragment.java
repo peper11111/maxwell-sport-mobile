@@ -4,17 +4,16 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
-import com.maxwellsport.maxwellsportapp.services.TimerService;
+import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class TrainingDayFragment extends Fragment {
     /* time count */
     protected final static String STATUS_KEY = "status-key";
     public String status;
-    private TimerService timerService;
+    private TimerHelper timerHelper;
 
     //    TODO: zebrac wlasciwe dane do wyswietlenia
     // testowe dane
@@ -63,12 +62,12 @@ public class TrainingDayFragment extends Fragment {
         listView.setAdapter(adapter);
 
         /* Ustawienie timera do przycisków */
-        timerService = new TimerService((TextView) v.findViewById(R.id.training_timer_view));
+        timerHelper = new TimerHelper((TextView) v.findViewById(R.id.training_timer_view));
         onRestoreInstanceState(savedInstanceState);
         status = "running";
-        timerService.setupTimerService(status);
+        timerHelper.setupTimerService(status);
         setupTimeButtonListeners();
-        timerService.startTimer();
+        timerHelper.startTimer();
 
         return v;
     }
@@ -78,9 +77,9 @@ public class TrainingDayFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 status = "stopped";
-                timerService.stopTimer();
+                timerHelper.stopTimer();
                 pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
-                long trainingTime = timerService.getTimerTime();
+                long trainingTime = timerHelper.getTimerTime();
                 Bundle bundle = new Bundle();
                 bundle.putLong("training-time", trainingTime);
                 TrainingSummaryFragment fragment = new TrainingSummaryFragment();
@@ -94,11 +93,11 @@ public class TrainingDayFragment extends Fragment {
             public void onClick(View v) {
                 if (status.equals("running")) {
                     status = "paused";
-                    timerService.pauseTimer();
+                    timerHelper.pauseTimer();
                     pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_start));
                 } else if (status.equals("paused")) {
                     status = "running";
-                    timerService.startTimer();
+                    timerHelper.startTimer();
                     pauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
                 }
             }
@@ -111,7 +110,7 @@ public class TrainingDayFragment extends Fragment {
 
     /* Pomocnicza metoda do wczytania danych z Bundle */
     private void onRestoreInstanceState(Bundle savedInstanceState) {
-        timerService.onRestoreInstanceState(savedInstanceState);
+        timerHelper.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             status = savedInstanceState.getString(STATUS_KEY);
         } else {
@@ -124,20 +123,20 @@ public class TrainingDayFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (status.equals("running"))
-            timerService.startTimer();
+            timerHelper.startTimer();
     }
 
     @Override
     public void onPause() {
         if (status.equals("running"))
-            timerService.pauseTimer();
+            timerHelper.pauseTimer();
         super.onPause();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        timerService.onSaveInstanceState(outState);
+        timerHelper.onSaveInstanceState(outState);
         /* Zapisanie pozycji listy */
         int index = listView.getFirstVisiblePosition();
         View v = listView.getChildAt(0);

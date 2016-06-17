@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 public class AtlasExerciseDetailsFragment extends Fragment {
     MainActivity mContext;
@@ -38,7 +38,7 @@ public class AtlasExerciseDetailsFragment extends Fragment {
         TextView description = (TextView) v.findViewById(R.id.atlas_exercise_details_description);
         description.setText(exercise.getDescription());
 
-        int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
+        int style = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
         TypedArray array = mContext.obtainStyledAttributes(style, attr);
         int color = array.getColor(0, Color.WHITE);

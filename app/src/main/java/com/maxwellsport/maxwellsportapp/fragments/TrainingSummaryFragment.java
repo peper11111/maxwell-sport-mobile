@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.services.DataConversionService;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 public class TrainingSummaryFragment extends Fragment {
     private MainActivity mContext;
@@ -33,9 +33,9 @@ public class TrainingSummaryFragment extends Fragment {
         Bundle args = getArguments();
         long trainingTime = args.getLong("training-time");
         TextView timeView = (TextView) mView.findViewById(R.id.training_summary_time_value);
-        timeView.setText(DataConversionService.convertTime(trainingTime));
+        timeView.setText(DataConversionHelper.convertTime(trainingTime));
 
-        int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
+        int style = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
         TypedArray array = mContext.obtainStyledAttributes(style, attr);
         mColor = array.getColor(0, Color.WHITE);

@@ -10,10 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.maxwellsport.maxwellsportapp.LoginActivity;
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.LoginActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,7 @@ public class SettingsLanguageFragment extends Fragment {
                         choice = "en";
                         break;
                 }
-                SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_language_key, choice);
+                SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.settings_language_key, choice);
                 LoginActivity.setLocale(mContext, choice);
                 mContext.recreate();
                 Toast.makeText(mContext, R.string.toast_msg_language_changed, Toast.LENGTH_SHORT).show();

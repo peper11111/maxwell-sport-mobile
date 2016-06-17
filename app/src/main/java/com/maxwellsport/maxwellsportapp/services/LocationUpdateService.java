@@ -1,7 +1,11 @@
 package com.maxwellsport.maxwellsportapp.services;
 
+import android.app.Service;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -11,43 +15,46 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
 
-public class LocationUpdateService implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
-    private CardioFragment mCardioFragment;
+public class LocationUpdateService extends Service implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 1000 * 1;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 1000 * 1;
 
-    /* Ustawienie interwałów odswieżania pozycji uzytkownika */
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 2000;
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 1000;
-
-    /* Klucze do zapisania wartości w Bundle Fragmentu */
-    private final static String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";
-    private final static String LOCATION_KEY = "location-key";
-
-    /* Wartosci do zapisania w Bundle */
-    private Location mCurrentLocation;
-    private Boolean mRequestingLocationUpdates;
+    public static final String UPDATE_MAP_POSITION = "UPDATE_MAP_POSITION";
 
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
 
-    public LocationUpdateService(CardioFragment cardioFragment) {
-        mCardioFragment = cardioFragment;
+    @Override
+    public void onCreate() {
+        super.onCreate();
         buildGoogleApiClient();
+        createLocationRequest();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onDestroy() {
+        stopLocationUpdates();
+        mGoogleApiClient.disconnect();
+        super.onDestroy();
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     private void buildGoogleApiClient() {
-        Log.i("MaxwellSport", "Building GoogleApiClient");
-        mGoogleApiClient = new GoogleApiClient.Builder(mCardioFragment.getActivity())
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-        createLocationRequest();
     }
 
     private void createLocationRequest() {
-        Log.i("MaxwellSport", "Creating Location Request");
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
         mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
@@ -55,48 +62,20 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
     }
 
     private void startLocationUpdates() {
-        Log.i("MaxwellSport", "Started Location Updates");
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
     private void stopLocationUpdates() {
-        Log.i("MaxwellSport", "Stopped Location Updates");
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
 
-    public void startUpdatesButtonHandler() {
-        if (!mRequestingLocationUpdates) {
-            mRequestingLocationUpdates = true;
-            startLocationUpdates();
-        }
-    }
-
-    public void stopUpdatesButtonHandler() {
-        if (mRequestingLocationUpdates) {
-            mRequestingLocationUpdates = false;
-            stopLocationUpdates();
-        }
-    }
-
-    /* Metody interfejsów ConnectionCallbacks, OnConnectionFailedListener */
     @Override
     public void onConnected(Bundle bundle) {
-        Log.i("MaxwellSport", "Connected to GoogleApiClient");
-        if (mCurrentLocation == null) {
-            mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        }
-
-        if (mCurrentLocation != null)
-            mCardioFragment.updateUserPosition(mCurrentLocation);
-
-        if (mRequestingLocationUpdates) {
-            startLocationUpdates();
-        }
+        startLocationUpdates();
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        Log.i("MaxwellSport", "Connection suspended");
         mGoogleApiClient.connect();
     }
 
@@ -107,42 +86,9 @@ public class LocationUpdateService implements ConnectionCallbacks, OnConnectionF
 
     @Override
     public void onLocationChanged(Location location) {
-        mCurrentLocation = location;
-        mCardioFragment.updateUserPosition(mCurrentLocation);
-    }
-
-    /*
-     * Metody sluzace do polaczenia Location update service z Cardio Fragment life cycle
-     */
-    public void onStart() {
-        mGoogleApiClient.connect();
-    }
-
-    public void onResume() {
-        if (mGoogleApiClient.isConnected() && mRequestingLocationUpdates) {
-            startLocationUpdates();
-        }
-    }
-
-    public void onDestroy() {
-        if (mGoogleApiClient.isConnected()) {
-            stopLocationUpdates();
-        }
-        mGoogleApiClient.disconnect();
-    }
-
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            mRequestingLocationUpdates = savedInstanceState.getBoolean(REQUESTING_LOCATION_UPDATES_KEY);
-            mCurrentLocation = savedInstanceState.getParcelable(LOCATION_KEY);
-        } else {
-            mRequestingLocationUpdates = false;
-            mCurrentLocation = null;
-        }
-    }
-
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putParcelable(LOCATION_KEY, mCurrentLocation);
-        savedInstanceState.putBoolean(REQUESTING_LOCATION_UPDATES_KEY, mRequestingLocationUpdates);
+        Intent intent = new Intent();
+        intent.setAction(UPDATE_MAP_POSITION);
+        intent.putExtra("location", location);
+        sendBroadcast(intent);
     }
 }

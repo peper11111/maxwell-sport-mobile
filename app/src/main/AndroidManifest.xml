@@ -30,7 +30,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CyanAccentColorTheme">
             <intent-filter>
@@ -41,10 +41,12 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CyanAccentColorTheme">
 
         </activity>
+
+        <service android:name=".services.LocationUpdateService" />
     </application>
 </manifest>

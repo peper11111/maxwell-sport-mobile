@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 import java.util.Locale;
 
@@ -70,8 +70,8 @@ public class SettingsServerFragment extends Fragment {
                     Toast.makeText(mContext, R.string.toast_msg_server_address_error, Toast.LENGTH_SHORT).show();
                 else {
                     String address = String.format(Locale.getDefault(), "%d.%d.%d.%d", ip1, ip2, ip3, ip4);
-                    SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_server_address_key, address);
-                    SharedPreferencesService.putValue(mContext, SharedPreferencesService.settings_server_port_key, port);
+                    SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.settings_server_address_key, address);
+                    SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.settings_server_port_key, port);
                     Toast.makeText(mContext, R.string.toast_msg_server_address_changed, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -81,8 +81,8 @@ public class SettingsServerFragment extends Fragment {
         restore_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferencesService.remove(mContext, SharedPreferencesService.settings_server_address_key);
-                SharedPreferencesService.remove(mContext, SharedPreferencesService.settings_server_port_key);
+                SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.settings_server_address_key);
+                SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.settings_server_port_key);
                 Toast.makeText(mContext, R.string.toast_msg_server_address_restored, Toast.LENGTH_SHORT).show();
             }
         });

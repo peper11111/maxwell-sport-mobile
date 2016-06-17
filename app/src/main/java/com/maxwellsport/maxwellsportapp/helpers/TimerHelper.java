@@ -1,11 +1,13 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.widget.TextView;
 
-public class TimerService {
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
+
+public class TimerHelper {
     protected final static String START_TIME_KEY = "start-time-key";
     protected final static String DIFF_TIME_KEY = "diff-time-key";
 
@@ -18,7 +20,7 @@ public class TimerService {
 
     private String mStatus;
 
-    public TimerService(TextView timerView) {
+    public TimerHelper(TextView timerView) {
         mTimerHandler = new Handler();
         mTimerView = timerView;
     }
@@ -52,7 +54,7 @@ public class TimerService {
     }
 
     private void setupStatsView(long time) {
-        mTimerView.setText(DataConversionService.convertTime(time));
+        mTimerView.setText(DataConversionHelper.convertTime(time));
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.maxwellsport.maxwellsportapp;
+package com.maxwellsport.maxwellsportapp.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 
+import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.fragments.AboutFragment;
 import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseGroupFragment;
 import com.maxwellsport.maxwellsportapp.fragments.CardioFragment;
@@ -25,8 +26,8 @@ import com.maxwellsport.maxwellsportapp.fragments.ProfileFragment;
 import com.maxwellsport.maxwellsportapp.fragments.SettingsFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingDayFragment;
 import com.maxwellsport.maxwellsportapp.fragments.TrainingFragment;
-import com.maxwellsport.maxwellsportapp.services.DataConversionService;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView mNavigationView;
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         /* Wczytanie motywu aplikacji. Domyślny motyw CyanAccentColorTheme */
-        int style = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_theme_key, 7);
-        setTheme(DataConversionService.convertTheme(style));
+        int style = SharedPreferencesHelper.getInt(this, SharedPreferencesHelper.settings_theme_key, 7);
+        setTheme(DataConversionHelper.convertTheme(style));
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mItemID = savedInstanceState.getInt("mItemID");
         } else {
             /* Domyslne wartosci dla uruchomienia plikacji. Pierwszy fragment to profile fragment, oraz zakladka z nim zwiazana */
-            int tab = SharedPreferencesService.getInt(this, SharedPreferencesService.settings_default_tab_key, 0);
+            int tab = SharedPreferencesHelper.getInt(this, SharedPreferencesHelper.settings_default_tab_key, 0);
             switch (tab) {
                 case 0:
                     mFragment = new ProfileFragment();
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_logout:
                         mItemID = 5;
-                        SharedPreferencesService.remove(getApplication(), SharedPreferencesService.app_user_id_key);
+                        SharedPreferencesHelper.remove(getApplication(), SharedPreferencesHelper.app_user_id_key);
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();

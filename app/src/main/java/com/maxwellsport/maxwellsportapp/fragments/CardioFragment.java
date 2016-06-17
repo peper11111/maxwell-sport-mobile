@@ -1,5 +1,8 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.location.Location;
@@ -19,12 +22,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.maxwellsport.maxwellsportapp.MainActivity;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
-import com.maxwellsport.maxwellsportapp.services.DataConversionService;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
-import com.maxwellsport.maxwellsportapp.services.SharedPreferencesService;
-import com.maxwellsport.maxwellsportapp.services.TimerService;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
+import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
 
 import java.util.ArrayList;
 
@@ -36,8 +39,8 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     public String status;
 
     private View mView;
-    private LocationUpdateService mLocationUpdateService;
-    private TimerService mTimerService;
+    private LocationUpdateReceiver mLocationUpdateReceiver;
+    private TimerHelper mTimerHelper;
     private int mColor;
     private MapView mMapView;
     private GoogleMap mMap;
@@ -57,7 +60,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         mContext = (MainActivity) getActivity();
         mContext.setTitle(getResources().getString(R.string.toolbar_cardio_title));
 
-        int style = SharedPreferencesService.getInt(mContext, SharedPreferencesService.settings_theme_key, R.style.CyanAccentColorTheme);
+        int style = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, R.style.CyanAccentColorTheme);
         int[] attr = {R.attr.colorAccent};
         TypedArray array = mContext.obtainStyledAttributes(style, attr);
         mColor = array.getColor(0, Color.WHITE);
@@ -72,8 +75,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         mMapView.getMapAsync(this);
 
         /* Przygotowanie LocationUpdateService*/
-        mLocationUpdateService = new LocationUpdateService(this);
-        mTimerService = new TimerService((TextView) mView.findViewById(R.id.cardio_timer_view));
+        mTimerHelper = new TimerHelper((TextView) mView.findViewById(R.id.cardio_timer_view));
         onRestoreInstanceState(savedInstanceState);
 
         mDistanceView = (TextView) mView.findViewById(R.id.cardio_distance_view);
@@ -81,10 +83,17 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
         /* Setup widoku przycisków i timera */
         setupMapView();
-        mTimerService.setupTimerService(status);
+        mTimerHelper.setupTimerService(status);
         setupFabListeners();
 
         return mView;
+    }
+
+    private class LocationUpdateReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateUserPosition((Location) intent.getParcelableExtra("location"));
+        }
     }
 
     /*
@@ -93,16 +102,14 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString(STATUS_KEY, status);
-        mTimerService.onSaveInstanceState(savedInstanceState);
-        mLocationUpdateService.onSaveInstanceState(savedInstanceState);
+        mTimerHelper.onSaveInstanceState(savedInstanceState);
         mMapView.onSaveInstanceState(savedInstanceState);
         super.onSaveInstanceState(savedInstanceState);
     }
 
     /* Pomocnicza metoda do wczytania danych z Bundle */
     private void onRestoreInstanceState(Bundle savedInstanceState) {
-        mLocationUpdateService.onRestoreInstanceState(savedInstanceState);
-        mTimerService.onRestoreInstanceState(savedInstanceState);
+        mTimerHelper.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             status = savedInstanceState.getString(STATUS_KEY);
         } else {
@@ -113,14 +120,12 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onStart() {
         super.onStart();
-        mLocationUpdateService.onStart();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mMapView.onResume();
-        mLocationUpdateService.onResume();
     }
 
     @Override
@@ -131,7 +136,6 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onDestroy() {
-        mLocationUpdateService.onDestroy();
         mMapView.onDestroy();
         super.onDestroy();
     }
@@ -176,8 +180,8 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 mMap.setPadding(0, 80, 0, 0);
                 setupMapView();
                 setupNewPolyline();
-                mTimerService.startTimer();
-                mLocationUpdateService.startUpdatesButtonHandler();
+                mTimerHelper.startTimer();
+                mContext.startService(new Intent(mContext.getBaseContext(), LocationUpdateService.class));
             }
         });
 
@@ -186,8 +190,8 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View view) {
                 status = "stopped";
-                mLocationUpdateService.stopUpdatesButtonHandler();
-                mTimerService.stopTimer();
+                mContext.stopService(new Intent(mContext.getBaseContext(), LocationUpdateService.class));
+                mTimerHelper.stopTimer();
                 setupMapView();
                 mMap.setPadding(0, 0, 0, 0);
 
@@ -202,12 +206,12 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
                 if (status.equals("running")) {
                     status = "paused";
                     setupMapView();
-                    mTimerService.pauseTimer();
+                    mTimerHelper.pauseTimer();
                 } else if (status.equals("paused")) {
                     status = "running";
                     setupMapView();
                     setupNewPolylinePart();
-                    mTimerService.startTimer();
+                    mTimerHelper.startTimer();
                 }
             }
         });
@@ -241,7 +245,7 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
     private void summary() {
         Log.d("MAXWELL", "" + mPolylinePoints.get(0).size());
         Bundle bundle = new Bundle();
-        bundle.putLong("running-time", mTimerService.getTimerTime());
+        bundle.putLong("running-time", mTimerHelper.getTimerTime());
         bundle.putFloat("running-distance", mDistance);
         bundle.putFloat("running-pace", mPace);
 
@@ -257,9 +261,9 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         if (status.equals("running")) {
             if (mLastLocation != null) {
                 mDistance += mLastLocation.distanceTo(location);
-                mDistanceView.setText(DataConversionService.convertDistance(mDistance));
-                mPace = countPace(mTimerService.getTimerTime(), mDistance);
-                mPaceView.setText(DataConversionService.convertPace(mPace));
+                mDistanceView.setText(DataConversionHelper.convertDistance(mDistance));
+                mPace = countPace(mTimerHelper.getTimerTime(), mDistance);
+                mPaceView.setText(DataConversionHelper.convertPace(mPace));
             }
             mPolylinePart.add(position);
             mPolyline.setPoints(mPolylinePart);

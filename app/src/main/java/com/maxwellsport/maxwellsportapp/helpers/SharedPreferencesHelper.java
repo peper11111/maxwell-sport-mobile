@@ -1,4 +1,4 @@
-package com.maxwellsport.maxwellsportapp.services;
+package com.maxwellsport.maxwellsportapp.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.content.SharedPreferences.Editor;
 
 import java.util.Set;
 
-public class SharedPreferencesService {
+public class SharedPreferencesHelper {
     private static final String TAG = "maxwell-sport";
     private static final int MODE = Context.MODE_PRIVATE;
 
