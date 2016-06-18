@@ -186,9 +186,9 @@
         <item>@drawable/exc_back_1</item>
         <item>@drawable/exc_back_2</item>
         <item>@drawable/exc_back_3</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_back_4</item>
+        <item>@drawable/exc_back_5</item>
+        <item>@drawable/exc_back_6</item>
     </array>
 
     <string-array name="atlas_exercise_back_name">
