@@ -150,9 +150,9 @@
         <item>@drawable/exc_chest_1</item>
         <item>@drawable/exc_chest_2</item>
         <item>@drawable/exc_chest_3</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_chest_4</item>
+        <item>@drawable/exc_chest_5</item>
+        <item>@drawable/exc_chest_6</item>
     </array>
 
     <string-array name="atlas_exercise_chest_name">
