@@ -250,6 +250,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //TODO: naprawic animacje po odwiezenieu
         //TODO: naprawic wysweitlanie tytulu zakladki po odwiezeniu
         mFragment = fragment;
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.none, R.anim.slide_out_left, R.anim.none, R.anim.slide_out_right).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.abc_grow_fade_in_from_bottom, R.anim.abc_fade_out, R.anim.abc_grow_fade_in_from_bottom, R.anim.abc_fade_out).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
     }
 }
