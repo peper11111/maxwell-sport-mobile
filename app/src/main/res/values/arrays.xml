@@ -183,9 +183,9 @@
     </integer-array>
 
     <array name="atlas_exercise_back_icon">
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_back_1</item>
+        <item>@drawable/exc_back_2</item>
+        <item>@drawable/exc_back_3</item>
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
         <item>@drawable/maxwell</item>
