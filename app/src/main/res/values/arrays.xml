@@ -219,12 +219,12 @@
     </integer-array>
 
     <array name="atlas_exercise_legs_icon">
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_legs_1</item>
+        <item>@drawable/exc_legs_2</item>
+        <item>@drawable/exc_legs_3</item>
+        <item>@drawable/exc_legs_4</item>
+        <item>@drawable/exc_legs_5</item>
+        <item>@drawable/exc_legs_6</item>
     </array>
 
     <string-array name="atlas_exercise_legs_name">
