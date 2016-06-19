@@ -34,6 +34,7 @@ import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
 
 import java.util.ArrayList;
 
+//TODO: Wyswietlenie komunikatu o GPS
 public class CardioFragment extends Fragment implements OnMapReadyCallback {
     private MainActivity mContext;
     // Klucze do zapisania potrzebnych wartosci do Bundle
