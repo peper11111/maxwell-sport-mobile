@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,9 +24,8 @@ public class SettingsLanguageFragment extends Fragment {
     private int[] items = {R.string.settings_language_polish, R.string.settings_language_english};
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
-        mContext.setTitle(getResources().getString(R.string.toolbar_settings_language_title));
 
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
@@ -57,5 +58,20 @@ public class SettingsLanguageFragment extends Fragment {
         });
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mContext.setTitle(getResources().getString(R.string.toolbar_settings_language_title));
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter) {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_grow_fade_in_from_bottom);
+        } else {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_fade_out);
+        }
     }
 }

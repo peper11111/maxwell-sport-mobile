@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -288,5 +290,14 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
             return pace;
         else
             return 0;
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter) {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_grow_fade_in_from_bottom);
+        } else {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_fade_out);
+        }
     }
 }

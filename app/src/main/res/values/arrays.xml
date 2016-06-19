@@ -255,12 +255,12 @@
     </integer-array>
 
     <array name="atlas_exercise_abs_icon">
+        <item>@drawable/exc_abs_1</item>
+        <item>@drawable/exc_abs_2</item>
+        <item>@drawable/exc_abs_3</item>
+        <item>@drawable/exc_abs_4</item>
         <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
-        <item>@drawable/maxwell</item>
+        <item>@drawable/exc_abs_6</item>
     </array>
 
     <string-array name="atlas_exercise_abs_name">

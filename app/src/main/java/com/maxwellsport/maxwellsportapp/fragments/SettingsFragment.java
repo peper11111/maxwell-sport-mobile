@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,7 +21,6 @@ import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 import java.util.ArrayList;
 import java.util.Locale;
 
-//TODO: Naprawic animacje i ustawianie tytułu po recreate
 public class SettingsFragment extends Fragment {
     MainActivity mContext;
 
@@ -92,5 +93,14 @@ public class SettingsFragment extends Fragment {
         SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_longest_run_duration_key);
         SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_longest_run_distance_key);
         SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_biggest_run_pace_key);
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter) {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_grow_fade_in_from_bottom);
+        } else {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_fade_out);
+        }
     }
 }

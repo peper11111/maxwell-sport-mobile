@@ -32,12 +32,10 @@ public class LocationUpdateService extends Service implements ConnectionCallback
         buildGoogleApiClient();
         createLocationRequest();
         mGoogleApiClient.connect();
-        Toast.makeText(this,"Location Update Service Created",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this,"Location Update Service Destroyed",Toast.LENGTH_SHORT).show();
         stopLocationUpdates();
         mGoogleApiClient.disconnect();
         super.onDestroy();

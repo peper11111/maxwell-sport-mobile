@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -78,6 +80,15 @@ public class TrainingSummaryFragment extends Fragment {
         for (; i < 5; i++) {
             ImageView star = (ImageView) stars.getChildAt(i);
             star.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        }
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter) {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_grow_fade_in_from_bottom);
+        } else {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_fade_out);
         }
     }
 }

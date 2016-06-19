@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,7 +27,6 @@ public class SettingsThemeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         mContext = (MainActivity) getActivity();
-        mContext.setTitle(getResources().getString(R.string.toolbar_settings_theme_title));
 
         View v = inflater.inflate(R.layout.default_list_view, container, false);
 
@@ -54,5 +55,20 @@ public class SettingsThemeFragment extends Fragment {
         });
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mContext.setTitle(getResources().getString(R.string.toolbar_settings_theme_title));
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter) {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_grow_fade_in_from_bottom);
+        } else {
+            return AnimationUtils.loadAnimation(mContext.getApplicationContext(), R.anim.abc_fade_out);
+        }
     }
 }

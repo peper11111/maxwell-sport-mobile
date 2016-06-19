@@ -35,6 +35,10 @@ public class LoginActivity extends Activity {
         String language = SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.settings_language_key, "en");
         setLocale(mContext, language);
 
+        /* Wczytanie motywu aplikacji. Domyślny motyw CyanAccentColorTheme */
+        int style = SharedPreferencesHelper.getInt(this, SharedPreferencesHelper.settings_theme_key, 7);
+        setTheme(DataConversionHelper.convertTheme(style));
+
         setContentView(R.layout.activity_login);
         mUsernameField = (EditText) findViewById(R.id.username_field);
         mPasswordField = (EditText) findViewById(R.id.password_field);
@@ -71,9 +75,6 @@ public class LoginActivity extends Activity {
             startActivity(intent);
             finish();
         } else {
-            /* Wczytanie motywu aplikacji jeżeli nie pomijamy widoku. Domyślny motyw CyanAccentColorTheme */
-            int style = SharedPreferencesHelper.getInt(this, SharedPreferencesHelper.settings_theme_key, 7);
-            setTheme(DataConversionHelper.convertTheme(style));
             mUsernameField.setText(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.app_username_key, ""));
         }
     }
