@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
 
         /* Receiving/Sending JSON */
-        if(!ConnectionHelper.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))){
+        if (!ConnectionHelper.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))) {
             Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             ConnectionHelper connectionHelper = new ConnectionHelper(this);
             connectionHelper.connectToServer();
         }
@@ -193,7 +193,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_logout:
                         mItemID = 5;
-                        SharedPreferencesHelper.remove(getApplication(), SharedPreferencesHelper.app_user_id_key);
+                        /* Czyszczenie preferencji użytkownika i statystyk */
+                        SharedPreferencesHelper.remove(this, SharedPreferencesHelper.app_user_id_key);
+                        SharedPreferencesHelper.remove(this, SharedPreferencesHelper.settings_theme_key);
+                        SharedPreferencesHelper.remove(this, SharedPreferencesHelper.settings_language_key);
+                        SharedPreferencesHelper.remove(this, SharedPreferencesHelper.settings_default_tab_key);
+                        SettingsFragment.clearStatistics(this);
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();

@@ -1,5 +1,6 @@
 package com.maxwellsport.maxwellsportapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -67,7 +68,7 @@ public class SettingsFragment extends Fragment {
                         fragment = new SettingsTabFragment();
                         break;
                     case 3:
-                        clearStatistics();
+                        clearStatistics(mContext);
                         Toast.makeText(mContext, R.string.toast_msg_stats_cleared, Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
@@ -81,18 +82,18 @@ public class SettingsFragment extends Fragment {
         return v;
     }
 
-    private void clearStatistics() {
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_run_number_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_last_run_date_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_last_run_duration_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_last_run_distance_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_last_run_pace_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_average_run_duration_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_average_run_distance_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_average_run_pace_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_longest_run_duration_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_longest_run_distance_key);
-        SharedPreferencesHelper.remove(mContext, SharedPreferencesHelper.profile_stats_biggest_run_pace_key);
+    public static void clearStatistics(Context context) {
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_run_number_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_last_run_date_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_last_run_duration_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_last_run_distance_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_last_run_pace_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_average_run_duration_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_average_run_distance_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_average_run_pace_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_longest_run_duration_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_longest_run_distance_key);
+        SharedPreferencesHelper.remove(context, SharedPreferencesHelper.profile_stats_biggest_run_pace_key);
     }
 
     @Override
