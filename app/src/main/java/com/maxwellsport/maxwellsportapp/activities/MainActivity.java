@@ -147,9 +147,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (mFragment instanceof TrainingDayFragment && !((TrainingDayFragment) mFragment).status.equals("stopped")) {
                 /* Jeżeli fragment Training działa, wyświetlenie komunikatu */
                 new AlertDialog.Builder(this)
-                        .setTitle(R.string.alert_title)
-                        .setMessage(R.string.alert_msg_training_running)
-                        .setPositiveButton(R.string.alert_positive_button, new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.alert_dialog_warning_title)
+                        .setMessage(R.string.alert_dialog_msg_training_running)
+                        .setPositiveButton(R.string.alert_dialog_positive_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -159,9 +159,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else if (mFragment instanceof CardioFragment && !((CardioFragment) mFragment).status.equals("stopped")) {
                 /* Jeżeli fragment Cardio działa, wyświetlenie komunikatu */
                 new AlertDialog.Builder(this)
-                        .setTitle(R.string.alert_title)
-                        .setMessage(R.string.alert_msg_cardio_running)
-                        .setPositiveButton(R.string.alert_positive_button, new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.alert_dialog_warning_title)
+                        .setMessage(R.string.alert_dialog_msg_cardio_running)
+                        .setPositiveButton(R.string.alert_dialog_positive_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();

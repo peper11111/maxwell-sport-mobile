@@ -271,10 +271,15 @@
     <string name="theme_change_info">Motyw aplikacji został zmieniony</string>
     <string name="network_status_info">Brak połączenia</string>
 
-    <string name="alert_title">Ostrzeżenie</string>
-    <string name="alert_msg_training_running">Twoja aktywność treningowa wciąż działa. Jeśli chcesz zmienić zakładkę, zakończ trening.</string>
-    <string name="alert_msg_cardio_running">Twoja aktywność biegowa wziąż działa. Jeśli chcesz zmienić zakładkę, zakończ bieg.</string>
-    <string name="alert_positive_button">OK</string>
+
+    <string name="alert_dialog_warning_title">Ostrzeżenie</string>
+    <string name="alert_dialog_positive_button">OK</string>
+    <string name="alert_dialog_negative_button">Cancel</string>
+    <string name="alert_dialog_gps_settings_button">Zmień ustawienia GPS</string>
+    <string name="alert_dialog_msg_training_running">Twoja aktywność treningowa wciąż działa. Jeśli chcesz zmienić zakładkę, zakończ trening.</string>
+    <string name="alert_dialog_msg_cardio_running">Twoja aktywność biegowa wziąż działa. Jeśli chcesz zmienić zakładkę, zakończ bieg.</string>
+    <string name="alert_dialog_mgs_no_gps">Twoje urządzenie GPS jest wyłaczone. Czy chciałbyś zmienić ustawienia?</string>
+
 
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Błąd uwierzytelniania</string>

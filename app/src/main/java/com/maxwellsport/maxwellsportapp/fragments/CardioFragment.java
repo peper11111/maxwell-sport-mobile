@@ -2,14 +2,18 @@ package com.maxwellsport.maxwellsportapp.fragments;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -180,17 +184,43 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         mLastLocation = null;
     }
 
+    private void showNoGPSAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(R.string.alert_dialog_warning_title);
+        builder.setMessage(R.string.alert_dialog_mgs_no_gps);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.alert_dialog_gps_settings_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            }
+        });
+        builder.setNegativeButton(R.string.alert_dialog_negative_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
     private void setupFabListeners() {
         FloatingActionButton fab_start = (FloatingActionButton) mView.findViewById(R.id.cardio_fab_start);
         fab_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                status = "running";
-                mMap.setPadding(0, 80, 0, 0);
-                setupMapView();
-                setupNewPolyline();
-                mTimerHelper.startTimer();
-                mContext.startService(new Intent(mContext.getBaseContext(), LocationUpdateService.class));
+                LocationManager manager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+                if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    status = "running";
+                    mMap.setPadding(0, 80, 0, 0);
+                    setupMapView();
+                    setupNewPolyline();
+                    mTimerHelper.startTimer();
+                    mContext.startService(new Intent(mContext.getBaseContext(), LocationUpdateService.class));
+                } else {
+                    showNoGPSAlert();
+                }
             }
         });
 

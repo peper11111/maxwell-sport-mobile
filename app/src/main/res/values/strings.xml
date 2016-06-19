@@ -268,10 +268,14 @@
 
     <string name="theme_name">Theme Name</string>
 
-    <string name="alert_title">Warning</string>
-    <string name="alert_msg_training_running">Your training activity is still running. If you want to change the tab, end the training first.</string>
-    <string name="alert_msg_cardio_running">Your cardio activity is still running. If you want to change the tab, end the running first.</string>
-    <string name="alert_positive_button">OK</string>
+    <string name="alert_dialog_warning_title">Warning</string>
+    <string name="alert_dialog_positive_button">OK</string>
+    <string name="alert_dialog_negative_button">Cancel</string>
+    <string name="alert_dialog_gps_settings_button">Change GPS settings</string>
+    <string name="alert_dialog_msg_training_running">Your training activity is still running. If you want to change the tab, end the training first.</string>
+    <string name="alert_dialog_msg_cardio_running">Your cardio activity is still running. If you want to change the tab, end the running first.</string>
+    <string name="alert_dialog_mgs_no_gps">Your GPS device is disabled. Would you like to change settings?</string>
+
 
     <!-- Toast messages -->
     <string name="toast_msg_login_error">Authentication error</string>
