@@ -3,7 +3,8 @@ package com.maxwellsport.maxwellsportapp.helpers;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -12,19 +13,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class ConnectionHelper {
 
     private String mHost = "http://10.42.0.1";
     private int mPort;
-    private String mURL = "";
-    private String mTrainingURL = "";
-    private String mRunURL = "";
-    private String mLoginURL = "";
+    private String mURL;
+    private String mTrainingURL;
+    private String mRunURL;
+    private String mLoginURL;
     private String mId;
     private Context mContext;
     private JSONParserHelper mParserService;
+    private String mRunJsonString;
 
     public ConnectionHelper(Context context){
         /* set default values */
@@ -38,11 +44,21 @@ public class ConnectionHelper {
         /* initialize URLs */
         setConnectionVariables();
         /* check if update or download is needed */
-        new DownloadHelper(mContext).execute(mURL);
-//        new UploadHelper(mContext).execute(mURL);
+        new DownloadHelper(mContext).execute(mTrainingURL);
+//        new UploadTrainingHelper(mContext).execute(mURL);
     }
 
-    public String POST(String arg) throws  IOException{
+    public void saveRunData(Long duration, Float distance, Float pace, ArrayList<ArrayList<LatLng>> coordinates){
+        /* data biegu */
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String dateTime = dateFormat.format( new Date());
+        /* build jsonObject */
+        mRunJsonString = mParserService.createRunDataJson(duration, distance, pace, coordinates, dateTime);
+        /* start async-task to send json */
+        new UploadRunDataHelper(mContext).execute(mRunURL);
+    }
+
+    public String putTrainingData(String arg) throws  IOException{
         InputStream inputStream = null;
         DataOutputStream outputStream;
         String result = "";
@@ -54,13 +70,13 @@ public class ConnectionHelper {
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             /* set connection params */
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestMethod("PUT");
             urlConnection.setDoInput(true);
             urlConnection.setChunkedStreamingMode(0);
             /*get OutputStream */
             outputStream = new DataOutputStream(urlConnection.getOutputStream());
             /* get JSON to send */
-             data = mParserService.getJsonFromSharedPreferences();
+             data = mParserService.getTrainingJsonFromSharedPreferences();
             /* write JSON to stream */
             outputStream.writeBytes(data);
             outputStream.flush();
@@ -81,7 +97,7 @@ public class ConnectionHelper {
         }
     }
 
-    public String GET(String arg) throws IOException{
+    public String getServerResponse(String arg) throws IOException{
         InputStream inputStream = null;
         String result = "";
         try {
@@ -109,6 +125,43 @@ public class ConnectionHelper {
                 return result;
             }
             return "";
+        }finally {
+            if(inputStream != null){
+                inputStream.close();
+            }
+        }
+    }
+
+    public String sendRunData(String arg) throws  IOException{
+        InputStream inputStream = null;
+        DataOutputStream outputStream;
+        String result = "";
+        String data = "";
+        try {
+            /* create URL */
+            URL url = new URL(arg);
+            /* create HttpURLConnection */
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            /* set connection params */
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestMethod("PUT");
+            urlConnection.setDoInput(true);
+            urlConnection.setChunkedStreamingMode(0);
+            /*get OutputStream */
+            outputStream = new DataOutputStream(urlConnection.getOutputStream());
+            /* write JSON to stream */
+            outputStream.writeBytes(mRunJsonString);
+            outputStream.flush();
+            outputStream.close();
+            /* connect */
+            urlConnection.connect();
+            /* get inputStream */
+            inputStream = urlConnection.getInputStream();
+            /* convert an input to String */
+            result = convertInputStreamToString(inputStream);
+            /* disconnect */
+            urlConnection.disconnect();
+            return result;
         }finally {
             if(inputStream != null){
                 inputStream.close();

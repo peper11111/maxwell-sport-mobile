@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
-
 import java.io.IOException;
 
 public class DownloadHelper extends AsyncTask<String, Void, String> {
@@ -22,7 +20,7 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urls) {
         try {
-            return mConnectionHelper.GET(urls[0]);
+            return mConnectionHelper.getServerResponse(urls[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }

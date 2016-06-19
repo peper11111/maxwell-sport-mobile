@@ -3,7 +3,9 @@ package com.maxwellsport.maxwellsportapp.helpers;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
@@ -37,11 +39,19 @@ public class JSONParserHelper {
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_BODY_PART = "bodyPart";
 
+    /* run tags */
+    private static final String TAG_PACE = "pace";
+    private static final String TAG_COORDINATES = "coordinates";
+    private static final String TAG_DURATION = "duration";
+    private static final String TAG_DATE_TIME = "dateTime";
+    private static final String TAG_RUN_NAME = "name";
+    private static final String TAG_DISTANCE = "distance";
+
     public JSONParserHelper(Context context){
         mContext = context;
         mBodyPartSet = new HashSet<>();
         if(!SharedPreferencesHelper.getBoolean(mContext, SharedPreferencesHelper.is_training_downloaded_key, false))
-            mJsonString = getJsonFromSharedPreferences();
+            mJsonString = getTrainingJsonFromSharedPreferences();
 
     }
 
@@ -51,13 +61,57 @@ public class JSONParserHelper {
     }
 
     /* read JSON (String) from SharedPreferences */
-    public String getJsonFromSharedPreferences(){
+    public String getTrainingJsonFromSharedPreferences(){
         return SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.downloaded_training_json_key, "");
     }
 
     /* update trainig JSON from SharedPreferences */
     public void updateTrainingJson(String date, ArrayList checkedList){
 
+    }
+
+    public String createRunDataJson(Long duration, Float distance, Float pace, ArrayList<ArrayList<LatLng>> coordinates, String dateTime){
+        String json = "";
+        /* create json */
+        JSONArray paceArray = new JSONArray();
+        JSONArray coordinatesArray = new JSONArray();
+        JSONArray pointsJSONArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            /* pace array*/
+            paceArray.put(pace);
+
+            jsonObject.put(TAG_PACE, paceArray);
+            jsonObject.put(TAG_DURATION, duration);
+            jsonObject.put(TAG_DATE_TIME, dateTime);
+            jsonObject.put(TAG_NAME,"Run");
+            jsonObject.put(TAG_DISTANCE, distance);
+
+            /* coordinates array */
+            for (ArrayList<LatLng> pointsArray: coordinates
+                 ) {
+                for (LatLng point: pointsArray
+                     ) {
+                    pointsJSONArray = new JSONArray();
+                    pointsJSONArray.put(0, point.latitude);
+                    pointsJSONArray.put(1, point.longitude);
+                    coordinatesArray.put(pointsJSONArray);
+                }
+            }
+
+            /* put coordinates */
+            jsonObject.put(TAG_COORDINATES, coordinatesArray);
+
+            // TEST !!!!!!!!!
+            Toast.makeText(mContext, jsonObject.toString(),Toast.LENGTH_LONG).show();
+
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "{}";
     }
 
     /* return exercise arraylist for current training */

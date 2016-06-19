@@ -1,20 +1,18 @@
 package com.maxwellsport.maxwellsportapp.helpers;
 
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import java.io.IOException;
 
-/**
- * Created by rafal on 19.06.16.
- */
-public class LoginHelper extends AsyncTask<String, Void, String> {
+public class UploadTrainingHelper extends AsyncTask<String, Void, String>{
 
     private Context mContext;
     private ConnectionHelper mConnectionHelper;
 
-    public LoginHelper(Context context){
+    public UploadTrainingHelper(Context context){
         this.mContext = context;
         mConnectionHelper = new ConnectionHelper(mContext);
     }
@@ -22,7 +20,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urls) {
         try {
-            return mConnectionHelper.getServerResponse(urls[0]);
+            return mConnectionHelper.putTrainingData(urls[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,15 +28,8 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String json) {
+    protected void onPostExecute(String s) {
         /* test message */
-        if(json.equals("404")){
-            Toast.makeText(mContext, "Bł", Toast.LENGTH_LONG).show();
-        }
-
-        /* saving json to SharedPreferences */
-//        JSONParserHelper parserService = new JSONParserHelper(mContext);
-//        parserService.saveJsonToSharedPreferences(json);
-
+        Toast.makeText(mContext, s, Toast.LENGTH_LONG).show();
     }
 }
