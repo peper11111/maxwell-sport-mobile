@@ -30,9 +30,7 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String json) {
         /* test message */
-        if(json.equals("404")){
-            Toast.makeText(mContext, "B", Toast.LENGTH_LONG).show();
-        }
+
         Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
 
         /* saving json to SharedPreferences */

@@ -3,15 +3,20 @@ package com.maxwellsport.maxwellsportapp.helpers;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+
+import org.apache.http.client.methods.HttpPost;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,21 +26,16 @@ import java.util.Date;
 
 public class ConnectionHelper {
 
-    private String mHost = "http://10.42.0.1";
     private int mPort;
-    private String mURL;
-    private String mTrainingURL;
-    private String mRunURL;
-    private String mLoginURL;
-    private String mId;
+    private String mURL, mTrainingURL, mRunURL, mLoginURL, mId, mHost;
     private Context mContext;
     private JSONParserHelper mParserService;
-    private String mRunJsonString;
 
     public ConnectionHelper(Context context){
         /* set default values */
         mContext = context;
         mParserService = new JSONParserHelper(mContext);
+        setConnectionVariables();
     }
 
 
@@ -53,7 +53,8 @@ public class ConnectionHelper {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String dateTime = dateFormat.format( new Date());
         /* build jsonObject */
-        mRunJsonString = mParserService.createRunDataJson(duration, distance, pace, coordinates, dateTime);
+        String runJson = mParserService.createRunDataJson(duration, distance, pace, coordinates, dateTime);
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.created_run_json_key, runJson);
         /* start async-task to send json */
         new UploadRunDataHelper(mContext).execute(mRunURL);
     }
@@ -63,6 +64,7 @@ public class ConnectionHelper {
         DataOutputStream outputStream;
         String result = "";
         String data = "";
+        setConnectionVariables();
         try {
             /* create URL */
             URL url = new URL(arg);
@@ -84,9 +86,9 @@ public class ConnectionHelper {
             /* connect */
             urlConnection.connect();
             /* get inputStream */
-            inputStream = urlConnection.getInputStream();
+//            inputStream = urlConnection.getInputStream();
             /* convert an input to String */
-            result = convertInputStreamToString(inputStream);
+//            result = convertInputStreamToString(inputStream);
             /* disconnect */
             urlConnection.disconnect();
             return result;
@@ -98,11 +100,13 @@ public class ConnectionHelper {
     }
 
     public String getServerResponse(String arg) throws IOException{
+        setConnectionVariables();
         InputStream inputStream = null;
         String result = "";
         try {
             /* create URL */
-            URL url = new URL(arg);
+            URL url = new URL(mTrainingURL);
+            Log.d("MAXWELL", mTrainingURL);
             /* create HttpURLConnection */
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             /* set connection params */
@@ -133,36 +137,57 @@ public class ConnectionHelper {
     }
 
     public String sendRunData(String arg) throws  IOException{
+        setConnectionVariables();
         InputStream inputStream = null;
         DataOutputStream outputStream;
         String result = "";
         String data = "";
+        HttpURLConnection urlConnection = null;
+        StringBuilder sb = new StringBuilder();
+
         try {
             /* create URL */
-            URL url = new URL(arg);
+            URL url = new URL("http://10.42.0.1:8081/api/run/user/1");
             /* create HttpURLConnection */
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection = (HttpURLConnection) url.openConnection();
             /* set connection params */
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("PUT");
             urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("POST");
+//            urlConnection.setUseCaches(false);
+            urlConnection.setConnectTimeout(10000);
+            urlConnection.setReadTimeout(10000);
+
             urlConnection.setChunkedStreamingMode(0);
-            /*get OutputStream */
-            outputStream = new DataOutputStream(urlConnection.getOutputStream());
-            /* write JSON to stream */
-            outputStream.writeBytes(mRunJsonString);
-            outputStream.flush();
-            outputStream.close();
-            /* connect */
+
             urlConnection.connect();
-            /* get inputStream */
-            inputStream = urlConnection.getInputStream();
-            /* convert an input to String */
-            result = convertInputStreamToString(inputStream);
-            /* disconnect */
-            urlConnection.disconnect();
+
+            Log.d("MAXWELL", SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.created_run_json_key, ""));
+            Log.d("MAXWELL", mRunURL);
+
+            OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
+            out.write(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.created_run_json_key, ""));
+            out.flush();
+            out.close();
+
+            int HttpResult =urlConnection.getResponseCode();
+            if(HttpResult ==HttpURLConnection.HTTP_OK){
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        urlConnection.getInputStream(),"utf-8"));
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+                Log.d("MAXWELL", "OK RESPONSE " + HttpResult + " " +sb.toString());
+
+            }else{
+                Log.d("MAXWELL", "NOT OK RESPONSE: "+ HttpResult + " "  + urlConnection.getResponseMessage());
+            }
+
+
             return result;
-        }finally {
+        } finally {
+            urlConnection.disconnect();
             if(inputStream != null){
                 inputStream.close();
             }
@@ -188,12 +213,17 @@ public class ConnectionHelper {
     }
 
     public void setConnectionVariables(){
-        mId = SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.app_user_id_key, "1");
+        /* --------------- */
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.app_user_id_key, "3");
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.app_username_key, "user");
+        /* ------------------- */
+        mId = SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.app_user_id_key, "3");
         mHost = SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.settings_server_address_key, "10.42.0.1" );
         mPort = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_server_port_key, 8081 );
-        mURL = "http://" + mHost + ":" + mPort;
+        mURL = "http://" + mHost + ":" + Integer.toString(mPort);
         mTrainingURL = mURL + "/api/training/user/" + mId;
         mRunURL = mURL + "/api/run/user/" + mId;
-        mLoginURL = mURL + "api/users/user";
+        mLoginURL = mURL + "api/users/" + SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.app_username_key, "user");
     }
+
 }

@@ -3,6 +3,7 @@ package com.maxwellsport.maxwellsportapp.helpers;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -71,11 +72,10 @@ public class JSONParserHelper {
     }
 
     public String createRunDataJson(Long duration, Float distance, Float pace, ArrayList<ArrayList<LatLng>> coordinates, String dateTime){
-        String json = "";
         /* create json */
         JSONArray paceArray = new JSONArray();
         JSONArray coordinatesArray = new JSONArray();
-        JSONArray pointsJSONArray = new JSONArray();
+        JSONArray pointsJSONArray;
         JSONObject jsonObject = new JSONObject();
         try {
 
@@ -102,10 +102,6 @@ public class JSONParserHelper {
 
             /* put coordinates */
             jsonObject.put(TAG_COORDINATES, coordinatesArray);
-
-            // TEST !!!!!!!!!
-            Toast.makeText(mContext, jsonObject.toString(),Toast.LENGTH_LONG).show();
-
 
             return jsonObject.toString();
         } catch (JSONException e) {

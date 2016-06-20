@@ -38,6 +38,7 @@ public class SharedPreferencesHelper {
     public static final String settings_default_tab_key = "settings-default-tab";
     /* json data */
     public static final String downloaded_training_json_key = "training_json";
+    public static final String created_run_json_key = "run_json";
     public static final String current_training_number_key = "current_training";
     public static final String is_training_downloaded_key = "training_done";
     public static final String training_body_part_key = "body_part_list";
