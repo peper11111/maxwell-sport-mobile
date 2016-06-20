@@ -12,6 +12,7 @@ public class ExerciseModel extends DefaultListItemModel implements Serializable 
     private int mReps;
     private int mWeight;
     private int mSets;
+    private int mID;
 
 
     public ExerciseModel(String title, Drawable icon, int group, String description, int difficulty) {
@@ -25,11 +26,12 @@ public class ExerciseModel extends DefaultListItemModel implements Serializable 
         mDifficulty = difficulty;
     }
 
-    public ExerciseModel(int reps, int sets, int weight, String title) {
+    public ExerciseModel(int reps, int sets, int weight, String title, int ID) {
         mReps = reps;
         mSets = sets;
         mWeight = weight;
         mTitle = title;
+        mID = ID;
     }
 
 
@@ -75,5 +77,13 @@ public class ExerciseModel extends DefaultListItemModel implements Serializable 
 
     public int getDifficulty() {
         return mDifficulty;
+    }
+
+    public int getmID() {
+        return mID;
+    }
+
+    public void setmID(int mID) {
+        this.mID = mID;
     }
 }

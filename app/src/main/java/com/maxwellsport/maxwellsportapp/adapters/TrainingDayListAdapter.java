@@ -2,6 +2,9 @@ package com.maxwellsport.maxwellsportapp.adapters;
 
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,37 +14,38 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.animations.FlipAnimation;
+import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseDetailsFragment;
+import com.maxwellsport.maxwellsportapp.helpers.JSONParserHelper;
+import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
 import java.util.ArrayList;
 
 public class TrainingDayListAdapter extends BaseAdapter {
 
-    private ArrayList<String> exeNameList;
-    private ArrayList<String> weightList;
-    private ArrayList<String> setsList;
-    private ArrayList<String> repsList;
-    private Context context;
+    private Context mContext;
+    private MainActivity mainActivityContext;
+    private JSONParserHelper mJsonParserHelper;
+
+    private ArrayList<ExerciseModel> mExerciseList;
 
     /* Lista kliknietych pozycji, tam gdzie 0 to nie zrobione cwiczenie */
     ArrayList<Integer> positionList = new ArrayList<>();
 
-    //    TODO: zrobic odpowiedni konstruktor dla adaptera
-    public TrainingDayListAdapter(Context applicationContext, ArrayList<String> exeName) {
-        super();
-        context = applicationContext;
-        this.exeNameList = exeName;
 
-        /*
-        *   Inicjalizacja listy z pozycjami
-        */
-        for (int i = 0; i < exeNameList.size(); i++) {
+    public TrainingDayListAdapter(Context applicationContext, ArrayList<ExerciseModel> exerciseList) {
+        super();
+        mContext = applicationContext;
+        mainActivityContext = (MainActivity) applicationContext;
+        this.mExerciseList = exerciseList;
+        mJsonParserHelper = new JSONParserHelper(mContext);
+
+        for (int i = 0; i < mExerciseList.size(); i++) {
             positionList.add(0);
         }
-
     }
 
     public ArrayList<Integer> getPositionList() {
@@ -54,12 +58,12 @@ public class TrainingDayListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return exeNameList.size();
+        return mExerciseList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return exeNameList.get(position);
+        return mExerciseList.get(position);
     }
 
     @Override
@@ -73,7 +77,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
         ViewHolder holder = new ViewHolder();
 
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item_training_day, null);
 
             /* Inicjalizacja zmiennych do holdera */
@@ -83,7 +87,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
             holder.reps = (TextView) convertView.findViewById(R.id.training_list_item_reps);
             holder.imageFront = (ImageView) convertView.findViewById(R.id.training_flip_front);
             holder.imageBack = (ImageView) convertView.findViewById(R.id.training_flip_back);
-            holder.popup = (ImageButton) convertView.findViewById(R.id.training_list_item_popup);
+//            holder.popup = (ImageButton) convertView.findViewById(R.id.training_list_item_popup);
 
             convertView.setTag(holder);
         } else {
@@ -95,7 +99,11 @@ public class TrainingDayListAdapter extends BaseAdapter {
         try {
 
             /* Zapisanie wartości pól tekstowych */
-            holder.exeName.setText(exeNameList.get(position));
+            holder.exeName.setText(mExerciseList.get(position).getmName());
+            holder.weight.setText(Integer.toString(mExerciseList.get(position).getmWeight()));
+            holder.sets.setText(Integer.toString(mExerciseList.get(position).getmSets()));
+            holder.reps.setText(Integer.toString(mExerciseList.get(position).getmReps()));
+            holder.imageFront.setImageResource(mJsonParserHelper.getExerciseImageById(mExerciseList.get(position).getmID()));
 
             /* Zmiana widoczności obrazka na podstawie pozycji, zeby recycler nie zmieniał widoku */
 
@@ -129,28 +137,32 @@ public class TrainingDayListAdapter extends BaseAdapter {
             });
 
             /* Popup menu */
-            holder.popup.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(context, v);
-                    popupMenu.getMenuInflater().inflate(R.menu.fragment_training_day_popup, popupMenu.getMenu());
-                    popupMenu.show();
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.training_exercise_description:
-                                    // TODO odpalic opis cwiczenia w popup
-                                    Toast.makeText(context, "w popup", Toast.LENGTH_SHORT).show();
-                                    break;
-                                default:
-                                    break;
-                            }
-                            return true;
-                        }
-                    });
-                }
-            });
+//            holder.popup.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    PopupMenu popupMenu = new PopupMenu(mContext, v);
+//                    popupMenu.getMenuInflater().inflate(R.menu.fragment_training_day_popup, popupMenu.getMenu());
+//                    popupMenu.show();
+//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                        @Override
+//                        public boolean onMenuItemClick(MenuItem item) {
+//                            switch (item.getItemId()) {
+//                                case R.id.training_exercise_description:
+//                                    Bundle bundle = new Bundle();
+//                                    ExerciseModel exercise = (ExerciseModel) getItem(position);
+//                                    bundle.putSerializable("exercise-class", exercise);
+//                                    Fragment fragment = new AtlasExerciseDetailsFragment();
+//                                    fragment.setArguments(bundle);
+//                                    mainActivityContext.addFragment(fragment);
+//                                    break;
+//                                default:
+//                                    break;
+//                            }
+//                            return true;
+//                        }
+//                    });
+//                }
+//            });
         } catch (Exception e) {
             e.printStackTrace();
         }

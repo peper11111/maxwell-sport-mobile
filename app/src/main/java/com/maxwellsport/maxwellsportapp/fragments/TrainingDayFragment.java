@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,17 @@ import android.widget.TextView;
 import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
+import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.JSONParserHelper;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TrainingDayFragment extends Fragment {
     private MainActivity mContext;
@@ -28,24 +36,17 @@ public class TrainingDayFragment extends Fragment {
     /* time count */
     protected final static String STATUS_KEY = "status-key";
     public String status;
-    private TimerHelper mTimerHelper;
 
-    //    TODO: zebrac wlasciwe dane do wyswietlenia
-    /* get exercise name array for current training from sharedPreferences */
-    // testowe dane
-    private String[] mExerciseNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie", "Zginanie przedramion ze sztangielkami z obrotem nadgarstka", "Exercise 3", "Exercise 4", "Exercise 5",
-            "Exercise 6", "Exercise 7", "Exercise 8", "Exercise 9", "Exercise 10"};
-//    private ArrayList<String> mExerciseNameArrayList = JSONParserHelper.getExerciseNameListForCurrentTraining();
-    private ArrayList<String> mExerciseNameArrayList;
+    private TimerHelper mTimerHelper;
     private ListView mListView;
     private TrainingDayListAdapter mAdapter;
 
     // TODO: Pobrac liste z adaptera i przekazac do statystyk
     /* Lista skonczonych cwiczen */
-    private ArrayList<Integer> positionList;
+    private ArrayList<Integer> mpositionList;
 
-    /* własciwa lista z cwiczeniami (test) */
-    private ArrayList<ExerciseModel> mExerciseList; // pobrac ja z JSONParserHelper
+    /* Lista cwiczen */
+    private ArrayList<ExerciseModel> mExerciseList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -58,14 +59,12 @@ public class TrainingDayFragment extends Fragment {
         mPauseButton = (FloatingActionButton) v.findViewById(R.id.training_fab_pause);
         mStopButton = (FloatingActionButton) v.findViewById(R.id.training_fab_stop);
 
-        /* Aby nie dublować wpisów w liście */
-        mExerciseNameArrayList = new ArrayList<>();
-        for (String s : mExerciseNameArray) {
-            mExerciseNameArrayList.add(s);
-        }
+
+        /* Pobranie listy cwiczen */
+        mExerciseList = new JSONParserHelper(mContext).getExerciseListForCurrentTraining();
 
         /* Ustawienie adaptera */
-        mAdapter = new TrainingDayListAdapter(mContext, mExerciseNameArrayList);
+        mAdapter = new TrainingDayListAdapter(mContext, mExerciseList);
         mListView.setAdapter(mAdapter);
 
         /* Ustawienie timera do przycisków */
@@ -79,7 +78,6 @@ public class TrainingDayFragment extends Fragment {
         return v;
     }
 
-    // TODO: wrzucic tutaj aktualizacje jsona, na podstawie czasu i listy zrobionych cwiczen
     private void setupTimeButtonListeners() {
         mStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +85,7 @@ public class TrainingDayFragment extends Fragment {
                 status = "stopped";
                 mTimerHelper.stopTimer();
                 mPauseButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_fab_pause));
-                long trainingTime = mTimerHelper.getTimerTime();
-                Bundle bundle = new Bundle();
-                bundle.putLong("training-time", trainingTime);
-                TrainingSummaryFragment fragment = new TrainingSummaryFragment();
-                fragment.setArguments(bundle);
-                mContext.addFragment(fragment);
+                summary();
             }
         });
 
@@ -110,6 +103,35 @@ public class TrainingDayFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void summary(){
+        int counter = 0;
+        for (int positon: mAdapter.getPositionList()
+             ) {
+            if(positon != 0)
+                counter++;
+        }
+
+        long trainingTime = mTimerHelper.getTimerTime();
+        Bundle bundle = new Bundle();
+        bundle.putLong("training-time", trainingTime);
+        bundle.putInt("exercise-count", counter);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        /* zapis statystyk do SharedPreferences */
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_average_exercise_amount_key, counter);
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_average_training_duration_key, DataConversionHelper.convertTime(trainingTime));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_last_training_date_key, dateFormat.format(new Date()));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_longest_training_duration_key, DataConversionHelper.convertTime(trainingTime));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_average_training_duration_key, DataConversionHelper.convertTime(trainingTime));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_last_exercise_amount_key, counter);
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_biggest_exercise_amount_key, counter);
+
+        TrainingSummaryFragment fragment = new TrainingSummaryFragment();
+        fragment.setArguments(bundle);
+        mContext.addFragment(fragment);
     }
 
     /*

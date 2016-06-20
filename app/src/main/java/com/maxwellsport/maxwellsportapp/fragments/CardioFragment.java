@@ -31,6 +31,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
 import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
 import com.maxwellsport.maxwellsportapp.services.LocationUpdateService;
 import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
@@ -287,6 +288,10 @@ public class CardioFragment extends Fragment implements OnMapReadyCallback {
         bundle.putLong("running-time", mTimerHelper.getTimerTime());
         bundle.putFloat("running-distance", mDistance);
         bundle.putFloat("running-pace", mPace);
+
+        /* send run data to server */
+        ConnectionHelper mConnectionHelper = new ConnectionHelper(getActivity());
+        mConnectionHelper.saveRunData(mTimerHelper.getTimerTime(), mDistance, mPace, mPolylinePoints);
 
         Fragment fragment = new CardioSummaryFragment();
         fragment.setArguments(bundle);

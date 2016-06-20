@@ -74,7 +74,7 @@
     <string name="training_title">Trening 1</string>
     <string name="training_information_label">Szczegóły</string>
     <string name="training_exercise_group">Partie mięśniowe:</string>
-    <string name="training_exercise_group_value">-\n-\n-</string>
+    <string name="training_exercise_group_value">Klatka \n Barki \n Plecy</string>
     <string name="training_exercise_amount">Ilość ćwiczeń:</string>
     <string name="training_weight">Obciążenie:</string>
     <string name="training_sets">Serie:</string>

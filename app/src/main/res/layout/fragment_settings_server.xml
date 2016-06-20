@@ -107,7 +107,7 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="10000"
+            android:hint="8081"
             android:inputType="numberDecimal"
             android:maxLength="5"
             android:selectAllOnFocus="true"

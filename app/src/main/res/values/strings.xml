@@ -74,7 +74,7 @@
     <string name="training_title">Training 1</string>
     <string name="training_information_label">Details</string>
     <string name="training_exercise_group">Muscle groups:</string>
-    <string name="training_exercise_group_value">-\n-\n-</string>
+    <string name="training_exercise_group_value">Chest \n Shoulders \n Back</string>
     <string name="training_exercise_amount">Exercise amount:</string>
     <string name="training_weight">Weight:</string>
     <string name="training_sets">Sets:</string>

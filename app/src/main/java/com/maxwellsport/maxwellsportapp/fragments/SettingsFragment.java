@@ -40,7 +40,7 @@ public class SettingsFragment extends Fragment {
         subtitles[1] = getResources().getString(R.string.settings_theme_subtitle) + " " + color_names[SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, 7)];
         subtitles[2] = getResources().getString(R.string.settings_default_tab_subtitle) + " " + getResources().getString(DataConversionHelper.convertTab(SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_default_tab_key, 0)));
         subtitles[3] = getResources().getString(R.string.settings_stats_subtitle);
-        subtitles[4] = getResources().getString(R.string.settings_server_subtitle) + " " + String.format(Locale.getDefault(), "%s:%s", SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.settings_server_address_key, "10.42.0.1"), SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_server_port_key, 10000));
+        subtitles[4] = getResources().getString(R.string.settings_server_subtitle) + " " + String.format(Locale.getDefault(), "%s:%s", SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.settings_server_address_key, "10.42.0.1"), SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_server_port_key, 8081));
 
         SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, R.style.CyanAccentColorTheme);
 

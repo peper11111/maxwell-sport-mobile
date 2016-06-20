@@ -3,7 +3,10 @@ package com.maxwellsport.maxwellsportapp.helpers;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
@@ -37,11 +40,18 @@ public class JSONParserHelper {
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_BODY_PART = "bodyPart";
 
+    /* run tags */
+    private static final String TAG_PACE = "pace";
+    private static final String TAG_COORDINATES = "coordinates";
+    private static final String TAG_DURATION = "duration";
+    private static final String TAG_DATE_TIME = "dateTime";
+    private static final String TAG_DISTANCE = "distance";
+
     public JSONParserHelper(Context context){
         mContext = context;
         mBodyPartSet = new HashSet<>();
         if(!SharedPreferencesHelper.getBoolean(mContext, SharedPreferencesHelper.is_training_downloaded_key, false))
-            mJsonString = getJsonFromSharedPreferences();
+            mJsonString = getTrainingJsonFromSharedPreferences();
 
     }
 
@@ -51,13 +61,52 @@ public class JSONParserHelper {
     }
 
     /* read JSON (String) from SharedPreferences */
-    public String getJsonFromSharedPreferences(){
+    public String getTrainingJsonFromSharedPreferences(){
         return SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.downloaded_training_json_key, "");
     }
 
     /* update trainig JSON from SharedPreferences */
     public void updateTrainingJson(String date, ArrayList checkedList){
 
+    }
+
+    public String createRunDataJson(Long duration, Float distance, Float pace, ArrayList<ArrayList<LatLng>> coordinates, String dateTime){
+        /* create json */
+        JSONArray paceArray = new JSONArray();
+        JSONArray coordinatesArray = new JSONArray();
+        JSONArray pointsJSONArray;
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            /* pace array*/
+            paceArray.put(pace);
+
+            jsonObject.put(TAG_PACE, paceArray);
+            jsonObject.put(TAG_DURATION, duration);
+            jsonObject.put(TAG_DATE_TIME, dateTime);
+            jsonObject.put(TAG_NAME,"Run");
+            jsonObject.put(TAG_DISTANCE, distance);
+
+            /* coordinates array */
+            for (ArrayList<LatLng> pointsArray: coordinates
+                 ) {
+                for (LatLng point: pointsArray
+                     ) {
+                    pointsJSONArray = new JSONArray();
+                    pointsJSONArray.put(0, point.latitude);
+                    pointsJSONArray.put(1, point.longitude);
+                    coordinatesArray.put(pointsJSONArray);
+                }
+            }
+
+            /* put coordinates */
+            jsonObject.put(TAG_COORDINATES, coordinatesArray);
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "{}";
     }
 
     /* return exercise arraylist for current training */
@@ -67,7 +116,9 @@ public class JSONParserHelper {
             try {
                 /* current training id */
                 int currentTrainingID = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.current_training_number_key,0);
+                mJsonString = SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.downloaded_training_json_key, "");
                 /* json array with trainings for each day */
+                Log.d("MAXWELL", mJsonString);
                 JSONArray jsonArray = new JSONArray(mJsonString);
                 /* json object witch current training */
                 JSONObject training = jsonArray.getJSONObject(currentTrainingID);
@@ -81,7 +132,13 @@ public class JSONParserHelper {
                     JSONObject exerciseJSON = exerciseArray.getJSONObject(i);
                     exerciseName = getExerciseNameById(exerciseJSON.getInt(TAG_EXE_ID));
                     mBodyPartSet.add(exerciseJSON.getString(TAG_BODY_PART));
-                    exercisesList.add(new ExerciseModel(exerciseJSON.getInt(TAG_REPS), exerciseJSON.getInt(TAG_SETS), exerciseJSON.getInt(TAG_WEIGHT), exerciseName));
+                    exercisesList.add(new ExerciseModel(exerciseJSON.getInt(TAG_REPS), exerciseJSON.getInt(TAG_SETS), exerciseJSON.getInt(TAG_WEIGHT), exerciseName, exerciseJSON.getInt(TAG_EXE_ID)));
+                    if(i == 0){
+                        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_weight_key, exerciseJSON.getInt(TAG_WEIGHT));
+                        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_sets_amount_key, exerciseJSON.getInt(TAG_SETS));
+                        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_reps_amount_key, exerciseJSON.getInt(TAG_REPS));
+                    }
+                    SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_exercise_amount_key, i);
                 }
 //                SharedPreferencesService.putValue(mContext,SharedPreferencesService.training_body_part_key, mBodyPartSet.toString());
                 return exercisesList;
@@ -90,7 +147,7 @@ public class JSONParserHelper {
             }
         }else {
             ArrayList<ExerciseModel> exerciseArrayList = new ArrayList<>();
-            exerciseArrayList.add(new ExerciseModel(0, 0, 0, "Pobierz trening"));
+            exerciseArrayList.add(new ExerciseModel(0, 0, 0, "Pobierz trening", 0));
             return exerciseArrayList;
         }
         return null;
@@ -100,6 +157,7 @@ public class JSONParserHelper {
     @SuppressWarnings("ResourceType")
     private String getExerciseNameById(int id){
         String name = "";
+        id++;
         int groupNumber, orderNumber, arrayId;
         /* set group number and order number in body part*/
         if(id == 0 || id == 1 || id > 43 || id < 0) {
@@ -143,6 +201,56 @@ public class JSONParserHelper {
         name = exerciseNameArray.getString(orderNumber);
         exerciseNameArray.recycle();
         return name;
+    }
+
+    /* Return exercise image id */
+    @SuppressWarnings("ResourceType")
+    public int getExerciseImageById(int id){
+        int imageId;
+        id++;
+        int groupNumber, orderNumber, arrayId;
+        /* set group number and order number in body part*/
+        if(id == 0 || id == 1 || id > 43 || id < 0) {
+            groupNumber = 0;
+            orderNumber = 0;
+        }else if(id == 43){
+            groupNumber = 6;
+            orderNumber = 5;
+        }else{
+            groupNumber = ((id - 1) / 7 + 1);
+            orderNumber = id % 6;
+        }
+        /* get array id */
+        switch (groupNumber){
+            case 0:
+                arrayId = R.array.atlas_exercise_biceps_icon;
+                break;
+            case 1:
+                arrayId = R.array.atlas_exercise_triceps_icon;
+                break;
+            case 2:
+                arrayId = R.array.atlas_exercise_shoulders_icon;
+                break;
+            case 3:
+                arrayId = R.array.atlas_exercise_chest_icon;
+                break;
+            case 4:
+                arrayId = R.array.atlas_exercise_back_icon;
+                break;
+            case 5:
+                arrayId = R.array.atlas_exercise_legs_icon;
+                break;
+            case 6:
+                arrayId = R.array.atlas_exercise_abs_icon;
+                break;
+            default:
+                arrayId = 0;
+        }
+        /* get exercise name from string array */
+        TypedArray imagesArray = mContext.getResources().obtainTypedArray(arrayId);
+        imageId = imagesArray.getResourceId(orderNumber, 0);
+        imagesArray.recycle();
+        return imageId ;
     }
 
     /* get body part list */

@@ -1,18 +1,20 @@
 package com.maxwellsport.maxwellsportapp.helpers;
 
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import java.io.IOException;
 
-public class DownloadHelper extends AsyncTask<String, Void, String> {
+/**
+ * Created by rafal on 19.06.16.
+ */
+public class LoginHelper extends AsyncTask<String, Void, String> {
 
     private Context mContext;
     private ConnectionHelper mConnectionHelper;
 
-    public DownloadHelper(Context context) {
+    public LoginHelper(Context context){
         this.mContext = context;
         mConnectionHelper = new ConnectionHelper(mContext);
     }
@@ -24,16 +26,19 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return "nothig to show yet";
     }
 
     @Override
     protected void onPostExecute(String json) {
+        /* test message */
+        if(json.equals("404")){
+            Toast.makeText(mContext, "Bł", Toast.LENGTH_LONG).show();
+        }
 
         /* saving json to SharedPreferences */
-        if (!json.equals("")) {
-            SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.downloaded_training_json_key, json);
-            SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
-        }
+//        JSONParserHelper parserService = new JSONParserHelper(mContext);
+//        parserService.saveJsonToSharedPreferences(json);
+
     }
 }
