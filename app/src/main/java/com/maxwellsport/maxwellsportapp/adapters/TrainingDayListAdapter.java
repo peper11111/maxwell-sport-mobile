@@ -15,33 +15,22 @@ import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.animations.FlipAnimation;
+import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
 import java.util.ArrayList;
 
 public class TrainingDayListAdapter extends BaseAdapter {
 
-    private ArrayList<String> exeNameList;
-    private ArrayList<String> weightList;
-    private ArrayList<String> setsList;
-    private ArrayList<String> repsList;
     private Context context;
+    private ArrayList<ExerciseModel> mExerciseList;
 
     /* Lista kliknietych pozycji, tam gdzie 0 to nie zrobione cwiczenie */
     ArrayList<Integer> positionList = new ArrayList<>();
 
-    //    TODO: zrobic odpowiedni konstruktor dla adaptera
-    public TrainingDayListAdapter(Context applicationContext, ArrayList<String> exeName) {
+    public TrainingDayListAdapter(Context applicationContext, ArrayList<ExerciseModel> exerciseList) {
         super();
         context = applicationContext;
-        this.exeNameList = exeName;
-
-        /*
-        *   Inicjalizacja listy z pozycjami
-        */
-        for (int i = 0; i < exeNameList.size(); i++) {
-            positionList.add(0);
-        }
-
+        this.mExerciseList = exerciseList;
     }
 
     public ArrayList<Integer> getPositionList() {
@@ -54,12 +43,12 @@ public class TrainingDayListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return exeNameList.size();
+        return mExerciseList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return exeNameList.get(position);
+        return mExerciseList.get(position);
     }
 
     @Override
@@ -95,7 +84,11 @@ public class TrainingDayListAdapter extends BaseAdapter {
         try {
 
             /* Zapisanie wartości pól tekstowych */
-            holder.exeName.setText(exeNameList.get(position));
+            holder.exeName.setText(mExerciseList.get(position).getmName());
+            holder.weight.setText(mExerciseList.get(position).getmWeight());
+            holder.sets.setText(mExerciseList.get(position).getmSets());
+            holder.reps.setText(mExerciseList.get(position).getmReps());
+
 
             /* Zmiana widoczności obrazka na podstawie pozycji, zeby recycler nie zmieniał widoku */
 

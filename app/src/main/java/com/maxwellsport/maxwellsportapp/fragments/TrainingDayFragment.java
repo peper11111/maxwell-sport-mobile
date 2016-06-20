@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
+import com.maxwellsport.maxwellsportapp.helpers.JSONParserHelper;
 import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
@@ -28,19 +29,16 @@ public class TrainingDayFragment extends Fragment {
     public String status;
     private TimerHelper mTimerHelper;
 
-    //    TODO: zebrac wlasciwe dane do wyswietlenia
-    /* get exercise name array for current training from sharedPreferences */
     // testowe dane
     private String[] mExerciseNameArray = {"Zginanie przedramion ze sztangielkami trzymanymi neutralnie", "Zginanie przedramion ze sztangielkami z obrotem nadgarstka", "Exercise 3", "Exercise 4", "Exercise 5",
             "Exercise 6", "Exercise 7", "Exercise 8", "Exercise 9", "Exercise 10"};
-//    private ArrayList<String> mExerciseNameArrayList = JSONParserHelper.getExerciseNameListForCurrentTraining();
     private ArrayList<String> mExerciseNameArrayList;
     private ListView mListView;
     private TrainingDayListAdapter mAdapter;
 
     // TODO: Pobrac liste z adaptera i przekazac do statystyk
     /* Lista skonczonych cwiczen */
-    private ArrayList<Integer> positionList;
+    private ArrayList<Integer> mpositionList;
 
     /* własciwa lista z cwiczeniami (test) */
     private ArrayList<ExerciseModel> mExerciseList; // pobrac ja z JSONParserHelper
@@ -62,8 +60,11 @@ public class TrainingDayFragment extends Fragment {
             mExerciseNameArrayList.add(s);
         }
 
+        /* Pobranie listy cwiczen */
+        mExerciseList = new JSONParserHelper(mContext).getExerciseListForCurrentTraining();
+
         /* Ustawienie adaptera */
-        mAdapter = new TrainingDayListAdapter(mContext, mExerciseNameArrayList);
+        mAdapter = new TrainingDayListAdapter(mContext, mExerciseList);
         mListView.setAdapter(mAdapter);
 
         /* Ustawienie timera do przycisków */

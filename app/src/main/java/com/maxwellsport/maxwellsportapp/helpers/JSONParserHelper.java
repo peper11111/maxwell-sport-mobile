@@ -113,11 +113,14 @@ public class JSONParserHelper {
     /* return exercise arraylist for current training */
     public  ArrayList<ExerciseModel> getExerciseListForCurrentTraining(){
         /* if training is not downloaded return one empty exercise */
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
         if(SharedPreferencesHelper.getBoolean(mContext, SharedPreferencesHelper.is_training_downloaded_key, false)){
             try {
                 /* current training id */
                 int currentTrainingID = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.current_training_number_key,0);
+                mJsonString = SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.downloaded_training_json_key, "");
                 /* json array with trainings for each day */
+                Log.d("MAXWELL", mJsonString);
                 JSONArray jsonArray = new JSONArray(mJsonString);
                 /* json object witch current training */
                 JSONObject training = jsonArray.getJSONObject(currentTrainingID);
@@ -150,16 +153,17 @@ public class JSONParserHelper {
     @SuppressWarnings("ResourceType")
     private String getExerciseNameById(int id){
         String name = "";
+        id++;
         int groupNumber, orderNumber, arrayId;
         /* set group number and order number in body part*/
         if(id == 0 || id == 1 || id > 43 || id < 0) {
             groupNumber = 0;
             orderNumber = 0;
-        }else if(id == 42){
+        }else if(id == 43){
             groupNumber = 6;
             orderNumber = 5;
         }else{
-            groupNumber = ((id) / 7);
+            groupNumber = ((id - 1) / 7 + 1);
             orderNumber = id % 6;
         }
         /* get array id */

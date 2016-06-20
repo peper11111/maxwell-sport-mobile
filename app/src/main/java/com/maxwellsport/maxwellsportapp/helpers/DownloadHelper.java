@@ -29,11 +29,12 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String json) {
-        /* test message */
 
+        /* test message */
         Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
 
         /* saving json to SharedPreferences */
         SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.downloaded_training_json_key, json);
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
     }
 }
