@@ -155,11 +155,11 @@ public class JSONParserHelper {
         if(id == 0 || id == 1 || id > 43 || id < 0) {
             groupNumber = 0;
             orderNumber = 0;
-        }else if(id == 43){
+        }else if(id == 42){
             groupNumber = 6;
             orderNumber = 5;
         }else{
-            groupNumber = ((id - 1) / 7 + 1);
+            groupNumber = ((id) / 7);
             orderNumber = id % 6;
         }
         /* get array id */

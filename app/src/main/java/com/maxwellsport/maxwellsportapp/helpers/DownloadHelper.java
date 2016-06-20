@@ -34,8 +34,6 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
         Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
 
         /* saving json to SharedPreferences */
-//        JSONParserHelper parserService = new JSONParserHelper(mContext);
-//        parserService.saveJsonToSharedPreferences(json);
-
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.downloaded_training_json_key, json);
     }
 }
