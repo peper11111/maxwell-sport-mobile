@@ -24,7 +24,7 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "nothig to show yet";
+        return "";
     }
 
     @Override
@@ -34,7 +34,9 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
         Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
 
         /* saving json to SharedPreferences */
-        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.downloaded_training_json_key, json);
-        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
+        if(!json.equals("")){
+            SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.downloaded_training_json_key, json);
+            SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
+        }
     }
 }

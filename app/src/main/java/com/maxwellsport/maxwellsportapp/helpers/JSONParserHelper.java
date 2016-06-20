@@ -45,7 +45,6 @@ public class JSONParserHelper {
     private static final String TAG_COORDINATES = "coordinates";
     private static final String TAG_DURATION = "duration";
     private static final String TAG_DATE_TIME = "dateTime";
-    private static final String TAG_RUN_NAME = "name";
     private static final String TAG_DISTANCE = "distance";
 
     public JSONParserHelper(Context context){
@@ -113,7 +112,6 @@ public class JSONParserHelper {
     /* return exercise arraylist for current training */
     public  ArrayList<ExerciseModel> getExerciseListForCurrentTraining(){
         /* if training is not downloaded return one empty exercise */
-        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
         if(SharedPreferencesHelper.getBoolean(mContext, SharedPreferencesHelper.is_training_downloaded_key, false)){
             try {
                 /* current training id */

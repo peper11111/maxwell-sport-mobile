@@ -2,6 +2,9 @@ package com.maxwellsport.maxwellsportapp.adapters;
 
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,26 +14,35 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.maxwellsport.maxwellsportapp.R;
+import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.animations.FlipAnimation;
+import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseDetailsFragment;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
 import java.util.ArrayList;
 
 public class TrainingDayListAdapter extends BaseAdapter {
 
-    private Context context;
+    private Context mContext;
+    private MainActivity mainActivityContext;
+
     private ArrayList<ExerciseModel> mExerciseList;
 
     /* Lista kliknietych pozycji, tam gdzie 0 to nie zrobione cwiczenie */
     ArrayList<Integer> positionList = new ArrayList<>();
 
+
     public TrainingDayListAdapter(Context applicationContext, ArrayList<ExerciseModel> exerciseList) {
         super();
-        context = applicationContext;
+        mContext = applicationContext;
+        mainActivityContext = (MainActivity) applicationContext;
         this.mExerciseList = exerciseList;
+
+        for (int i = 0; i < mExerciseList.size(); i++) {
+            positionList.add(0);
+        }
     }
 
     public ArrayList<Integer> getPositionList() {
@@ -62,7 +74,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
         ViewHolder holder = new ViewHolder();
 
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item_training_day, null);
 
             /* Inicjalizacja zmiennych do holdera */
@@ -85,9 +97,9 @@ public class TrainingDayListAdapter extends BaseAdapter {
 
             /* Zapisanie wartości pól tekstowych */
             holder.exeName.setText(mExerciseList.get(position).getmName());
-            holder.weight.setText(mExerciseList.get(position).getmWeight());
-            holder.sets.setText(mExerciseList.get(position).getmSets());
-            holder.reps.setText(mExerciseList.get(position).getmReps());
+            holder.weight.setText(Integer.toString(mExerciseList.get(position).getmWeight()));
+            holder.sets.setText(Integer.toString(mExerciseList.get(position).getmSets()));
+            holder.reps.setText(Integer.toString(mExerciseList.get(position).getmReps()));
 
 
             /* Zmiana widoczności obrazka na podstawie pozycji, zeby recycler nie zmieniał widoku */
@@ -125,7 +137,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
             holder.popup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(context, v);
+                    PopupMenu popupMenu = new PopupMenu(mContext, v);
                     popupMenu.getMenuInflater().inflate(R.menu.fragment_training_day_popup, popupMenu.getMenu());
                     popupMenu.show();
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -133,8 +145,12 @@ public class TrainingDayListAdapter extends BaseAdapter {
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
                                 case R.id.training_exercise_description:
-                                    // TODO odpalic opis cwiczenia w popup
-                                    Toast.makeText(context, "w popup", Toast.LENGTH_SHORT).show();
+                                    Bundle bundle = new Bundle();
+                                    ExerciseModel exercise = (ExerciseModel) getItem(position);
+                                    bundle.putSerializable("exercise-class", exercise);
+                                    Fragment fragment = new AtlasExerciseDetailsFragment();
+                                    fragment.setArguments(bundle);
+                                    mainActivityContext.addFragment(fragment);
                                     break;
                                 default:
                                     break;

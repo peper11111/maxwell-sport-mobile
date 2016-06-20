@@ -32,7 +32,10 @@ public class TrainingSummaryFragment extends Fragment {
 
         Bundle args = getArguments();
         long trainingTime = args.getLong("training-time");
+        int exerciseCount = args.getInt("exercise-count");
         TextView timeView = (TextView) mView.findViewById(R.id.training_summary_time_value);
+        TextView countView = (TextView) mView.findViewById(R.id.training_summary_exercise_amount_value);
+        countView.setText(Integer.toString(exerciseCount));
         timeView.setText(DataConversionHelper.convertTime(trainingTime));
 
         int style = SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.settings_theme_key, R.style.CyanAccentColorTheme);
