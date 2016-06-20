@@ -132,7 +132,13 @@ public class JSONParserHelper {
                     JSONObject exerciseJSON = exerciseArray.getJSONObject(i);
                     exerciseName = getExerciseNameById(exerciseJSON.getInt(TAG_EXE_ID));
                     mBodyPartSet.add(exerciseJSON.getString(TAG_BODY_PART));
-                    exercisesList.add(new ExerciseModel(exerciseJSON.getInt(TAG_REPS), exerciseJSON.getInt(TAG_SETS), exerciseJSON.getInt(TAG_WEIGHT), exerciseName));
+                    exercisesList.add(new ExerciseModel(exerciseJSON.getInt(TAG_REPS), exerciseJSON.getInt(TAG_SETS), exerciseJSON.getInt(TAG_WEIGHT), exerciseName, exerciseJSON.getInt(TAG_EXE_ID)));
+                    if(i == 0){
+                        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_weight_key, exerciseJSON.getInt(TAG_WEIGHT));
+                        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_sets_amount_key, exerciseJSON.getInt(TAG_SETS));
+                        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_reps_amount_key, exerciseJSON.getInt(TAG_REPS));
+                    }
+                    SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.training_fragment_exercise_amount_key, i);
                 }
 //                SharedPreferencesService.putValue(mContext,SharedPreferencesService.training_body_part_key, mBodyPartSet.toString());
                 return exercisesList;
@@ -141,7 +147,7 @@ public class JSONParserHelper {
             }
         }else {
             ArrayList<ExerciseModel> exerciseArrayList = new ArrayList<>();
-            exerciseArrayList.add(new ExerciseModel(0, 0, 0, "Pobierz trening"));
+            exerciseArrayList.add(new ExerciseModel(0, 0, 0, "Pobierz trening", 0));
             return exerciseArrayList;
         }
         return null;
@@ -195,6 +201,56 @@ public class JSONParserHelper {
         name = exerciseNameArray.getString(orderNumber);
         exerciseNameArray.recycle();
         return name;
+    }
+
+    /* Return exercise image id */
+    @SuppressWarnings("ResourceType")
+    public int getExerciseImageById(int id){
+        int imageId;
+        id++;
+        int groupNumber, orderNumber, arrayId;
+        /* set group number and order number in body part*/
+        if(id == 0 || id == 1 || id > 43 || id < 0) {
+            groupNumber = 0;
+            orderNumber = 0;
+        }else if(id == 43){
+            groupNumber = 6;
+            orderNumber = 5;
+        }else{
+            groupNumber = ((id - 1) / 7 + 1);
+            orderNumber = id % 6;
+        }
+        /* get array id */
+        switch (groupNumber){
+            case 0:
+                arrayId = R.array.atlas_exercise_biceps_icon;
+                break;
+            case 1:
+                arrayId = R.array.atlas_exercise_triceps_icon;
+                break;
+            case 2:
+                arrayId = R.array.atlas_exercise_shoulders_icon;
+                break;
+            case 3:
+                arrayId = R.array.atlas_exercise_chest_icon;
+                break;
+            case 4:
+                arrayId = R.array.atlas_exercise_back_icon;
+                break;
+            case 5:
+                arrayId = R.array.atlas_exercise_legs_icon;
+                break;
+            case 6:
+                arrayId = R.array.atlas_exercise_abs_icon;
+                break;
+            default:
+                arrayId = 0;
+        }
+        /* get exercise name from string array */
+        TypedArray imagesArray = mContext.getResources().obtainTypedArray(arrayId);
+        imageId = imagesArray.getResourceId(orderNumber, 0);
+        imagesArray.recycle();
+        return imageId ;
     }
 
     /* get body part list */

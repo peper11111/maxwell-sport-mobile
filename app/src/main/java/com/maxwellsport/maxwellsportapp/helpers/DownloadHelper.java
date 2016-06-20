@@ -12,7 +12,7 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
     private Context mContext;
     private ConnectionHelper mConnectionHelper;
 
-    public DownloadHelper(Context context){
+    public DownloadHelper(Context context) {
         this.mContext = context;
         mConnectionHelper = new ConnectionHelper(mContext);
     }
@@ -30,11 +30,8 @@ public class DownloadHelper extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String json) {
 
-        /* test message */
-        Toast.makeText(mContext, json, Toast.LENGTH_LONG).show();
-
         /* saving json to SharedPreferences */
-        if(!json.equals("")){
+        if (!json.equals("")) {
             SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.downloaded_training_json_key, json);
             SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
         }

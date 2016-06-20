@@ -43,7 +43,9 @@ public class ConnectionHelper {
         setConnectionVariables();
         /* check if update or download is needed */
         new DownloadHelper(mContext).execute(mTrainingURL);
-//        new UploadTrainingHelper(mContext).execute(mURL);
+        if(SharedPreferencesHelper.getBoolean(mContext, SharedPreferencesHelper.is_training_downloaded_key, false)){
+            new UploadTrainingHelper(mContext).execute(mURL);
+        }
     }
 
     public void saveRunData(Long duration, Float distance, Float pace, ArrayList<ArrayList<LatLng>> coordinates) {
@@ -58,38 +60,55 @@ public class ConnectionHelper {
     }
 
     public String putTrainingData(String arg) throws IOException {
+        setConnectionVariables();
         InputStream inputStream = null;
         DataOutputStream outputStream;
         String result = "";
-        String data;
-        setConnectionVariables();
+        String data = "";
         HttpURLConnection urlConnection = null;
+        StringBuilder sb = new StringBuilder();
+
         try {
             /* create URL */
-            URL url = new URL(arg);
+            URL url = new URL(mTrainingURL);
             /* create HttpURLConnection */
             urlConnection = (HttpURLConnection) url.openConnection();
             /* set connection params */
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("PUT");
             urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setUseCaches(false);
+            urlConnection.setConnectTimeout(10000);
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setRequestProperty("content-type", "application/json");
+            urlConnection.setRequestProperty("cache-control", "no-cache");
             urlConnection.setChunkedStreamingMode(0);
-            /*get OutputStream */
-            outputStream = new DataOutputStream(urlConnection.getOutputStream());
-            /* get JSON to send */
-            data = mParserService.getTrainingJsonFromSharedPreferences();
-            /* write JSON to stream */
-            outputStream.writeBytes(data);
-            outputStream.flush();
-            outputStream.close();
             /* connect */
             urlConnection.connect();
+            /* push data to stream */
+            OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
+            out.write(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.downloaded_training_json_key, ""));
+            out.flush();
+            out.close();
+            /* check response code */
+            int HttpResult = urlConnection.getResponseCode();
+            if (HttpResult == HttpURLConnection.HTTP_OK) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        urlConnection.getInputStream(), "utf-8"));
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+                Log.d("MAXWELL", "OK RESPONSE " + HttpResult + " " + sb.toString());
 
+            } else {
+                Log.d("MAXWELL", "NOT OK RESPONSE: " + HttpResult + " " + urlConnection.getResponseMessage());
+            }
             return result;
         } finally {
+            urlConnection.disconnect();
             if (inputStream != null) {
                 inputStream.close();
-                urlConnection.disconnect();
             }
         }
     }
@@ -121,6 +140,9 @@ public class ConnectionHelper {
                 result = convertInputStreamToString(inputStream);
             /* disconnect */
                 urlConnection.disconnect();
+
+//                SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.is_training_downloaded_key, true);
+
                 return result;
             }
             return "";
@@ -142,7 +164,9 @@ public class ConnectionHelper {
 
         try {
             /* create URL */
-            URL url = new URL("http://10.42.0.1:8081/api/run/user/3");
+//            URL url = new URL("http://10.42.0.1:8081/api/run/user/3");
+            URL url = new URL(mRunURL);
+
             /* create HttpURLConnection */
             urlConnection = (HttpURLConnection) url.openConnection();
             /* set connection params */

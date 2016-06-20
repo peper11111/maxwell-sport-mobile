@@ -252,4 +252,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mFragment = fragment;
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.abc_grow_fade_in_from_bottom, R.anim.abc_fade_out, R.anim.abc_grow_fade_in_from_bottom, R.anim.abc_fade_out).addToBackStack(null).replace(R.id.fragment_container, fragment).commit();
     }
+
+
 }

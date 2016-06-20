@@ -19,6 +19,7 @@ import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.animations.FlipAnimation;
 import com.maxwellsport.maxwellsportapp.fragments.AtlasExerciseDetailsFragment;
+import com.maxwellsport.maxwellsportapp.helpers.JSONParserHelper;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
 
     private Context mContext;
     private MainActivity mainActivityContext;
+    private JSONParserHelper mJsonParserHelper;
 
     private ArrayList<ExerciseModel> mExerciseList;
 
@@ -39,6 +41,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
         mContext = applicationContext;
         mainActivityContext = (MainActivity) applicationContext;
         this.mExerciseList = exerciseList;
+        mJsonParserHelper = new JSONParserHelper(mContext);
 
         for (int i = 0; i < mExerciseList.size(); i++) {
             positionList.add(0);
@@ -84,7 +87,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
             holder.reps = (TextView) convertView.findViewById(R.id.training_list_item_reps);
             holder.imageFront = (ImageView) convertView.findViewById(R.id.training_flip_front);
             holder.imageBack = (ImageView) convertView.findViewById(R.id.training_flip_back);
-            holder.popup = (ImageButton) convertView.findViewById(R.id.training_list_item_popup);
+//            holder.popup = (ImageButton) convertView.findViewById(R.id.training_list_item_popup);
 
             convertView.setTag(holder);
         } else {
@@ -100,7 +103,7 @@ public class TrainingDayListAdapter extends BaseAdapter {
             holder.weight.setText(Integer.toString(mExerciseList.get(position).getmWeight()));
             holder.sets.setText(Integer.toString(mExerciseList.get(position).getmSets()));
             holder.reps.setText(Integer.toString(mExerciseList.get(position).getmReps()));
-
+            holder.imageFront.setImageResource(mJsonParserHelper.getExerciseImageById(mExerciseList.get(position).getmID()));
 
             /* Zmiana widoczności obrazka na podstawie pozycji, zeby recycler nie zmieniał widoku */
 
@@ -134,32 +137,32 @@ public class TrainingDayListAdapter extends BaseAdapter {
             });
 
             /* Popup menu */
-            holder.popup.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(mContext, v);
-                    popupMenu.getMenuInflater().inflate(R.menu.fragment_training_day_popup, popupMenu.getMenu());
-                    popupMenu.show();
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.training_exercise_description:
-                                    Bundle bundle = new Bundle();
-                                    ExerciseModel exercise = (ExerciseModel) getItem(position);
-                                    bundle.putSerializable("exercise-class", exercise);
-                                    Fragment fragment = new AtlasExerciseDetailsFragment();
-                                    fragment.setArguments(bundle);
-                                    mainActivityContext.addFragment(fragment);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            return true;
-                        }
-                    });
-                }
-            });
+//            holder.popup.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    PopupMenu popupMenu = new PopupMenu(mContext, v);
+//                    popupMenu.getMenuInflater().inflate(R.menu.fragment_training_day_popup, popupMenu.getMenu());
+//                    popupMenu.show();
+//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                        @Override
+//                        public boolean onMenuItemClick(MenuItem item) {
+//                            switch (item.getItemId()) {
+//                                case R.id.training_exercise_description:
+//                                    Bundle bundle = new Bundle();
+//                                    ExerciseModel exercise = (ExerciseModel) getItem(position);
+//                                    bundle.putSerializable("exercise-class", exercise);
+//                                    Fragment fragment = new AtlasExerciseDetailsFragment();
+//                                    fragment.setArguments(bundle);
+//                                    mainActivityContext.addFragment(fragment);
+//                                    break;
+//                                default:
+//                                    break;
+//                            }
+//                            return true;
+//                        }
+//                    });
+//                }
+//            });
         } catch (Exception e) {
             e.printStackTrace();
         }

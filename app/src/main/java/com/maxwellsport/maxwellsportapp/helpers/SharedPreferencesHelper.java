@@ -44,6 +44,13 @@ public class SharedPreferencesHelper {
     public static final String training_body_part_key = "body_part_list";
     public static final String settings_server_address_key = "settings-settings-server-address";
     public static final String settings_server_port_key = "settings-settings-server-port";
+    public static final String training_fragment_exercise_amount_key = "training-fragment-exercise-amount";
+    public static final String training_fragment_weight_key = "training-fragment-weight";
+    public static final String training_fragment_sets_amount_key = "training-fragment-sets";
+    public static final String training_fragment_reps_amount_key = "training-fragment-reps";
+
+
+
 
 
     private static SharedPreferences getSharedPreferences(Context context) {
