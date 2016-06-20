@@ -40,8 +40,8 @@
     <string name="nav_about">About</string>
 
     <!-- Profile Fragment -->
-    <string name="profile_user_name">User name</string>
-    <string name="profile_user_email">email@example.com</string>
+    <string name="profile_user_name">Maxwell Sport</string>
+    <string name="profile_user_email">maxwellsport@gmail.com</string>
     <string name="profile_active_since">Active since: 00.00.0000</string>
     <string name="profile_statistics">Statistics:</string>
     <string name="profile_training_form">Training form:</string>

@@ -40,8 +40,8 @@
     <string name="nav_about">O aplikacji</string>
 
     <!-- Profile Fragment -->
-    <string name="profile_user_name">Nazwa użytkownika</string>
-    <string name="profile_user_email">email@example.com</string>
+    <string name="profile_user_name">Maxwell Sport</string>
+    <string name="profile_user_email">maxwellsport@gmail.com</string>
     <string name="profile_active_since">Aktywny od: 00.00.0000</string>
     <string name="profile_statistics">Statystyki:</string>
     <string name="profile_training_form">Forma treningowa:</string>
