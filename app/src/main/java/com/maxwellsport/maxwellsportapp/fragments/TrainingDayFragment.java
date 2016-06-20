@@ -15,11 +15,16 @@ import com.maxwellsport.maxwellsportapp.activities.MainActivity;
 import com.maxwellsport.maxwellsportapp.R;
 import com.maxwellsport.maxwellsportapp.adapters.TrainingDayListAdapter;
 import com.maxwellsport.maxwellsportapp.helpers.ConnectionHelper;
+import com.maxwellsport.maxwellsportapp.helpers.DataConversionHelper;
 import com.maxwellsport.maxwellsportapp.helpers.JSONParserHelper;
+import com.maxwellsport.maxwellsportapp.helpers.SharedPreferencesHelper;
 import com.maxwellsport.maxwellsportapp.helpers.TimerHelper;
 import com.maxwellsport.maxwellsportapp.models.ExerciseModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TrainingDayFragment extends Fragment {
     private MainActivity mContext;
@@ -110,6 +115,18 @@ public class TrainingDayFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putLong("training-time", trainingTime);
         bundle.putInt("exercise-count", counter);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        /* zapis statystyk do SharedPreferences */
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_average_exercise_amount_key, counter);
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_average_training_duration_key, DataConversionHelper.convertTime(trainingTime));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_last_training_date_key, dateFormat.format(new Date()));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_longest_training_duration_key, DataConversionHelper.convertTime(trainingTime));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_average_training_duration_key, DataConversionHelper.convertTime(trainingTime));
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_last_exercise_amount_key, counter);
+        SharedPreferencesHelper.putValue(mContext, SharedPreferencesHelper.profile_stats_biggest_exercise_amount_key, counter);
+
         TrainingSummaryFragment fragment = new TrainingSummaryFragment();
         fragment.setArguments(bundle);
         mContext.addFragment(fragment);

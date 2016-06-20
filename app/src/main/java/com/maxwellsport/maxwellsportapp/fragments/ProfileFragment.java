@@ -26,6 +26,29 @@ public class ProfileFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        /* Training part */
+        TextView lastTrainingDate = (TextView) v.findViewById(R.id.profile_last_training_date_value);
+        lastTrainingDate.setText(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.profile_stats_last_training_date_key, "-"));
+
+        TextView averageExerciseAmount = (TextView) v.findViewById(R.id.profile_average_exercise_amount_value);
+        averageExerciseAmount.setText(Integer.toString(SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.profile_stats_average_exercise_amount_key, 0)));
+
+        TextView lastTrainingDuration = (TextView) v.findViewById(R.id.profile_last_training_duration_value);
+        lastTrainingDuration.setText(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.profile_stats_longest_training_duration_key, "-"));
+
+        TextView longestTrainingDuration = (TextView) v.findViewById(R.id.profile_longest_training_duration_value);
+        longestTrainingDuration.setText(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.profile_stats_longest_training_duration_key, "-"));
+
+        TextView averageTrainingDuration = (TextView) v.findViewById(R.id.profile_average_training_duration_value);
+        averageTrainingDuration.setText(SharedPreferencesHelper.getString(mContext, SharedPreferencesHelper.profile_stats_average_training_duration_key, "-"));
+
+        TextView lastExerciseAmount = (TextView) v.findViewById(R.id.profile_last_exercise_amount_value);
+        lastExerciseAmount.setText(Integer.toString(SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.profile_stats_last_exercise_amount_key, 0)));
+
+        TextView biggestExerciseAmount = (TextView) v.findViewById(R.id.profile_biggest_exercise_amount_value);
+        biggestExerciseAmount.setText(Integer.toString(SharedPreferencesHelper.getInt(mContext, SharedPreferencesHelper.profile_stats_biggest_exercise_amount_key, 0)));
+
+        /* Training form */
         ImageView trainingForm = (ImageView) v.findViewById(R.id.profile_training_form_value);
         trainingForm.setColorFilter(getResources().getColor(R.color.material_blue_500), PorterDuff.Mode.SRC_ATOP);
 
